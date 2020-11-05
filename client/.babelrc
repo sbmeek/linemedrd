@@ -1,0 +1,16 @@
+{
+	"presets": ["react-app"],
+	"env": {
+		"development": {
+			"plugins": [
+				[
+					"babel-plugin-styled-components",
+					{
+						"displayName": true,
+						"minify": false
+					}
+				]
+			]
+		}
+	}
+}
