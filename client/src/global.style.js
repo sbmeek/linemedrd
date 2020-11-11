@@ -33,5 +33,6 @@ export const GlobalStyle = createGlobalStyle`
 		justify-content: center;
 		min-width: 100vw;
 		overflow: hidden;
+		z-index: 0;
 	}
 `;
