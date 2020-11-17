@@ -59,7 +59,7 @@ userSchema.methods.hashPwd = async (pwd) => {
 };
 
 userSchema.methods.comparePwd = async (dbPwd, enteredPwd) => {
-	return await bcrypt.compare(dbPwd, enteredPwd);
+	return await bcrypt.compare(enteredPwd, dbPwd);
 };
 
 module.exports = model('User', userSchema);

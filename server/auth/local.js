@@ -29,16 +29,16 @@ passport.use(
 		},
 		async (email, password, done) => {
 			try {
-				const user = User.findOne({ email });
-				const isPasswordOk = await user.comparePwd(user.password, password);
-
-				if (user === null || !isPasswordOk) {
+				const user = await User.findOne({ email });
+				console.log(user);
+				if (user === null) {
 					return done(null, false);
 				}
 				if (!user.isEmailConfirmed) {
 					return done({ emailNotConfirmed: true, ok: false }, false);
 				} else {
-					return done(null, user);
+					let isPasswordOk = await user.comparePwd(user.password, password);
+					return isPasswordOk ? done(null, user) : done(null, false);
 				}
 			} catch (error) {
 				console.error(error);

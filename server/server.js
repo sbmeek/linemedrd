@@ -3,18 +3,23 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
 const sessions = require('client-sessions');
+const passport = require('passport');
 require('dotenv').config();
 const app = express();
 
 const PORT = process.env.PORT || 4000;
 
+//Init db
+require('./db');
+
 app.set('json spaces', 2);
 
 app.use(helmet());
 app.use(cors({ origin: 'http://127.0.0.1:3000' }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(passport.initialize());
 app.use(
 	sessions({
 		cookieName: 'medTkn',
@@ -26,9 +31,6 @@ app.use(
 		}
 	})
 );
-
-//Init db
-require('./db');
 
 app.use('/user', require('./routes/user.routes'));
 

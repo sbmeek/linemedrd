@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StyleSheetManager } from 'styled-components';
+import ContextWrapper from 'global/context';
 
 const reactRoot = document.querySelector('#react-root');
 
@@ -19,11 +20,13 @@ window.addEventListener('orientationchange', calcVH, true);
 
 ReactDOM.render(
 	<React.StrictMode>
-		<StyleSheetManager
-			disableVendorPrefixes={process.env.NODE_ENV === 'development'}
-		>
-			<App />
-		</StyleSheetManager>
+		<ContextWrapper>
+			<StyleSheetManager
+				disableVendorPrefixes={process.env.NODE_ENV === 'development'}
+			>
+				<App />
+			</StyleSheetManager>
+		</ContextWrapper>
 	</React.StrictMode>,
 	reactRoot
 );
