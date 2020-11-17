@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import { Form } from './Login.style';
 import axios from 'axios';
@@ -7,6 +7,10 @@ import { MainContext, actionTypes } from 'global/context';
 export default function Login() {
 	const [fields, setFields] = useState({});
 	const { dispatch } = useContext(MainContext);
+
+	useEffect(() => {
+		document.title = 'Unauth Route'
+	}, [])
 
 	const handleFormSubmit = async (e) => {
 		e.preventDefault();

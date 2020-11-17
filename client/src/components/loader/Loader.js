@@ -1,10 +1,12 @@
 import React from 'react';
 import crossIcon from 'assets/icons/cross.svg';
+import { CargandoTxt, LoaderContainer } from './Loader.style';
 
 export default function Loader() {
 	return (
-		<div>
+		<LoaderContainer>
 			<img src={crossIcon} alt="cross" />
-		</div>
+			<CargandoTxt />
+		</LoaderContainer>
 	);
 }

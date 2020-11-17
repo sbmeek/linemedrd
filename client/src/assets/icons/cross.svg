@@ -1,16 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="206.881" height="206.881" viewBox="0 0 206.881 206.881">
-  <style>
-    .g {
-      animation: l 2s linear 10ms infinite;
-    }
-    @keyframes l {
-      0% { opacity: 0; }
-      50% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-  </style>
-  <g class="g" id="Group_66" data-name="Group 66" transform="translate(-856.845 -343.911)">
-    <rect id="Rectangle_27" data-name="Rectangle 27" width="76.349" height="206.881" rx="17" transform="translate(998.46 550.792) rotate(180)" fill="#ff6363"/>
-    <rect id="Rectangle_28" data-name="Rectangle 28" width="76.349" height="206.881" rx="16" transform="translate(1063.727 409.177) rotate(90)" fill="#ff6363"/>
-  </g>
+	<style>
+				.g {
+					animation: l 2s linear 10ms infinite;
+				}
+
+				@keyframes l {
+					0% {
+						opacity: 0;
+					}
+
+					50% {
+						opacity: 1;
+					}
+
+					100% {
+						opacity: 0;
+					}
+				}
+	</style>
+	<g class="g" id="Group_66" data-name="Group 66" transform="translate(-856.845 -343.911)">
+		<rect id="Rectangle_27" data-name="Rectangle 27" width="76.349" height="206.881" rx="17" transform="translate(998.46 550.792) rotate(180)" fill="#ff6363" />
+		<rect id="Rectangle_28" data-name="Rectangle 28" width="76.349" height="206.881" rx="16" transform="translate(1063.727 409.177) rotate(90)" fill="#ff6363" />
+	</g>
 </svg>
