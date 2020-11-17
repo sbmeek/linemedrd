@@ -47,7 +47,14 @@ router.post('/login', async (req, res, next) => {
 		} else {
 			const { _id, email } = user;
 			req.medTkn.medTkn = signToken('medTkn', _id);
-			res.json({ isAuthenticated: true, ok: true, email });
+			res.json({
+				isAuthenticated: true,
+				ok: true,
+				user: {
+					_id,
+					email
+				}
+			});
 		}
 	})(req, res, next);
 });
@@ -56,10 +63,13 @@ router.post('/check-auth', async (req, res, next) => {
 	passport.authenticate('jwt', { session: false }, (_, user) => {
 		if (!user) res.json({ isAuthenticated: false, user: null });
 		else {
-			const { email } = user;
+			const { _id, email } = user;
 			res.json({
 				isAuthenticated: true,
-				email
+				user: {
+					_id,
+					email
+				}
 			});
 		}
 	})(req, res, next);

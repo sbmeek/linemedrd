@@ -9,7 +9,8 @@ const initialState = {
 
 export const actionTypes = {
 	SET_IS_LOADING: 'SET_IS_LOADING',
-	SET_IS_AUTHENTICATED: 'SET_IS_AUTHENTICATED'
+	SET_IS_AUTHENTICATED: 'SET_IS_AUTHENTICATED',
+	SET_USER: 'SET_USER'
 };
 
 export const MainContext = createContext({ state: initialState });
@@ -19,13 +20,18 @@ const reducer = (state, action) => {
 		case actionTypes.SET_IS_LOADING:
 			return {
 				...state,
-				[state.isLoading]: action.payload.isLoading
+				isLoading: action.payload.isLoading
 			};
 		case actionTypes.SET_IS_AUTHENTICATED:
 			return {
 				...state,
-				[state.isAuthenticated]: action.payload.isAuthenticated
+				isAuthenticated: action.payload.isAuthenticated
 			};
+		case actionTypes.SET_USER:
+			return {
+				...state,
+				user: action.payload.user
+			}
 		default:
 			return state;
 	}
@@ -40,6 +46,12 @@ export default function ContextWrapper({ children }) {
 				type: actionTypes.SET_IS_AUTHENTICATED,
 				payload: {
 					isAuthenticated: data.isAuthenticated
+				}
+			});
+			dispatch({
+				type: actionTypes.SET_USER,
+				payload: {
+					user: data.user
 				}
 			});
 		});

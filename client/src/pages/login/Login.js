@@ -25,6 +25,12 @@ export default function Login() {
 					isAuthenticated: data.isAuthenticated
 				}
 			});
+			dispatch({
+				type: actionTypes.SET_USER,
+				payload: {
+					user: data.user
+				}
+			});
 		}
 		console.log(data);
 	};
