@@ -4,6 +4,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StyleSheetManager } from 'styled-components';
 import ContextWrapper from 'global/context';
+import { ThemeProvider } from '@material-ui/core';
+import { muiTheme } from './shared/theme';
 
 const reactRoot = document.querySelector('#react-root');
 
@@ -24,7 +26,9 @@ ReactDOM.render(
 			<StyleSheetManager
 				disableVendorPrefixes={process.env.NODE_ENV === 'development'}
 			>
-				<App />
+				<ThemeProvider theme={muiTheme}>
+					<App />
+				</ThemeProvider>
 			</StyleSheetManager>
 		</ContextWrapper>
 	</React.StrictMode>,

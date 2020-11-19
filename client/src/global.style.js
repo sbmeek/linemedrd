@@ -3,6 +3,15 @@ import NunitoBold from 'assets/fonts/Nunito-Bold.ttf';
 import NunitoExtraBold from 'assets/fonts/Nunito-ExtraBold.ttf';
 
 export const GlobalStyle = createGlobalStyle`
+
+	:root {
+		--lmed-link-color: #5389E5;
+		--lmed-green-00: #9ec8bf;
+		--lmed-green-01: #85f2dc;
+		--lmed-green-02: #66d2bc;
+		--lmed-green-03: #005e4b;
+	}
+
 	@font-face {
 		font-family: NunitoBold;
 		src: url(${NunitoBold});

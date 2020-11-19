@@ -1,16 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Button, TextField } from '@material-ui/core';
-import { Form } from './Login.style';
 import axios from 'axios';
 import { MainContext, actionTypes } from 'global/context';
+import Form, { FormTitle } from 'shared/form/Form.styled';
+import Link from 'shared/link/Link.styled';
 
 export default function Login() {
 	const [fields, setFields] = useState({});
 	const { dispatch } = useContext(MainContext);
 
 	useEffect(() => {
-		document.title = 'Unauth Route'
-	}, [])
+		document.title = 'Unauth Route';
+	}, []);
 
 	const handleFormSubmit = async (e) => {
 		e.preventDefault();
@@ -48,20 +49,31 @@ export default function Login() {
 
 	return (
 		<Form onSubmit={handleFormSubmit}>
-			<h2>Iniciar Sesi&oacute;n</h2>
+			<FormTitle>Iniciar Sesi&oacute;n</FormTitle>
 			<TextField
 				onChange={handleFieldChange}
 				name="email"
 				label="Correo electrónico"
+				InputLabelProps={{ fontFamily: 'NunitoBold' }}
 				type="email"
 			/>
 			<TextField
 				onChange={handleFieldChange}
 				name="password"
 				label="Contraseña"
+				InputLabelProps={{ fontFamily: 'NunitoBold' }}
 				type="password"
 			/>
-			<Button type="submit">Submit</Button>
+			<Button
+				fullWidth
+				color="primary"
+				variant="contained"
+				disableElevation
+				type="submit"
+			>
+				Iniciar
+			</Button>
+			<Link to="/register">Registro</Link>
 		</Form>
 	);
 }
