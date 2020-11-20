@@ -2,15 +2,13 @@ import styled, { css } from 'styled-components';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export const Container = styled.div`
-	display: grid;
-	place-items: center;
+	display: flex;
 	width: 100%;
 `;
 
 export const formCustomStyles = css`
 	& {
-		width: 100%;
-		max-height: 72%;
+		max-height: 92%;
 	}
 `;
 

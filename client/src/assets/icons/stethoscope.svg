@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="39.842" height="64.245" viewBox="0 0 39.842 64.245">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="0.214" x2="0.635" y2="1.728" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#a9e5bb"/>
+    </linearGradient>
+  </defs>
+  <g id="stethoscope_1_" data-name="stethoscope (1)" transform="translate(-18.992)">
+    <g id="Group_8" data-name="Group 8" transform="translate(18.992 31.945)">
+      <g id="Group_7" data-name="Group 7">
+        <path id="Path_4" data-name="Path 4" d="M40.265,61.819V49.724H36V61.819h-6.9a10.1,10.1,0,1,0,.071,20.2h1a10.114,10.114,0,0,0,10.1-10.1V66.088h7.257V61.819ZM36,71.92a5.841,5.841,0,0,1-5.834,5.834h-1a5.834,5.834,0,1,1-.071-11.667H36Z" transform="translate(-18.992 -49.724)" fill="url(#linear-gradient)"/>
+      </g>
+    </g>
+    <g id="Group_10" data-name="Group 10" transform="translate(45.459 39.487)">
+      <g id="Group_9" data-name="Group 9">
+        <path id="Path_5" data-name="Path 5" d="M66.876,61.463a6.687,6.687,0,1,0,6.688,6.688A6.695,6.695,0,0,0,66.876,61.463Zm0,9.105A2.419,2.419,0,1,1,69.3,68.15,2.421,2.421,0,0,1,66.876,70.568Z" transform="translate(-60.189 -61.463)" fill="url(#linear-gradient)"/>
+      </g>
+    </g>
+    <g id="Group_2" data-name="Group 2" transform="translate(20.202 3.059)">
+      <g id="Group_1" data-name="Group 1">
+        <path id="Path_1" data-name="Path 1" d="M54.313,4.762h-6.9V9.031h4.767v9.534a13.035,13.035,0,0,1-13.02,13.02h-1a13.035,13.035,0,0,1-13.02-13.02V9.031H29.91V4.762h-6.9A2.134,2.134,0,0,0,20.875,6.9V18.564A17.308,17.308,0,0,0,38.163,35.853h1A17.308,17.308,0,0,0,56.448,18.564V6.9A2.134,2.134,0,0,0,54.313,4.762Z" transform="translate(-20.875 -4.762)" fill="url(#linear-gradient)"/>
+      </g>
+    </g>
+    <g id="Group_4" data-name="Group 4" transform="translate(44.391)">
+      <g id="Group_3" data-name="Group 3">
+        <path id="Path_2" data-name="Path 2" d="M60.662,0a2.134,2.134,0,0,0-2.134,2.134V8.111a2.134,2.134,0,0,0,4.269,0V2.134A2.134,2.134,0,0,0,60.662,0Z" transform="translate(-58.527)" fill="url(#linear-gradient)"/>
+      </g>
+    </g>
+    <g id="Group_6" data-name="Group 6" transform="translate(27.53)">
+      <g id="Group_5" data-name="Group 5">
+        <path id="Path_3" data-name="Path 3" d="M34.416,0a2.134,2.134,0,0,0-2.134,2.134V8.111a2.134,2.134,0,1,0,4.269,0V2.134A2.134,2.134,0,0,0,34.416,0Z" transform="translate(-32.281)" fill="url(#linear-gradient)"/>
+      </g>
+    </g>
+  </g>
+</svg>
