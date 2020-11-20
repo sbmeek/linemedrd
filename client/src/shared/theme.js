@@ -2,6 +2,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 export const lmedTheme = {
 	linkColor: '#5389E5',
+	linkColorHover: '#3267c0',
 	black00: '#1b1b1b',
 	green00: '#9ec8bf',
 	green01: '#85f2dc',

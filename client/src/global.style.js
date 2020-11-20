@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
 
 	:root {
 		--lmed-link-color: ${lmedTheme.linkColor};
+		--lmed-link-hover-color: ${lmedTheme.linkColorHover};
 		--lmed-black-00: ${lmedTheme.black00};
 		--lmed-green-00: ${lmedTheme.green00};
 		--lmed-green-01: ${lmedTheme.green01};
