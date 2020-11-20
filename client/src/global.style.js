@@ -13,6 +13,8 @@ export const GlobalStyle = createGlobalStyle`
 		--lmed-green-01: ${lmedTheme.green01};
 		--lmed-green-02: ${lmedTheme.green02};
 		--lmed-green-03: ${lmedTheme.green03};
+		--lmed-red-00: ${lmedTheme.red00};
+		--lmed-red-01: ${lmedTheme.red01}
 	}
 
 	@font-face {

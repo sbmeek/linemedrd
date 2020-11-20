@@ -9,7 +9,7 @@ const UnauthRoute = lazy(() => import('components/unauthRoute/UnauthRoute'));
 const Main = lazy(() => import('pages/main/Main'));
 const Login = lazy(() => import('pages/login/Login'));
 const Register = lazy(() => import('pages/register/Register'));
-const RegAppoint = lazy(() => import('pages/regAppoint/regAppoint'));
+const RegAppoint = lazy(() => import('pages/regAppoint/RegAppoint'));
 
 const AppContainer = styled.div`
 	display: grid;

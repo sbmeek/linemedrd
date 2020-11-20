@@ -52,6 +52,7 @@ export const CardActionsStyled = styled(CardActions)`
 
 export const BtnCancel = styled(Button)`
 	border-radius: 25px !important;
+	background-color: var(--lmed-red-00) !important;
 	& * {
 		color: #ffff !important;
 	}

@@ -8,7 +8,9 @@ export const lmedTheme = {
 	green01: '#85f2dc',
 	green02: '#66d2bc',
 	green03: '#005e4b',
-}
+	red00: '#EE3A3A',
+	red01: '#ff6363'
+};
 
 export const muiTheme = createMuiTheme({
 	palette: {
@@ -23,5 +25,5 @@ export const muiTheme = createMuiTheme({
 		action: {
 			active: lmedTheme.green00
 		}
-	},
+	}
 });

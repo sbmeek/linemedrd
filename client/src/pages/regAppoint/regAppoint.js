@@ -9,9 +9,9 @@ import {
 	BtnCancel,
 	BtnAccept,
 	CardActionsStyled
-} from './regAppoint.style';
-import TextField from 'shared/form/TextField.styled';
+} from './RegAppoint.style';
 import Doctor from 'assets/icons/doctor-default-profile.svg';
+import Datepicker from 'shared/datepicker/Datepicker';
 
 const useStyles = makeStyles({
 	media: {
@@ -50,12 +50,10 @@ export default function RegAppoint() {
 						<br />
 					</Typography>
 
-					<TextField
-						fullWidth
-						type="date"
-						name="birthDate"
-						label="Fecha de nacimiento"
-						InputLabelProps={{ shrink: true }}
+					<Datepicker
+						id="dateAppoint"
+						label="Fecha de Cita"
+						minDate={new Date()}
 					/>
 
 					<InsuranceCB
@@ -64,9 +62,7 @@ export default function RegAppoint() {
 					/>
 
 					<CardActionsStyled>
-						<BtnCancel variant="contained" color="secondary">
-							Cancelar
-						</BtnCancel>
+						<BtnCancel variant="contained">Cancelar</BtnCancel>
 						<BtnAccept variant="contained">Confimar</BtnAccept>
 					</CardActionsStyled>
 				</CardBody>

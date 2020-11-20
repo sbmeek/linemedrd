@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
 	Button,
 	Checkbox,
@@ -18,11 +18,13 @@ import {
 	MedInsuranceField,
 	TermsNConditionsCB
 } from './Register.style';
-import { useEffect } from 'react';
+import DatePicker from 'shared/datepicker/Datepicker';
 
 export default function Register() {
 	const [canSignUp, setCanSignUp] = useState(false);
 	const [termsAccepted, setTermsAccepted] = useState(false);
+	const [birthDate, setBirthDate] = useState(new Date());
+	const [isDateValid, setIsDateValid] = useState(true);
 	const [fields, setFields] = useState({
 		name: {
 			isErrored: null,
@@ -100,19 +102,26 @@ export default function Register() {
 
 	useEffect(() => {
 		let isOk = true;
-		console.log(fields, 'termsAccepted', termsAccepted);
+		console.log(
+			fields,
+			'termsAccepted',
+			termsAccepted,
+			'isDateValid',
+			isDateValid
+		);
 		for (let field in fields) {
 			if (
 				fields[field].isErrored === null ||
 				fields[field].isErrored ||
-				!termsAccepted
+				!termsAccepted ||
+				!isDateValid
 			) {
 				isOk = false;
 				break;
 			}
 		}
 		setCanSignUp(isOk);
-	}, [fields, termsAccepted]);
+	}, [fields, termsAccepted, isDateValid]);
 
 	const valdInput = async (fieldName = '', fieldValue = '') => {
 		const valLength = fieldValue.length;
@@ -128,9 +137,9 @@ export default function Register() {
 				return {
 					isErrored: lengthErr || lettersOnlyErr,
 					errMsg: lengthErr
-						? `Los {errRefersTo} deben tener entre 3-29 letras.`
+						? `Los ${errRefersTo} deben tener entre 3-29 letras.`
 						: lettersOnlyErr
-						? `Los {errRefersTo} solamente pueden contener letras.`
+						? `Los ${errRefersTo} solamente pueden contener letras.`
 						: null
 				};
 			case 'idCard':
@@ -273,13 +282,24 @@ export default function Register() {
 						helperText={fields['address'].errMsg}
 						value={fields['address'].value}
 					/>
-					<TextField
+					<DatePicker
 						fullWidth
-						onChange={handleFieldChange}
-						type="date"
+						onChange={(date) => {
+							let isValid = true;
+							if (date === null) {
+								isValid = false;
+							} else if (date.toString() === 'Invalid Date') {
+								isValid = false;
+							}
+							setBirthDate(date);
+							setIsDateValid(isValid);
+						}}
+						value={birthDate}
 						name="birthDate"
+						id="birthDate"
 						label="Fecha de nacimiento"
-						InputLabelProps={{ shrink: true }}
+						maxDate={new Date()}
+						maxDateMessage="La fecha de nacimiento no puede ser mayor a la fecha actual."
 					/>
 					<MedInsuranceField>
 						<h3>Seguro M&eacute;dico</h3>
