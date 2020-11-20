@@ -1,15 +1,17 @@
 import { createGlobalStyle } from 'styled-components';
 import NunitoBold from 'assets/fonts/Nunito-Bold.ttf';
 import NunitoExtraBold from 'assets/fonts/Nunito-ExtraBold.ttf';
+import { lmedTheme } from 'shared/theme';
 
 export const GlobalStyle = createGlobalStyle`
 
 	:root {
-		--lmed-link-color: #5389E5;
-		--lmed-green-00: #9ec8bf;
-		--lmed-green-01: #85f2dc;
-		--lmed-green-02: #66d2bc;
-		--lmed-green-03: #005e4b;
+		--lmed-link-color: ${lmedTheme.linkColor};
+		--lmed-black-00: ${lmedTheme.black00};
+		--lmed-green-00: ${lmedTheme.green00};
+		--lmed-green-01: ${lmedTheme.green01};
+		--lmed-green-02: ${lmedTheme.green02};
+		--lmed-green-03: ${lmedTheme.green03};
 	}
 
 	@font-face {
@@ -27,7 +29,7 @@ export const GlobalStyle = createGlobalStyle`
 		padding: 0;
 		border: 0;
 		box-sizing: border-box;
-		font-family: NunitoBold, --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		font-family: NunitoBold, --apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
 		text-rendering: optimizeLegibility;
 	}
 

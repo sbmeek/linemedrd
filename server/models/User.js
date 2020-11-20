@@ -39,7 +39,7 @@ const userSchema = new Schema({
 		type: Date,
 		required: true
 	},
-	dir: String,
+	address: String,
 	idCard: String,
 	medInsurance: medInsuranceSchema,
 	codConfEmail: String,

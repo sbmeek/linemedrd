@@ -4,6 +4,7 @@ require('../auth/local');
 const JWT = require('jsonwebtoken');
 const User = require('../models/User');
 const router = Router();
+const http = require('http');
 const { SESSION_SECRET } = process.env;
 
 const signToken = (iis, userId) => {

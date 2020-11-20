@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Button, TextField } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import axios from 'axios';
 import { MainContext, actionTypes } from 'global/context';
 import Form, { FormTitle } from 'shared/form/Form.styled';
+import TextField from 'shared/form/TextField.styled';
 import Link from 'shared/link/Link.styled';
 
 export default function Login() {
@@ -54,14 +55,12 @@ export default function Login() {
 				onChange={handleFieldChange}
 				name="email"
 				label="Correo electrónico"
-				InputLabelProps={{ fontFamily: 'NunitoBold' }}
 				type="email"
 			/>
 			<TextField
 				onChange={handleFieldChange}
 				name="password"
 				label="Contraseña"
-				InputLabelProps={{ fontFamily: 'NunitoBold' }}
 				type="password"
 			/>
 			<Button
@@ -70,6 +69,7 @@ export default function Login() {
 				variant="contained"
 				disableElevation
 				type="submit"
+				style={{ borderRadius: '35px' }}
 			>
 				Iniciar
 			</Button>
