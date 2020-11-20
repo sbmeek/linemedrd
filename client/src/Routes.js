@@ -9,6 +9,7 @@ const UnauthRoute = lazy(() => import('components/unauthRoute/UnauthRoute'));
 const Main = lazy(() => import('pages/main/Main'));
 const Login = lazy(() => import('pages/login/Login'));
 const Register = lazy(() => import('pages/register/Register'));
+const RegAppoint = lazy(() => import('pages/regAppoint/regAppoint'));
 
 const AppContainer = styled.div`
 	display: grid;
@@ -44,6 +45,11 @@ export default function Routes() {
 					<Appbar />
 					<Content>
 						<AuthRoute exact redirectTo="/login" path="/" component={Main} />
+						<UnauthRoute
+							redirectTo="/"
+							path="/regAppoint"
+							component={RegAppoint}
+						/>
 						<UnauthRoute redirectTo="/" path="/login" component={Login} />
 						<UnauthRoute redirectTo="/" path="/register" component={Register} />
 					</Content>
