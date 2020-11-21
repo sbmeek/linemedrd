@@ -263,7 +263,7 @@ export default function Register() {
 						label="Nombres"
 						error={fields['name'].isErrored}
 						helperText={fields['name'].errMsg}
-						value={fields['name'].value}
+						defaultValue={fields['name'].value}
 					/>
 					<TextField
 						fullWidth
@@ -272,7 +272,7 @@ export default function Register() {
 						label="Apellidos"
 						error={fields['lastname'].isErrored}
 						helperText={fields['lastname'].errMsg}
-						value={fields['lastname'].value}
+						defaultValue={fields['lastname'].value}
 					/>
 					<TextField
 						fullWidth
@@ -282,7 +282,7 @@ export default function Register() {
 						label="Cédula"
 						error={fields['idCard'].isErrored}
 						helperText={fields['idCard'].errMsg}
-						value={fields['idCard'].value}
+						defaultValue={fields['idCard'].value}
 					/>
 					<TextField
 						fullWidth
@@ -291,7 +291,7 @@ export default function Register() {
 						label="Dirección"
 						error={fields['address'].isErrored}
 						helperText={fields['address'].errMsg}
-						value={fields['address'].value}
+						defaultValue={fields['address'].value}
 					/>
 					<DatePicker
 						fullWidth
@@ -305,7 +305,7 @@ export default function Register() {
 							setBirthDate(date);
 							setIsDateValid(isValid);
 						}}
-						value={birthDate}
+						defaultValue={birthDate}
 						name="birthDate"
 						id="birthDate"
 						label="Fecha de nacimiento"
@@ -319,7 +319,7 @@ export default function Register() {
 								Compañía
 							</InputLabel>
 							<Select
-								value={userMedInsurance.company}
+								defaultValue={userMedInsurance.company}
 								onChange={handleMedInsuranceCompanyChange}
 								labelId="med-insurance"
 							>
@@ -337,7 +337,7 @@ export default function Register() {
 							InputLabelProps={{ shrink: true }}
 							error={fields['medInsuranceNumber'].isErrored}
 							helperText={fields['medInsuranceNumber'].errMsg}
-							value={fields['medInsuranceNumber'].value}
+							defaultValue={fields['medInsuranceNumber'].value}
 						/>
 					</MedInsuranceField>
 					<TextField
@@ -348,7 +348,7 @@ export default function Register() {
 						type="email"
 						error={fields['email'].isErrored}
 						helperText={fields['email'].errMsg}
-						value={fields['email'].value}
+						defaultValue={fields['email'].value}
 					/>
 					<TextField
 						fullWidth
@@ -358,7 +358,7 @@ export default function Register() {
 						type="password"
 						error={fields['password'].isErrored}
 						helperText={fields['password'].errMsg}
-						value={fields['password'].value}
+						defaultValue={fields['password'].value}
 					/>
 					<TextField
 						fullWidth
@@ -368,7 +368,7 @@ export default function Register() {
 						type="password"
 						error={fields['confirm-password'].isErrored}
 						helperText={fields['confirm-password'].errMsg}
-						value={fields['confirm-password'].value}
+						defaultValue={fields['confirm-password'].value}
 					/>
 					<TermsNConditionsCB
 						control={<Checkbox color="primary" name="termsCb" />}
