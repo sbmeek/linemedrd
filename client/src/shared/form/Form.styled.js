@@ -6,7 +6,7 @@ export default styled.form`
 	justify-content: center;
 	width: 100%;
 	flex-direction: column;
-	${props => props.customStyles}
+	${(props) => props.customStyles}
 `;
 
 export const FormTitle = styled.h2`
