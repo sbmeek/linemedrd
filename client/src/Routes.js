@@ -12,6 +12,7 @@ const Register = lazy(() => import('pages/register/Register'));
 const RegAppoint = lazy(() => import('pages/regAppoint/RegAppoint'));
 const RecPwd = lazy(() => import('pages/recPwd/RecPwd'));
 const SetNewPwd = lazy(() => import('pages/setNewPwd/SetNewPwd'));
+const ConfirmedEmail = lazy(() => import('pages/confirmEmail/ConfirmedEmail'));
 
 const AppContainer = styled.div`
 	display: grid;
@@ -55,6 +56,7 @@ export default function Routes() {
 						<UnauthRoute redirectTo="/" path="/login" component={Login} />
 						<UnauthRoute redirectTo="/" path="/register" component={Register} />
 						<UnauthRoute redirectTo="/" path="/recoverpwd" component={RecPwd} />
+						<Route path="/confirmed/:token" component={ConfirmedEmail} />
 						<Route path="/setnewpwd/:token" component={SetNewPwd} />
 					</Content>
 				</AppContainer>

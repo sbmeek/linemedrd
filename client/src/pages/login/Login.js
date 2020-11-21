@@ -62,7 +62,7 @@ export default function Login() {
 						fullWidth
 						onChange={handleFieldChange}
 						name="email"
-						label="Nombre o Email"
+						label="Correo Electronico"
 						type="text"
 					/>
 					<TextField

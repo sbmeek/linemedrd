@@ -19,6 +19,7 @@ import {
 	TermsNConditionsCB
 } from './Register.style';
 import DatePicker from 'shared/datepicker/Datepicker';
+import MustConfirm from '../mustConfirm/MustConfirm';
 
 export default function Register() {
 	const [canSignUp, setCanSignUp] = useState(false);
