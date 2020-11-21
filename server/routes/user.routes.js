@@ -20,11 +20,11 @@ const signToken = (iis, userId) => {
 
 router.post('/register', async (req, res) => {
 	try {
-		const { body } = req;
-		const user = new User(body);
-		user.password = await user.hashPwd(body.password);
-		const savedUser = await user.save();
-		res.json({ ok: true, savedUser });
+		const { values } = req.body;
+		const user = new User({ ...values });
+		user.password = await user.hashPwd(values.password);
+		await user.save();
+		res.json({ ok: true });
 	} catch (error) {
 		console.error(error);
 		res.json({

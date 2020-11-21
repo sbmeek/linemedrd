@@ -174,6 +174,10 @@ export default function Register() {
 				};
 			case 'medInsuranceNumber':
 				let sevenCharsOnly = valLength !== 7;
+				setUserMedInsurance((oldMedInsuranceDetails) => ({
+					...oldMedInsuranceDetails,
+					number: fieldValue
+				}))
 				return {
 					isErrored: sevenCharsOnly || numbersOnlyErr,
 					errMsg: numbersOnlyErr
@@ -235,9 +239,16 @@ export default function Register() {
 		}));
 	};
 
-	const handleFormSubmit = (e) => {
+	const handleFormSubmit = async (e) => {
 		e.preventDefault();
-		console.log('canSignUp', canSignUp);
+		const values = {};
+		for(let field in fields)	{
+			values[field] = fields[field].value;
+		}
+		values['medInsurance'] = userMedInsurance;
+		values['birthDate'] = birthDate;
+		const { data: resData } = await axios.post('/user/register', { values });
+		console.log(resData);
 	};
 
 	return (

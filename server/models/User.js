@@ -5,18 +5,6 @@ const bcrypt = require('bcryptjs');
 	ID, Nombre, Apellido, Email, Contraseña, Fecha_Nac, Dirección, Cédula, Seguro_Med, Cod_Conf_Email, Conf_Email, Cod_Rec_Contra, Rol
 */
 
-const medInsuranceSchema = new Schema({
-	number: {
-		required: true,
-		unique: true,
-		type: String
-	},
-	company: {
-		type: String,
-		required: true
-	}
-});
-
 const userSchema = new Schema({
 	name: {
 		type: String,
@@ -41,9 +29,19 @@ const userSchema = new Schema({
 	},
 	address: String,
 	idCard: String,
-	medInsurance: medInsuranceSchema,
+	medInsurance: {
+		number: {
+			required: true,
+			unique: true,
+			type: String
+		},
+		company: {
+			type: String,
+			required: true
+		}
+	},
 	codConfEmail: String,
-	isEmailConfirmed: Boolean,
+	isEmailConfirmed: { type: Boolean, default: false },
 	codRecPwd: String,
 	Role: Number
 });
