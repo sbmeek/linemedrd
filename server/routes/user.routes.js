@@ -4,8 +4,9 @@ require('../auth/local');
 const JWT = require('jsonwebtoken');
 const User = require('../models/User');
 const router = Router();
-const http = require('http');
-const { SESSION_SECRET } = process.env;
+const { SESSION_SECRET, MED_TKN_KEY } = process.env;
+const { sendEmailConfirmationCode } = require('../lib/user.utils');
+const { AES: crypt, enc } = require('crypto-js');
 
 const signToken = (iis, userId) => {
 	return JWT.sign(
@@ -24,7 +25,40 @@ router.post('/register', async (req, res) => {
 		const user = new User({ ...values });
 		user.password = await user.hashPwd(values.password);
 		await user.save();
+		sendEmailConfirmationCode(req.headers.origin, user);
 		res.json({ ok: true });
+	} catch (error) {
+		console.error(error);
+		res.json({
+			ok: false,
+			err: process.env.NODE_ENV === 'development' ? error.stack : 'Bobo'
+		});
+	}
+});
+
+router.post('/verify-email-conf-code', async (req, res) => {
+	try {
+		const { encToken } = req.body;
+		const bytes = crypt.decrypt(encToken, MED_TKN_KEY);
+		const decToken = JSON.parse(bytes.toString(enc.Utf8));
+		const tokenObj = JWT.verify(decToken.token, MED_TKN_KEY);
+		const user = await User.findOne({ email: tokenObj.em });
+
+		if (user === null || user === undefined) {
+			res.json({ ok: false });
+			return;
+		}
+
+		if (user.emailConfirmationCode === tokenObj.ky) {
+			if (!user.isEmailVerified) {
+				await user.updateOne({ $set: { isEmailVerified: true } });
+				res.json({ ok: true });
+			} else {
+				res.json({ ok: false });
+			}
+		} else {
+			res.json({ ok: false });
+		}
 	} catch (error) {
 		console.error(error);
 		res.json({
