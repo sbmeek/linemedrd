@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Loader from './components/loader/Loader';
 import styled from 'styled-components';
 import Appbar from './components/appbar/Appbar';
@@ -10,6 +10,8 @@ const Main = lazy(() => import('pages/main/Main'));
 const Login = lazy(() => import('pages/login/Login'));
 const Register = lazy(() => import('pages/register/Register'));
 const RegAppoint = lazy(() => import('pages/regAppoint/RegAppoint'));
+const RecPwd = lazy(() => import('pages/recPwd/RecPwd'));
+const SetNewPwd = lazy(() => import('pages/setNewPwd/SetNewPwd'));
 
 const AppContainer = styled.div`
 	display: grid;
@@ -45,13 +47,15 @@ export default function Routes() {
 					<Appbar />
 					<Content>
 						<AuthRoute exact redirectTo="/login" path="/" component={Main} />
-						<UnauthRoute
+						<AuthRoute
 							redirectTo="/"
 							path="/regAppoint"
 							component={RegAppoint}
 						/>
 						<UnauthRoute redirectTo="/" path="/login" component={Login} />
 						<UnauthRoute redirectTo="/" path="/register" component={Register} />
+						<UnauthRoute redirectTo="/" path="/recoverpwd" component={RecPwd} />
+						<Route path="/setnewpwd/:token" component={SetNewPwd} />
 					</Content>
 				</AppContainer>
 			</Suspense>

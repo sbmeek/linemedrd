@@ -72,7 +72,7 @@ export default function Login() {
 						label="Contraseña"
 						type="password"
 					/>
-					<ForgetLink to="/">¿Olvidaste tu contraseña?</ForgetLink>
+					<ForgetLink to="/recoverpwd">¿Olvidaste tu contraseña?</ForgetLink>
 					<br />
 					<InitBtn variant="contained" disableElevation type="submit">
 						Iniciar

@@ -177,7 +177,7 @@ export default function Register() {
 				setUserMedInsurance((oldMedInsuranceDetails) => ({
 					...oldMedInsuranceDetails,
 					number: fieldValue
-				}))
+				}));
 				return {
 					isErrored: sevenCharsOnly || numbersOnlyErr,
 					errMsg: numbersOnlyErr
@@ -242,7 +242,7 @@ export default function Register() {
 	const handleFormSubmit = async (e) => {
 		e.preventDefault();
 		const values = {};
-		for(let field in fields)	{
+		for (let field in fields) {
 			values[field] = fields[field].value;
 		}
 		values['medInsurance'] = userMedInsurance;
