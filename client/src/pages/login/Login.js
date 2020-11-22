@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { MainContext, actionTypes } from 'global/context';
 import Form, { FormTitle } from 'shared/form/Form.styled';
@@ -8,16 +8,15 @@ import {
 	Container,
 	FormInnerContainer,
 	InitBtn,
-	ForgetLink
+	ForgetLink,
+	ErrorMsg,
+	formCustomStyles
 } from './Login.style';
 
 export default function Login() {
 	const [fields, setFields] = useState({});
+	const [errMsg, setErrMsg] = useState('');
 	const { dispatch } = useContext(MainContext);
-
-	useEffect(() => {
-		document.title = 'Iniciar Sesión';
-	}, []);
 
 	const handleFormSubmit = async (e) => {
 		e.preventDefault();
@@ -26,9 +25,9 @@ export default function Login() {
 			fields
 		);
 		if (data.emailNotConfirmed) {
-			//credeciales correctas pero email no confirmado
+			setErrMsg('Debe confirmar su correo electrónico antes de ingresar.');
 		} else if (!data.ok) {
-			//credenciales incorrectas
+			setErrMsg('Credenciales incorrectas. Intente de nuevo.');
 		} else {
 			dispatch({
 				type: actionTypes.SET_IS_AUTHENTICATED,
@@ -51,13 +50,15 @@ export default function Login() {
 			...oldFields,
 			[e.target.name]: e.target.value
 		}));
+		setErrMsg('');
 	};
 
 	return (
 		<Container>
-			<FormTitle style={{ marginTop: -150 }}>Iniciar Sesi&oacute;n</FormTitle>
-			<Form onSubmit={handleFormSubmit}>
-				<FormInnerContainer style={{ marginTop: -230 }}>
+			<Form customStyles={formCustomStyles} onSubmit={handleFormSubmit}>
+				<FormTitle>Iniciar Sesi&oacute;n</FormTitle>
+				<FormInnerContainer>
+					<ErrorMsg show={errMsg.length !== 0}>{errMsg}</ErrorMsg>
 					<TextField
 						fullWidth
 						onChange={handleFieldChange}

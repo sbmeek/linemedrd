@@ -13,4 +13,5 @@ export const FormTitle = styled.h2`
 	text-transform: uppercase;
 	color: var(--lmed-green-02);
 	font-family: 'NunitoExtraBold' !important;
+	font-size: 30px;
 `;
