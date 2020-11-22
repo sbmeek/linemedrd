@@ -34,5 +34,6 @@ app.use(
 
 app.use('/user', require('./routes/user.routes'));
 app.use('/appoints', require('./routes/medAppoint.routes'));
+app.use('/schedules', require('./routes/schedules.routes'));
 
 app.listen(PORT, () => console.log(`Server up ::${PORT}`));

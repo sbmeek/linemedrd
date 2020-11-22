@@ -58,7 +58,7 @@ router.get('/readAppoints/:user_id', async (req, res) => {
 	}
 });
 
-//delete one
+//update one
 router.put('/upAppointSt/:id', async (req, res) => {
 	try {
 		const id = req.params.id;
