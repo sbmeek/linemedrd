@@ -9,16 +9,17 @@ import { muiTheme } from './shared/theme';
 
 const reactRoot = document.querySelector('#react-root');
 
-const calcVH = (() => {
+const calcVH = () => {
 	const vH = Math.max(
 		document.documentElement.clientHeight,
 		window.innerHeight || 0
 	);
 	reactRoot.setAttribute('style', `height: ${vH}px;`);
-})();
+};
 
-window.addEventListener('resize', calcVH);
-window.addEventListener('orientationchange', calcVH);
+window.addEventListener('resize', calcVH, true);
+window.addEventListener('orientationchange', calcVH, true);
+calcVH();
 
 ReactDOM.render(
 	<React.StrictMode>
