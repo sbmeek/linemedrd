@@ -13,6 +13,7 @@ const RegAppoint = lazy(() => import('pages/regAppoint/RegAppoint'));
 const RecPwd = lazy(() => import('pages/recPwd/RecPwd'));
 const SetNewPwd = lazy(() => import('pages/setNewPwd/SetNewPwd'));
 const ConfirmEmail = lazy(() => import('pages/confirmEmail/ConfirmEmail'));
+const ReservApnts = lazy(() => import('pages/reserved-appoints/ReservApnts'));
 
 const AppContainer = styled.div`
 	display: grid;
@@ -48,16 +49,13 @@ export default function Routes() {
 					<Appbar />
 					<Content>
 						<AuthRoute exact redirectTo="/login" path="/" component={Main} />
-						<AuthRoute
-							redirectTo="/"
-							path="/regAppoint"
-							component={RegAppoint}
-						/>
+						<AuthRoute path="/regAppoint" component={RegAppoint} />
 						<UnauthRoute redirectTo="/" path="/login" component={Login} />
 						<UnauthRoute redirectTo="/" path="/register" component={Register} />
 						<Route path="/verify-email/:token" component={ConfirmEmail} />
 						<UnauthRoute redirectTo="/" path="/recoverpwd" component={RecPwd} />
 						<Route path="/setnewpwd/:token" component={SetNewPwd} />
+						<AuthRoute path="/reservedApnts" component={ReservApnts} />
 					</Content>
 				</AppContainer>
 			</Suspense>
