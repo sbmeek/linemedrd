@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Container, SendBtn, FormInnerContainer } from './SetNewPwd.style';
 import Form, { FormTitle } from 'shared/form/Form.styled';
 import TextField from 'shared/form/TextField.styled';
+import axios from 'axios';
+import Loader from 'components/loader/Loader';
+import { Redirect } from 'react-router-dom';
 
 export default function SetNewPwd({ match: { params } }) {
 	const [canSubmit, setCanSubmit] = useState(false);
-	console.log(params);
+	const [token, setToken] = useState('');
 	const [fields, setFields] = useState({
 		password: {
 			isErrored: null,
@@ -18,6 +21,25 @@ export default function SetNewPwd({ match: { params } }) {
 			value: ''
 		}
 	});
+	const [isLoading, setIsLoading] = useState(true);
+	const [isTokenOk, setIsTokenOk] = useState(false);
+	const [pwdUpdated, setPwdUpdated] = useState(false);
+
+	useEffect(() => {
+		const tmpToken = decodeURIComponent(params.token);
+		setToken(tmpToken);
+		(async () => {
+			const { data } = await axios.post('/user/recover-pwd/set-new-pwd', {
+				encToken: tmpToken
+			});
+			setIsTokenOk(data.ok);
+			setIsLoading(false);
+		})();
+	}, [params]);
+
+	useEffect(() => {
+		document.title = 'Nueva Contraseña';
+	}, []);
 
 	const handleFieldChange = async (e) => {
 		const { name, value } = e.target;
@@ -67,47 +89,73 @@ export default function SetNewPwd({ match: { params } }) {
 		setCanSubmit(isOk);
 	}, [fields]);
 
-	useEffect(() => {
-		document.title = 'Nueva Contraseña';
-	}, []);
+	const handleFormSubmit = (e) => {
+		e.preventDefault();
+		if (canSubmit) {
+			(async () => {
+				const { data } = await axios.post('/user/recover-pwd/set-new-pwd', {
+					encToken: token,
+					newPwd: fields['password'].value
+				});
+				console.log(data);
+				setPwdUpdated(data.pwdUpdated);
+			})();
+		}
+	};
 
 	return (
 		<Container>
-			<Form>
-				<FormTitle style={{ marginBottom: 35 }}>Nueva Contraseña</FormTitle>
-				<FormInnerContainer>
-					<p> Especifica una nueva Contraseña para tu cuenta </p>
-					<TextField
-						fullWidth
-						name="password"
-						label="Nueva Contraseña"
-						type="password"
-						onChange={handleFieldChange}
-						error={fields['password'].isErrored}
-						helperText={fields['password'].errMsg}
-						defaultValue={fields['password'].value}
-					/>
-					<TextField
-						fullWidth
-						name="confirm-password"
-						label="Confirma Contraseña"
-						type="password"
-						onChange={handleFieldChange}
-						error={fields['confirm-password'].isErrored}
-						helperText={fields['confirm-password'].errMsg}
-						defaultValue={fields['confirm-password'].value}
-					/>
-					<SendBtn
-						color="primary"
-						variant="contained"
-						disableElevation
-						type="submit"
-						disabled={!canSubmit}
-					>
-						Enviar
-					</SendBtn>
-				</FormInnerContainer>
-			</Form>
+			{!isLoading ? (
+				!isTokenOk ? (
+					<Redirect to="/" />
+				) : !pwdUpdated ? (
+					<Form onSubmit={handleFormSubmit} style={{ paddingBottom: '60px' }}>
+						<FormTitle style={{ marginBottom: 35, padding: '0 20px' }}>
+							Nueva Contraseña
+						</FormTitle>
+						<FormInnerContainer>
+							<p>Especifica una nueva contraseña para tu cuenta</p>
+							<TextField
+								fullWidth
+								name="password"
+								label="Nueva Contraseña"
+								type="password"
+								onChange={handleFieldChange}
+								error={fields['password'].isErrored}
+								helperText={fields['password'].errMsg}
+								defaultValue={fields['password'].value}
+							/>
+							<TextField
+								fullWidth
+								name="confirm-password"
+								label="Confirma Contraseña"
+								type="password"
+								onChange={handleFieldChange}
+								error={fields['confirm-password'].isErrored}
+								helperText={fields['confirm-password'].errMsg}
+								defaultValue={fields['confirm-password'].value}
+							/>
+							<SendBtn
+								color="primary"
+								variant="contained"
+								disableElevation
+								type="submit"
+								disabled={!canSubmit}
+							>
+								Enviar
+							</SendBtn>
+						</FormInnerContainer>
+					</Form>
+				) : (
+					<PwdUpdated />
+				)
+			) : (
+				<Loader />
+			)}
 		</Container>
 	);
 }
+
+const PwdUpdated = () => {
+	return <div>Contraseña actualizada</div>;
+};

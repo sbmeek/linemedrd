@@ -5,6 +5,7 @@ export const Container = styled.div`
 	display: grid;
 	place-items: center;
 	width: 100%;
+	padding-bottom: 60px;
 `;
 
 export const FormInnerContainer = styled.div`
@@ -13,6 +14,10 @@ export const FormInnerContainer = styled.div`
 	overflow-y: auto;
 	width: 80%;
 	padding: 0 20px;
+
+	& > p {
+		color: var(--lmed-green-03);
+	}
 `;
 
 export const SendBtn = styled(Button)`

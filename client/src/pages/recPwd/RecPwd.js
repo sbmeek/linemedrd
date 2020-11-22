@@ -2,46 +2,70 @@ import React, { useEffect, useState } from 'react';
 import { Container, SendBtn, FormInnerContainer } from './RecPwd.style';
 import Form, { FormTitle } from 'shared/form/Form.styled';
 import TextField from 'shared/form/TextField.styled';
+import axios from 'axios';
 
 export default function RecPwd() {
+	const [email, setEmail] = useState('');
+	const [errMsg, setErrMsg] = useState('');
+	const [isEmailValid, setIsEmailValid] = useState(null);
 	const [showEmailSent, setShowEmailSent] = useState(false);
 	const [canSubmit, setCanSubmit] = useState(false);
 
+	useEffect(() => {
+		document.title = 'Recuperación de Contraseña';
+	}, []);
+
 	const handleChange = (e) => {
 		const { value } = e.target;
-		if (value) {
-			setCanSubmit(true);
-		}
+		let isEmailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		let isAValidEmail = isEmailRegex.test(String(value).toLowerCase());
+		setIsEmailValid(isAValidEmail);
+		setEmail(value);
+		setErrMsg(isAValidEmail ? '' : 'Debe digitar un correo electrónico válido.');
+		setCanSubmit(value.length !== 0 && isAValidEmail);
 	};
 
-	useEffect(() => {
-		document.title = 'Recuperacion de Contraseña';
-	}, []);
+	const handleFormSubmit = async (e) => {
+		e.preventDefault();
+		if (canSubmit) {
+			const { data } = await axios.post('/user/recover-pwd/request', { email });
+			if (data.userNonExistent) {
+				setErrMsg('Este correo electrónico no está registrado.');
+				setIsEmailValid(false);
+				setCanSubmit(false);
+			}
+			else if (data.ok){
+				setShowEmailSent(true);
+			}
+		}
+	};
 
 	return (
 		<Container>
 			{showEmailSent ? (
 				<EmailSent />
 			) : (
-				<Form>
+				<Form onSubmit={handleFormSubmit}>
 					<FormTitle style={{ marginBottom: 35 }}>
 						Recuperar Contraseña
 					</FormTitle>
 					<FormInnerContainer>
-						<p> Te enviaremos un correo para confirmar que es tu cuenta. </p>
+						<p>Te enviaremos un correo para confirmar que es tu cuenta.</p>
 						<TextField
 							fullWidth
 							name="email"
-							label="Correo Electronico"
+							label="Correo electrónico"
 							type="email"
 							onChange={handleChange}
+							error={isEmailValid === null ? false : !isEmailValid}
+							helperText={errMsg}
+							defaultValue={email}
 						/>
 						<SendBtn
 							color="primary"
 							variant="contained"
 							disableElevation
 							type="submit"
-							onMouseDown={() => setShowEmailSent(true)}
 							disabled={!canSubmit}
 						>
 							Enviar

@@ -54,8 +54,8 @@ export default function Routes() {
 						<UnauthRoute redirectTo="/" path="/login" component={Login} />
 						<UnauthRoute redirectTo="/" path="/register" component={Register} />
 						<Route path="/verify-email/:token" component={ConfirmEmail} />
-						<UnauthRoute redirectTo="/" path="/recoverpwd" component={RecPwd} />
 						<Route path="/setnewpwd/:token" component={SetNewPwd} />
+						<UnauthRoute redirectTo="/" path="/recoverpwd" component={RecPwd} />
 						<AuthRoute path="/reservedApnts" component={ReservApnts} />
 					</Content>
 				</AppContainer>

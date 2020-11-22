@@ -5,7 +5,10 @@ const JWT = require('jsonwebtoken');
 const User = require('../models/User');
 const router = Router();
 const { SESSION_SECRET, MED_TKN_KEY } = process.env;
-const { sendEmailConfirmationCode } = require('../lib/user.utils');
+const {
+	sendEmailConfirmationCode,
+	sendEmailRecoverPwd
+} = require('../lib/user.utils');
 const { AES: crypt, enc } = require('crypto-js');
 
 const signToken = (iis, userId) => {
@@ -17,6 +20,13 @@ const signToken = (iis, userId) => {
 		SESSION_SECRET,
 		{ expiresIn: 30 * 60 }
 	);
+};
+
+const decryptToken = (encryptedToken) => {
+	const bytes = crypt.decrypt(encryptedToken, MED_TKN_KEY);
+	const decToken = JSON.parse(bytes.toString(enc.Utf8));
+	const tokenObj = JWT.verify(decToken.token, MED_TKN_KEY);
+	return tokenObj;
 };
 
 router.post('/register', async (req, res) => {
@@ -39,11 +49,9 @@ router.post('/register', async (req, res) => {
 router.post('/verify-email-conf-code', async (req, res) => {
 	try {
 		const { encToken } = req.body;
-		const bytes = crypt.decrypt(encToken, MED_TKN_KEY);
-		const decToken = JSON.parse(bytes.toString(enc.Utf8));
-		const tokenObj = JWT.verify(decToken.token, MED_TKN_KEY);
+		const tokenObj = decryptToken(encToken);
 		const user = await User.findOne({ email: tokenObj.em });
-		console.log(user);
+
 		if (user === null || user === undefined) {
 			res.json({ ok: false });
 			return;
@@ -68,9 +76,59 @@ router.post('/verify-email-conf-code', async (req, res) => {
 	}
 });
 
+router.post('/recover-pwd/request', async (req, res) => {
+	try {
+		const { body } = req;
+		const user = await User.findOne({ email: body.email });
+		if (user === null || user === undefined) {
+			res.json({ ok: false, userNonExistent: true });
+		} else {
+			sendEmailRecoverPwd(req.headers.origin, user);
+			res.json({ ok: true });
+		}
+	} catch (error) {
+		console.error(error);
+		res.json({
+			ok: false,
+			err: process.env.NODE_ENV === 'development' ? error.stack : 'Bobo'
+		});
+	}
+});
+
+router.post('/recover-pwd/set-new-pwd', async (req, res) => {
+	try {
+		const { encToken, newPwd } = req.body;
+		const tokenObj = decryptToken(encToken);
+		const user = await User.findOne({ email: tokenObj.em });
+
+		if (user === null || user === undefined) {
+			res.json({ ok: false });
+			return;
+		} else {
+			const isTokenOk = user.codRecPwd === tokenObj.ky;
+
+			if (newPwd === null || newPwd === undefined) {
+				res.json({ ok: isTokenOk });
+			}
+
+			if (newPwd && isTokenOk) {
+				const pwd = await user.hashPwd(newPwd);
+				await user.updateOne({ $set: { password: pwd, codRecPwd: '-' } });
+
+				res.json({ ok: true, pwdUpdated: true });
+			}
+		}
+	} catch (error) {
+		console.error(error);
+		res.json({
+			ok: false,
+			err: process.env.NODE_ENV === 'development' ? error.stack : 'Bobo'
+		});
+	}
+});
+
 router.post('/login', async (req, res, next) => {
 	passport.authenticate('local', { session: false }, (err, user) => {
-		console.log(err, user);
 		if (err !== null && err.emailNotConfirmed) {
 			res.json({
 				isAuthenticated: false,

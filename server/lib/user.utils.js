@@ -2,7 +2,8 @@ const nodemailer = require('nodemailer');
 const JWT = require('jsonwebtoken');
 const { v4: uuid } = require('uuid');
 const { AES: crypt } = require('crypto-js');
-const verifyEmailHTML = require('./verify-email-html')
+const verifyEmailHTML = require('./verify-email-html');
+const recoverPwdHTML = require('./recover-pwd-html');
 
 const {
 	G_MAIL_ACCOUNT,
@@ -13,23 +14,42 @@ const {
 	MED_TKN_KEY
 } = process.env;
 
-module.exports.sendEmailConfirmationCode = async (
-	origin,
-	user
-) => {
+const sendEmail = async (to, subject = 'LineMedRD', html) => {
+	const mailOptions = {
+		to,
+		from: G_MAIL_ACCOUNT,
+		subject,
+		html
+	};
+
+	const transporter = nodemailer.createTransport({
+		service: 'gmail',
+		auth: {
+			type: 'OAuth2',
+			user: G_MAIL_ACCOUNT,
+			clientId: G_CLIENT_ID,
+			clientSecret: G_CLIENT_SECRET,
+			refreshToken: G_REFRESH_TOKEN,
+			accessToken: G_ACCESS_TOKEN
+		}
+	});
+	const res = await transporter.sendMail(mailOptions);
+	return res;
+};
+
+const generateToken = (email, origin, callback) => {
 	const key = uuid();
 
 	JWT.sign(
 		{
 			ky: key,
-			em: user.email
+			em: email
 		},
 		MED_TKN_KEY,
 		{ expiresIn: '1d' },
+
 		async (err, token) => {
 			if (err) throw err;
-
-			await user.updateOne({ $set: { codConfEmail: key } });
 
 			const encToken = crypt
 				.encrypt(JSON.stringify({ token }), MED_TKN_KEY)
@@ -40,28 +60,37 @@ module.exports.sendEmailConfirmationCode = async (
 					? origin
 					: 'http://localhost:3000';
 
-			const mailOptions = {
-				to: user.email,
-				from: G_MAIL_ACCOUNT,
-				subject: 'Bienvenido a LineMedRD',
-				//prettier-ignore
-				html: verifyEmailHTML(user.name, user.lastname, href, origin, encToken)
-			};
-
-			const transporter = nodemailer.createTransport({
-				service: 'gmail',
-				auth: {
-					type: 'OAuth2',
-					user: G_MAIL_ACCOUNT,
-					clientId: G_CLIENT_ID,
-					clientSecret: G_CLIENT_SECRET,
-					refreshToken: G_REFRESH_TOKEN,
-					accessToken: G_ACCESS_TOKEN
-				}
-			});
-
-			const res = await transporter.sendMail(mailOptions);
-			return res;
+			callback({ encToken, key, href });
 		}
 	);
+}
+
+module.exports.sendEmailConfirmationCode = async (origin, user) => {
+	generateToken(user.email, origin, async ({ encToken, key, href }) => {
+
+		await user.updateOne({ $set: { codConfEmail: key } });
+
+		const res = await sendEmail(
+			user.email,
+			'Bienvenido a LineMedRD',
+			verifyEmailHTML(user.name, user.lastname, href, encToken)
+		);
+
+		return res;
+	});
+};
+
+module.exports.sendEmailRecoverPwd = (origin, user) => {
+	generateToken(user.email, origin, async ({ encToken, key, href }) => {
+
+		await user.updateOne({ $set: { codRecPwd: key } });
+
+		const res = await sendEmail(
+			user.email,
+			'Contraseña de LineMedRD',
+			recoverPwdHTML(user.name, href, encToken)
+		);
+
+		return res;
+	});
 };

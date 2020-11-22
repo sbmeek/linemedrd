@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Button } from '@material-ui/core';
 import Link from 'shared/link/Link.styled';
 
