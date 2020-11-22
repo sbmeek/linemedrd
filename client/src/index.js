@@ -17,8 +17,8 @@ const calcVH = (() => {
 	reactRoot.setAttribute('style', `height: ${vH}px;`);
 })();
 
-window.addEventListener('resize', calcVH, true);
-window.addEventListener('orientationchange', calcVH, true);
+window.addEventListener('resize', calcVH);
+window.addEventListener('orientationchange', calcVH);
 
 ReactDOM.render(
 	<React.StrictMode>

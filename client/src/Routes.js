@@ -24,7 +24,8 @@ const AppContainer = styled.div`
 
 	@media (min-width: 415px) {
 		height: 90%;
-		max-width: 350px;
+		max-width: 400px;
+		border-radius: 12px;
 	}
 `;
 
@@ -49,7 +50,7 @@ export default function Routes() {
 				<AppContainer>
 					<Appbar />
 					<Content>
-						<AuthRoute exact redirectTo="/login" path="/" component={Main} />
+						<Route exact path="/" component={Main} />
 						<AuthRoute path="/regAppoint" component={RegAppoint} />
 						<UnauthRoute redirectTo="/" path="/login" component={Login} />
 						<UnauthRoute redirectTo="/" path="/register" component={Register} />
