@@ -35,10 +35,11 @@ const Content = styled.div`
 `;
 
 export default function Routes() {
+
 	useEffect(() => {
 		setTimeout(() => {
-			document.querySelector('#loader').remove();
-			document.querySelector('#loader-style').remove();
+			document.querySelector('#loader')?.remove();
+			document.querySelector('#loader-style')?.remove();
 		}, 1600);
 	}, []);
 
