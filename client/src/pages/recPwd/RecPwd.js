@@ -16,7 +16,7 @@ export default function RecPwd() {
 
 	useEffect(() => {
 		document.title = 'Recuperacion de Contraseña';
-	});
+	}, []);
 
 	return (
 		<Container>

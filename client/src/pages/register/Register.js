@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-	Button,
-	Checkbox,
 	InputLabel,
 	Select,
 	MenuItem,
@@ -16,16 +14,16 @@ import {
 	formCustomStyles,
 	FormInnerContainer,
 	MedInsuranceField,
-	TermsNConditionsCB
+	BtnSubmit
 } from './Register.style';
 import DatePicker from 'shared/datepicker/Datepicker';
-import MustConfirm from '../mustConfirm/MustConfirm';
+import MustConfirm from 'components/mustConfirm/MustConfirm';
 
 export default function Register() {
 	const [canSignUp, setCanSignUp] = useState(false);
-	const [termsAccepted, setTermsAccepted] = useState(false);
 	const [birthDate, setBirthDate] = useState(new Date());
 	const [isDateValid, setIsDateValid] = useState(true);
+	const [signedUp, setSignedUp] = useState(false);
 	const [fields, setFields] = useState({
 		name: {
 			isErrored: null,
@@ -105,8 +103,6 @@ export default function Register() {
 		let isOk = true;
 		console.log(
 			fields,
-			'termsAccepted',
-			termsAccepted,
 			'isDateValid',
 			isDateValid
 		);
@@ -114,7 +110,6 @@ export default function Register() {
 			if (
 				fields[field].isErrored === null ||
 				fields[field].isErrored ||
-				!termsAccepted ||
 				!isDateValid
 			) {
 				isOk = false;
@@ -122,7 +117,7 @@ export default function Register() {
 			}
 		}
 		setCanSignUp(isOk);
-	}, [fields, termsAccepted, isDateValid]);
+	}, [fields, isDateValid]);
 
 	const valdInput = async (fieldName = '', fieldValue = '') => {
 		const valLength = fieldValue.length;
@@ -242,154 +237,154 @@ export default function Register() {
 
 	const handleFormSubmit = async (e) => {
 		e.preventDefault();
-		const values = {};
-		for (let field in fields) {
-			values[field] = fields[field].value;
+		if (canSignUp) {
+			const values = {};
+			for (let field in fields) {
+				values[field] = fields[field].value;
+			}
+			values['medInsurance'] = userMedInsurance;
+			values['birthDate'] = birthDate;
+			const { data: resData } = await axios.post('/user/register', { values });
+			setSignedUp(resData.ok);
 		}
-		values['medInsurance'] = userMedInsurance;
-		values['birthDate'] = birthDate;
-		const { data: resData } = await axios.post('/user/register', { values });
-		console.log(resData);
 	};
 
 	return (
 		<Container>
-			<Form customStyles={formCustomStyles} onSubmit={handleFormSubmit}>
-				<FormTitle>Crea tu cuenta</FormTitle>
-				<FormInnerContainer>
-					<TextField
-						fullWidth
-						onChange={handleFieldChange}
-						name="name"
-						label="Nombres"
-						error={fields['name'].isErrored}
-						helperText={fields['name'].errMsg}
-						defaultValue={fields['name'].value}
-					/>
-					<TextField
-						fullWidth
-						onChange={handleFieldChange}
-						name="lastname"
-						label="Apellidos"
-						error={fields['lastname'].isErrored}
-						helperText={fields['lastname'].errMsg}
-						defaultValue={fields['lastname'].value}
-					/>
-					<TextField
-						fullWidth
-						onChange={handleFieldChange}
-						type="text"
-						name="idCard"
-						label="Cédula"
-						error={fields['idCard'].isErrored}
-						helperText={fields['idCard'].errMsg}
-						defaultValue={fields['idCard'].value}
-					/>
-					<TextField
-						fullWidth
-						onChange={handleFieldChange}
-						name="address"
-						label="Dirección"
-						error={fields['address'].isErrored}
-						helperText={fields['address'].errMsg}
-						defaultValue={fields['address'].value}
-					/>
-					<DatePicker
-						fullWidth
-						onChange={(date) => {
-							let isValid = true;
-							if (date === null) {
-								isValid = false;
-							} else if (date.toString() === 'Invalid Date') {
-								isValid = false;
-							}
-							setBirthDate(date);
-							setIsDateValid(isValid);
-						}}
-						defaultValue={birthDate}
-						name="birthDate"
-						id="birthDate"
-						label="Fecha de nacimiento"
-						maxDate={new Date()}
-						maxDateMessage="La fecha de nacimiento no puede ser mayor a la fecha actual."
-					/>
-					<MedInsuranceField>
-						<h3>Seguro M&eacute;dico</h3>
-						<FormControl>
-							<InputLabel id="med-insurance" shrink>
-								Compañía
-							</InputLabel>
-							<Select
-								defaultValue={userMedInsurance.company}
-								onChange={handleMedInsuranceCompanyChange}
-								labelId="med-insurance"
-							>
-								{medInsurances.current.map((medInsurance, idx) => (
-									<MenuItem key={idx} value={medInsurance}>
-										{medInsurance}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
+			{signedUp ? (
+				<MustConfirm />
+			) : (
+				<Form customStyles={formCustomStyles} onSubmit={handleFormSubmit}>
+					<FormTitle>Crea tu cuenta</FormTitle>
+					<FormInnerContainer>
 						<TextField
+							fullWidth
 							onChange={handleFieldChange}
-							name="medInsuranceNumber"
-							label="Número de afiliado"
-							InputLabelProps={{ shrink: true }}
-							error={fields['medInsuranceNumber'].isErrored}
-							helperText={fields['medInsuranceNumber'].errMsg}
-							defaultValue={fields['medInsuranceNumber'].value}
+							name="name"
+							label="Nombres"
+							error={fields['name'].isErrored}
+							helperText={fields['name'].errMsg}
+							defaultValue={fields['name'].value}
 						/>
-					</MedInsuranceField>
-					<TextField
-						fullWidth
-						onChange={handleFieldChange}
-						name="email"
-						label="Correo electrónico"
-						type="email"
-						error={fields['email'].isErrored}
-						helperText={fields['email'].errMsg}
-						defaultValue={fields['email'].value}
-					/>
-					<TextField
-						fullWidth
-						onChange={handleFieldChange}
-						name="password"
-						label="Contraseña"
-						type="password"
-						error={fields['password'].isErrored}
-						helperText={fields['password'].errMsg}
-						defaultValue={fields['password'].value}
-					/>
-					<TextField
-						fullWidth
-						onChange={handleFieldChange}
-						name="confirm-password"
-						label="Confirmar Contraseña"
-						type="password"
-						error={fields['confirm-password'].isErrored}
-						helperText={fields['confirm-password'].errMsg}
-						defaultValue={fields['confirm-password'].value}
-					/>
-					<TermsNConditionsCB
-						control={<Checkbox color="primary" name="termsCb" />}
-						label="Aceptar Términos y Condiciones"
-						onChange={(e) => setTermsAccepted(e.target.checked)}
-					/>
-					<Button
-						fullWidth
-						color="primary"
-						variant="contained"
-						disableElevation
-						type="submit"
-						style={{ borderRadius: '35px' }}
-						disabled={!canSignUp}
-					>
-						Registrarse
-					</Button>
-					<Link to="/login">Iniciar sesi&oacute;n</Link>
-				</FormInnerContainer>
-			</Form>
+						<TextField
+							fullWidth
+							onChange={handleFieldChange}
+							name="lastname"
+							label="Apellidos"
+							error={fields['lastname'].isErrored}
+							helperText={fields['lastname'].errMsg}
+							defaultValue={fields['lastname'].value}
+						/>
+						<TextField
+							fullWidth
+							onChange={handleFieldChange}
+							type="text"
+							name="idCard"
+							label="Cédula"
+							error={fields['idCard'].isErrored}
+							helperText={fields['idCard'].errMsg}
+							defaultValue={fields['idCard'].value}
+						/>
+						<TextField
+							fullWidth
+							onChange={handleFieldChange}
+							name="address"
+							label="Dirección"
+							error={fields['address'].isErrored}
+							helperText={fields['address'].errMsg}
+							defaultValue={fields['address'].value}
+						/>
+						<DatePicker
+							fullWidth
+							onChange={(date) => {
+								let isValid = true;
+								if (date === null) {
+									isValid = false;
+								} else if (date.toString() === 'Invalid Date') {
+									isValid = false;
+								}
+								setBirthDate(date);
+								setIsDateValid(isValid);
+							}}
+							value={birthDate}
+							name="birthDate"
+							id="birthDate"
+							label="Fecha de nacimiento"
+							maxDate={new Date()}
+							maxDateMessage="La fecha de nacimiento no puede ser mayor a la fecha actual."
+						/>
+						<MedInsuranceField>
+							<h3>Seguro M&eacute;dico</h3>
+							<FormControl>
+								<InputLabel id="med-insurance" shrink>
+									Compañía
+								</InputLabel>
+								<Select
+									defaultValue={userMedInsurance.company}
+									onChange={handleMedInsuranceCompanyChange}
+									labelId="med-insurance"
+								>
+									{medInsurances.current.map((medInsurance, idx) => (
+										<MenuItem key={idx} value={medInsurance}>
+											{medInsurance}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+							<TextField
+								onChange={handleFieldChange}
+								name="medInsuranceNumber"
+								label="Número de afiliado"
+								InputLabelProps={{ shrink: true }}
+								error={fields['medInsuranceNumber'].isErrored}
+								helperText={fields['medInsuranceNumber'].errMsg}
+								defaultValue={fields['medInsuranceNumber'].value}
+							/>
+						</MedInsuranceField>
+						<TextField
+							fullWidth
+							onChange={handleFieldChange}
+							name="email"
+							label="Correo electrónico"
+							type="email"
+							error={fields['email'].isErrored}
+							helperText={fields['email'].errMsg}
+							defaultValue={fields['email'].value}
+						/>
+						<TextField
+							fullWidth
+							onChange={handleFieldChange}
+							name="password"
+							label="Contraseña"
+							type="password"
+							error={fields['password'].isErrored}
+							helperText={fields['password'].errMsg}
+							defaultValue={fields['password'].value}
+						/>
+						<TextField
+							fullWidth
+							onChange={handleFieldChange}
+							name="confirm-password"
+							label="Confirmar Contraseña"
+							type="password"
+							error={fields['confirm-password'].isErrored}
+							helperText={fields['confirm-password'].errMsg}
+							defaultValue={fields['confirm-password'].value}
+						/>
+						<BtnSubmit
+							fullWidth
+							color="primary"
+							variant="contained"
+							disableElevation
+							type="submit"
+							disabled={!canSignUp}
+						>
+							Registrarse
+						</BtnSubmit>
+						<Link to="/login">Iniciar sesi&oacute;n</Link>
+					</FormInnerContainer>
+				</Form>
+			)}
 		</Container>
 	);
 }

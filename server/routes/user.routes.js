@@ -43,15 +43,15 @@ router.post('/verify-email-conf-code', async (req, res) => {
 		const decToken = JSON.parse(bytes.toString(enc.Utf8));
 		const tokenObj = JWT.verify(decToken.token, MED_TKN_KEY);
 		const user = await User.findOne({ email: tokenObj.em });
-
+		console.log(user);
 		if (user === null || user === undefined) {
 			res.json({ ok: false });
 			return;
 		}
 
-		if (user.emailConfirmationCode === tokenObj.ky) {
-			if (!user.isEmailVerified) {
-				await user.updateOne({ $set: { isEmailVerified: true } });
+		if (user.codConfEmail === tokenObj.ky) {
+			if (!user.isEmailConfirmed) {
+				await user.updateOne({ $set: { isEmailConfirmed: true } });
 				res.json({ ok: true });
 			} else {
 				res.json({ ok: false });

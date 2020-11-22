@@ -16,12 +16,12 @@ style="font-family: Cambria, Roboto, Helvetica, Arial, sans-serif; max-width: 60
 			<div style="max-width: 80%;
 			margin: auto; margin-bottom: 20px; font-size: 1.17em; font-weight: bold;">Hola <span
 					style="color: #66d2bc;">${name} ${lastname}</span>,</div>
-			<div style="max-width: 80%; margin: auto;">Verifique su cuenta. Acceda al siguiente enlace para terminar el
+			<div style="max-width: 80%; margin: auto;">Acceda al siguiente enlace para terminar el
 				proceso de
 				registro.</div>
 			<div style="padding: 24px; text-align: center;">
 				<div>
-					<a href="${href}/account/verify?t=${encodeURIComponent(
+					<a href="${href}/verify-email/${encodeURIComponent(
 	encToken
 )}" style="color: #fff;
 						padding: 14px 26px;
@@ -39,16 +39,14 @@ style="font-family: Cambria, Roboto, Helvetica, Arial, sans-serif; max-width: 60
 						border-radius: 25px;">Confirmar</a>
 				</div>
 				<div style="margin-top: 28px;">
-					<span style="margin-top: 14px;">¿No ves un botón? <a
-							href="${href}/account/verify?t=${encodeURIComponent(encToken)}"
-							style="color: #3b78e0; text-decoration: none;">Haz click aquí</a>.</span>
+					<span style="margin-top: 14px;">¿No ve un botón? <a
+							href="${href}/verify-email/${encodeURIComponent(encToken)}"
+							style="color: #3b78e0; text-decoration: none;">Click aquí</a>.</span>
 				</div>
 			</div>
 			<div style="max-width: 80%; margin: auto;">
-				Este link estará activo por 1 día. Si expira lo más conveniente es <a href="${
-					origin
-				}"
-					style="color: #3b78e0; text-decoration: none;">solicitar otro</a>.
+				Este link estará activo por 1 día. Si expira lo más conveniente es <span
+					style="color: #3b78e0; text-decoration: none;">solicitar otro</span>.
 			</div>
 		</td>
 	</tr>

@@ -45,7 +45,7 @@ module.exports.sendEmailConfirmationCode = async (
 				from: G_MAIL_ACCOUNT,
 				subject: 'Bienvenido a LineMedRD',
 				//prettier-ignore
-				html: verifyEmailHTML('bobo', 'martinez', href, origin, encToken)
+				html: verifyEmailHTML(user.name, user.lastname, href, origin, encToken)
 			};
 
 			const transporter = nodemailer.createTransport({

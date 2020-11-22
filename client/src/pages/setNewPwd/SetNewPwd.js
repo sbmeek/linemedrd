@@ -69,7 +69,7 @@ export default function SetNewPwd({ match: { params } }) {
 
 	useEffect(() => {
 		document.title = 'Nueva Contraseña';
-	});
+	}, []);
 
 	return (
 		<Container>

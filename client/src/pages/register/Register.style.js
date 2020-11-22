@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { Button } from '@material-ui/core';
 
 export const Container = styled.div`
 	display: flex;
@@ -58,7 +58,7 @@ export const MedInsuranceField = styled.div`
 	}
 `;
 
-export const TermsNConditionsCB = styled(FormControlLabel)`
-	justify-content: flex-start;
-	width: 100%;
+export const BtnSubmit = styled(Button)`
+	border-radius: 35px !important;
+	margin-top: 25px !important;
 `;

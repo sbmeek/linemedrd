@@ -1,5 +1,6 @@
-import styled from 'styled-components';
-import { Button, Card, CardContent, CardActions } from '@material-ui/core';
+import styled, { keyframes } from 'styled-components';
+import { Card, CardContent, CardActions } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
 	display: grid;
@@ -12,9 +13,19 @@ export const CardTitle = styled.h1`
 	text-align: center;
 `;
 
+const opacityAnim = keyframes`
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+`;
+
 export const StyledCard = styled(Card)`
 	max-width: 345;
 	box-shadow: none !important;
+	animation: ${opacityAnim} 200ms;
 `;
 
 export const CardBody = styled(CardContent)`
@@ -31,10 +42,17 @@ export const CardBody = styled(CardContent)`
 export const CardActionsStyled = styled(CardActions)`
 	justify-content: right !important;
 	align-items: flex-end !important;
+	margin-top: 20px;
 `;
 
-export const BtnAccept = styled(Button)`
-	border-radius: 25px !important;
-	background-color: #ffff !important;
+export const BtnAccept = styled(Link)`
+	display: grid;
+	place-content: center;
+	width: 100%;
+	height: 40px;
+	border-radius: 25px;
+	background-color: #fff;
 	color: var(--lmed-green-01);
+	text-transform: uppercase;
+	text-decoration: none;
 `;

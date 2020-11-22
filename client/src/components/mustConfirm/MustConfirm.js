@@ -12,7 +12,8 @@ import { Typography } from '@material-ui/core';
 export default function MustConfirm() {
 	useEffect(() => {
 		document.title = 'Confirme sus datos';
-	});
+	}, []);
+
 	return (
 		<Container>
 			<StyledCard>
@@ -26,14 +27,7 @@ export default function MustConfirm() {
 						haciendo click en el enlace que le hemos env&iacute;ado.
 					</Typography>
 					<CardActionsStyled>
-						<BtnAccept
-							fullWidth
-							variant="contained"
-							disableElevation
-							href="/login"
-						>
-							Entendido
-						</BtnAccept>
+						<BtnAccept to="/login">Entendido</BtnAccept>
 					</CardActionsStyled>
 				</CardBody>
 			</StyledCard>
