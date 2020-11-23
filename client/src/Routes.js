@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Loader from './components/loader/Loader';
 import styled from 'styled-components';
@@ -19,7 +19,7 @@ const AppContainer = styled.div`
 	display: grid;
 	grid-template-rows: 10% 90%;
 	width: 100%;
-	box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.08);
+	box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.16);
 	height: 100%;
 
 	@media (min-width: 415px) {
@@ -36,6 +36,8 @@ const Content = styled.div`
 `;
 
 export default function Routes() {
+	const appContainerRef = useRef(null);
+	const [appContainerHeight, setAppContainerHeight] = useState(0);
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -44,11 +46,20 @@ export default function Routes() {
 		}, 1600);
 	}, []);
 
+	useEffect(() => {
+		window.addEventListener('resize', () => {
+			setAppContainerHeight(appContainerRef.current?.clientHeight);
+		});
+		window.addEventListener('load', () => {
+			setAppContainerHeight(appContainerRef.current?.clientHeight);
+		});
+	}, [appContainerRef.current?.clientHeight]);
+
 	return (
 		<Router>
 			<Suspense fallback={<Loader />}>
-				<AppContainer>
-					<Appbar />
+				<AppContainer ref={appContainerRef}>
+					<Appbar appContainerHeight={appContainerHeight} />
 					<Content>
 						<Route exact path="/" component={Main} />
 						<AuthRoute path="/regAppoint" component={RegAppoint} />

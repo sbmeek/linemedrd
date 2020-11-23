@@ -6,6 +6,7 @@ export const Container = styled.div`
 	grid-template-columns: 90% 10%;
 	background-color: var(--lmed-green-02);
 	padding: 0 17px;
+	position: relative;
 
 	@media (min-width: 415px) {
 		border-radius: 12px 12px 0 0;
