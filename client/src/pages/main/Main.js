@@ -60,9 +60,9 @@ export default function Main() {
 				<CoverContent>
 					<CompanyTitle>Centro M&eacute;dico A&M</CompanyTitle>
 					<CompanyDescription>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a
-						imperdiet ante. Etiam et orci quis felis feugiat scelerisque in vel
-						massa.
+						Somos un centro fundado por m&eacute;dicos visionarios y
+						apasionados, d&iacute;a a d&iacute;a luchamos por mejorar y
+						brindarle a nuestros pacientes el servicio mas excelente.
 					</CompanyDescription>
 					<SpecialtiesContainer>
 						{specialties.map((specialty, idx) => (
@@ -74,7 +74,10 @@ export default function Main() {
 			<CardsWrapper>
 				{specialties.map((specialty, idx) => (
 					<CardContainer key={idx} bgColor={specialty.color}>
-						<SpecialtyIcon src={specialty.icon} isTeethIcon={specialty.name === 'Odontología'}/>
+						<SpecialtyIcon
+							src={specialty.icon}
+							isTeethIcon={specialty.name === 'Odontología'}
+						/>
 						<span>{specialty.name}</span>
 					</CardContainer>
 				))}

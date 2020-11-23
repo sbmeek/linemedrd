@@ -19,6 +19,17 @@ export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+
+	&::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: var(--lmed-green-00);
+		border-radius: 10px;
+	}
+	scrollbar-width: thin;
+	scrollbar-color: var(--lmed-green-00) transparent;
 `;
 
 export const StyledCard = styled(Card)`

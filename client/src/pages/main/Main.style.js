@@ -8,6 +8,17 @@ export const Container = styled.div`
 	margin-top: -28px;
 	width: 100%;
 	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: var(--lmed-green-00);
+		border-radius: 10px;
+	}
+	scrollbar-width: thin;
+	scrollbar-color: var(--lmed-green-00) transparent;
 `;
 
 export const CoverWrapper = styled.div`

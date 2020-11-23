@@ -14,6 +14,7 @@ const RecPwd = lazy(() => import('pages/recPwd/RecPwd'));
 const SetNewPwd = lazy(() => import('pages/setNewPwd/SetNewPwd'));
 const ConfirmEmail = lazy(() => import('pages/confirmEmail/ConfirmEmail'));
 const ReservApnts = lazy(() => import('pages/reserved-appoints/ReservApnts'));
+const Speciality = lazy(() => import('pages/specialities/Specialities'));
 
 const AppContainer = styled.div`
 	display: grid;
@@ -62,6 +63,7 @@ export default function Routes() {
 					<Appbar appContainerHeight={appContainerHeight} />
 					<Content>
 						<Route exact path="/" component={Main} />
+						<UnauthRoute path="/speciality" component={Speciality} />
 						<AuthRoute path="/regAppoint" component={RegAppoint} />
 						<UnauthRoute redirectTo="/" path="/login" component={Login} />
 						<UnauthRoute redirectTo="/" path="/register" component={Register} />
