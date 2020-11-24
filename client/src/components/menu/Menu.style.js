@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'shared/link/Link.styled';
 
 export const Container = styled.div`
 	display: flex;
@@ -48,35 +49,76 @@ export const Sidebar = styled.div`
 		props.showMenu ? 'translateX(-254px)' : 'translateX(255px)'};
 	transition: opacity 250ms, transform 250ms;
 	z-index: -1;
-	padding: 20px;
+	padding: 20px 0;
 `;
+
+export const Header = styled.div`
+	display: flex;
+	justify-content: center;
+	height: 30%;
+	width: 100%;
+	position: relative;
+
+	& > img {
+		width: 130px;
+	}
+`;
+
+export const Content = styled.div`
+	margin-top: 20px;
+	width: 100%;
+`;
+
+export const LinkStyled = styled(Link)`
+	margin: 0;
+	color: var(--lmed-link-color);
+	width: 100%;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+		box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+		border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+	font-size: 20px;
+	text-decoration: none !important;
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.04);
+	}
+`;
+
 
 export const MediaContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 100%;
+
+	& > h2 {
+		font-size: 20px;
+	}
 `;
 
-export const SocialMedia = styled.div`
-	display: inline;
-	margin: 8px;
-	& a {
-		position: relative;
-		float: left;
-		text-decoration: none;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		color: var(--lmed-link-hover-color);
+export const SocialMedia = styled.a`
+	color: var(--lmed-link-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 45px;
+	position: relative;
+	text-decoration: none;
+	width: 100%;
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.04);
 	}
 `;
 
 export const ImgStyle = styled.img`
-	width: 10%;
-	margin: 3px;
-	align-self: center;
-	position: relative;
-	float: left;
+	width: 26px;
+	margin-right: 6px;
 `;
 
 export const Spacer = styled.div`

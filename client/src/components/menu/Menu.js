@@ -3,15 +3,18 @@ import {
 	Container,
 	Overlay,
 	Sidebar,
+	Header,
+	Content,
 	Wrapper,
 	MediaContainer,
 	SocialMedia,
 	ImgStyle,
-	Spacer
+	Spacer,
+	LinkStyled
 } from './Menu.style';
-import Link from 'shared/link/Link.styled';
 import IG from 'assets/icons/instagram.svg';
 import FB from 'assets/icons/facebook.svg';
+import phoneIcon from 'assets/icons/emergency-call.svg';
 
 export default function Menu({
 	sidebarOpen,
@@ -27,30 +30,31 @@ export default function Menu({
 			/>
 			<Wrapper>
 				<Sidebar appContainerHeight={appContainerHeight} showMenu={sidebarOpen}>
-					<Link to="/login">Iniciar sesi&oacute;n</Link>
-					<Link to="/register">Registrarse</Link>
-					<Spacer></Spacer>
+					<Header>
+						<img src={phoneIcon} alt="phone" />
+					</Header>
+					<Content>
+						<LinkStyled to="/login">Iniciar sesi&oacute;n</LinkStyled>
+						<LinkStyled to="/register">Registrarse</LinkStyled>
+					</Content>
+					<Spacer />
 					<MediaContainer>
-						Nuestras Redes:
-						<SocialMedia>
+						<h2>Redes Sociales</h2>
+						<SocialMedia
+							href="https://www.instagram.com/linemedrd/"
+							rel="noreferrer"
+							target="_blank"
+						>
 							<ImgStyle src={IG} />
-							<a
-								href="https://www.instagram.com/linemedrd/"
-								rel="noreferrer"
-								target="_blank"
-							>
-								LineMedRD-ig
-							</a>
+							LineMedRD-ig
 						</SocialMedia>
-						<SocialMedia>
+						<SocialMedia
+							href="https://www.facebook.com/Linemedrd-100328205260398"
+							rel="noreferrer"
+							target="_blank"
+						>
 							<ImgStyle src={FB} />
-							<a
-								href="https://www.facebook.com/Linemedrd-100328205260398"
-								rel="noreferrer"
-								target="_blank"
-							>
-								LineMedRD-fb
-							</a>
+							LineMedRD-fb
 						</SocialMedia>
 					</MediaContainer>
 				</Sidebar>
