@@ -62,7 +62,7 @@ export default function Main() {
 					<CompanyDescription>
 						Somos un centro fundado por m&eacute;dicos visionarios y
 						apasionados, d&iacute;a a d&iacute;a luchamos por mejorar y
-						brindarle a nuestros pacientes el servicio mas excelente.
+						brindarle a nuestros pacientes el servicio m&aacute;s excelente.
 					</CompanyDescription>
 					<SpecialtiesContainer>
 						{specialties.map((specialty, idx) => (

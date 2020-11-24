@@ -15,6 +15,7 @@ const SetNewPwd = lazy(() => import('pages/setNewPwd/SetNewPwd'));
 const ConfirmEmail = lazy(() => import('pages/confirmEmail/ConfirmEmail'));
 const ReservApnts = lazy(() => import('pages/reserved-appoints/ReservApnts'));
 const Speciality = lazy(() => import('pages/specialities/Specialities'));
+const Schedule = lazy(() => import('pages/schedule/Schedule'));
 
 const AppContainer = styled.div`
 	display: grid;
@@ -71,6 +72,8 @@ export default function Routes() {
 						<Route path="/setnewpwd/:token" component={SetNewPwd} />
 						<UnauthRoute redirectTo="/" path="/recoverpwd" component={RecPwd} />
 						<AuthRoute path="/reservedApnts" component={ReservApnts} />
+
+						<UnauthRoute path="/schedule" component={Schedule} />
 					</Content>
 				</AppContainer>
 			</Suspense>
