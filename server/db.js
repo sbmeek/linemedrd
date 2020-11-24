@@ -7,10 +7,10 @@ const connectionOptions = {
 	useCreateIndex: true
 };
 
-const DB_URI = 'mongodb://localhost/linemedrd';
+const { DB_CONN_MDB_ATLAS } = process.env
 
-connect(DB_URI, connectionOptions);
+connect(DB_CONN_MDB_ATLAS, connectionOptions);
 
 connection.on('open', () => {
-	console.log(`Connected to database on ${DB_URI}`);
+	console.log(`Connected to database on MDB_Atlas`);
 });
