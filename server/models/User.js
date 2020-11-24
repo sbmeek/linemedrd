@@ -43,7 +43,10 @@ const userSchema = new Schema({
 	codConfEmail: String,
 	isEmailConfirmed: { type: Boolean, default: false },
 	codRecPwd: String,
-	Role: Number
+	Role: {
+		type: Number,
+		default: 0
+	}
 });
 
 userSchema.methods.hashPwd = async (pwd) => {
