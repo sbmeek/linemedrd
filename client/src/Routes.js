@@ -69,16 +69,16 @@ export default function Routes() {
 					<Appbar appContainerHeight={appContainerHeight} />
 					<Content>
 						<Route exact path="/" component={Main} />
-						<AuthRoute path="/speciality" component={Speciality} />
-						<AuthRoute path="/regAppoint" component={RegAppoint} />
+						<AuthRoute minRoleAllowedTo={0} path="/speciality" component={Speciality} />
+						<AuthRoute minRoleAllowedTo={0} path="/regAppoint" component={RegAppoint} />
 						<UnauthRoute redirectTo="/" path="/login" component={Login} />
 						<UnauthRoute redirectTo="/" path="/register" component={Register} />
 						<Route path="/verify-email/:token" component={ConfirmEmail} />
 						<Route path="/setnewpwd/:token" component={SetNewPwd} />
 						<UnauthRoute redirectTo="/" path="/recoverpwd" component={RecPwd} />
-						<AuthRoute path="/reservedApnts" component={ReservApnts} />
-						<AuthRoute path="/schedule" component={Schedule} />
-						<AuthRoute path="/admincp" component={AdminCP} />
+						<AuthRoute minRoleAllowedTo={0} path="/reservedApnts" component={ReservApnts} />
+						<AuthRoute minRoleAllowedTo={1} path="/schedule" component={Schedule} />
+						<AuthRoute minRoleAllowedTo={2} path="/admincp" component={AdminCP} />
 					</Content>
 				</AppContainer>
 			</Suspense>

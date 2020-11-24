@@ -18,7 +18,7 @@ const signToken = (iis, userId) => {
 			sub: userId
 		},
 		SESSION_SECRET,
-		{ expiresIn: 30 * 60 }
+		{ expiresIn: 120 * 60000 }
 	);
 };
 
@@ -138,30 +138,42 @@ router.post('/login', async (req, res, next) => {
 		} else if (!user) {
 			res.json({ ok: false });
 		} else {
-			const { _id, email } = user;
+			const { _id, email, Role } = user;
 			req.medTkn.medTkn = signToken('medTkn', _id);
 			res.json({
 				isAuthenticated: true,
 				ok: true,
 				user: {
 					_id,
-					email
+					email,
+					Role
 				}
 			});
 		}
 	})(req, res, next);
 });
 
+router.post('/logout', (req, res, next) => {
+	passport.authenticate('jwt', { session: false }, (_err, user) => {
+		if (!user) res.json({ isAuthenticated: false, ok: false })
+		else {
+			req.medTkn.reset()
+			res.json({ user: null, isAuthenticated: false, ok: true })
+		}
+	})(req, res, next)
+})
+
 router.post('/check-auth', async (req, res, next) => {
 	passport.authenticate('jwt', { session: false }, (_, user) => {
 		if (!user) res.json({ isAuthenticated: false, user: null });
 		else {
-			const { _id, email } = user;
+			const { _id, email, Role } = user;
 			res.json({
 				isAuthenticated: true,
 				user: {
 					_id,
-					email
+					email,
+					Role
 				}
 			});
 		}

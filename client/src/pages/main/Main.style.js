@@ -145,7 +145,7 @@ export const CardContainer = styled(Link)`
 	display: grid;
 	place-items: center;
 	place-content: center;
-	background-color: ${(props) => props.bgColor};
+	background-color: ${(props) => props.bgcolor};
 	width: 165px;
 	height: 108px;
 	border-radius: 17px;

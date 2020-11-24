@@ -3,8 +3,8 @@ import { Route, Redirect } from 'react-router-dom';
 import { MainContext } from 'global/context';
 import Loader from 'components/loader/Loader';
 
-export default function AuthRoute({ component: Component, ...rest }) {
-	const { isAuthenticated, isLoading } = useContext(MainContext).state;
+export default function AuthRoute({ component: Component, minRoleAllowedTo, ...rest }) {
+	const { isAuthenticated, isLoading, user } = useContext(MainContext).state;
 
 	return (
 		<>
@@ -12,7 +12,7 @@ export default function AuthRoute({ component: Component, ...rest }) {
 			<Route
 				{...rest}
 				render={({ location }) =>
-					isAuthenticated ? (
+					isAuthenticated && user !== null && user.Role >= minRoleAllowedTo ? (
 						<Component />
 					) : (
 						<Redirect

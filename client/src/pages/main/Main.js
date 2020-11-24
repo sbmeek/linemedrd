@@ -93,7 +93,7 @@ export default function Main() {
 					<CardContainer
 						to={{ pathname: '/speciality', state: { specialty } }}
 						key={idx}
-						bgColor={specialty.color}
+						bgcolor={specialty.color}
 					>
 						<SpecialtyIcon
 							src={specialty.icon}

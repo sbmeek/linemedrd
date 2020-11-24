@@ -24,7 +24,7 @@ app.use(
 	sessions({
 		cookieName: 'medTkn',
 		secret: process.env.SESSION_SECRET,
-		duration: 30 * 60000,
+		duration: 120 * 60000,
 		cookie: {
 			httpOnly: true,
 			secure: false
