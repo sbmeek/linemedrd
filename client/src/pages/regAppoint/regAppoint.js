@@ -134,7 +134,7 @@ export default function RegAppoint() {
 						/>
 
 						<CardActionsStyled>
-							<BtnCancel variant="contained" onChange={handleCancel}>
+							<BtnCancel variant="contained" onMouseUp={handleCancel}>
 								Cancelar
 							</BtnCancel>
 							<BtnAccept variant="contained" type="submit">

@@ -33,7 +33,7 @@ export const CardTitle = styled.h1`
 `;
 
 export const ImgStyle = styled.img`
-	width: max-content;
+	width: 115px;
 	align-self: center;
 `;
 
