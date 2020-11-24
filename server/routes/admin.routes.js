@@ -15,13 +15,9 @@ const decryptToken = (encryptedToken) => {
 
 const isAdmin = async (tkn) => {
 	const DecTkn = decryptToken(tkn);
-
 	if (DecTkn === undefined) return;
-
 	const id = DecTkn['sub'];
-	console.log(id);
 	const user = await User.findById(id);
-	console.log(user);
 	if (user['Role'] >= 2) return true;
 	else return false;
 };

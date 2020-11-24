@@ -33,6 +33,8 @@ app.use(
 );
 
 app.use('/user', require('./routes/user.routes'));
+app.use('/doctors', require('./routes/doctors.routes'));
+app.use('/consults', require('./routes/consult.routes'));
 app.use('/appoints', require('./routes/medAppoint.routes'));
 app.use('/schedules', require('./routes/schedules.routes'));
 app.use('/admin', require('./routes/admin.routes'));

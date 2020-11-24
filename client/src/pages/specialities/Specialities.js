@@ -12,15 +12,24 @@ import {
 } from './Specialities.style';
 import Dr from 'assets/icons/dr.svg';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Specialities() {
 	const {
 		state: { specialty }
 	} = useLocation();
+	const [doctors, setDoctors] = useState([]);
 
 	useEffect(() => {
 		document.title = specialty.specialists;
 	}, [specialty.specialists]);
+
+	useEffect(() => {
+		(async () => {
+			const { data } = await axios.get('/dotores/todos/bobo');
+			setDoctors(data);
+		})();
+	}, []);
 
 	return (
 		<Container>
