@@ -13,6 +13,18 @@ export const Container = styled.div`
 	place-items: center;
 	width: 100%;
 	margin-top: -20px;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: var(--lmed-green-00);
+		border-radius: 10px;
+	}
+	scrollbar-width: thin;
+	scrollbar-color: var(--lmed-green-00) transparent;
 `;
 
 export const CardTitle = styled.h1`
@@ -37,6 +49,7 @@ export const StyledCard = styled(Card)`
 
 export const CardBody = styled(CardContent)`
 	background-color: var(--lmed-green-01);
+	padding: 9px 15px !important;
 	width: 92%;
 	margin-left: 4.5%;
 	border: 0;

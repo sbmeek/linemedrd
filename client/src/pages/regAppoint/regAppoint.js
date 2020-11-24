@@ -73,6 +73,33 @@ export default function RegAppoint() {
 		if (data['ok']) handleClickOpen();
 	};
 
+	const getDayNumber = (day) => {
+		switch (day) {
+			case 'Lunes':
+				return 1;
+			case 'Martes':
+				return 2;
+			case 'Miercoles':
+				return 3;
+			case 'Jueves':
+				return 4;
+			case 'Viernes':
+				return 5;
+			default:
+				return 0;
+		}
+	};
+
+	const disableDates = (date) => {
+		const horary = dr['horary'];
+		const daysRange = horary.split(' ');
+		const days = daysRange[0].split('-');
+		return !(
+			date.getDay() >= getDayNumber(days[0]) &&
+			date.getDay() <= getDayNumber(days[1])
+		);
+	};
+
 	return (
 		<Container>
 			<ImgStyle src={Doctor} />
@@ -83,8 +110,8 @@ export default function RegAppoint() {
 						Doctor: {dr['name']} <br />
 						Consultorio: {dr['Cons_name']} <br />
 						Direccion: {dr['Cons_dir']} <br />
-						Costo: RD${cost}
-						<br />
+						Horario: {dr['horary']} <br />
+						Costo: RD${cost} <br />
 					</Typography>
 
 					<Form onSubmit={handledFormSubmit}>
@@ -94,6 +121,7 @@ export default function RegAppoint() {
 							minDate={new Date()}
 							value={date}
 							onChange={(d) => setDate(d)}
+							shouldDisableDate={disableDates}
 						/>
 
 						<InsuranceCB

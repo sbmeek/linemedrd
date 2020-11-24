@@ -85,6 +85,13 @@ export default function ReservApnts() {
 		})();
 	}, [user]);
 
+	const formatApptnDate = (date, drHours) => {
+		const splittedDate = date.split(' ');
+		const slicedDate = splittedDate.slice(0, -2);
+		const joinedDate = `${slicedDate.join(' ')} ${drHours.split(' ')[1]}`;
+		return joinedDate;
+	};
+
 	return (
 		<Container>
 			<ImgStyle src={Agenda} />
@@ -113,7 +120,10 @@ export default function ReservApnts() {
 								/>
 							</BtnPDF>
 							<AppointWrapper>
-								{moment(apptn['realization_date']).format('LLLL')}
+								{formatApptnDate(
+									moment(apptn['realization_date']).format('LLLL'),
+									apptn['drHour']
+								)}
 							</AppointWrapper>
 						</AppointInfo>
 					</CardBody>

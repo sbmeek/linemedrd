@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const initialState = {
 	user: null,
-	isAuthenticated: true,
+	isAuthenticated: false,
 	isLoading: true
 };
 
@@ -31,7 +31,7 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				user: action.payload.user
-			}
+			};
 		default:
 			return state;
 	}
@@ -54,12 +54,12 @@ export default function ContextWrapper({ children }) {
 					user: data.user
 				}
 			});
-		});
-		dispatch({
-			type: actionTypes.SET_IS_LOADING,
-			payload: {
-				isLoading: false
-			}
+			dispatch({
+				type: actionTypes.SET_IS_LOADING,
+				payload: {
+					isLoading: false
+				}
+			});
 		});
 	}, []);
 
