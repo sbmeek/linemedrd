@@ -4,14 +4,15 @@ import {
 	Card,
 	CardContent,
 	CardActions,
-	CardMedia,
 	FormControlLabel
 } from '@material-ui/core';
 
 export const Container = styled.div`
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	place-items: center;
 	width: 100%;
+	margin-top: -20px;
 `;
 
 export const CardTitle = styled.h1`
@@ -19,10 +20,9 @@ export const CardTitle = styled.h1`
 	text-align: center;
 `;
 
-export const MediaCard = styled(CardMedia)`
-	height: 50px;
-	width: 33%;
-	margin-left: 33%;
+export const ImgStyle = styled.img`
+	width: max-content;
+	align-self: center;
 `;
 
 export const InsuranceCB = styled(FormControlLabel)`

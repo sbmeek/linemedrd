@@ -54,10 +54,7 @@ export const StyledCard = styled(Card)`
 	overflow: visible !important;
 	max-height: 130px;
 	& * {
-		color: ${(props) =>
-			props.color
-				? props.color
-				: 'gray'} !important; //color de las letras, sera dinamico
+		color: ${(props) => (props.color ? props.color : 'gray')} !important;
 	}
 `;
 

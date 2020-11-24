@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CardMedia, Typography, Checkbox, makeStyles } from '@material-ui/core';
+import { Typography, Checkbox } from '@material-ui/core';
 import {
 	CardTitle,
 	Container,
@@ -8,22 +8,14 @@ import {
 	CardBody,
 	BtnCancel,
 	BtnAccept,
-	CardActionsStyled
+	CardActionsStyled,
+	ImgStyle
 } from './RegAppoint.style';
-import Doctor from 'assets/icons/doctor-default-profile.svg';
+import Doctor from 'assets/icons/dr.svg';
 import Datepicker from 'shared/datepicker/Datepicker';
 import { useLocation } from 'react-router-dom';
 
-const useStyles = makeStyles({
-	media: {
-		height: 115,
-		width: '33%',
-		marginLeft: '33%'
-	}
-});
-
 export default function RegAppoint() {
-	const classes = useStyles();
 	const [dr, setDr] = useState({});
 	const [cost, setCost] = useState(3000);
 	const location = useLocation();
@@ -38,16 +30,8 @@ export default function RegAppoint() {
 
 	return (
 		<Container>
+			<ImgStyle src={Doctor} />
 			<StyledCard>
-				<CardMedia
-					className={classes.media}
-					component="img"
-					alt="Doctor profile"
-					width="100"
-					height="200"
-					image={Doctor}
-					title="Doctor profile"
-				/>
 				<CardBody>
 					<CardTitle>Reservar Cita</CardTitle>
 					<Typography variant="body2" component="p">
