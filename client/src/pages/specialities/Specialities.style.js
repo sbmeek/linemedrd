@@ -25,6 +25,7 @@ export const Title = styled.h1`
 export const ImgStyle = styled.img`
 	width: max-content;
 	align-self: center;
+	margin-bottom: 18px;
 `;
 
 export const StyledCard = styled(Card)`
@@ -33,6 +34,8 @@ export const StyledCard = styled(Card)`
 	width: 95%;
 	box-shadow: none !important;
 	border-radius: 12px !important;
+	overflow: visible !important;
+	max-height: 130px;
 	& * {
 		color: ${(props) =>
 			props.color
@@ -45,11 +48,14 @@ export const CardBody = styled(CardContent)`
 	background-color: ${(props) => (props.bgcolor ? props.bgcolor : 'gray')};
 	padding-bottom: 0% !important;
 	padding-top: 0% !important;
+	max-height: 130px;
+	border-radius: 12px;
 `;
 
 export const DrInfo = styled.div`
 	display: flex;
 	justify-content: space-between;
+	max-height: 130px;
 `;
 
 export const TextWrapper = styled.div`
