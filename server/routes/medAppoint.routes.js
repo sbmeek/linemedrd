@@ -1,5 +1,7 @@
 const { Router } = require('express');
 const MedAppoint = require('../models/medAppoint');
+const Dr = require('../models/Doctor');
+const Consult = require('../models/Consult');
 const router = Router();
 
 //create
@@ -43,11 +45,31 @@ router.get('/readAppoints/:user_id/:id', async (req, res) => {
 //read all
 router.get('/readAppoints/:user_id', async (req, res) => {
 	try {
+		let resAppnts = [];
 		const user_id = req.params.user_id;
 		const appoints = await MedAppoint.find({ ID_User: user_id });
+		for (appnt of appoints) {
+			const dr = await Dr.findById(appnt['ID_Doctor']);
+			const cons = await Consult.findById(appnt['ID_Consult']);
+			var resAppnt = {
+				ID_User: appnt['ID_User'],
+				ID_Doctor: appnt['ID_Doctor'],
+				ID_Consult: appnt['ID_Consult'],
+				emission_date: appnt['emission_date'],
+				realization_date: appnt['realization_date'],
+				payment: appnt['payment'],
+				ins_validation: appnt['ins_validation'],
+				status: appnt['status'],
+				drName: dr['name'],
+				drHour: dr['horary'],
+				spc: dr['speciality'],
+				consDir: cons['dir']
+			};
+			resAppnts.push(resAppnt);
+		}
 		res.json({
 			ok: true,
-			appoints
+			appnts: resAppnts
 		});
 	} catch (err) {
 		console.error(err);

@@ -11,7 +11,7 @@ export const Title = styled.h2`
 `;
 
 export const ImgStyle = styled.img`
-	width: 20%;
+	width: ${(props) => (props.isTeethIcon ? '16%' : '20%')};
 	align-self: center;
 `;
 
@@ -19,6 +19,7 @@ export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	overflow: scroll !important;
 
 	&::-webkit-scrollbar {
 		width: 6px;
@@ -36,15 +37,16 @@ export const StyledCard = styled(Card)`
 	align-self: center;
 	margin: 2%;
 	width: 95%;
+	overflow: unset !important;
 	box-shadow: none !important;
-	border-radius: 12px !important;
 	& * {
 		color: #ffff !important;
 	}
 `;
 
 export const CardBody = styled(CardContent)`
-	background-color: ${(props) => (props.bgColor ? props.bgColor : 'gray')};
+	background-color: ${(props) => (props.bgcolor ? props.bgcolor : 'gray')};
+	border-radius: 20px !important;
 `;
 
 export const BtnPDF = styled(Button)`

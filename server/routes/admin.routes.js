@@ -85,7 +85,6 @@ router.post('/searchByName', async (req, res) => {
 		const tkn = req.medTkn.medTkn;
 		if (await isAdmin(tkn)) {
 			const { qry } = req.body;
-
 			const foundUsers = await User.find(
 				qry.length > 0
 					? {
@@ -104,7 +103,7 @@ router.post('/searchByName', async (req, res) => {
 				msg: 'ruede plis'
 			});
 		}
-	} catch (error) {
+	} catch (err) {
 		console.error(err);
 		res.json({
 			ok: false,

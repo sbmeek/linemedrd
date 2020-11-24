@@ -46,6 +46,10 @@ export default function RegAppoint() {
 		history.push('/');
 	};
 
+	const handleCancel = () => {
+		history.push('/');
+	};
+
 	useEffect(() => {
 		document.title = 'Registrar Cita';
 	}, []);
@@ -102,7 +106,9 @@ export default function RegAppoint() {
 						/>
 
 						<CardActionsStyled>
-							<BtnCancel variant="contained">Cancelar</BtnCancel>
+							<BtnCancel variant="contained" onChange={handleCancel}>
+								Cancelar
+							</BtnCancel>
 							<BtnAccept variant="contained" type="submit">
 								Confimar
 							</BtnAccept>
