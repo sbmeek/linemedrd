@@ -72,7 +72,7 @@ export default function Routes() {
 						<Route path="/setnewpwd/:token" component={SetNewPwd} />
 						<UnauthRoute redirectTo="/" path="/recoverpwd" component={RecPwd} />
 						<AuthRoute path="/reservedApnts" component={ReservApnts} />
-						<UnauthRoute path="/schedule" component={Schedule} />
+						<AuthRoute path="/schedule" component={Schedule} />
 					</Content>
 				</AppContainer>
 			</Suspense>
