@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Card, CardContent } from '@material-ui/core';
 
-
 export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -12,11 +11,23 @@ export const Container = styled.div`
 		width: 20%;
 		align-self: center;
 	}
+
+	&::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: var(--lmed-green-00);
+		border-radius: 10px;
+	}
+	scrollbar-width: thin;
+	scrollbar-color: var(--lmed-green-00) transparent;
 `;
 
 export const SpecialityIcon = styled.img`
 	width: 60px;
-	filter: invert(30%) sepia(43%) saturate(406%) hue-rotate(118deg) brightness(93%) contrast(88%);
+	filter: invert(30%) sepia(43%) saturate(406%) hue-rotate(118deg)
+		brightness(93%) contrast(88%);
 `;
 
 export const Title = styled.h1`
@@ -36,7 +47,7 @@ export const ImgStyle = styled.img`
 
 export const StyledCard = styled(Card)`
 	align-self: center;
-	margin: 2%;
+	margin: 30px 0;
 	width: 95%;
 	box-shadow: none !important;
 	border-radius: 12px !important;
@@ -67,12 +78,12 @@ export const DrInfo = styled.div`
 export const TextWrapper = styled.div`
 	font-size: 15px;
 	width: 65%;
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-left: 10px;
+	padding-bottom: 10px !important;
 `;
 
 export const DrName = styled.h3`
 	font-weight: bolder !important;
-	color: ${(props) => (props.color ? props.color : '#005e4b')} !important;
 	margin-bottom: 10px;
 `;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CardMedia, Typography, Checkbox, makeStyles } from '@material-ui/core';
 import {
 	CardTitle,
@@ -12,6 +12,7 @@ import {
 } from './RegAppoint.style';
 import Doctor from 'assets/icons/doctor-default-profile.svg';
 import Datepicker from 'shared/datepicker/Datepicker';
+import { useLocation } from 'react-router-dom';
 
 const useStyles = makeStyles({
 	media: {
@@ -23,10 +24,17 @@ const useStyles = makeStyles({
 
 export default function RegAppoint() {
 	const classes = useStyles();
+	const [dr, setDr] = useState({});
+	const [cost, setCost] = useState(3000);
+	const location = useLocation();
 
 	useEffect(() => {
 		document.title = 'Registrar Cita';
 	}, []);
+
+	useEffect(() => {
+		setDr(location.state);
+	}, [location.state]);
 
 	return (
 		<Container>
@@ -43,10 +51,10 @@ export default function RegAppoint() {
 				<CardBody>
 					<CardTitle>Reservar Cita</CardTitle>
 					<Typography variant="body2" component="p">
-						Doctor: <br />
-						Consultorio: <br />
-						Direccion: <br />
-						Costo:
+						Doctor: {dr['name']} <br />
+						Consultorio: {dr['Cons_name']} <br />
+						Direccion: {dr['Cons_dir']} <br />
+						Costo: RD${cost}
 						<br />
 					</Typography>
 
@@ -59,6 +67,7 @@ export default function RegAppoint() {
 					<InsuranceCB
 						control={<Checkbox color="primary" name="insuranceCB" />}
 						label="Seguro Médico"
+						onChange={(e) => setCost(!e.target.checked ? 3000 : 950)}
 					/>
 
 					<CardActionsStyled>

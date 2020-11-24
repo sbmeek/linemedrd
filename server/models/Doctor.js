@@ -9,7 +9,7 @@ const doctorSchema = new Schema({
 		type: String,
 		required: true
 	},
-	specialty: {
+	speciality: {
 		type: String,
 		required: true
 	},
@@ -17,7 +17,8 @@ const doctorSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Consult',
 		required: true
-	}
+	},
+	horary: String
 });
 
 module.exports = model('Doctor', doctorSchema);
