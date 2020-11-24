@@ -1,8 +1,9 @@
-import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState, useContext } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Loader from './components/loader/Loader';
 import styled from 'styled-components';
 import Appbar from './components/appbar/Appbar';
+import { MainContext } from 'global/context'
 
 const AuthRoute = lazy(() => import('components/authRoute/AuthRoute'));
 const UnauthRoute = lazy(() => import('components/unauthRoute/UnauthRoute'));
@@ -16,6 +17,7 @@ const ConfirmEmail = lazy(() => import('pages/confirmEmail/ConfirmEmail'));
 const ReservApnts = lazy(() => import('pages/reserved-appoints/ReservApnts'));
 const Speciality = lazy(() => import('pages/specialities/Specialities'));
 const Schedule = lazy(() => import('pages/schedule/Schedule'));
+const AdminCP = lazy(() => import('pages/adminCP/AdminCP'));
 
 const AppContainer = styled.div`
 	display: grid;
@@ -38,15 +40,18 @@ const Content = styled.div`
 `;
 
 export default function Routes() {
+	const { isLoading } = useContext(MainContext).state;
 	const appContainerRef = useRef(null);
 	const [appContainerHeight, setAppContainerHeight] = useState(0);
 
 	useEffect(() => {
 		setTimeout(() => {
-			document.querySelector('#loader')?.remove();
-			document.querySelector('#loader-style')?.remove();
+			if(!isLoading){
+				document.querySelector('#loader')?.remove();
+				document.querySelector('#loader-style')?.remove();
+			}
 		}, 1600);
-	}, []);
+	}, [isLoading]);
 
 	useEffect(() => {
 		window.addEventListener('resize', () => {
@@ -73,6 +78,7 @@ export default function Routes() {
 						<UnauthRoute redirectTo="/" path="/recoverpwd" component={RecPwd} />
 						<AuthRoute path="/reservedApnts" component={ReservApnts} />
 						<AuthRoute path="/schedule" component={Schedule} />
+						<AuthRoute path="/admincp" component={AdminCP} />
 					</Content>
 				</AppContainer>
 			</Suspense>

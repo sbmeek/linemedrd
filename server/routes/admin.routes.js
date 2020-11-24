@@ -80,4 +80,40 @@ router.put('/updateRole/:user_id', async (req, res) => {
 	}
 });
 
+router.post('/searchByName', async (req, res) => {
+	try {
+		const tkn = req.medTkn.medTkn;
+		if (await isAdmin(tkn)) {
+			const { qry } = req.body;
+
+			const foundUsers = await User.find(
+				qry.length > 0
+					? {
+							name: { $regex: qry, $options: 'i' }
+					  }
+					: {}
+			);
+			res.json({
+				ok: true,
+				qry,
+				foundUsers
+			});
+		} else {
+			res.json({
+				ok: false,
+				msg: 'ruede plis'
+			});
+		}
+	} catch (error) {
+		console.error(err);
+		res.json({
+			ok: false,
+			err:
+				process.env.NODE_ENV === 'development'
+					? err.stack
+					: 'Problemas de admin...'
+		});
+	}
+});
+
 module.exports = router;

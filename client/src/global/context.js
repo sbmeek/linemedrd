@@ -3,8 +3,8 @@ import axios from 'axios';
 
 const initialState = {
 	user: null,
-	isAuthenticated: false,
-	isLoading: false
+	isAuthenticated: true,
+	isLoading: true
 };
 
 export const actionTypes = {
