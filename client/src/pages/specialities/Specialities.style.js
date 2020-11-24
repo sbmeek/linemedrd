@@ -1,16 +1,22 @@
 import styled from 'styled-components';
 import { Card, CardContent } from '@material-ui/core';
 
+
 export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	width: 100%;
 	overflow-y: auto;
-
 	& svg {
 		width: 20%;
 		align-self: center;
 	}
+`;
+
+export const SpecialityIcon = styled.img`
+	width: 60px;
+	filter: invert(30%) sepia(43%) saturate(406%) hue-rotate(118deg) brightness(93%) contrast(88%);
 `;
 
 export const Title = styled.h1`

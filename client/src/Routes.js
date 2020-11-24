@@ -64,7 +64,7 @@ export default function Routes() {
 					<Appbar appContainerHeight={appContainerHeight} />
 					<Content>
 						<Route exact path="/" component={Main} />
-						<UnauthRoute path="/speciality" component={Speciality} />
+						<AuthRoute path="/speciality" component={Speciality} />
 						<AuthRoute path="/regAppoint" component={RegAppoint} />
 						<UnauthRoute redirectTo="/" path="/login" component={Login} />
 						<UnauthRoute redirectTo="/" path="/register" component={Register} />

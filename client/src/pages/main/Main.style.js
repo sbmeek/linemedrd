@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import homeBg from 'assets/imgs/home-bg.jpg';
 import homeBgVertical from 'assets/imgs/home-bg-vertical.jpg';
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
 	display: flex;
@@ -22,7 +23,7 @@ export const Container = styled.div`
 `;
 
 export const CoverWrapper = styled.div`
-	height: 260.26px;
+	height: 274.54px;
 	position: relative;
 
 	@media (min-width: 415px), (max-width: 356px) {
@@ -110,7 +111,7 @@ export const SpecialtiesContainer = styled.div`
 	}
 `;
 
-export const BtnSpecialty = styled.button`
+export const BtnSpecialty = styled(Link)`
 	cursor: pointer;
 	background-color: transparent;
 	border-radius: 20px;
@@ -120,6 +121,7 @@ export const BtnSpecialty = styled.button`
 	color: #fff;
 	box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 0px;
 	transition: all 100ms linear 0s;
+	text-decoration: none;
 
 	&:hover {
 		background-color: rgba(255, 255, 255, 0.7);
@@ -138,7 +140,8 @@ export const CardsWrapper = styled.div`
 	margin: 20px 0;
 `;
 
-export const CardContainer = styled.div`
+export const CardContainer = styled(Link)`
+	text-decoration: none;
 	display: grid;
 	place-items: center;
 	place-content: center;

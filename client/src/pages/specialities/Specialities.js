@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import {
+	SpecialityIcon,
 	Container,
 	Title,
 	ImgStyle,
@@ -9,18 +10,22 @@ import {
 	DrInfo,
 	DrName
 } from './Specialities.style';
-import HeartIcon from 'components/heartIcon/HeartIcon';
 import Dr from 'assets/icons/dr.svg';
+import { useLocation } from 'react-router-dom';
 
 export default function Specialities() {
+	const {
+		state: { specialty }
+	} = useLocation();
+
 	useEffect(() => {
-		document.title = 'Especialistas';
-	}, []);
+		document.title = specialty.specialists;
+	}, [specialty.specialists]);
 
 	return (
 		<Container>
-			<HeartIcon color="#66d2bc" />
-			<Title>Cardi&oacute;logos</Title>
+			<SpecialityIcon src={specialty.icon} />
+			<Title>{specialty.specialists}</Title>
 			<StyledCard color="#005e4b">
 				<CardBody bgcolor="#85f2dc">
 					<DrInfo>

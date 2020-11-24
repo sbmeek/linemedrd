@@ -22,33 +22,45 @@ import {
 const specialties = [
 	{
 		name: 'Odontología',
+		specialists: 'Odontólogos',
 		color: '#60A2F8',
-		icon: teethIcon
+		icon: teethIcon,
+		iconComp: 'TeethIcon'
 	},
 	{
 		name: 'Cardiología',
+		specialists: 'Cardiólogos',
 		color: '#EE3A3A',
-		icon: cardiogramIcon
+		icon: cardiogramIcon,
+		iconComp: 'HeartIcon'
 	},
 	{
 		name: 'Ortopeda',
+		specialists: 'Ortopedas',
 		color: '#5FD95A',
-		icon: pelvisIcon
+		icon: pelvisIcon,
+		iconComp: 'PelvisIcon'
 	},
 	{
 		name: 'Neurología',
+		specialists: 'Neurólogos',
 		color: '#6D6374',
-		icon: brainIcon
+		icon: brainIcon,
+		iconComp: 'BrainIcon'
 	},
 	{
 		name: 'Ginecología',
+		specialists: 'Ginecólogos',
 		color: '#ff0066',
-		icon: gynecologyIcon
+		icon: gynecologyIcon,
+		iconComp: 'GynecologyIcon'
 	},
 	{
 		name: 'Oncología',
+		specialists: 'Oncólogos',
 		color: '#993399',
-		icon: oncologyIcon
+		icon: oncologyIcon,
+		iconComp: 'OncologyIcon'
 	}
 ];
 
@@ -66,14 +78,23 @@ export default function Main() {
 					</CompanyDescription>
 					<SpecialtiesContainer>
 						{specialties.map((specialty, idx) => (
-							<BtnSpecialty key={idx}>{specialty.name}</BtnSpecialty>
+							<BtnSpecialty
+								to={{ pathname: '/speciality', state: { specialty } }}
+								key={idx}
+							>
+								{specialty.name}
+							</BtnSpecialty>
 						))}
 					</SpecialtiesContainer>
 				</CoverContent>
 			</CoverWrapper>
 			<CardsWrapper>
 				{specialties.map((specialty, idx) => (
-					<CardContainer key={idx} bgColor={specialty.color}>
+					<CardContainer
+						to={{ pathname: '/speciality', state: { specialty } }}
+						key={idx}
+						bgColor={specialty.color}
+					>
 						<SpecialtyIcon
 							src={specialty.icon}
 							isTeethIcon={specialty.name === 'Odontología'}
