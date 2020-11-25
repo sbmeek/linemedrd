@@ -23,15 +23,15 @@ export const Container = styled.div`
 `;
 
 export const CoverWrapper = styled.div`
-	height: 274.54px;
+	min-height: 274.54px;
 	position: relative;
 
 	@media (min-width: 415px), (max-width: 372px) {
-		height: 422px !important;
+		min-height: 422px !important;
 	}
 
 	@media (max-width: 389px) {
-		height: 274.54px;
+		min-height: 274.54px;
 	}
 `;
 

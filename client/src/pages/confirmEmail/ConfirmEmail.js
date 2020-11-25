@@ -12,7 +12,7 @@ import { Typography } from '@material-ui/core';
 import axios from 'axios';
 import Loader from 'components/loader/Loader';
 
-export default function ConfirmEmail({ match: { params } }) {
+export default function ConfirmEmail({ match: { params: { token } } }) {
 	const [isVerificationTokenOk, setIsVerificationTokenOk] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -21,20 +21,20 @@ export default function ConfirmEmail({ match: { params } }) {
 	}, []);
 
 	useEffect(() => {
-		let encToken = decodeURIComponent(params.token);
+		let encToken = decodeURIComponent(token);
 
 		(async () => {
-			const res = await axios.post('/user/verify-email-conf-code', {
+			const { data } = await axios.post('/user/verify-email-conf-code', {
 				encToken
 			});
-			setIsVerificationTokenOk(res.data.ok);
+			setIsVerificationTokenOk(data.ok);
 			setIsLoading(false)
 		})();
-	}, [params]);
+	}, [token]);
 
 	return (
 		<Container>
-			{!isLoading ? !isVerificationTokenOk ? (
+			{isLoading ? <Loader /> : !isVerificationTokenOk ? (
 				<Redirect to="/" />
 			) : (
 				<StyledCard>
@@ -56,7 +56,7 @@ export default function ConfirmEmail({ match: { params } }) {
 						</CardActionsStyled>
 					</CardBody>
 				</StyledCard>
-			) : <Loader />}
+			)}
 		</Container>
 	);
 }

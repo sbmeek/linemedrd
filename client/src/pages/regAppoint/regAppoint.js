@@ -55,8 +55,12 @@ export default function RegAppoint() {
 	}, []);
 
 	useEffect(() => {
+		if(location.state === undefined) {
+			history.push('/');
+			return;
+		}
 		setDr(location.state);
-	}, [location.state]);
+	}, [history, location.state]);
 
 	const handledFormSubmit = async (e) => {
 		e.preventDefault();

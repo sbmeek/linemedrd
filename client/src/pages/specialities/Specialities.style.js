@@ -40,7 +40,7 @@ export const Title = styled.h1`
 `;
 
 export const ImgStyle = styled.img`
-	width: max-content;
+	width: 180px;
 	align-self: center;
 	margin-bottom: 18px;
 `;

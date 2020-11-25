@@ -5,6 +5,7 @@ export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	overflow-y: auto;
 `;
 
 export const Title = styled.h2`
@@ -20,7 +21,7 @@ export const SearchField = styled.textarea`
 	background-color: var(--lmed-green-00);
 	width: 55%;
 	max-width: 220px;
-	height: 30px;
+	min-height: 30px;
 	margin-top: 17px;
 	background-image: ${(props) =>
 		props.isSearchFieldOnInputMode ? '' : `url(${lupa})`};
@@ -56,6 +57,7 @@ export const TableHead = styled.div`
 	width: 100%;
 	background-color: var(--lmed-green-02);
 	border-radius: 12px 12px 0 0;
+	min-height: 48.51px;
 
 	& > span {
 		display: grid;

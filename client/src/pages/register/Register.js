@@ -138,7 +138,7 @@ export default function Register() {
 				let isIdCardNonExistent = false;
 				if (!elevenCharsOnly && !numbersOnlyErr) {
 					const { data } = await axios.get(
-						`http://api.adamix.net/apec/cedula/${fieldValue}`
+						`https://api.adamix.net/apec/cedula/${fieldValue}`
 					);
 					isIdCardNonExistent = !data.ok;
 				}

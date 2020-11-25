@@ -19,7 +19,7 @@ export default function Appbar({ appContainerHeight }) {
 				style={{ height: '100%' }}
 				aria-label="menu"
 			>
-				<img style={{ width: 26 }} src={menuIcon} alt="menu" />
+				<img style={{ width: 26, height: 21 }} src={menuIcon} alt="menu" />
 			</IconButton>
 			<Menu appContainerHeight={appContainerHeight} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
 

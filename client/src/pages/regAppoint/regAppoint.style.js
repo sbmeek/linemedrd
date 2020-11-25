@@ -43,8 +43,8 @@ export const InsuranceCB = styled(FormControlLabel)`
 `;
 
 export const StyledCard = styled(Card)`
-	max-width: 345;
 	box-shadow: none !important;
+	overflow: visible !important;
 `;
 
 export const CardBody = styled(CardContent)`

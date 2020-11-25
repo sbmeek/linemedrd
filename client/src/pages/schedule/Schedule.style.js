@@ -90,7 +90,7 @@ export const StyPaper = styled(Paper)`
 `;
 
 export const StyTabs = styled(Tabs)`
-	& span.PrivateTabIndicator-root-1 {
+	& span.MuiTabs-indicator {
 		background-color: ${(props) =>
 			props.value === 0
 				? '#66d2bc'
