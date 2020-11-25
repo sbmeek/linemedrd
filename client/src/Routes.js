@@ -25,6 +25,8 @@ const AppContainer = styled.div`
 	width: 100%;
 	box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.16);
 	height: 100%;
+	z-index: 2;
+	background-color: #fff;
 
 	@media (min-width: 415px) {
 		height: 90%;
