@@ -9,6 +9,12 @@ const consultSchema = new Schema({
 		type: String,
 		required: true
 	},
+	manager: {
+		type: Schema.Types.ObjectId,
+		ref: 'User',
+		unique: true,
+		required: true
+	},
 	dir: String
 });
 

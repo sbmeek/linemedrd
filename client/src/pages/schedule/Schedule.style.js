@@ -60,13 +60,14 @@ export const CardBody = styled(CardContent)`
 export const IconWrapper = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: space-around;
 	min-height: 100%;
 	width: 30%;
 `;
 
 export const IconStyle = styled.img`
-	width: 80px;
+	width: ${(props) => (props.isTeethIcon ? '75%' : '80%')} !important;
 	height: auto;
 `;
 

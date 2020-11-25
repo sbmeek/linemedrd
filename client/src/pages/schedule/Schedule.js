@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext, useCallback } from 'react';
+import { MainContext } from 'global/context';
+import axios from 'axios';
+import moment from 'moment';
 import {
 	Container,
 	Title,
@@ -15,17 +18,110 @@ import {
 	BtnCancel,
 	BtnAccept
 } from './Schedule.style';
+//icons
 import calendar from 'assets/icons/calendar.svg';
-import heart from 'assets/icons/cardiogram.svg';
 import CheckIcon from 'components/icons/checkIcon/CheckIcon';
 import Clipboard from 'components/icons/clipboardIcon/ClipboardIcon';
 import Pending from 'components/icons/pending/PendingIcon';
+import teethIcon from 'assets/icons/teeth.svg';
+import cardiogramIcon from 'assets/icons/cardiogram.svg';
+import pelvisIcon from 'assets/icons/pelvis-flat.svg';
+import brainIcon from 'assets/icons/brain-flat.svg';
+import gynecologyIcon from 'assets/icons/gynecology.svg';
+import oncologyIcon from 'assets/icons/oncology.svg';
+
+import 'moment/locale/es-do';
+moment.locale('es-do');
+
+const specialties = [
+	{
+		name: 'Odontología',
+		specialists: 'Odontólogos',
+		color: '#60A2F8',
+		icon: teethIcon,
+		iconComp: 'TeethIcon'
+	},
+	{
+		name: 'Cardiología',
+		specialists: 'Cardiólogos',
+		color: '#EE3A3A',
+		icon: cardiogramIcon,
+		iconComp: 'HeartIcon'
+	},
+	{
+		name: 'Ortopeda',
+		specialists: 'Ortopedas',
+		color: '#5FD95A',
+		icon: pelvisIcon,
+		iconComp: 'PelvisIcon'
+	},
+	{
+		name: 'Neurología',
+		specialists: 'Neurólogos',
+		color: '#6D6374',
+		icon: brainIcon,
+		iconComp: 'BrainIcon'
+	},
+	{
+		name: 'Ginecología',
+		specialists: 'Ginecólogos',
+		color: '#ff0066',
+		icon: gynecologyIcon,
+		iconComp: 'GynecologyIcon'
+	},
+	{
+		name: 'Oncología',
+		specialists: 'Oncólogos',
+		color: '#993399',
+		icon: oncologyIcon,
+		iconComp: 'OncologyIcon'
+	}
+];
 
 export default function Schedule() {
 	const [selectedTab, setSelectedTab] = useState(0);
+	const [pending, setPending] = useState([]);
+	const [confirmed, setConfirmed] = useState([]);
+	const [done, setDone] = useState([]);
+	const { user } = useContext(MainContext).state;
 
 	const handleChange = (_evt, newTabIdx) => {
 		setSelectedTab(newTabIdx);
+	};
+
+	const updateContent = useCallback(() => {
+		const getDataByStatus = async (status) => {
+			const { data } = await axios.get(
+				`/schedules/readStatus/${user['_id']}/${status}`
+			);
+			return data['schedule'];
+		};
+		(async () => {
+			let data = await getDataByStatus('Pendiente');
+			setPending(data);
+			data = await getDataByStatus('Confirmada');
+			setConfirmed(data);
+			data = await getDataByStatus('Realizada');
+			setDone(data);
+		})();
+	}, [user]);
+
+	useEffect(() => {
+		updateContent();
+	}, [updateContent]);
+
+	const updateStatus = async (ApId, ConId, newStatus) => {
+		await axios.put(`/schedules/upAppointSt/${ConId}/${ApId}`, {
+			status: newStatus
+		});
+		updateContent();
+	};
+
+	const formatApptnDate = (date, drHours) => {
+		const splittedDate = date.split(' ');
+		const slicedDate = splittedDate.slice(0, -2);
+		const joinedDate = `${slicedDate.join(' ')} ${drHours.split(' ')[1]}`;
+		return joinedDate;
 	};
 
 	return (
@@ -58,41 +154,122 @@ export default function Schedule() {
 					/>
 				</StyTabs>
 				<TabPanel value={selectedTab} index={0}>
-					<CardBody bgcolor="#66d2bc">
-						<TextWrapper>
-							<PatName>Alexandra Tudela</PatName>
-							Numero: (829) 162-1311 <br />
-							Cedula: 001-2346543-2 <br />
-							Email: alexa01@gmail.com <br />
-							<br />
-							Lunes 18 de noviembre del año 2020 a las 7:00pm
-						</TextWrapper>
-						<IconWrapper>
-							<IconStyle src={heart} />
-						</IconWrapper>
-					</CardBody>
+					{confirmed.length > 0 &&
+						confirmed.map((sch, idx) => (
+							<StyledCard id={idx}>
+								<CardBody bgcolor="#66d2bc">
+									<TextWrapper>
+										<PatName>
+											{sch['patName']} {sch['patLastn']}
+										</PatName>
+										Número de afiliado: {sch['patNIns']} <br />
+										Cedula: {sch['patIdCard']} <br />
+										Email: {sch['patEmail']} <br />
+										<br />
+										{formatApptnDate(
+											moment(sch['appntDate']).format('LLLL'),
+											sch['drHour']
+										)}
+									</TextWrapper>
+									<IconWrapper>
+										<IconStyle
+											isTeethIcon={sch.drSpc === 'Odontología'}
+											src={
+												specialties.find((spc) => spc.name === sch.drSpc).icon
+											}
+										/>
+										<BtnAccept
+											onMouseDown={() =>
+												updateStatus(sch['appntID'], sch['consID'], 'Realizada')
+											}
+										>
+											Realizada
+										</BtnAccept>
+									</IconWrapper>
+								</CardBody>
+							</StyledCard>
+						))}
 				</TabPanel>
 
 				<TabPanel value={selectedTab} index={1}>
-					<CardBody bgcolor="#EE3A3A">
-						<TextWrapper>
-							<PatName>Alexandra Tudela</PatName>
-							Numero: (829) 162-1311 <br />
-							Cedula: 001-2346543-2 <br />
-							Email: alexa01@gmail.com <br />
-							18/11/20 - 7:00pm <br />
-							<br />
-							<BtnCancel>Declinar</BtnCancel>
-							<BtnAccept>Aceptar</BtnAccept>
-						</TextWrapper>
-						<IconWrapper>
-							<IconStyle src={heart} />
-						</IconWrapper>
-					</CardBody>
+					{pending.length > 0 &&
+						pending.map((sch, idx) => (
+							<StyledCard id={idx}>
+								<CardBody bgcolor="#EE3A3A">
+									<TextWrapper>
+										<PatName>
+											{sch['patName']} {sch['patLastn']}
+										</PatName>
+										Número de afiliado: {sch['patNIns']} <br />
+										Cedula: {sch['patIdCard']} <br />
+										Email: {sch['patEmail']} <br />
+										<br />
+										{formatApptnDate(
+											moment(sch['appntDate']).format('LLLL'),
+											sch['drHour']
+										)}
+										<br />
+										<BtnCancel
+											onMouseDown={() =>
+												updateStatus(sch['appntID'], sch['consID'], 'Cancelada')
+											}
+										>
+											Declinar
+										</BtnCancel>
+										<BtnAccept
+											onMouseDown={() =>
+												updateStatus(
+													sch['appntID'],
+													sch['consID'],
+													'Confirmada'
+												)
+											}
+										>
+											Aceptar
+										</BtnAccept>
+									</TextWrapper>
+									<IconWrapper>
+										<IconStyle
+											isTeethIcon={sch.drSpc === 'Odontología'}
+											src={
+												specialties.find((spc) => spc.name === sch.drSpc).icon
+											}
+										/>
+									</IconWrapper>
+								</CardBody>
+							</StyledCard>
+						))}
 				</TabPanel>
 
 				<TabPanel value={selectedTab} index={2}>
-					Item Three
+					{done.length > 0 &&
+						done.map((sch, idx) => (
+							<StyledCard id={idx}>
+								<CardBody bgcolor="#808080">
+									<TextWrapper>
+										<PatName>
+											{sch['patName']} {sch['patLastn']}
+										</PatName>
+										Número de afiliado: {sch['patNIns']} <br />
+										Cedula: {sch['patIdCard']} <br />
+										Email: {sch['patEmail']} <br />
+										<br />
+										{formatApptnDate(
+											moment(sch['appntDate']).format('LLLL'),
+											sch['drHour']
+										)}
+									</TextWrapper>
+									<IconWrapper>
+										<IconStyle
+											isTeethIcon={sch.drSpc === 'Odontología'}
+											src={
+												specialties.find((spc) => spc.name === sch.drSpc).icon
+											}
+										/>
+									</IconWrapper>
+								</CardBody>
+							</StyledCard>
+						))}
 				</TabPanel>
 			</StyPaper>
 		</Container>
@@ -110,7 +287,7 @@ function TabPanel(props) {
 			aria-labelledby={`simple-tab-${index}`}
 			{...other}
 		>
-			{value === index && <StyledCard>{children}</StyledCard>}
+			{value === index && <>{children}</>}
 		</div>
 	);
 }
