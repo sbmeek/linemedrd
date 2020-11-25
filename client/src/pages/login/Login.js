@@ -42,7 +42,6 @@ export default function Login() {
 				}
 			});
 		}
-		console.log(data);
 	};
 
 	const handleFieldChange = (e) => {

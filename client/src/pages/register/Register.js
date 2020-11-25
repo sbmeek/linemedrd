@@ -101,11 +101,6 @@ export default function Register() {
 
 	useEffect(() => {
 		let isOk = true;
-		console.log(
-			fields,
-			'isDateValid',
-			isDateValid
-		);
 		for (let field in fields) {
 			if (
 				fields[field].isErrored === null ||
@@ -129,7 +124,6 @@ export default function Register() {
 			case 'lastname':
 				let lengthErr = valLength < 3 || valLength > 29;
 				let errRefersTo = fieldName === 'name' ? 'nombres' : 'apellidos';
-				console.log(errRefersTo);
 				return {
 					isErrored: lengthErr || lettersOnlyErr,
 					errMsg: lengthErr

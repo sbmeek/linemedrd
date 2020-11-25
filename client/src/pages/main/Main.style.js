@@ -26,7 +26,7 @@ export const CoverWrapper = styled.div`
 	height: 274.54px;
 	position: relative;
 
-	@media (min-width: 415px), (max-width: 356px) {
+	@media (min-width: 415px), (max-width: 372px) {
 		height: 422px !important;
 	}
 
@@ -52,7 +52,7 @@ export const BgContainer = styled.div`
 		left: 0;
 	}
 
-	@media (min-width: 415px), (max-width: 356px) {
+	@media (min-width: 415px), (max-width: 372px) {
 		background-image: url(${homeBgVertical});
 	}
 `;
@@ -98,7 +98,7 @@ export const SpecialtiesContainer = styled.div`
 	margin-top: 15px;
 	padding: 0 20px;
 
-	@media (max-width: 389px) {
+	@media (max-width: 414px) {
 		padding: 0;
 	}
 

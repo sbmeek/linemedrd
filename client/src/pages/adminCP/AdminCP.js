@@ -43,7 +43,6 @@ export default function AdminCP() {
 			const { data } = await axios.post('/admin/searchByName', {
 				qry: value
 			});
-			console.log(data);
 			setUsers([...data.foundUsers]);
 		}, 600);
 	};

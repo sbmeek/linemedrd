@@ -21,7 +21,6 @@ export default function ConfirmEmail({ match: { params } }) {
 	}, []);
 
 	useEffect(() => {
-		console.log(params);
 		let encToken = decodeURIComponent(params.token);
 
 		(async () => {

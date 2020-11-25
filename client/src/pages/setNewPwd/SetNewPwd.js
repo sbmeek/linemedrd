@@ -97,7 +97,6 @@ export default function SetNewPwd({ match: { params } }) {
 					encToken: token,
 					newPwd: fields['password'].value
 				});
-				console.log(data);
 				setPwdUpdated(data.pwdUpdated);
 			})();
 		}

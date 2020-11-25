@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import teethIcon from 'assets/icons/teeth.svg';
 import cardiogramIcon from 'assets/icons/cardiogram.svg';
 import pelvisIcon from 'assets/icons/pelvis-flat.svg';
@@ -65,6 +65,11 @@ const specialties = [
 ];
 
 export default function Main() {
+
+	useEffect(() => {
+		document.title = 'LineMedRD';
+	}, [])
+
 	return (
 		<Container>
 			<CoverWrapper>
