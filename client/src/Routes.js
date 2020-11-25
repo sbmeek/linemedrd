@@ -27,6 +27,7 @@ const AppContainer = styled.div`
 	height: 100%;
 	z-index: 2;
 	background-color: #fff;
+	max-height: 100vh;
 
 	@media (min-width: 415px) {
 		height: 90%;

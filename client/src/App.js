@@ -27,15 +27,14 @@ function App() {
 			<Routes />
 
 			<Line src={line} alt="trazo" />
-
 			<Contaback>
-					<Heart src={heart} />
-					<Bacteria src={bacteria} />
-					<Cruz src={cruz} />
-					<Emergency src={emergency} />
-					<Dna src={dna} />
-					<Stethoscope src={stethoscope} />
-					<Syringe src={syringe} />
+				<Heart src={heart} />
+				<Bacteria src={bacteria} />
+				<Cruz src={cruz} />
+				<Emergency src={emergency} />
+				<Dna src={dna} />
+				<Stethoscope src={stethoscope} />
+				<Syringe src={syringe} />
 			</Contaback>
 		</>
 	);

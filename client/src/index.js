@@ -11,8 +11,7 @@ const reactRoot = document.querySelector('#react-root');
 
 const calcVH = () => {
 	const vH = Math.max(
-		document.documentElement.clientHeight,
-		window.innerHeight || 0
+		document.documentElement.clientHeight
 	);
 	reactRoot.setAttribute('style', `height: ${vH}px;`);
 };

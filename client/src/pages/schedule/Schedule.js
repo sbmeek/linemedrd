@@ -154,7 +154,7 @@ export default function Schedule() {
 					/>
 				</StyTabs>
 				<TabPanel value={selectedTab} index={0}>
-					{confirmed.length > 0 &&
+					{confirmed !== undefined &&
 						confirmed.map((sch, idx) => (
 							<StyledCard id={idx}>
 								<CardBody bgcolor="#66d2bc">
@@ -192,7 +192,7 @@ export default function Schedule() {
 				</TabPanel>
 
 				<TabPanel value={selectedTab} index={1}>
-					{pending.length > 0 &&
+					{pending !== undefined &&
 						pending.map((sch, idx) => (
 							<StyledCard id={idx}>
 								<CardBody bgcolor="#EE3A3A">
@@ -242,7 +242,7 @@ export default function Schedule() {
 				</TabPanel>
 
 				<TabPanel value={selectedTab} index={2}>
-					{done.length > 0 &&
+					{done !== undefined &&
 						done.map((sch, idx) => (
 							<StyledCard id={idx}>
 								<CardBody bgcolor="#808080">

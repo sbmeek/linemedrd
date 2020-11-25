@@ -48,5 +48,6 @@ export const GlobalStyle = createGlobalStyle`
 		min-width: 100vw;
 		overflow: hidden;
 		z-index: 0;
+		position: relative;
 	}
 `;
