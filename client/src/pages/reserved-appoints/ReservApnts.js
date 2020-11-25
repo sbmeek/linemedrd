@@ -21,6 +21,12 @@ import pelvisIcon from 'assets/icons/pelvis-flat.svg';
 import brainIcon from 'assets/icons/brain-flat.svg';
 import gynecologyIcon from 'assets/icons/gynecology.svg';
 import oncologyIcon from 'assets/icons/oncology.svg';
+import {
+	Page,
+	Text,
+	Document,
+	StyleSheet
+} from '@react-pdf/renderer';
 import 'moment/locale/es-do';
 
 moment.locale('es-do');
@@ -97,7 +103,7 @@ export default function ReservApnts() {
 			<ImgStyle src={Agenda} />
 			<Title>citas reservadas</Title>
 			{appnts.map((apptn, idx) => (
-				<StyledCard id={idx}>
+				<StyledCard key={idx}>
 					<CardBody
 						bgcolor={specialties.find((spc) => spc.name === apptn.spc).color}
 					>
@@ -112,7 +118,10 @@ export default function ReservApnts() {
 							/>
 						</AppointInfo>
 						<AppointInfo secondRow>
-							<BtnPDF>
+							<BtnPDF
+								document={<AppointDocPDF apptn={apptn} />}
+								fileName={`cita-${apptn['drName']}-fecha-${apptn['realization_date']}.pdf`}
+							>
 								<PDFIcon
 									color={
 										specialties.find((spc) => spc.name === apptn.spc).color
@@ -132,3 +141,45 @@ export default function ReservApnts() {
 		</Container>
 	);
 }
+
+const AppointDocPDF = (props) => {
+	const { apptn } = props;
+
+	const styles = StyleSheet.create({
+		page: {
+			display: 'flex',
+			alignItems: 'center',
+			paddingTop: 35,
+			paddingBottom: 65
+		},
+		title: {
+			fontSize: 30,
+			fontWeight: 'ultrabold'
+		},
+		subtitle: {
+			fontSize: 28,
+			marginBottom: 10
+		},
+		txt: {
+			fontWeight: 'ultrabold',
+			marginTop: 7
+		}
+	});
+
+	return (
+		<Document>
+			<Page size="A4" style={styles.page}>
+				<Text style={styles.title}>Centro Médico A&M</Text>
+				<Text style={styles.subtitle}>Informe de Cita</Text>
+				<Text style={styles.txt}>Nombre del doctor: {apptn['drName']}</Text>
+				<Text style={styles.txt}>Fecha de Realizaci&oacute;n: {new Date(apptn['realization_date']).toLocaleDateString()}</Text>
+				<Text style={styles.txt}>Direcci&oacute;n del consultorio: {apptn['consDir']}</Text>
+				<Text style={styles.txt}>Horario del doctor: {apptn['drHour']}</Text>
+				<Text style={styles.txt}>Especialidad del doctor: {apptn['spc']}</Text>
+				<Text style={styles.txt}>Fecha de Emisi&oacute;n: {new Date(apptn['emission_date']).toLocaleDateString()}</Text>
+				<Text style={styles.txt}>Costo de consulta: {apptn['payment']}</Text>
+				<Text style={styles.txt}>Pago con seguro: {apptn['ins_validation'] ? 'Sí' : 'No'}</Text>
+			</Page>
+		</Document>
+	);
+};

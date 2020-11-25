@@ -52,6 +52,7 @@ router.get('/readAppoints/:user_id', async (req, res) => {
 			const dr = await Dr.findById(appnt['ID_Doctor']);
 			const cons = await Consult.findById(appnt['ID_Consult']);
 			var resAppnt = {
+				_id: appnt._id,
 				ID_User: appnt['ID_User'],
 				ID_Doctor: appnt['ID_Doctor'],
 				ID_Consult: appnt['ID_Consult'],

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Card, CardContent, Button } from '@material-ui/core';
+import { Card, CardContent } from '@material-ui/core';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 export const Title = styled.h2`
 	margin: 2%;
@@ -39,7 +40,7 @@ export const StyledCard = styled(Card)`
 	width: 95%;
 	overflow: unset !important;
 	box-shadow: none !important;
-	& * {
+	& *:not(table > *) {
 		color: #ffff !important;
 	}
 `;
@@ -49,7 +50,10 @@ export const CardBody = styled(CardContent)`
 	border-radius: 20px !important;
 `;
 
-export const BtnPDF = styled(Button)`
+export const BtnPDF = styled(PDFDownloadLink)`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 70px;
 	height: 44px;
 	border-radius: 30px !important;
@@ -59,7 +63,7 @@ export const BtnPDF = styled(Button)`
 	}
 
 	& svg {
-		width: 60%;
+		width: 55%;
 		max-height: 40px;
 	}
 
@@ -78,4 +82,5 @@ export const AppointInfo = styled.div`
 export const AppointWrapper = styled.div`
 	font-size: 15px;
 	width: 65%;
+	color: #fff;
 `;
