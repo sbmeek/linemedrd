@@ -21,7 +21,9 @@ export default function RecPwd() {
 		let isAValidEmail = isEmailRegex.test(String(value).toLowerCase());
 		setIsEmailValid(isAValidEmail);
 		setEmail(value);
-		setErrMsg(isAValidEmail ? '' : 'Debe digitar un correo electrónico válido.');
+		setErrMsg(
+			isAValidEmail ? '' : 'Debe digitar un correo electrónico válido.'
+		);
 		setCanSubmit(value.length !== 0 && isAValidEmail);
 	};
 
@@ -33,8 +35,7 @@ export default function RecPwd() {
 				setErrMsg('Este correo electrónico no está registrado.');
 				setIsEmailValid(false);
 				setCanSubmit(false);
-			}
-			else if (data.ok){
+			} else if (data.ok) {
 				setShowEmailSent(true);
 			}
 		}

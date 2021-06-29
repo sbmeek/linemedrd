@@ -10,9 +10,7 @@ import { muiTheme } from './shared/theme';
 const reactRoot = document.querySelector('#react-root');
 
 const calcVH = () => {
-	const vH = Math.max(
-		document.documentElement.clientHeight
-	);
+	const vH = Math.max(document.documentElement.clientHeight);
 	reactRoot.setAttribute('style', `height: ${vH}px;`);
 };
 

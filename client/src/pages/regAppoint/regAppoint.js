@@ -55,7 +55,7 @@ export default function RegAppoint() {
 	}, []);
 
 	useEffect(() => {
-		if(location.state === undefined) {
+		if (location.state === undefined) {
 			history.push('/');
 			return;
 		}

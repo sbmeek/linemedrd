@@ -65,10 +65,9 @@ const specialties = [
 ];
 
 export default function Main() {
-
 	useEffect(() => {
 		document.title = 'LineMedRD';
-	}, [])
+	}, []);
 
 	return (
 		<Container>

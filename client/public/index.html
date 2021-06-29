@@ -1,122 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#000000" />
+		<meta
+			name="description"
+			content="Sitio web de reservas de citas para el Centro Médico A&M"
+		/>
+		<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+		<base href="/" />
+		<title>LineMedRD</title>
+	</head>
 
-<head>
-	<meta charset="utf-8" />
-	<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="theme-color" content="#000000" />
-	<meta name="description" content="Sitio web de reservas de citas para el Centro Médico A&M" />
-	<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-	<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-	<base href="/" />
-	<title>LineMedRD</title>
-</head>
-
-<body>
-	<div id="react-root"></div>
-	<style id="loader-style">
-		#loader {
-			position: fixed;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex-direction: column;
-			height: 100%;
-			width: 100%;
-			background: #fff;
-		}
-
-		h2 {
-			margin-top: 16px;
-			color: #484848;
-			font-family: NunitoExtraBold;
-		}
-
-		h2::after {
-			content: '';
-			animation: writing 1.3s linear 30ms infinite;
-		}
-
-		@keyframes writing {
-			0% {
-				content: 'C'
+	<body>
+		<div id="react-root"></div>
+		<style id="loader-style">
+			#loader {
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+				height: 100%;
+				width: 100%;
+				background: #fff;
 			}
 
-			10% {
-				content: 'Ca'
+			h2 {
+				margin-top: 16px;
+				color: #484848;
+				font-family: NunitoExtraBold;
 			}
 
-			20% {
-				content: 'Car'
+			h2::after {
+				content: '';
+				animation: writing 1.3s linear 30ms infinite;
 			}
 
-			30% {
-				content: 'Carg'
-			}
-
-			40% {
-				content: 'Carga'
-			}
-
-			50% {
-				content: 'Cargan'
-			}
-
-			60% {
-				content: 'Cargand'
-			}
-
-			70% {
-				content: 'Cargando'
-			}
-
-			80% {
-				content: 'Cargando.'
-			}
-
-			90% {
-				content: 'Cargando..'
-			}
-
-			100% {
-				content: 'Cargando...'
-			}
-		}
-	</style>
-	<div id="loader" id="loader-container">
-		<svg xmlns="http://www.w3.org/2000/svg" width="206.881" height="206.881" viewBox="0 0 206.881 206.881">
-			<style>
-				.g {
-					animation: l 2s linear 10ms infinite;
+			@keyframes writing {
+				0% {
+					content: 'C';
 				}
 
-				@keyframes l {
-					0% {
-						opacity: 0;
-					}
-
-					50% {
-						opacity: 1;
-					}
-
-					100% {
-						opacity: 0;
-					}
+				10% {
+					content: 'Ca';
 				}
-			</style>
-			<g class="g" id="Group_66" data-name="Group 66" transform="translate(-856.845 -343.911)">
-				<rect id="Rectangle_27" data-name="Rectangle 27" width="76.349" height="206.881" rx="17"
-					transform="translate(998.46 550.792) rotate(180)" fill="#ff6363" />
-				<rect id="Rectangle_28" data-name="Rectangle 28" width="76.349" height="206.881" rx="16"
-					transform="translate(1063.727 409.177) rotate(90)" fill="#ff6363" />
-			</g>
-		</svg>
-		<h2></h2>
-	</div>
-</body>
 
+				20% {
+					content: 'Car';
+				}
+
+				30% {
+					content: 'Carg';
+				}
+
+				40% {
+					content: 'Carga';
+				}
+
+				50% {
+					content: 'Cargan';
+				}
+
+				60% {
+					content: 'Cargand';
+				}
+
+				70% {
+					content: 'Cargando';
+				}
+
+				80% {
+					content: 'Cargando.';
+				}
+
+				90% {
+					content: 'Cargando..';
+				}
+
+				100% {
+					content: 'Cargando...';
+				}
+			}
+		</style>
+		<div id="loader" id="loader-container">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="206.881"
+				height="206.881"
+				viewBox="0 0 206.881 206.881"
+			>
+				<style>
+					.g {
+						animation: l 2s linear 10ms infinite;
+					}
+
+					@keyframes l {
+						0% {
+							opacity: 0;
+						}
+
+						50% {
+							opacity: 1;
+						}
+
+						100% {
+							opacity: 0;
+						}
+					}
+				</style>
+				<g
+					class="g"
+					id="Group_66"
+					data-name="Group 66"
+					transform="translate(-856.845 -343.911)"
+				>
+					<rect
+						id="Rectangle_27"
+						data-name="Rectangle 27"
+						width="76.349"
+						height="206.881"
+						rx="17"
+						transform="translate(998.46 550.792) rotate(180)"
+						fill="#ff6363"
+					/>
+					<rect
+						id="Rectangle_28"
+						data-name="Rectangle 28"
+						width="76.349"
+						height="206.881"
+						rx="16"
+						transform="translate(1063.727 409.177) rotate(90)"
+						fill="#ff6363"
+					/>
+				</g>
+			</svg>
+			<h2></h2>
+		</div>
+	</body>
 </html>

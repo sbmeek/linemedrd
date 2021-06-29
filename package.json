@@ -5,10 +5,6 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "concurrently -n \"server,client\" -c 'blue,green' \"cd server && npm run start:dev\" \"cd client && npm start\"",
-		"i-client": "cd client && npm install",
-		"i-server": "cd server && npm install",
-		"heroku-prebuild": "npm run i-server",
-		"heroku-postbuild": "npm run i-client",
 		"start": "cd server && npm start"
 	},
 	"keywords": [],

@@ -21,12 +21,7 @@ import pelvisIcon from 'assets/icons/pelvis-flat.svg';
 import brainIcon from 'assets/icons/brain-flat.svg';
 import gynecologyIcon from 'assets/icons/gynecology.svg';
 import oncologyIcon from 'assets/icons/oncology.svg';
-import {
-	Page,
-	Text,
-	Document,
-	StyleSheet
-} from '@react-pdf/renderer';
+import { Page, Text, Document, StyleSheet } from '@react-pdf/renderer';
 import 'moment/locale/es-do';
 
 moment.locale('es-do');
@@ -172,13 +167,23 @@ const AppointDocPDF = (props) => {
 				<Text style={styles.title}>Centro Médico A&M</Text>
 				<Text style={styles.subtitle}>Informe de Cita</Text>
 				<Text style={styles.txt}>Nombre del doctor: {apptn['drName']}</Text>
-				<Text style={styles.txt}>Fecha de Realizaci&oacute;n: {new Date(apptn['realization_date']).toLocaleDateString()}</Text>
-				<Text style={styles.txt}>Direcci&oacute;n del consultorio: {apptn['consDir']}</Text>
+				<Text style={styles.txt}>
+					Fecha de Realizaci&oacute;n:{' '}
+					{new Date(apptn['realization_date']).toLocaleDateString()}
+				</Text>
+				<Text style={styles.txt}>
+					Direcci&oacute;n del consultorio: {apptn['consDir']}
+				</Text>
 				<Text style={styles.txt}>Horario del doctor: {apptn['drHour']}</Text>
 				<Text style={styles.txt}>Especialidad del doctor: {apptn['spc']}</Text>
-				<Text style={styles.txt}>Fecha de Emisi&oacute;n: {new Date(apptn['emission_date']).toLocaleDateString()}</Text>
+				<Text style={styles.txt}>
+					Fecha de Emisi&oacute;n:{' '}
+					{new Date(apptn['emission_date']).toLocaleDateString()}
+				</Text>
 				<Text style={styles.txt}>Costo de consulta: {apptn['payment']}</Text>
-				<Text style={styles.txt}>Pago con seguro: {apptn['ins_validation'] ? 'Sí' : 'No'}</Text>
+				<Text style={styles.txt}>
+					Pago con seguro: {apptn['ins_validation'] ? 'Sí' : 'No'}
+				</Text>
 			</Page>
 		</Document>
 	);

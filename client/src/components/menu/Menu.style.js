@@ -89,7 +89,6 @@ export const LinkStyled = styled(Link)`
 	}
 `;
 
-
 export const MediaContainer = styled.div`
 	display: flex;
 	flex-direction: column;

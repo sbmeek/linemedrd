@@ -1,9 +1,16 @@
-import React, { lazy, Suspense, useEffect, useRef, useState, useContext } from 'react';
+import React, {
+	lazy,
+	Suspense,
+	useEffect,
+	useRef,
+	useState,
+	useContext
+} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Loader from './components/loader/Loader';
 import styled from 'styled-components';
 import Appbar from './components/appbar/Appbar';
-import { MainContext } from 'global/context'
+import { MainContext } from 'global/context';
 
 const AuthRoute = lazy(() => import('components/authRoute/AuthRoute'));
 const UnauthRoute = lazy(() => import('components/unauthRoute/UnauthRoute'));
@@ -49,7 +56,7 @@ export default function Routes() {
 
 	useEffect(() => {
 		setTimeout(() => {
-			if(!isLoading){
+			if (!isLoading) {
 				document.querySelector('#loader')?.remove();
 				document.querySelector('#loader-style')?.remove();
 			}
@@ -72,16 +79,36 @@ export default function Routes() {
 					<Appbar appContainerHeight={appContainerHeight} />
 					<Content>
 						<Route exact path="/" component={Main} />
-						<AuthRoute minRoleAllowedTo={0} path="/speciality" component={Speciality} />
-						<AuthRoute minRoleAllowedTo={0} path="/regAppoint" component={RegAppoint} />
+						<AuthRoute
+							minRoleAllowedTo={0}
+							path="/speciality"
+							component={Speciality}
+						/>
+						<AuthRoute
+							minRoleAllowedTo={0}
+							path="/regAppoint"
+							component={RegAppoint}
+						/>
 						<UnauthRoute redirectTo="/" path="/login" component={Login} />
 						<UnauthRoute redirectTo="/" path="/register" component={Register} />
 						<Route path="/verify-email/:token" component={ConfirmEmail} />
 						<Route path="/setnewpwd/:token" component={SetNewPwd} />
 						<UnauthRoute redirectTo="/" path="/recoverpwd" component={RecPwd} />
-						<AuthRoute minRoleAllowedTo={0} path="/reservedApnts" component={ReservApnts} />
-						<AuthRoute minRoleAllowedTo={1} path="/schedule" component={Schedule} />
-						<AuthRoute minRoleAllowedTo={2} path="/admincp" component={AdminCP} />
+						<AuthRoute
+							minRoleAllowedTo={0}
+							path="/reservedApnts"
+							component={ReservApnts}
+						/>
+						<AuthRoute
+							minRoleAllowedTo={1}
+							path="/schedule"
+							component={Schedule}
+						/>
+						<AuthRoute
+							minRoleAllowedTo={2}
+							path="/admincp"
+							component={AdminCP}
+						/>
 					</Content>
 				</AppContainer>
 			</Suspense>

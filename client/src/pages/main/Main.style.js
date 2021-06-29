@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import homeBg from 'assets/imgs/home-bg.jpg';
 import homeBgVertical from 'assets/imgs/home-bg-vertical.jpg';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
 	display: flex;

@@ -21,9 +21,11 @@ export default function Appbar({ appContainerHeight }) {
 			>
 				<img style={{ width: 26, height: 21 }} src={menuIcon} alt="menu" />
 			</IconButton>
-			<Menu appContainerHeight={appContainerHeight} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
-
-			</Menu>
+			<Menu
+				appContainerHeight={appContainerHeight}
+				sidebarOpen={sidebarOpen}
+				setSidebarOpen={setSidebarOpen}
+			></Menu>
 		</Container>
 	);
 }

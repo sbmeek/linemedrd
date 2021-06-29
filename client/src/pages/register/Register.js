@@ -1,10 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {
-	InputLabel,
-	Select,
-	MenuItem,
-	FormControl
-} from '@material-ui/core';
+import { InputLabel, Select, MenuItem, FormControl } from '@material-ui/core';
 import Form, { FormTitle } from 'shared/form/Form.styled';
 import Link from 'shared/link/Link.styled';
 import TextField from 'shared/form/TextField.styled';
