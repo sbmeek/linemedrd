@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
-import { AppController } from 'app/app.controller';
-import { AppService } from 'app/app.service';
-import { UserModule } from 'app/user/user.module';
-import { UserAdressModule } from 'app/user-adress/user-adress.module';
+import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { MongooseModule } from '@nestjs/mongoose';
+
+import { AppController } from 'app/app.controller';
+import { AppService } from 'app/app.service';
+import { UserModule } from 'app/entities/user/user.module';
+import { UserAdressModule } from 'app/entities/user-adress/user-adress.module';
+import { UserPreferencesModule } from 'app/entities/user-preferences/user-preferences.module';
 
 @Module({
 	imports: [
@@ -28,7 +30,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 			sortSchema: true
 		}),
 		UserModule,
-		UserAdressModule
+		UserAdressModule,
+		UserPreferencesModule
 	],
 	controllers: [AppController],
 	providers: [AppService]
