@@ -3,11 +3,14 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 
-import { AppController } from 'app/app.controller';
 import { AppService } from 'app/app.service';
+import { AppController } from 'app/app.controller';
 import { UserModule } from 'app/entities/user/user.module';
 import { UserAdressModule } from 'app/entities/user-adress/user-adress.module';
 import { UserPreferencesModule } from 'app/entities/user-preferences/user-preferences.module';
+import { DaysModule } from 'app/entities/days/days.module';
+import { WorkdayModule } from 'app/entities/workday/workday.module';
+import { PatientModule } from './entities/patient/patient.module';
 
 @Module({
 	imports: [
@@ -31,7 +34,10 @@ import { UserPreferencesModule } from 'app/entities/user-preferences/user-prefer
 		}),
 		UserModule,
 		UserAdressModule,
-		UserPreferencesModule
+		UserPreferencesModule,
+		DaysModule,
+		WorkdayModule,
+		PatientModule
 	],
 	controllers: [AppController],
 	providers: [AppService]
