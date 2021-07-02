@@ -1,4 +1,4 @@
-//import { Schema as MSchema } from 'mongoose';
+import { Schema as MSchema } from 'mongoose';
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
@@ -19,7 +19,7 @@ export class CreateAdressInput {
 @InputType()
 export class UpdateAdressInput {
 	@Field(() => String)
-	_id: string;
+	_id: MSchema.Types.ObjectId;
 
 	@Field(() => String, { nullable: true })
 	street?: string;

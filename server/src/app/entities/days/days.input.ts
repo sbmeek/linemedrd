@@ -1,4 +1,4 @@
-//import { Schema as MSchema } from 'mongoose';
+import { Schema as MSchema } from 'mongoose';
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
@@ -28,7 +28,7 @@ export class CreateDaysInput {
 @InputType()
 export class UpdateDaysInput {
 	@Field(() => String)
-	_id: string;
+	_id: MSchema.Types.ObjectId;
 
 	@Field(() => Boolean, { nullable: true })
 	mon?: boolean;

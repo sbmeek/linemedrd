@@ -18,47 +18,47 @@ export class CreateUserInput {
 	@Field(() => String)
 	password: string;
 
-	@Field(() => String)
-	phoneNumber: string;
+	@Field(() => String, { nullable: true })
+	phoneNumber?: string;
 
-	@Field(() => String)
-	homeNumber: string;
+	@Field(() => String, { nullable: true })
+	homeNumber?: string;
 
-	@Field(() => Date)
-	birthday: Date;
+	@Field(() => Date, { nullable: true })
+	birthday?: Date;
 
-	@Field(() => Number)
-	age: number;
+	@Field(() => Number, { nullable: true })
+	age?: number;
 
 	@Field(() => String)
 	gender: string;
 
-	@Field(() => String)
-	userAdress: MSchema.Types.ObjectId;
+	@Field(() => String, { nullable: true })
+	userAdress?: MSchema.Types.ObjectId;
 
-	@Field(() => String)
-	codConfEmail: string;
+	@Field(() => String, { nullable: true })
+	codConfEmail?: string;
 
-	@Field(() => Boolean)
-	isEmailConf: boolean;
+	@Field(() => Boolean, { defaultValue: false })
+	isEmailConf?: boolean;
 
-	@Field(() => String)
-	codRecConf: string;
+	@Field(() => String, { nullable: true })
+	codRecConf?: string;
 
-	@Field(() => Number)
+	@Field(() => Number, { defaultValue: 0 })
 	role: number;
 
-	@Field(() => Boolean)
+	@Field(() => Boolean, { defaultValue: true })
 	isActive: boolean;
 
-	@Field(() => String)
-	preferences: MSchema.Types.ObjectId;
+	@Field(() => String, { nullable: true })
+	preferences?: MSchema.Types.ObjectId;
 }
 
 @InputType()
 export class UpdateUserInput {
 	@Field(() => String)
-	_id: string;
+	_id: MSchema.Types.ObjectId;
 
 	@Field(() => String, { nullable: true })
 	username?: string;
@@ -82,7 +82,7 @@ export class UpdateUserInput {
 @InputType()
 export class ListUserInput {
 	@Field(() => String, { nullable: true })
-	_id?: string;
+	_id?: MSchema.Types.ObjectId;
 
 	@Field(() => String, { nullable: true })
 	username?: string;

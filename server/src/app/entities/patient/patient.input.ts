@@ -16,7 +16,7 @@ export class CreatePatientInput {
 @InputType()
 export class UpdatePatientInput {
 	@Field(() => String)
-	_id: string;
+	_id: MSchema.Types.ObjectId;
 
 	@Field(() => String, { nullable: true })
 	userId?: MSchema.Types.ObjectId;
@@ -31,7 +31,7 @@ export class UpdatePatientInput {
 @InputType()
 export class ListPatientInput {
 	@Field(() => String, { nullable: true })
-	_id?: string;
+	_id?: MSchema.Types.ObjectId;
 
 	@Field(() => String, { nullable: true })
 	userId?: MSchema.Types.ObjectId;
