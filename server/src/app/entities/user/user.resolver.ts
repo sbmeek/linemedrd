@@ -45,8 +45,8 @@ export class UserResolver {
 		return this.userService.delete(_id);
 	}
 
-	@ResolveField()
-	async user_adress(
+	@ResolveField(() => UserAdress)
+	async userAdress(
 		@Parent() user: UserDocument,
 		@Args('populate') populate: boolean
 	) {
@@ -57,8 +57,8 @@ export class UserResolver {
 		return user.userAdress;
 	}
 
-	@ResolveField()
-	async user_preferences(
+	@ResolveField(() => UserPreferences)
+	async userPreferences(
 		@Parent() user: UserDocument,
 		@Args('populate') populate: boolean
 	) {

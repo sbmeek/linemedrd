@@ -12,8 +12,9 @@ import { Workday, WorkdayDocument } from './workday.model';
 import { CreateWorkdayInput, UpdateWorkdayInput } from './workday.input';
 import { WorkdayService } from './workday.service';
 import { UserAdress } from '../user-adress/user-adress.model';
+import { Days } from '../days/days.model';
 
-@Resolver()
+@Resolver(() => Workday)
 export class WorkdayResolver {
 	constructor(private workdayService: WorkdayService) {}
 
@@ -41,7 +42,7 @@ export class WorkdayResolver {
 		return this.workdayService.delete(_id);
 	}
 
-	@ResolveField()
+	@ResolveField(() => UserAdress)
 	async w_adress(
 		@Parent() workday: WorkdayDocument,
 		@Args('populate') populate: boolean
@@ -54,5 +55,20 @@ export class WorkdayResolver {
 				})
 				.execPopulate();
 		return workday.adress;
+	}
+
+	@ResolveField(() => Days)
+	async w_days(
+		@Parent() workday: WorkdayDocument,
+		@Args('populate') populate: boolean
+	) {
+		if (populate)
+			await workday
+				.populate({
+					path: 'days',
+					model: Days.name
+				})
+				.execPopulate();
+		return workday.days;
 	}
 }

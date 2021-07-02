@@ -19,7 +19,7 @@ export class CreateWorkdayInput {
 @InputType()
 export class UpdateWorkdayInput {
 	@Field(() => String)
-	_id: MSchema.Types.ObjectId;
+	_id: string;
 
 	@Field(() => String, { nullable: true })
 	adress?: MSchema.Types.ObjectId;

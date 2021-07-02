@@ -10,7 +10,7 @@ export class DaysResolver {
 	constructor(private daysService: DaysService) {}
 
 	@Query(() => Days)
-	days(@Args('_id', { type: String }) _id: MSchema.Types.ObjectId) {
+	days(@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId) {
 		return this.daysService.getById(_id);
 	}
 
@@ -25,7 +25,7 @@ export class DaysResolver {
 	}
 
 	@Mutation(() => Days)
-	deleteDays(@Args('_id', { type: String }) _id: MSchema.Types.ObjectId) {
+	deleteDays(@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId) {
 		return this.daysService.delete(_id);
 	}
 }
