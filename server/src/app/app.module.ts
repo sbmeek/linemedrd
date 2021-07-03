@@ -10,7 +10,8 @@ import { UserAdressModule } from 'app/entities/user-adress/user-adress.module';
 import { UserPreferencesModule } from 'app/entities/user-preferences/user-preferences.module';
 import { DaysModule } from 'app/entities/days/days.module';
 import { WorkdayModule } from 'app/entities/workday/workday.module';
-import { PatientModule } from './entities/patient/patient.module';
+import { PatientModule } from 'app/entities/patient/patient.module';
+import { SpecialtiesModule } from 'app/entities/specialties/specialties.module';
 
 @Module({
 	imports: [
@@ -37,7 +38,8 @@ import { PatientModule } from './entities/patient/patient.module';
 		UserPreferencesModule,
 		DaysModule,
 		WorkdayModule,
-		PatientModule
+		PatientModule,
+		SpecialtiesModule
 	],
 	controllers: [AppController],
 	providers: [AppService]
