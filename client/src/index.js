@@ -1,36 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { StyleSheetManager } from 'styled-components';
-import ContextWrapper from 'global/context';
-import { ThemeProvider } from '@material-ui/core';
-import { muiTheme } from './shared/theme';
-
-const reactRoot = document.querySelector('#react-root');
-
-const calcVH = () => {
-	const vH = Math.max(document.documentElement.clientHeight);
-	reactRoot.setAttribute('style', `height: ${vH}px;`);
-};
-
-window.addEventListener('resize', calcVH, true);
-window.addEventListener('orientationchange', calcVH, true);
-calcVH();
 
 ReactDOM.render(
 	<React.StrictMode>
-		<ContextWrapper>
-			<StyleSheetManager
-				disableVendorPrefixes={process.env.NODE_ENV === 'development'}
-			>
-				<ThemeProvider theme={muiTheme}>
-					<App />
-				</ThemeProvider>
-			</StyleSheetManager>
-		</ContextWrapper>
+		<App />
 	</React.StrictMode>,
-	reactRoot
+	document.getElementById('root')
 );
 
-reportWebVitals();
+// Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
+// Learn more: https://www.snowpack.dev/concepts/hot-module-replacement
+if (undefined /* [snowpack] import.meta.hot */) {
+	// @ts-ignore
+	undefined /* [snowpack] import.meta.hot */
+		.accept();
+}

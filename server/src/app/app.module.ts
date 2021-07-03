@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
+import { GraphQLError, GraphQLFormattedError } from 'graphql';
 
 import { AppService } from 'app/app.service';
 import { AppController } from 'app/app.controller';
@@ -21,7 +22,7 @@ import { SpecialtiesModule } from 'app/entities/specialties/specialties.module';
 			useFindAndModify: true,
 			useCreateIndex: true,
 			connectTimeoutMS: 1000,
-			connectionFactory: (conn) => {
+			connectionFactory: conn => {
 				conn
 					.then(({ name }) => console.log(`Connected to db: ${name}`))
 					.catch((err: string) => console.error(`[HAY BOBO] ${err}`));
@@ -31,7 +32,41 @@ import { SpecialtiesModule } from 'app/entities/specialties/specialties.module';
 		GraphQLModule.forRoot({
 			playground: process.env.NODE_ENV === 'development',
 			autoSchemaFile: join(__dirname, 'src/schema.gql'),
-			sortSchema: true
+			sortSchema: true,
+			fieldResolverEnhancers: ['interceptors'],
+			formatError: (error: GraphQLError) => {
+				if (error.message === 'VALIDATION_ERROR') {
+					const extensions = {
+						code: 'VALIDATION_ERROR',
+						errors: []
+					};
+
+					Object.keys(error.extensions.invalidArgs).forEach(key => {
+						const constraints = [];
+						Object.keys(error.extensions.invalidArgs[key].constraints).forEach(
+							_key => {
+								constraints.push(
+									error.extensions.invalidArgs[key].constraints[_key]
+								);
+							}
+						);
+
+						extensions.errors.push({
+							field: error.extensions.invalidArgs[key].property,
+							errors: constraints
+						});
+					});
+
+					const graphQLFormattedError: GraphQLFormattedError = {
+						message: 'VALIDATION_ERROR',
+						extensions: extensions
+					};
+
+					return graphQLFormattedError;
+				} else {
+					return error;
+				}
+			}
 		}),
 		UserModule,
 		UserAdressModule,

@@ -1,24 +1,15 @@
 {
 	"name": "linemedrd",
 	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
 	"scripts": {
 		"dev": "concurrently -n \"server,client\" -c 'blue,green' \"cd server && npm run start:dev\" \"cd client && npm start\"",
-		"start": "cd server && npm start"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"husky": {
-		"hooks": {
-			"pre-commit": "pretty-quick --staged"
-		}
+		"start": "cd server && npm start",
+		"prepare": "husky install"
 	},
 	"devDependencies": {
 		"concurrently": "^5.3.0",
-		"husky": "^4.3.0",
-		"prettier": "^2.1.2",
-		"pretty-quick": "^3.1.0"
+		"husky": "^7.0.0",
+		"prettier": "^2.3.2",
+		"pretty-quick": "^3.1.1"
 	}
 }

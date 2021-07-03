@@ -1,4 +1,4 @@
-import JWT from 'JsonWebtoken';
+import JWT from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import { v4 as uuid } from 'uuid';
 import { AES as crypt } from 'crypto-js';

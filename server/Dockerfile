@@ -1,11 +1,4 @@
-FROM node:14.17.1-alpine3.13 AS dev
-WORKDIR /app/server
-COPY package*.json ./
-RUN npm i
-COPY . .
-CMD [ "npm", "run", "start:dev" ]
-
-FROM node:14.17.1-alpine3.13 AS prod
+FROM node:14.17.1-alpine3.13
 WORKDIR /app/server
 COPY package*.json ./
 RUN npm ci --only=production

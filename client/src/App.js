@@ -1,42 +1,44 @@
-import { GlobalStyle } from './global.style';
-import Routes from './Routes';
-import line from 'assets/icons/line.svg';
-import bacteria from 'assets/icons/bacteria.svg';
-import stethoscope from 'assets/icons/etetocopio.svg';
-import cruz from 'assets/icons/cruz.svg';
-import heart from 'assets/icons/heart.svg';
-import emergency from 'assets/icons/emergency-call.svg';
-import dna from 'assets/icons/dna.svg';
-import syringe from 'assets/icons/syringe.svg';
-import {
-	Line,
-	Contaback,
-	Bacteria,
-	Stethoscope,
-	Cruz,
-	Heart,
-	Emergency,
-	Dna,
-	Syringe
-} from './App.style';
+import { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import './App.css';
+
+const Home = lazy(() => import('@/pages/Home'));
+const About = lazy(() => import('@/pages/About'));
+const Dashboard = lazy(() => import('@/pages/Dashboard'));
 
 function App() {
 	return (
-		<>
-			<GlobalStyle />
-			<Routes />
+		<Router>
+			<Suspense fallback={<div>Loading...</div>}>
+				<div className="App">
+					<ul>
+						<li>
+							<Link to="/">Home</Link>
+						</li>
+						<li>
+							<Link to="/about">About</Link>
+						</li>
+						<li>
+							<Link to="/dashboard">Dashboard</Link>
+						</li>
+					</ul>
 
-			<Line src={line} alt="trazo" />
-			<Contaback>
-				<Heart src={heart} />
-				<Bacteria src={bacteria} />
-				<Cruz src={cruz} />
-				<Emergency src={emergency} />
-				<Dna src={dna} />
-				<Stethoscope src={stethoscope} />
-				<Syringe src={syringe} />
-			</Contaback>
-		</>
+					<hr />
+
+					<Switch>
+						<Route exact path="/">
+							<Home />
+						</Route>
+						<Route path="/about">
+							<About />
+						</Route>
+						<Route path="/dashboard">
+							<Dashboard />
+						</Route>
+					</Switch>
+				</div>
+			</Suspense>
+		</Router>
 	);
 }
 

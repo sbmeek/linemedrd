@@ -1,9 +1,15 @@
 {
 	"compilerOptions": {
-		"baseUrl": "src",
+		"module": "commonJS",
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "./",
+		"checkJs": true,
+		"esModuleInterop": true,
+		"jsx": "react-jsx",
 		"paths": {
-			"@/*": ["./*"]
+			"@/*": ["src/*"]
 		}
 	},
-	"exclude": ["node_modules", "**/node_modules/*"]
+	"exclude": ["node_modules", "dist", "docs"]
 }

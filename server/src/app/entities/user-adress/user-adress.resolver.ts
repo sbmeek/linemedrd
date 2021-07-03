@@ -22,7 +22,7 @@ export class UserAdressResolver {
 	}
 
 	@Mutation(() => UserAdress)
-	async updateAdress(@Args('payload')  payload: UpdateAdressInput) {
+	async updateAdress(@Args('payload') payload: UpdateAdressInput) {
 		return this.adressService.update(payload);
 	}
 

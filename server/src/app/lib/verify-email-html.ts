@@ -1,8 +1,8 @@
 export const verify_email_html = (
-  name: string,
-  lastname: string,
-  href: string,
-  encToken: string
+	name: string,
+	lastname: string,
+	href: string,
+	encToken: string
 ) => `<div
 style="font-family: Cambria, Roboto, Helvetica, Arial, sans-serif; max-width: 600px; padding: 10px; margin: 0 auto;">
 <table style="border-collapse: collapse; margin: auto;">
@@ -28,7 +28,7 @@ style="font-family: Cambria, Roboto, Helvetica, Arial, sans-serif; max-width: 60
 			<div style="padding: 24px; text-align: center;">
 				<div>
 					<a href="${href}/verify-email/${encodeURIComponent(
-  encToken
+	encToken
 )}" style="color: #fff;
 				padding: 14px 26px;
 				font-size: 0.875rem;

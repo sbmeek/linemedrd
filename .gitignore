@@ -397,3 +397,4 @@ Temporary Items
 dist/
 build/
 docker-compose.override.yml
+.snowpack

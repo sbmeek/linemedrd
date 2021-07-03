@@ -1,7 +1,7 @@
 export const recover_pwd_html = (
-  name: string,
-  href: string,
-  encToken: string
+	name: string,
+	href: string,
+	encToken: string
 ) => `<div
 style="font-family: Cambria, Roboto, Helvetica, Arial, sans-serif; max-width: 600px; padding: 10px; margin: 0 auto;">
 <table style="border-collapse: collapse; margin: auto;">

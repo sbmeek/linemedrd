@@ -7,6 +7,7 @@ export class CreateSpecialtiesInput {
 	description: string;
 }
 
+@InputType()
 export class UpdateSpecialtiesInput {
 	@Field(() => String)
 	_id: MSchema.Types.ObjectId;

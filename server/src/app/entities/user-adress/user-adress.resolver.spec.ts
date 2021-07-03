@@ -2,17 +2,17 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserAdressResolver } from './user-adress.resolver';
 
 describe('UserAdressResolver', () => {
-  let resolver: UserAdressResolver;
+	let resolver: UserAdressResolver;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [UserAdressResolver],
-    }).compile();
+	beforeEach(async () => {
+		const module: TestingModule = await Test.createTestingModule({
+			providers: [UserAdressResolver]
+		}).compile();
 
-    resolver = module.get<UserAdressResolver>(UserAdressResolver);
-  });
+		resolver = module.get<UserAdressResolver>(UserAdressResolver);
+	});
 
-  it('should be defined', () => {
-    expect(resolver).toBeDefined();
-  });
+	it('should be defined', () => {
+		expect(resolver).toBeDefined();
+	});
 });
