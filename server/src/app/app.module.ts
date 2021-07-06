@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { GraphQLError, GraphQLFormattedError } from 'graphql';
+import { GraphQLError } from 'graphql';
 
+import { gqlErrorHandler } from 'app/lib/gql-errorHandler';
 import { AppService } from 'app/app.service';
 import { AppController } from 'app/app.controller';
 import { UserModule } from 'app/entities/user/user.module';
@@ -13,6 +14,7 @@ import { DaysModule } from 'app/entities/days/days.module';
 import { WorkdayModule } from 'app/entities/workday/workday.module';
 import { PatientModule } from 'app/entities/patient/patient.module';
 import { SpecialtiesModule } from 'app/entities/specialties/specialties.module';
+import { DoctorModule } from 'app/entities/doctor/doctor.module';
 
 @Module({
 	imports: [
@@ -34,39 +36,7 @@ import { SpecialtiesModule } from 'app/entities/specialties/specialties.module';
 			autoSchemaFile: join(__dirname, 'src/schema.gql'),
 			sortSchema: true,
 			fieldResolverEnhancers: ['interceptors'],
-			formatError: (error: GraphQLError) => {
-				if (error.message === 'VALIDATION_ERROR') {
-					const extensions = {
-						code: 'VALIDATION_ERROR',
-						errors: []
-					};
-
-					Object.keys(error.extensions.invalidArgs).forEach(key => {
-						const constraints = [];
-						Object.keys(error.extensions.invalidArgs[key].constraints).forEach(
-							_key => {
-								constraints.push(
-									error.extensions.invalidArgs[key].constraints[_key]
-								);
-							}
-						);
-
-						extensions.errors.push({
-							field: error.extensions.invalidArgs[key].property,
-							errors: constraints
-						});
-					});
-
-					const graphQLFormattedError: GraphQLFormattedError = {
-						message: 'VALIDATION_ERROR',
-						extensions: extensions
-					};
-
-					return graphQLFormattedError;
-				} else {
-					return error;
-				}
-			}
+			formatError: (error: GraphQLError) => gqlErrorHandler(error)
 		}),
 		UserModule,
 		UserAdressModule,
@@ -74,7 +44,8 @@ import { SpecialtiesModule } from 'app/entities/specialties/specialties.module';
 		DaysModule,
 		WorkdayModule,
 		PatientModule,
-		SpecialtiesModule
+		SpecialtiesModule,
+		DoctorModule
 	],
 	controllers: [AppController],
 	providers: [AppService]
