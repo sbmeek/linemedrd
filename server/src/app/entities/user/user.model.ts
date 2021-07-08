@@ -74,8 +74,8 @@ export class User {
 	@Prop()
 	codRecPwd?: string;
 
-	@Field(() => Roles)
-	@Prop({ required: true, default: Roles.PATIENT })
+	@Field(() => String)
+	@Prop({ required: true, type: Roles, default: Roles.PATIENT })
 	role?: Roles | number;
 
 	@Field(() => Boolean)
@@ -86,7 +86,7 @@ export class User {
 	@Prop({ type: MSchema.Types.ObjectId, ref: UserPreferences.name })
 	userPreferences?: MSchema.Types.ObjectId | UserPreferences;
 
-	async hashPwd(pwd: string) {
+	static async hashPwd(pwd: string): Promise<string> {
 		try {
 			const salt = await genSalt(10);
 			const _hash = await hash(pwd, salt);
@@ -96,7 +96,7 @@ export class User {
 		}
 	}
 
-	async comparePwd(dbPwd: string, enteredPwd: string) {
+	async comparePwd(dbPwd: string, enteredPwd: string): Promise<boolean> {
 		return await compare(enteredPwd, dbPwd);
 	}
 }

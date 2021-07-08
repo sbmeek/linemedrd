@@ -39,7 +39,7 @@ export class UserService {
 
 	async create(payload: CreateUserInput) {
 		const newUser = new this.userModel(payload);
-		newUser.password = await newUser.hashPwd(payload.password);
+		newUser.password = await User.hashPwd(payload.password);
 		newUser.role = this.assignRole(payload.role);
 		return newUser.save();
 	}

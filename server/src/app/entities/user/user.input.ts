@@ -52,7 +52,7 @@ export class CreateUserInput {
 	isActive: boolean;
 
 	@Field(() => String, { nullable: true })
-	preferences?: MSchema.Types.ObjectId;
+	userPreferences?: MSchema.Types.ObjectId;
 }
 
 @InputType()
