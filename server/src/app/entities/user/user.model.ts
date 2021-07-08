@@ -6,6 +6,12 @@ import { hash, compare, genSalt } from 'bcryptjs';
 import { UserAdress } from '../user-adress/user-adress.model';
 import { UserPreferences } from '../user-preferences/user-preferences.model';
 
+export enum Roles {
+	PATIENT = 'Paciente',
+	DOCTOR = 'Doctor',
+	ADMIN = 'Administrador'
+}
+
 @ObjectType()
 @Schema({ timestamps: true })
 export class User {
@@ -68,9 +74,9 @@ export class User {
 	@Prop()
 	codRecPwd?: string;
 
-	@Field(() => Number)
-	@Prop({ required: true, default: 0 })
-	role?: number;
+	@Field(() => Roles)
+	@Prop({ required: true, default: Roles.PATIENT })
+	role?: Roles | number;
 
 	@Field(() => Boolean)
 	@Prop({ required: true, default: true })
