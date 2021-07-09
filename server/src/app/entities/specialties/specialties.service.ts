@@ -19,8 +19,8 @@ export class SpecialtiesService {
 		return this.specialtyModel.findById(_id).exec();
 	}
 
-	list() {
-		return this.specialtyModel.find().exec();
+	list(des?: string) {
+		return this.specialtyModel.find({ description: des }).exec();
 	}
 
 	create(payload: CreateSpecialtiesInput) {

@@ -5,12 +5,7 @@ import { hash, compare, genSalt } from 'bcryptjs';
 
 import { UserAdress } from '../user-adress/user-adress.model';
 import { UserPreferences } from '../user-preferences/user-preferences.model';
-
-export enum Roles {
-	PATIENT = 'Paciente',
-	DOCTOR = 'Doctor',
-	ADMIN = 'Administrador'
-}
+import { Roles } from 'app/lib/enums';
 
 @ObjectType()
 @Schema({ timestamps: true })
@@ -98,6 +93,19 @@ export class User {
 
 	async comparePwd(dbPwd: string, enteredPwd: string): Promise<boolean> {
 		return await compare(enteredPwd, dbPwd);
+	}
+
+	static assignRole(n: number): Roles {
+		switch (n) {
+			case 0:
+				return Roles.PATIENT;
+			case 1:
+				return Roles.DOCTOR;
+			case 2:
+				return Roles.ADMIN;
+			default:
+				return Roles.PATIENT;
+		}
 	}
 }
 

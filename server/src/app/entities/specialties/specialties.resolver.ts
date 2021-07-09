@@ -13,27 +13,29 @@ export class SpecialtiesResolver {
 	constructor(private specialtyService: SpecialtiesService) {}
 
 	@Query(() => Specialties)
-	specialty(@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId) {
+	async specialty(
+		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
+	) {
 		return this.specialtyService.getById(_id);
 	}
 
 	@Query(() => [Specialties])
-	specialties() {
-		return this.specialtyService.list();
+	async specialties(@Args('des', { nullable: true }) des: string) {
+		return this.specialtyService.list(des);
 	}
 
 	@Mutation(() => Specialties)
-	createSpecialty(@Args('payload') payload: CreateSpecialtiesInput) {
+	async createSpecialty(@Args('payload') payload: CreateSpecialtiesInput) {
 		return this.specialtyService.create(payload);
 	}
 
 	@Mutation(() => Specialties)
-	updateSpecialty(@Args('payload') payload: UpdateSpecialtiesInput) {
+	async updateSpecialty(@Args('payload') payload: UpdateSpecialtiesInput) {
 		return this.specialtyService.update(payload);
 	}
 
 	@Mutation(() => Specialties)
-	deleteSpecialty(
+	async deleteSpecialty(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
 		return this.specialtyService.delete(_id);
