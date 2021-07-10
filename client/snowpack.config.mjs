@@ -14,7 +14,8 @@ export default {
 		bundle: true
 	},
 	devOptions: {
-		open: 'none'
+		open: 'none',
+		port: 3002
 	},
 	packageOptions: {
 		knownEntrypoints: ['react/jsx-runtime']
