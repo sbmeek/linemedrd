@@ -2,6 +2,7 @@ import { join } from 'path';
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
 import { GqlModuleOptions } from '@nestjs/graphql';
 import { MongooseModuleOptions } from '@nestjs/mongoose';
+import { ServeStaticModuleOptions } from '@nestjs/serve-static';
 
 const gqlErrorFormatter = (error: GraphQLError) => {
 	if (error.message === 'VALIDATION_ERROR') {
@@ -51,4 +52,8 @@ export const gqlOptions: GqlModuleOptions = {
 	sortSchema: true,
 	fieldResolverEnhancers: ['interceptors'],
 	formatError: (error: GraphQLError) => gqlErrorFormatter(error)
+};
+
+export const serveStaticOptions: ServeStaticModuleOptions = {
+	rootPath: join(process.cwd(), '..', 'client', 'build')
 };
