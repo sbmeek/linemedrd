@@ -26,4 +26,5 @@ jobs:
           touch .env
           echo ${{ secrets.ENV_VARS }} | base64 -d > .env
       - run: npm run ipkgs
+      - run: cd client && npm run build
       - run: npm run e2e-test

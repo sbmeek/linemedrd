@@ -10,9 +10,6 @@ export default {
 		'@snowpack/plugin-babel'
 	],
 	routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],
-	optimize: {
-		bundle: true
-	},
 	devOptions: {
 		open: 'none',
 		port: 3002

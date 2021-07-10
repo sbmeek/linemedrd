@@ -3,13 +3,16 @@
 	"version": "1.0.0",
 	"scripts": {
 		"dev": "concurrently -n \"server,client\" -c 'blue,green' \"cd server && npm run start:dev\" \"cd client && npm start\"",
+		"ipkgs": "npm i && concurrently -n \"root-pkgs,server-pkgs,client-pkgs\" -c 'red,green,blue' \"npm i\" \"cd server && npm i\" \"cd client && npm i\"",
 		"start": "cd server && npm start",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"e2e-test": "start-server-and-test 'cd server && npm run build && npm start' http://localhost:3000 'cd client && npm run test'"
 	},
 	"devDependencies": {
 		"concurrently": "^5.3.0",
 		"husky": "^7.0.0",
 		"prettier": "^2.3.2",
-		"pretty-quick": "^3.1.1"
+		"pretty-quick": "^3.1.1",
+		"start-server-and-test": "^1.12.6"
 	}
 }

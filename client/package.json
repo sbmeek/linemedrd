@@ -2,7 +2,8 @@
 	"scripts": {
 		"start": "snowpack dev",
 		"build": "snowpack build",
-		"cypress:open": "cypress open"
+		"cypress:open": "cypress open",
+		"test": "cross-env CYPRESS_BASE_URL=http://localhost:3000 cypress run"
 	},
 	"devDependencies": {
 		"@babel/preset-env": "^7.14.7",
@@ -14,6 +15,7 @@
 		"snowpack": "^3.3.7"
 	},
 	"dependencies": {
+		"cross-env": "^7.0.3",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-router-dom": "^5.2.0"

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 import { AppService } from 'app/app.service';
-import { AppController } from 'app/app.controller';
-import { mongoOptions, gqlOptions } from 'app/lib/options';
+import { mongoOptions, gqlOptions, serveStaticOptions } from 'app/lib/options';
 import { UserModule } from 'app/entities/user/user.module';
 import { UserAdressModule } from 'app/entities/user-adress/user-adress.module';
 import { UserPreferencesModule } from 'app/entities/user-preferences/user-preferences.module';
@@ -17,6 +17,7 @@ import { ReportModule } from 'app/entities/report/report.module';
 
 @Module({
 	imports: [
+		ServeStaticModule.forRoot(serveStaticOptions),
 		MongooseModule.forRoot(process.env.DB_URI, mongoOptions),
 		GraphQLModule.forRoot(gqlOptions),
 		UserModule,
@@ -29,7 +30,6 @@ import { ReportModule } from 'app/entities/report/report.module';
 		DoctorModule,
 		ReportModule
 	],
-	controllers: [AppController],
 	providers: [AppService]
 })
 export class AppModule {}
