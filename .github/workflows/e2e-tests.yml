@@ -1,0 +1,29 @@
+name: e2e tests
+
+on:
+  push:
+    branches: [alpha]
+  pull_request:
+    branches: [alpha]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Create ENV File
+        run: |
+          cd server
+          touch .env
+          echo ${{ secrets.ENV_VARS }} | base64 -d > .env
+      - run: npm run ipkgs
+      - run: npm run e2e-test
