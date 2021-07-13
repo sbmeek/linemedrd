@@ -32,6 +32,12 @@ const gqlErrorFormatter = (error: GraphQLError) => {
 	} else return error;
 };
 
+export const dbUri = {
+	production: process.env.DB_URI_PROD,
+	development: process.env.DB_URI_DEV,
+	test: process.env.DB_URI_TEST
+};
+
 export const mongoOptions: MongooseModuleOptions = {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
