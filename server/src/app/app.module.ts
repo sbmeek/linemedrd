@@ -3,7 +3,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
-import { mongoOptions, gqlOptions, serveStaticOptions } from 'app/lib/options';
+import {
+	mongoOptions,
+	gqlOptions,
+	serveStaticOptions,
+	dbUri
+} from 'app/lib/options';
 import { UserModule } from 'app/entities/user/user.module';
 import { UserAdressModule } from 'app/entities/user-adress/user-adress.module';
 import { UserPreferencesModule } from 'app/entities/user-preferences/user-preferences.module';
@@ -20,7 +25,7 @@ import { AgendaModule } from './entities/agenda/agenda.module';
 @Module({
 	imports: [
 		ServeStaticModule.forRoot(serveStaticOptions),
-		MongooseModule.forRoot(process.env.DB_URI, mongoOptions),
+		MongooseModule.forRoot(dbUri[process.env.NODE_ENV], mongoOptions),
 		GraphQLModule.forRoot(gqlOptions),
 		UserModule,
 		UserAdressModule,
