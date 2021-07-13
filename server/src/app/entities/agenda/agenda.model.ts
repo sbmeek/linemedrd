@@ -17,7 +17,7 @@ export class Agenda {
 
 	@Field(() => [Appointment])
 	@Prop({ type: [MSchema.Types.ObjectId], ref: Appointment.name })
-	appointments: MSchema.Types.ObjectId[] | Appointments[];
+	appointments: MSchema.Types.ObjectId[] | Appointment[];
 }
 
 export type AgendaDocument = Agenda & Document;
