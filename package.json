@@ -6,7 +6,7 @@
 		"ipkgs": "npm i && concurrently -n \"root-pkgs,server-pkgs,client-pkgs\" -c 'red,green,blue' \"npm i\" \"cd server && npm i\" \"cd client && npm i\"",
 		"start": "cd server && npm start:prod",
 		"prepare": "husky install",
-		"e2e-test": "start-server-and-test 'cd server && npm run build && cross-env NODE_ENV=test npm start' http://localhost:3000 'cd client && npm run test'"
+		"e2e-test": "start-server-and-test 'cd server && npm run build && npm run start:test' http://localhost:3000 'cd client && npm run test'"
 	},
 	"devDependencies": {
 		"concurrently": "^5.3.0",
