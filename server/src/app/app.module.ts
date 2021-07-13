@@ -4,10 +4,10 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
 import {
-	mongoOptions,
+	dbUri,
 	gqlOptions,
-	serveStaticOptions,
-	dbUri
+	mongoOptions,
+	serveStaticOptions
 } from 'app/lib/options';
 import { UserModule } from 'app/entities/user/user.module';
 import { UserAdressModule } from 'app/entities/user-adress/user-adress.module';

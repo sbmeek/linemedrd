@@ -26,7 +26,7 @@ export class Appointment {
 	issueDate?: Date;
 
 	@Field(() => String)
-	@Prop({ default: State.PENDING })
+	@Prop({ type: State, default: State.PENDING })
 	state?: State | number;
 
 	@Field(() => Number)
