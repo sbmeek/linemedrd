@@ -31,6 +31,7 @@ export class CreateAppointmentInput {
 	rating?: number;
 }
 
+@InputType()
 export class UpdateAppointmentInput {
 	@Field(() => String)
 	_id: MSchema.Types.ObjectId;
@@ -57,6 +58,7 @@ export class UpdateAppointmentInput {
 	rating?: number;
 }
 
+@InputType()
 export class ListAppointmentInput {
 	@Field(() => String, { nullable: true })
 	_id?: MSchema.Types.ObjectId;
