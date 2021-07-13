@@ -29,7 +29,6 @@ export class User {
 	@Prop({ required: true, unique: true })
 	email?: string;
 
-	@Field(() => String)
 	@Prop({ required: true })
 	password?: string;
 

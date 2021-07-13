@@ -3,7 +3,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
-import { AppService } from 'app/app.service';
 import { mongoOptions, gqlOptions, serveStaticOptions } from 'app/lib/options';
 import { UserModule } from 'app/entities/user/user.module';
 import { UserAdressModule } from 'app/entities/user-adress/user-adress.module';
@@ -14,6 +13,9 @@ import { PatientModule } from 'app/entities/patient/patient.module';
 import { SpecialtiesModule } from 'app/entities/specialties/specialties.module';
 import { DoctorModule } from 'app/entities/doctor/doctor.module';
 import { ReportModule } from 'app/entities/report/report.module';
+import { AppointmentModule } from './entities/appointment/appointment.module';
+import { AppointmentContentModule } from './entities/appointment-content/appointment-content.module';
+import { AgendaModule } from './entities/agenda/agenda.module';
 
 @Module({
 	imports: [
@@ -28,8 +30,10 @@ import { ReportModule } from 'app/entities/report/report.module';
 		PatientModule,
 		SpecialtiesModule,
 		DoctorModule,
-		ReportModule
-	],
-	providers: [AppService]
+		ReportModule,
+		AppointmentModule,
+		AppointmentContentModule,
+		AgendaModule
+	]
 })
 export class AppModule {}
