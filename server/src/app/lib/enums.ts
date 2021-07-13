@@ -4,7 +4,7 @@ export enum Roles {
 	ADMIN = 'Administrador'
 }
 
-export enum States {
+export enum State {
 	PENDING = 'Pendiente',
 	ACCEPTED = 'Aceptada',
 	DECLINED = 'Declinada',
