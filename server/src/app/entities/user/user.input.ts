@@ -40,7 +40,7 @@ export class CreateUserInput {
 	codConfEmail?: string;
 
 	@Field(() => Boolean, { defaultValue: false })
-	isEmailConf?: boolean;
+	isEmailConfirmed?: boolean;
 
 	@Field(() => String, { nullable: true })
 	codRecConf?: string;

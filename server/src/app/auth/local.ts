@@ -45,7 +45,7 @@ export class UsePassportInit {
 						if (user === null) {
 							return done(null, false);
 						}
-						if (!user.isEmailConf) {
+						if (!user.isEmailConfirmed) {
 							return done({ emailNotConfirmed: true, ok: false }, false);
 						} else {
 							const isPasswordOk = await user.comparePwd(

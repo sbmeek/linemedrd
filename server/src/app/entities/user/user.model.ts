@@ -62,7 +62,7 @@ export class User {
 
 	@Field(() => Boolean)
 	@Prop({ default: false })
-	isEmailConf?: boolean;
+	isEmailConfirmed?: boolean;
 
 	@Field(() => String)
 	@Prop()

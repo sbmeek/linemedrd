@@ -18,9 +18,10 @@ import { PatientModule } from 'app/entities/patient/patient.module';
 import { SpecialtiesModule } from 'app/entities/specialties/specialties.module';
 import { DoctorModule } from 'app/entities/doctor/doctor.module';
 import { ReportModule } from 'app/entities/report/report.module';
-import { AppointmentModule } from './entities/appointment/appointment.module';
-import { AppointmentContentModule } from './entities/appointment-content/appointment-content.module';
-import { AgendaModule } from './entities/agenda/agenda.module';
+import { AppointmentModule } from 'app/entities/appointment/appointment.module';
+import { AppointmentContentModule } from 'app/entities/appointment-content/appointment-content.module';
+import { AgendaModule } from 'app/entities/agenda/agenda.module';
+import { RecordModule } from 'app/entities/record/record.module';
 
 @Module({
 	imports: [
@@ -38,7 +39,8 @@ import { AgendaModule } from './entities/agenda/agenda.module';
 		ReportModule,
 		AppointmentModule,
 		AppointmentContentModule,
-		AgendaModule
+		AgendaModule,
+		RecordModule
 	]
 })
 export class AppModule {}
