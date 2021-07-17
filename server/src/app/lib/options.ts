@@ -3,6 +3,9 @@ import { GraphQLError, GraphQLFormattedError } from 'graphql';
 import { GqlModuleOptions } from '@nestjs/graphql';
 import { MongooseModuleOptions } from '@nestjs/mongoose';
 import { ServeStaticModuleOptions } from '@nestjs/serve-static';
+import { promises as fs } from 'fs';
+import * as path from 'path';
+import { Connection, Collection } from 'mongoose';
 
 const gqlErrorFormatter = (error: GraphQLError) => {
 	if (error.message === 'VALIDATION_ERROR') {
@@ -44,9 +47,36 @@ export const mongoOptions: MongooseModuleOptions = {
 	useFindAndModify: true,
 	useCreateIndex: true,
 	connectTimeoutMS: 1000,
-	connectionFactory: (conn: Promise<{ name: string }>) => {
+	connectionFactory: (conn: Promise<Connection>) => {
 		conn
-			.then(({ name }) => console.log(`Connected to db: ${name}`))
+			.then(async conn => {
+				console.log(`Connected to db: ${conn.name}`);
+				if ((process.env.NODE_ENV = 'test')) {
+					await conn.db.dropDatabase();
+					const mockDirPath = path.join(
+						process.cwd(),
+						'src',
+						'app',
+						'__mock__'
+					);
+					const entities = await fs.readdir(mockDirPath);
+
+					for (let entity of entities) {
+						const data = await import(path.join(mockDirPath, entity));
+						entity = entity.split('.')[0];
+						console.log(`Loading ${entity} with ${data.length} doc(s).`);
+						let collection = conn.collections[entity];
+						!collection &&
+							(collection = (await conn.createCollection(
+								entity
+							)) as Collection);
+						await collection.insertMany(data);
+						console.log(`${entity} inserted.`);
+					}
+
+					console.log('Test data has been restored.');
+				}
+			})
 			.catch((err: string) => console.error(`[HAY BOBO] ${err}`));
 		return conn;
 	}
