@@ -1,11 +1,10 @@
-import { join } from 'path';
-import { GraphQLError, GraphQLFormattedError } from 'graphql';
+import * as path from 'path';
+import { promises as fs } from 'fs';
 import { GqlModuleOptions } from '@nestjs/graphql';
 import { MongooseModuleOptions } from '@nestjs/mongoose';
-import { ServeStaticModuleOptions } from '@nestjs/serve-static';
-import { promises as fs } from 'fs';
-import * as path from 'path';
 import { Connection, Collection } from 'mongoose';
+import { ServeStaticModuleOptions } from '@nestjs/serve-static';
+import { GraphQLError, GraphQLFormattedError } from 'graphql';
 
 const gqlErrorFormatter = (error: GraphQLError) => {
 	if (error.message === 'VALIDATION_ERROR') {
@@ -76,12 +75,13 @@ export const mongoOptions: MongooseModuleOptions = {
 
 export const gqlOptions: GqlModuleOptions = {
 	playground: process.env.NODE_ENV === 'development',
-	autoSchemaFile: join(__dirname, 'src/schema.gql'),
+	autoSchemaFile: path.join(__dirname, 'src/schema.gql'),
 	sortSchema: true,
 	fieldResolverEnhancers: ['interceptors'],
-	formatError: (error: GraphQLError) => gqlErrorFormatter(error)
+	formatError: (error: GraphQLError) => gqlErrorFormatter(error),
+	cors: { origin: 'http://127.0.0.1:3000' }
 };
 
 export const serveStaticOptions: ServeStaticModuleOptions = {
-	rootPath: join(process.cwd(), '..', 'client', 'build')
+	rootPath: path.join(process.cwd(), '..', 'client', 'build')
 };

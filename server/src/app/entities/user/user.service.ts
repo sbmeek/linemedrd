@@ -4,6 +4,7 @@ import { Model, Schema as MSchema } from 'mongoose';
 
 import { User, UserDocument } from './user.model';
 import { CreateUserInput, UpdateUserInput, ListUserInput } from './user.input';
+import { sendEmailConfirmationCode } from 'app/lib/email.util';
 
 @Injectable()
 export class UserService {
@@ -17,11 +18,18 @@ export class UserService {
 		return this.userModel.find({ ...filters }).exec();
 	}
 
+	getByEmail(email: string) {
+		return this.userModel.findOne({ email }).exec();
+	}
+
 	async create(payload: CreateUserInput) {
 		const newUser = new this.userModel(payload);
 		newUser.password = await User.hashPwd(payload.password);
 		newUser.role = User.assignRole(payload.role);
-		return newUser.save();
+		newUser.save().then((savedUser: UserDocument) => {
+			sendEmailConfirmationCode(origin, savedUser);
+			return savedUser;
+		});
 	}
 
 	update(payload: UpdateUserInput) {
