@@ -18,14 +18,14 @@ export class UserService {
 		return this.userModel.find({ ...filters }).exec();
 	}
 
-	getByEmail(email: string) {
-		return this.userModel.findOne({ email }).exec();
+	async getByEmail(email: string): Promise<User> {
+		return await this.userModel.findOne({ email });
 	}
 
-	async create(payload: CreateUserInput) {
+	async create(origin: string, payload: CreateUserInput) {
 		const newUser = new this.userModel(payload);
-		newUser.password = await User.hashPwd(payload.password);
-		newUser.role = User.assignRole(payload.role);
+		newUser.password = await newUser.hashPwd(payload.password);
+		newUser.role = newUser.assignRole(payload.role);
 		newUser.save().then((savedUser: UserDocument) => {
 			sendEmailConfirmationCode(origin, savedUser);
 			return savedUser;

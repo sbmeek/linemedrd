@@ -2,9 +2,11 @@ import * as path from 'path';
 import { promises as fs } from 'fs';
 import { GqlModuleOptions } from '@nestjs/graphql';
 import { MongooseModuleOptions } from '@nestjs/mongoose';
-import { Connection, Collection } from 'mongoose';
+import { JwtModuleOptions } from '@nestjs/jwt';
+import { IAuthModuleOptions } from '@nestjs/passport';
 import { ServeStaticModuleOptions } from '@nestjs/serve-static';
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
+import { Connection, Collection } from 'mongoose';
 
 const gqlErrorFormatter = (error: GraphQLError) => {
 	if (error.message === 'VALIDATION_ERROR') {
@@ -85,3 +87,10 @@ export const gqlOptions: GqlModuleOptions = {
 export const serveStaticOptions: ServeStaticModuleOptions = {
 	rootPath: path.join(process.cwd(), '..', 'client', 'build')
 };
+
+export const jwtOptions: JwtModuleOptions = {
+	secret: process.env.SESSION_SECRET,
+	signOptions: { expiresIn: '1h' }
+};
+
+export const passportOptions: IAuthModuleOptions = { defaultStrategy: 'jwt' };

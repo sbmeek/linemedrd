@@ -7,18 +7,21 @@ import {
 	Resolver
 } from '@nestjs/graphql';
 import { Schema as MSchema } from 'mongoose';
+import { UseGuards } from '@nestjs/common';
 
 import { User, UserDocument } from './user.model';
 import { CreateUserInput, UpdateUserInput, ListUserInput } from './user.input';
 import { UserService } from './user.service';
 import { UserAdress } from '../user-adress/user-adress.model';
 import { UserPreferences } from '../user-preferences/user-preferences.model';
+import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
 
 @Resolver(() => User)
 export class UserResolver {
 	constructor(private userService: UserService) {}
 
 	@Query(() => User)
+	@UseGuards(GqlAuthGuard)
 	async user(@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId) {
 		return this.userService.getById(_id);
 	}
@@ -29,8 +32,11 @@ export class UserResolver {
 	}
 
 	@Mutation(() => User)
-	async createUser(@Args('payload') payload: CreateUserInput) {
-		return this.userService.create(payload);
+	async createUser(
+		@Args('payload') payload: CreateUserInput,
+		@Args('origin') origin: string
+	) {
+		return this.userService.create(origin, payload);
 	}
 
 	@Mutation(() => User)

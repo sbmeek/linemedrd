@@ -1,4 +1,4 @@
-export enum Roles {
+export enum Role {
 	PATIENT = 'Paciente',
 	DOCTOR = 'Doctor',
 	ADMIN = 'Administrador'
