@@ -81,7 +81,7 @@ export const gqlOptions: GqlModuleOptions = {
 	sortSchema: true,
 	fieldResolverEnhancers: ['interceptors'],
 	formatError: (error: GraphQLError) => gqlErrorFormatter(error),
-	cors: { origin: 'http://127.0.0.1:3000' }
+	cors: { origin: process.env.CORS_ALLOWED_HOSTS.split(',') }
 };
 
 export const serveStaticOptions: ServeStaticModuleOptions = {
