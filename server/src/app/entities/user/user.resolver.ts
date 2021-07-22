@@ -7,18 +7,29 @@ import {
 	Resolver
 } from '@nestjs/graphql';
 import { Schema as MSchema } from 'mongoose';
-import { UseGuards } from '@nestjs/common';
+import { UnauthorizedException, UseGuards } from '@nestjs/common';
 
+import { Role } from 'app/lib/enums';
 import { User, UserDocument } from './user.model';
 import { CreateUserInput, UpdateUserInput, ListUserInput } from './user.input';
 import { UserService } from './user.service';
 import { UserAdress } from '../user-adress/user-adress.model';
 import { UserPreferences } from '../user-preferences/user-preferences.model';
 import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
+import { CurrentUser } from 'app/lib/currentUser.decorator';
+import { MailService } from 'app/mail/mail.service';
+
+const isAdmin = (user: User): boolean => {
+	if (user.role === Role.ADMIN) return true;
+	else return false;
+};
 
 @Resolver(() => User)
 export class UserResolver {
-	constructor(private userService: UserService) {}
+	constructor(
+		private userService: UserService,
+		private mailService: MailService
+	) {}
 
 	@Query(() => User)
 	@UseGuards(GqlAuthGuard)
@@ -27,8 +38,13 @@ export class UserResolver {
 	}
 
 	@Query(() => [User])
-	async users(@Args('filters', { nullable: true }) filters?: ListUserInput) {
-		return this.userService.list(filters);
+	@UseGuards(GqlAuthGuard)
+	async users(
+		@CurrentUser() user: User,
+		@Args('filters', { nullable: true }) filters?: ListUserInput
+	) {
+		if (isAdmin(user)) return this.userService.list(filters);
+		else return new UnauthorizedException();
 	}
 
 	@Mutation(() => User)
@@ -36,19 +52,29 @@ export class UserResolver {
 		@Args('payload') payload: CreateUserInput,
 		@Args('origin') origin: string
 	) {
-		return this.userService.create(origin, payload);
+		return this.userService.create(payload, origin);
 	}
 
 	@Mutation(() => User)
-	async updateUser(@Args('payload') payload: UpdateUserInput) {
-		return this.userService.update(payload);
+	@UseGuards(GqlAuthGuard)
+	async updateUser(
+		@CurrentUser() user: User,
+		@Args('payload') payload: UpdateUserInput
+	) {
+		const isUpdatingRole = payload.role !== null || payload.role !== undefined;
+		const isNotAdmin = !isAdmin(user);
+		if (isUpdatingRole && isNotAdmin) return new UnauthorizedException();
+		else return this.userService.update(payload);
 	}
 
 	@Mutation(() => User)
+	@UseGuards(GqlAuthGuard)
 	async deleteUser(
+		@CurrentUser() user: User,
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
-		return this.userService.delete(_id);
+		if (isAdmin(user)) return this.userService.delete(_id);
+		else return new UnauthorizedException();
 	}
 
 	@ResolveField(() => UserAdress)

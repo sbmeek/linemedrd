@@ -11,9 +11,9 @@ client
 	.query({
 		query: gql`
 			query {
-				users {
-					email
+				appointments {
 					_id
+					issueDate
 				}
 			}
 		`
