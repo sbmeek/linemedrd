@@ -7,6 +7,15 @@ import { IAuthModuleOptions } from '@nestjs/passport';
 import { ServeStaticModuleOptions } from '@nestjs/serve-static';
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
 import { Connection, Collection } from 'mongoose';
+import { MailerOptions } from '@nestjs-modules/mailer';
+
+const {
+	G_MAIL_ACCOUNT,
+	G_CLIENT_ID,
+	G_CLIENT_SECRET,
+	G_REFRESH_TOKEN,
+	G_ACCESS_TOKEN
+} = process.env;
 
 const gqlErrorFormatter = (error: GraphQLError) => {
 	if (error.message === 'VALIDATION_ERROR') {
@@ -94,3 +103,21 @@ export const jwtOptions: JwtModuleOptions = {
 };
 
 export const passportOptions: IAuthModuleOptions = { defaultStrategy: 'jwt' };
+
+export const mailerOptions: MailerOptions = {
+	transport: {
+		service: 'gmail',
+		host: 'linemedrd.herokuapp.com',
+		auth: {
+			type: 'OAuth2',
+			user: G_MAIL_ACCOUNT,
+			clientId: G_CLIENT_ID,
+			clientSecret: G_CLIENT_SECRET,
+			refreshToken: G_REFRESH_TOKEN,
+			accessToken: G_ACCESS_TOKEN
+		}
+	},
+	defaults: {
+		from: G_MAIL_ACCOUNT
+	}
+};

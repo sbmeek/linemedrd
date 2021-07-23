@@ -4,11 +4,14 @@ import { Model, Schema as MSchema } from 'mongoose';
 
 import { User, UserDocument } from './user.model';
 import { CreateUserInput, UpdateUserInput, ListUserInput } from './user.input';
-import { sendEmailConfirmationCode } from 'app/lib/email.util';
+import { MailService } from 'app/mail/mail.service';
 
 @Injectable()
 export class UserService {
-	constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+	constructor(
+		@InjectModel(User.name) private userModel: Model<UserDocument>,
+		private mailService: MailService
+	) {}
 
 	getById(_id: MSchema.Types.ObjectId) {
 		return this.userModel.findById(_id).exec();
@@ -22,12 +25,12 @@ export class UserService {
 		return await this.userModel.findOne({ email });
 	}
 
-	async create(origin: string, payload: CreateUserInput) {
+	async create(payload: CreateUserInput, origin: string) {
 		const newUser = new this.userModel(payload);
 		newUser.password = await newUser.hashPwd(payload.password);
 		newUser.role = newUser.assignRole(payload.role);
 		newUser.save().then((savedUser: UserDocument) => {
-			sendEmailConfirmationCode(origin, savedUser);
+			this.mailService.sendEmailConfirmationCode(origin, savedUser);
 			return savedUser;
 		});
 	}

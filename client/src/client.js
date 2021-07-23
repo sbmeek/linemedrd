@@ -1,19 +1,16 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 export const client = new ApolloClient({
-	uri: 'http://localhost:3000/graphql',
-	cache: new InMemoryCache(),
-	headers: {
-		authorization: localStorage.getItem('token') || ''
-	}
+	uri: process.env.API_URL,
+	cache: new InMemoryCache()
 });
 client
 	.query({
 		query: gql`
 			query {
-				users {
-					email
+				appointments {
 					_id
+					issueDate
 				}
 			}
 		`
