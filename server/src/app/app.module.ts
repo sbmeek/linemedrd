@@ -23,6 +23,7 @@ import { AppointmentContentModule } from 'app/entities/appointment-content/appoi
 import { AgendaModule } from 'app/entities/agenda/agenda.module';
 import { RecordModule } from 'app/entities/record/record.module';
 import { AuthModule } from 'app/auth/auth.module';
+import { MailModule } from 'app/mail/mail.module';
 
 @Module({
 	imports: [
@@ -42,7 +43,8 @@ import { AuthModule } from 'app/auth/auth.module';
 		AppointmentContentModule,
 		AgendaModule,
 		RecordModule,
-		AuthModule
+		AuthModule,
+		MailModule
 	]
 })
 export class AppModule {}

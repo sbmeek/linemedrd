@@ -17,7 +17,6 @@ import { UserAdress } from '../user-adress/user-adress.model';
 import { UserPreferences } from '../user-preferences/user-preferences.model';
 import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
 import { CurrentUser } from 'app/lib/currentUser.decorator';
-import { MailService } from 'app/mail/mail.service';
 
 const isAdmin = (user: User): boolean => {
 	if (user.role === Role.ADMIN) return true;
@@ -26,10 +25,7 @@ const isAdmin = (user: User): boolean => {
 
 @Resolver(() => User)
 export class UserResolver {
-	constructor(
-		private userService: UserService,
-		private mailService: MailService
-	) {}
+	constructor(private userService: UserService) {}
 
 	@Query(() => User)
 	@UseGuards(GqlAuthGuard)
@@ -38,13 +34,14 @@ export class UserResolver {
 	}
 
 	@Query(() => [User])
-	@UseGuards(GqlAuthGuard)
+	//@UseGuards(GqlAuthGuard)
 	async users(
-		@CurrentUser() user: User,
+		//@CurrentUser() user: User,
 		@Args('filters', { nullable: true }) filters?: ListUserInput
 	) {
-		if (isAdmin(user)) return this.userService.list(filters);
-		else return new UnauthorizedException();
+		/*if (isAdmin(user)) return this.userService.list(filters);
+		else return new UnauthorizedException();*/
+		return this.userService.list(filters);
 	}
 
 	@Mutation(() => User)
