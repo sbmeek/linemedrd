@@ -9,17 +9,19 @@ import {
 import { Schema as MSchema } from 'mongoose';
 import { UnauthorizedException, UseGuards } from '@nestjs/common';
 
-import { Role } from 'app/lib/enums';
+import { Roles } from 'app/lib/enums';
 import { User, UserDocument } from './user.model';
 import { CreateUserInput, UpdateUserInput, ListUserInput } from './user.input';
 import { UserService } from './user.service';
 import { UserAdress } from '../user-adress/user-adress.model';
 import { UserPreferences } from '../user-preferences/user-preferences.model';
 import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
-import { CurrentUser } from 'app/lib/currentUser.decorator';
+import { RolesGuard } from 'app/auth/guard/roles.guard';
+import { CurrentUser } from 'app/lib/decorators/currentUser.decorator';
+import { RequiredRole } from 'app/lib/decorators/roles.decorator';
 
 const isAdmin = (user: User): boolean => {
-	if (user.role === Role.ADMIN) return true;
+	if (user.role === Roles.ADMIN) return true;
 	else return false;
 };
 
@@ -28,19 +30,19 @@ export class UserResolver {
 	constructor(private userService: UserService) {}
 
 	@Query(() => User)
-	@UseGuards(GqlAuthGuard)
+	//@UseGuards(GqlAuthGuard)
 	async user(@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId) {
 		return this.userService.getById(_id);
 	}
 
 	@Query(() => [User])
-	//@UseGuards(GqlAuthGuard)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.ADMIN)
 	async users(
-		//@CurrentUser() user: User,
+		@CurrentUser() user: User,
 		@Args('filters', { nullable: true }) filters?: ListUserInput
 	) {
-		/*if (isAdmin(user)) return this.userService.list(filters);
-		else return new UnauthorizedException();*/
+		console.log(user);
 		return this.userService.list(filters);
 	}
 

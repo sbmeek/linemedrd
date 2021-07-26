@@ -8,11 +8,3 @@ export class GqlAuthGuard extends AuthGuard('jwt') {
 		return ctx.getContext().req;
 	}
 }
-
-/*
-	Guard for gql queries / mutations.
-	Use: in the http headers of the request pass the following...
-	{
-  		"Authorization": "Bearer <token>"
-	}
-*/

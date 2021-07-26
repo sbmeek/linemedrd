@@ -11,12 +11,3 @@ export const CurrentUser = createParamDecorator(
 		return ctx.getContext().req.user;
 	}
 );
-
-/*
-    Decorator that returns the current user, can be used both in REST endpoints
-    as in queries / mutations of gql.
-    Use:
-    function_x(@CurrentUser() user: User) {
-        console.log(user);
-    }
-*/
