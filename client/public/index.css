@@ -8,3 +8,33 @@
 *::before {
 	box-sizing: inherit;
 }
+
+:root {
+	/* color global / default */
+
+	/*--color primary--*/
+	--white: #ffffff;
+	--black: #000000;
+	--green-num1: #d9fff7;
+	--green-num2: #94e9d8;
+	--green-num3: #66d2bc;
+	--green-num4: #47b49e;
+	--green-num5: #005e4b;
+	--green-num6: #00392d;
+
+	/*--color secondary--*/
+
+	/* placeholder and letter */
+	--gray-num1: #c4c4c4;
+	--gray-num2: #707070;
+
+	/* placeholder and icon form */
+	--greenTransparence-num1: #b4d2cc;
+	--greenTransparence-num2: #a5c5bf;
+
+	/* calendar number and appoiment number day */
+	--orange-num1: #fc7b7b;
+	--orange-num1: #ff3e3e;
+	--blue-num1: #58acff;
+	--blue-num2: #0077ff;
+}
