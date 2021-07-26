@@ -63,7 +63,7 @@ export const mongoOptions: MongooseModuleOptions = {
 				console.log(`Connected to db: ${conn.name}`);
 				if (process.env.NODE_ENV !== 'test') return;
 				await conn.db.dropDatabase();
-				const mockDirPath = path.join(process.cwd(), 'src', 'app', '__mock__');
+				const mockDirPath = path.join(process.cwd(), 'src', 'app', 'mock');
 				const entities = await fs.readdir(mockDirPath);
 
 				for (let entity of entities) {

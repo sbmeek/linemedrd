@@ -21,7 +21,7 @@ export class UserService {
 		return this.userModel.find({ ...filters }).exec();
 	}
 
-	async getByEmail(email: string): Promise<User> {
+	async getByEmail(email: string): Promise<UserDocument> {
 		return await this.userModel.findOne({ email });
 	}
 
