@@ -29,12 +29,12 @@
 	--gray-num2: #707070;
 
 	/* placeholder and icon form */
-	--greenTransparence-num1: #b4d2cc;
-	--greenTransparence-num2: #a5c5bf;
+	--grayTraps-num1: #b4d2cc;
+	--grayTraps-num2: #a5c5bf;
 
 	/* calendar number and appoiment number day */
 	--orange-num1: #fc7b7b;
-	--orange-num1: #ff3e3e;
+	--orange-num2: #ff3e3e;
 	--blue-num1: #58acff;
 	--blue-num2: #0077ff;
 }
