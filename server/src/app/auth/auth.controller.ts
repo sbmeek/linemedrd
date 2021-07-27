@@ -4,7 +4,8 @@ import { Request } from 'express';
 import { User } from 'app/entities/user/user.model';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guard/local-auth.guard';
-//import { JwtAuthGuard } from 'app/auth/guard/jwt-auth.guard';
+import { JwtAuthGuard } from 'app/auth/guard/jwt-auth.guard';
+import { CurrentUser } from 'app/lib/decorators/currentUser.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -12,8 +13,20 @@ export class AuthController {
 
 	@UseGuards(LocalAuthGuard)
 	@Post('login')
-	login(@Req() req: Request): { accessToken: string } {
+	async login(@Req() req: Request): Promise<{ accessToken: string }> {
 		return this.authService.login(req.user as User);
+	}
+
+	@UseGuards(JwtAuthGuard)
+	@Post('logout')
+	logout(@Req() req: Request, @CurrentUser() user: User) {
+		return this.authService.logout(req, user);
+	}
+
+	@UseGuards(JwtAuthGuard)
+	@Post('check-auth')
+	async checkAuth(@CurrentUser() user: User) {
+		return await this.authService.checkAuth(user);
 	}
 
 	@Post('verify-email-conf-code')

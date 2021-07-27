@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { enc, AES as crypt } from 'crypto-js';
+import { Request } from 'express';
 
 import { User } from 'app/entities/user/user.model';
 import { UserService } from 'app/entities/user/user.service';
@@ -47,6 +48,16 @@ export class AuthService {
 		return pwdIsValid ? user : null;
 	}
 
+	async verify(token: string): Promise<User> {
+		const decoded = this.jwtService.verify(token, {
+			secret: process.env.SESSION_SECRET
+		});
+
+		const user = this.userService.getByEmail(decoded.email);
+		if (!user) throw new Error('Unable to get User from decoded token');
+		return user;
+	}
+
 	login(user: User): { accessToken: string } {
 		const payload = {
 			email: user.email,
@@ -58,14 +69,25 @@ export class AuthService {
 		};
 	}
 
-	async verify(token: string): Promise<User> {
-		const decoded = this.jwtService.verify(token, {
-			secret: process.env.SESSION_SECRET
-		});
+	logout(req: Request, user: User) {
+		console.log(req.cookies['medTkn']);
+		if (!user) return { isAuthenticated: false, ok: false };
+		else {
+			req.cookies['medTkn'].reset();
+			return { user: null, isAuthenticated: false, ok: true };
+		}
+	}
 
-		const user = this.userService.getByEmail(decoded.email);
-		if (!user) throw new Error('Unable to get User from decoded token');
-		return user;
+	async checkAuth(user: User) {
+		const { _id, email, role } = user;
+		return {
+			isAuthenticated: true,
+			user: {
+				_id,
+				email,
+				role
+			}
+		};
 	}
 
 	async verifyEmailConfCode(encToken: string) {

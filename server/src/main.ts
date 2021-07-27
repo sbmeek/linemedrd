@@ -2,6 +2,7 @@
 require('dotenv').config();
 import { NestFactory } from '@nestjs/core';
 import * as session from 'client-sessions';
+import * as cookieParser from 'cookie-parser';
 import { UserInputError } from 'apollo-server-express';
 import { ValidationError, ValidationPipe } from '@nestjs/common';
 
@@ -20,6 +21,7 @@ async function bootstrap() {
 			}
 		})
 	);
+	app.use(cookieParser());
 	app.use(
 		session({
 			cookieName: 'medTkn',

@@ -102,7 +102,10 @@ export const jwtOptions: JwtModuleOptions = {
 	signOptions: { expiresIn: '1h' }
 };
 
-export const passportOptions: IAuthModuleOptions = { defaultStrategy: 'jwt' };
+export const passportOptions: IAuthModuleOptions = {
+	defaultStrategy: 'jwt',
+	session: false
+};
 
 export const mailerOptions: MailerOptions = {
 	transport: {
