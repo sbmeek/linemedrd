@@ -5,13 +5,16 @@ import { client } from './client';
 import Main from './styles/index';
 import { data } from './styles/Theme';
 import App from './App';
+import ThemeState from './context/theme/themeState';
 
 ReactDOM.render(
 	<React.StrictMode>
 		<ApolloProvider client={client}>
-			<Main theme={data}>
-				<App />
-			</Main>
+			<ThemeState>
+				<Main theme={data}>
+					<App />
+				</Main>
+			</ThemeState>
 		</ApolloProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
