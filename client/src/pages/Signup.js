@@ -16,14 +16,38 @@ const Titulo = styled.h2`
 	margin: 1.7rem 0;
 `;
 
+const LinkBottom = styled.div`
+	text-align: center;
+	${({ theme }) => ({
+		color: theme.colors.green5,
+		fontFamily: theme.fonts.segoeui
+	})}
+	font-size: 1.088rem;
+`;
+
+const Anclaje = styled.a`
+	text-decoration: none;
+
+	${({ theme }) => ({
+		fontFamily: theme.fonts.segoeui,
+		color: theme.calendarNotify.blue1
+	})};
+
+	transition: color 300ms ease-out;
+
+	&:hover {
+		color: ${({ theme }) => theme.calendarNotify.blue2};
+	}
+`;
+
 const Signup = () => {
 	return (
 		<Container>
 			<Titulo>Regístrate</Titulo>
 			<FormSignup />
-			<div>
-				¿Ya tienes una cuenta? <a href="#?">Iniciar Sesión</a>
-			</div>
+			<LinkBottom>
+				¿Ya tienes una cuenta? <Anclaje href="#?">Iniciar Sesión</Anclaje>
+			</LinkBottom>
 		</Container>
 	);
 };
