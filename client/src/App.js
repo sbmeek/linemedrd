@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
+import Header from './components/Header';
 import GlobalStyle from './styles/GlobalStyle';
 
 const Home = lazy(() => import('@/pages/Home'));
@@ -20,12 +21,16 @@ function App(props) {
 				<Router>
 					<Suspense fallback={<div>Loading...</div>}>
 						<div className="App">
+							<Header />
 							<ul>
 								<li>
 									<Link to="/Login">Login</Link>
 								</li>
 								<li>
 									<Link to="/Signup">Signup</Link>
+								</li>
+								<li>
+									<Link to="/">Home</Link>
 								</li>
 								<li>
 									<Link to="/about">About</Link>
