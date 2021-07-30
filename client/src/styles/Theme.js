@@ -1,9 +1,3 @@
-import NeufreitExtraBold from '../assets/fonts/NeufreitExtraBold.otf';
-import SegoeUI from '../assets/fonts/SegoeUI.ttf';
-import SegoeUIBold from '../assets/fonts/SegoeUIBold.ttf';
-import SegoeUIBoldItalic from '../assets/fonts/SegoeUIBoldItalic.ttf';
-import SegoeUIItalic from '../assets/fonts/SegoeUIItalic.ttf';
-
 export const data = {
 	light: {
 		colors: {
@@ -31,11 +25,11 @@ export const data = {
 			blue2: 'var(--blue-num2)'
 		},
 		fonts: {
-			neufreit: NeufreitExtraBold,
-			segoeui: SegoeUIItalic,
-			segoeuiBold: SegoeUIBold,
-			segoeuiItalic: SegoeUIItalic,
-			segoeuiBoldItalic: SegoeUIBoldItalic
+			neufreit: 'neufreit',
+			segoeui: 'segoeNormal',
+			segoeuiBold: 'segoeBold',
+			segoeuiItalic: 'segoeBoldItalic',
+			segoeuiBoldItalic: 'segoeItalic'
 		}
 	},
 	dark: {
@@ -50,11 +44,13 @@ export const data = {
 			green6: 'blue'
 		},
 		fonts: {
-			neufreit: NeufreitExtraBold,
-			segoeui: SegoeUIItalic,
-			segoeuiBold: SegoeUIBold,
-			segoeuiItalic: SegoeUIItalic,
-			segoeuiBoldItalic: SegoeUIBoldItalic
+			neufreit: 'neufreit',
+			segoeui: 'segoeNormal',
+			segoeuiBold: 'segoeBold',
+			segoeuiItalic: 'segoeBoldItalic',
+			segoeuiBoldItalic: 'segoeItalic'
 		}
 	}
 };
+
+// console.warn(data.light.fonts.familyNum2);
