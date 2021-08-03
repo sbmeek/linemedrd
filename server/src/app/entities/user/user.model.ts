@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import { Document, Schema as MSchema } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Field, ObjectType } from '@nestjs/graphql';
@@ -81,9 +80,9 @@ export class User {
 	@Prop({ type: MSchema.Types.ObjectId, ref: UserPreferences.name })
 	userPreferences?: MSchema.Types.ObjectId | UserPreferences;
 
-	hashPwd: Function;
-	comparePwd: Function;
-	assignRole: Function;
+	hashPwd: (pwd: string) => Promise<string>;
+	comparePwd: (dbPwd: string, enteredPwd: string) => Promise<boolean>;
+	assignRole: (n: number) => Roles;
 }
 
 export type UserDocument = User & Document;

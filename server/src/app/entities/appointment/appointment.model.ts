@@ -48,7 +48,26 @@ export class Appointment {
 	@Field(() => Number)
 	@Prop()
 	rating?: number;
+
+	setState: (n: number) => States;
 }
 
 export type AppointmentDocument = Appointment & Document;
 export const AppointmentSchema = SchemaFactory.createForClass(Appointment);
+
+AppointmentSchema.methods.setState = function (n: number): States {
+	switch (n) {
+		case 0:
+			return States.PENDING;
+		case 1:
+			return States.ACCEPTED;
+		case 2:
+			return States.DECLINED;
+		case 3:
+			return States.SUSPENDED;
+		case 4:
+			return States.ARCHIVED;
+		default:
+			return States.PENDING;
+	}
+};

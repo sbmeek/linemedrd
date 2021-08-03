@@ -7,7 +7,7 @@ import {
 	Resolver
 } from '@nestjs/graphql';
 import { Schema as MSchema } from 'mongoose';
-import { UnauthorizedException, UseGuards } from '@nestjs/common';
+import { UseGuards } from '@nestjs/common';
 
 import { Roles } from 'app/lib/enums';
 import { User, UserDocument } from './user.model';
@@ -17,13 +17,8 @@ import { UserAdress } from '../user-adress/user-adress.model';
 import { UserPreferences } from '../user-preferences/user-preferences.model';
 import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
 import { RolesGuard } from 'app/auth/guard/roles.guard';
-import { CurrentUser } from 'app/lib/decorators/currentUser.decorator';
+//import { CurrentUser } from 'app/lib/decorators/currentUser.decorator';
 import { RequiredRole } from 'app/lib/decorators/roles.decorator';
-
-const isAdmin = (user: User): boolean => {
-	if (user.role === Roles.ADMIN) return true;
-	else return false;
-};
 
 @Resolver(() => User)
 export class UserResolver {
@@ -38,11 +33,7 @@ export class UserResolver {
 	@Query(() => [User])
 	@UseGuards(GqlAuthGuard, RolesGuard)
 	@RequiredRole(Roles.ADMIN)
-	async users(
-		@CurrentUser() user: User,
-		@Args('filters', { nullable: true }) filters?: ListUserInput
-	) {
-		console.log(user);
+	async users(@Args('filters', { nullable: true }) filters?: ListUserInput) {
 		return this.userService.list(filters);
 	}
 
@@ -56,24 +47,16 @@ export class UserResolver {
 
 	@Mutation(() => User)
 	@UseGuards(GqlAuthGuard)
-	async updateUser(
-		@CurrentUser() user: User,
-		@Args('payload') payload: UpdateUserInput
-	) {
-		const isUpdatingRole = payload.role !== null || payload.role !== undefined;
-		const isNotAdmin = !isAdmin(user);
-		if (isUpdatingRole && isNotAdmin) return new UnauthorizedException();
-		else return this.userService.update(payload);
+	async updateUser(@Args('payload') payload: UpdateUserInput) {
+		return this.userService.update(payload);
 	}
 
 	@Mutation(() => User)
 	@UseGuards(GqlAuthGuard)
 	async deleteUser(
-		@CurrentUser() user: User,
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
-		if (isAdmin(user)) return this.userService.delete(_id);
-		else return new UnauthorizedException();
+		return this.userService.delete(_id);
 	}
 
 	@ResolveField(() => UserAdress)
@@ -83,7 +66,7 @@ export class UserResolver {
 	) {
 		if (populate)
 			await user
-				.populate({ path: 'userAdress', model: UserAdress.name })
+				.populate({ path: 'useradresses', model: UserAdress.name })
 				.execPopulate();
 		return user.userAdress;
 	}
@@ -96,7 +79,7 @@ export class UserResolver {
 		if (populate)
 			await user
 				.populate({
-					path: 'userPreferences',
+					path: 'userpreferences',
 					model: UserPreferences.name
 				})
 				.execPopulate();

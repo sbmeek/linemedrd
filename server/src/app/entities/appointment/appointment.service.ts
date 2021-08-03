@@ -24,9 +24,11 @@ export class AppointmentService {
 		return this.appointmentModel.find({ ...filters }).exec();
 	}
 
-	create(payload: CreateAppointmentInput) {
+	async create(payload: CreateAppointmentInput) {
 		const newApmt = new this.appointmentModel(payload);
-		return newApmt.save();
+		newApmt.state = newApmt.setState(payload.state);
+		const savedApmt = await newApmt.save();
+		return savedApmt;
 	}
 
 	update(payload: UpdateAppointmentInput) {
