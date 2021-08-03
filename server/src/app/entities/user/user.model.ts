@@ -83,6 +83,7 @@ export class User {
 	hashPwd: (pwd: string) => Promise<string>;
 	comparePwd: (dbPwd: string, enteredPwd: string) => Promise<boolean>;
 	assignRole: (n: number) => Roles;
+	clientSideData: () => { username: string; email: string; role: string };
 }
 
 export type UserDocument = User & Document;
@@ -116,4 +117,9 @@ UserSchema.methods.assignRole = function (n: number): Roles {
 		default:
 			return Roles.PATIENT;
 	}
+};
+
+UserSchema.methods.clientSideData = function () {
+	const user = this as UserDocument;
+	return { username: user.username, email: user.email, role: user.role };
 };

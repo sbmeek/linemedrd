@@ -1,7 +1,6 @@
 import { Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 
-import { User } from 'app/entities/user/user.model';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guard/local-auth.guard';
 import { JwtAuthGuard } from 'app/auth/guard/jwt-auth.guard';
@@ -13,20 +12,20 @@ export class AuthController {
 
 	@UseGuards(LocalAuthGuard)
 	@Post('login')
-	async login(@Req() req: Request): Promise<{ accessToken: string }> {
-		return this.authService.login(req.user as User);
+	login(@Req() req: Request) {
+		return this.authService.login(req);
 	}
 
 	@UseGuards(JwtAuthGuard)
 	@Post('logout')
-	logout(@Req() req: Request, @CurrentUser() user: User) {
-		return this.authService.logout(req, user);
+	logout(@Req() req: Request) {
+		return this.authService.logout(req);
 	}
 
 	@UseGuards(JwtAuthGuard)
 	@Post('check-auth')
-	async checkAuth(@CurrentUser() user: User) {
-		return await this.authService.checkAuth(user);
+	async checkAuth(@CurrentUser() currentUser: any) {
+		return currentUser;
 	}
 
 	@Post('verify-email-conf-code')

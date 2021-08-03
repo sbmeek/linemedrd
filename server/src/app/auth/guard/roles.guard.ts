@@ -19,21 +19,12 @@ export class RolesGuard extends AuthGuard('jwt') implements CanActivate {
 				context.getClass(),
 				context.getHandler()
 			]) || [];
-
 		const isPublic = this.reflector.getAllAndOverride<boolean>('public', [
 			context.getHandler(),
 			context.getClass()
 		]);
-
 		if (!roles || isPublic) return true;
-
 		const user = context.getContext().req.user as User;
-		let isAllowed = false;
-
-		roles.forEach(role => {
-			if (user.role === role) isAllowed = true;
-		});
-
-		return isAllowed;
+		return roles.indexOf(user.role as Roles) !== -1;
 	}
 }

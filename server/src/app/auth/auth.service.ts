@@ -6,6 +6,7 @@ import { Request } from 'express';
 import { User } from 'app/entities/user/user.model';
 import { UserService } from 'app/entities/user/user.service';
 import { MailService } from 'app/mail/mail.service';
+import { sessionCookieName } from 'app/lib/options';
 
 @Injectable()
 export class AuthService {
@@ -14,19 +15,6 @@ export class AuthService {
 		private readonly jwtService: JwtService,
 		private readonly mailService: MailService
 	) {}
-
-	private signToken(iis: string, userId: string) {
-		return this.jwtService.sign(
-			{
-				iis,
-				sub: userId
-			},
-			{
-				secret: process.env.SESSION_SECRET,
-				expiresIn: 12 * 60000
-			}
-		);
-	}
 
 	private decryptToken(encryptedToken: string) {
 		const bytes = crypt.decrypt(
@@ -58,36 +46,25 @@ export class AuthService {
 		return user;
 	}
 
-	login(user: User): { accessToken: string } {
+	login(req: Request): { accessToken: string } {
+		const user = req.user as any;
 		const payload = {
 			email: user.email,
 			sub: user._id
 		};
-
-		return {
-			accessToken: this.jwtService.sign(payload)
+		if (!user.ok) return user;
+		req.session[sessionCookieName] = {
+			accessToken: this.jwtService.sign(payload, {
+				secret: process.env.SESSION_SECRET,
+				expiresIn: 12 * 60000
+			})
 		};
+		return user;
 	}
 
-	logout(req: Request, user: User) {
-		console.log(req.cookies['medTkn']);
-		if (!user) return { isAuthenticated: false, ok: false };
-		else {
-			req.cookies['medTkn'].reset();
-			return { user: null, isAuthenticated: false, ok: true };
-		}
-	}
-
-	async checkAuth(user: User) {
-		const { _id, email, role } = user;
-		return {
-			isAuthenticated: true,
-			user: {
-				_id,
-				email,
-				role
-			}
-		};
+	logout(req: Request) {
+		req.session.destroy(() => 1);
+		return { user: null, isAuthenticated: false, ok: true };
 	}
 
 	async verifyEmailConfCode(encToken: string) {
