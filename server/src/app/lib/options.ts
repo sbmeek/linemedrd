@@ -71,7 +71,9 @@ export const mongoOptions: MongooseModuleOptions = {
 				const entities = await fs.readdir(mockDirPath);
 
 				for (let entity of entities) {
-					const data = await import(path.join(mockDirPath, entity));
+					const { default: data } = await import(
+						path.join(mockDirPath, entity)
+					);
 					entity = entity.split('.')[0];
 					console.log(`Loading ${entity} with ${data.length} doc(s).`);
 					let collection = conn.collections[entity];
@@ -83,7 +85,10 @@ export const mongoOptions: MongooseModuleOptions = {
 
 				console.log('Test data has been restored.');
 			})
-			.catch((err: string) => console.error(`[HAY BOBO] ${err}`));
+			.catch((err: string) => {
+				console.error(err);
+				process.exit(1);
+			});
 		return conn;
 	}
 };
