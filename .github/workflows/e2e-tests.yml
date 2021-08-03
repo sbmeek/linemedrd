@@ -28,3 +28,15 @@ jobs:
       - run: npm run ipkgs
       - run: cd client && npm run build
       - run: npm run e2e-test
+
+  merge-branch:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Merge alpha -> main
+        uses: devmasx/merge-branch@v1.3.1
+        with:
+          type: now
+          target_branch: main
+          github_token: ${{ secrets.GH_TOKEN }}

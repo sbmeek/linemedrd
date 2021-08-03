@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import { Document, Schema as MSchema } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Field, ObjectType } from '@nestjs/graphql';
@@ -6,7 +5,7 @@ import { hash, compare, genSalt } from 'bcryptjs';
 
 import { UserAdress } from '../user-adress/user-adress.model';
 import { UserPreferences } from '../user-preferences/user-preferences.model';
-import { Role } from 'app/lib/enums';
+import { Roles } from 'app/lib/enums';
 
 @ObjectType()
 @Schema({ timestamps: true })
@@ -70,8 +69,8 @@ export class User {
 	codRecPwd?: string;
 
 	@Field(() => String)
-	@Prop({ required: true, type: Role, default: Role.PATIENT })
-	role?: Role | number;
+	@Prop({ required: true, type: Roles, default: Roles.PATIENT })
+	role?: Roles | number;
 
 	@Field(() => Boolean)
 	@Prop({ required: true, default: true })
@@ -81,9 +80,10 @@ export class User {
 	@Prop({ type: MSchema.Types.ObjectId, ref: UserPreferences.name })
 	userPreferences?: MSchema.Types.ObjectId | UserPreferences;
 
-	hashPwd: Function;
-	comparePwd: Function;
-	assignRole: Function;
+	hashPwd: (pwd: string) => Promise<string>;
+	comparePwd: (dbPwd: string, enteredPwd: string) => Promise<boolean>;
+	assignRole: (n: number) => Roles;
+	clientSideData: () => { username: string; email: string; role: string };
 }
 
 export type UserDocument = User & Document;
@@ -106,15 +106,20 @@ UserSchema.methods.comparePwd = async function (
 	return await compare(enteredPwd, dbPwd);
 };
 
-UserSchema.methods.assignRole = function (n: number): Role {
+UserSchema.methods.assignRole = function (n: number): Roles {
 	switch (n) {
 		case 0:
-			return Role.PATIENT;
+			return Roles.PATIENT;
 		case 1:
-			return Role.DOCTOR;
+			return Roles.DOCTOR;
 		case 2:
-			return Role.ADMIN;
+			return Roles.ADMIN;
 		default:
-			return Role.PATIENT;
+			return Roles.PATIENT;
 	}
+};
+
+UserSchema.methods.clientSideData = function () {
+	const user = this as UserDocument;
+	return { username: user.username, email: user.email, role: user.role };
 };

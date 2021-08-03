@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import FormLogin from '../components/FormLogin/index';
+import FormSignup from '@/components/FormSignup';
 
 const Container = styled.div`
 	width: 80%;
@@ -17,13 +17,17 @@ const Titulo = styled.h2`
 `;
 
 const LinkBottom = styled.div`
-	color: ${({ theme }) => theme.colors.green5};
 	text-align: center;
+	${({ theme }) => ({
+		color: theme.colors.green5,
+		fontFamily: theme.fonts.segoeui
+	})}
+	font-size: 1.088rem;
 `;
 
 const Anclaje = styled.a`
 	text-decoration: none;
-	font-size: 1rem;
+
 	${({ theme }) => ({
 		fontFamily: theme.fonts.segoeui,
 		color: theme.calendarNotify.blue1
@@ -36,17 +40,16 @@ const Anclaje = styled.a`
 	}
 `;
 
-const Login = () => {
+const Signup = () => {
 	return (
 		<Container>
-			<Titulo>Iniciar Sesión</Titulo>
-			<FormLogin />
+			<Titulo>Regístrate</Titulo>
+			<FormSignup />
 			<LinkBottom>
-				<span>Nuevo en Concitmed</span>
-				<Anclaje href="#?"> Crea una Cuenta</Anclaje>.
+				¿Ya tienes una cuenta? <Anclaje href="#?">Iniciar Sesión</Anclaje>
 			</LinkBottom>
 		</Container>
 	);
 };
 
-export default Login;
+export default Signup;

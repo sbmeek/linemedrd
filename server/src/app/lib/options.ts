@@ -8,6 +8,10 @@ import { ServeStaticModuleOptions } from '@nestjs/serve-static';
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
 import { Connection, Collection } from 'mongoose';
 import { MailerOptions } from '@nestjs-modules/mailer';
+import { UserInputError } from 'apollo-server-express';
+import { ValidationError, ValidationPipeOptions } from '@nestjs/common';
+import { MemoryStore, SessionOptions } from 'express-session';
+import MongoStore from 'connect-mongo';
 
 const {
 	G_MAIL_ACCOUNT,
@@ -63,7 +67,7 @@ export const mongoOptions: MongooseModuleOptions = {
 				console.log(`Connected to db: ${conn.name}`);
 				if (process.env.NODE_ENV !== 'test') return;
 				await conn.db.dropDatabase();
-				const mockDirPath = path.join(process.cwd(), 'src', 'app', '__mock__');
+				const mockDirPath = path.join(process.cwd(), 'src', 'app', 'mock');
 				const entities = await fs.readdir(mockDirPath);
 
 				for (let entity of entities) {
@@ -84,13 +88,18 @@ export const mongoOptions: MongooseModuleOptions = {
 	}
 };
 
+export const corsOptions = {
+	origin: process.env.CORS_ALLOWED_HOSTS.split(','),
+	credentials: true
+};
+
 export const gqlOptions: GqlModuleOptions = {
 	playground: process.env.NODE_ENV === 'development',
 	autoSchemaFile: path.join(__dirname, 'src/schema.gql'),
 	sortSchema: true,
 	fieldResolverEnhancers: ['interceptors'],
 	formatError: (error: GraphQLError) => gqlErrorFormatter(error),
-	cors: { origin: process.env.CORS_ALLOWED_HOSTS.split(',') }
+	cors: corsOptions
 };
 
 export const serveStaticOptions: ServeStaticModuleOptions = {
@@ -102,7 +111,10 @@ export const jwtOptions: JwtModuleOptions = {
 	signOptions: { expiresIn: '1h' }
 };
 
-export const passportOptions: IAuthModuleOptions = { defaultStrategy: 'jwt' };
+export const passportOptions: IAuthModuleOptions = {
+	defaultStrategy: 'jwt',
+	session: false
+};
 
 export const mailerOptions: MailerOptions = {
 	transport: {
@@ -119,5 +131,35 @@ export const mailerOptions: MailerOptions = {
 	},
 	defaults: {
 		from: G_MAIL_ACCOUNT
+	}
+};
+
+export const validationPipeOptions: ValidationPipeOptions = {
+	transform: true,
+	exceptionFactory: (errors: ValidationError[]) => {
+		return new UserInputError('VALIDATION_ERROR', {
+			invalidArgs: errors
+		});
+	}
+};
+
+export const sessionCookieName = '_ss';
+
+const sessionStore =
+	process.env.NODE_ENV === 'development'
+		? new MemoryStore()
+		: new MongoStore({ mongoUrl: dbUri[process.env.NODE_ENV] });
+
+export const sessionOptions: SessionOptions = {
+	name: "sid?'",
+	secret: process.env.SESSION_SECRET,
+	resave: false,
+	saveUninitialized: true,
+	unset: 'destroy',
+	store: sessionStore,
+	cookie: {
+		httpOnly: true,
+		maxAge: 120 * 60000,
+		secure: false
 	}
 };

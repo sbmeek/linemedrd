@@ -21,7 +21,7 @@ export class UserService {
 		return this.userModel.find({ ...filters }).exec();
 	}
 
-	async getByEmail(email: string): Promise<User> {
+	async getByEmail(email: string): Promise<UserDocument> {
 		return await this.userModel.findOne({ email });
 	}
 
@@ -29,10 +29,9 @@ export class UserService {
 		const newUser = new this.userModel(payload);
 		newUser.password = await newUser.hashPwd(payload.password);
 		newUser.role = newUser.assignRole(payload.role);
-		newUser.save().then((savedUser: UserDocument) => {
-			this.mailService.sendEmailConfirmationCode(origin, savedUser);
-			return savedUser;
-		});
+		const savedUser = await newUser.save();
+		this.mailService.sendEmailConfirmationCode(origin, savedUser);
+		return savedUser;
 	}
 
 	update(payload: UpdateUserInput) {

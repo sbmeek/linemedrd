@@ -5,7 +5,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { Patient } from '../patient/patient.model';
 import { Doctor } from '../doctor/doctor.model';
 import { AppointmentContent } from '../appointment-content/appointment-content.model';
-import { State } from 'app/lib/enums';
+import { States } from 'app/lib/enums';
 
 @ObjectType()
 @Schema({ timestamps: true })
@@ -26,8 +26,8 @@ export class Appointment {
 	issueDate?: Date;
 
 	@Field(() => String)
-	@Prop({ type: State, default: State.PENDING })
-	state?: State | number;
+	@Prop({ type: States, default: States.PENDING })
+	state?: States | number;
 
 	@Field(() => Number)
 	@Prop()
@@ -48,7 +48,26 @@ export class Appointment {
 	@Field(() => Number)
 	@Prop()
 	rating?: number;
+
+	setState: (n: number) => States;
 }
 
 export type AppointmentDocument = Appointment & Document;
 export const AppointmentSchema = SchemaFactory.createForClass(Appointment);
+
+AppointmentSchema.methods.setState = function (n: number): States {
+	switch (n) {
+		case 0:
+			return States.PENDING;
+		case 1:
+			return States.ACCEPTED;
+		case 2:
+			return States.DECLINED;
+		case 3:
+			return States.SUSPENDED;
+		case 4:
+			return States.ARCHIVED;
+		default:
+			return States.PENDING;
+	}
+};
