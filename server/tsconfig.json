@@ -11,7 +11,9 @@
 		"outDir": "./dist",
 		"baseUrl": "./src",
 		"incremental": true,
-		"moduleResolution": "node"
+		"moduleResolution": "node",
+		"esModuleInterop": true
 	},
-	"exclude": ["**/__mock__/*.cjs"]
+	"exclude": ["**/mock/*.cjs", "./dist", "./node_modules"],
+	"include": ["./src"]
 }

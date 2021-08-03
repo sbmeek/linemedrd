@@ -84,6 +84,7 @@ export class User {
 	hashPwd: Function;
 	comparePwd: Function;
 	assignRole: Function;
+	clientSideData: Function;
 }
 
 export type UserDocument = User & Document;
@@ -117,4 +118,9 @@ UserSchema.methods.assignRole = function (n: number): Roles {
 		default:
 			return Roles.PATIENT;
 	}
+};
+
+UserSchema.methods.clientSideData = function () {
+	const user = this as UserDocument;
+	return { username: user.username, email: user.email, role: user.role };
 };

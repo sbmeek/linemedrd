@@ -42,7 +42,6 @@ export class UserResolver {
 		@CurrentUser() user: User,
 		@Args('filters', { nullable: true }) filters?: ListUserInput
 	) {
-		console.log(user);
 		return this.userService.list(filters);
 	}
 
