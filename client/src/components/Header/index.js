@@ -29,8 +29,8 @@ const ContainerLogo = styled.div`
 	max-width: 100%;
 
 	& h1 {
-		color: ${({ theme }) => theme['colors'].white};
-		font-family: ${({ theme }) => theme['fonts'].neufreit};
+		color: ${({ theme }) => theme.colors.white};
+		font-family: ${({ theme }) => theme.fonts.neufreit};
 		margin-left: 2%;
 	}
 `;
@@ -60,7 +60,7 @@ const Header = () => {
 					console.log('menu');
 				}}
 			>
-				<MenuIcon size="1.2rem" color="white" />
+				<MenuIcon size="20" color="white" />
 			</ContentMenu>
 		</ContainerTop>
 	);
