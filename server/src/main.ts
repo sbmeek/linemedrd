@@ -34,6 +34,9 @@ async function bootstrap() {
 			}
 		})
 	);
+	app.enableCors({
+		origin: process.env.CORS_ALLOWED_HOSTS.split(',')
+	});
 	await app.listen(port);
 	console.log(`Running on::${port}`);
 }
