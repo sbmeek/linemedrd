@@ -1,11 +1,12 @@
 import FormSignup from '@/components/formSignup/FormSignup';
-import { Container, Titulo } from './Signup.styles';
+import { Container } from './Signup.styles';
 import Link, { ContentLink } from '@/shared/link/Link';
+import Title from '@/shared/title/Title';
 
 const Signup = () => {
 	return (
 		<Container>
-			<Titulo>Regístrate</Titulo>
+			<Title>Regístrate</Title>
 			<FormSignup />
 			<ContentLink>
 				¿Ya tienes una cuenta?

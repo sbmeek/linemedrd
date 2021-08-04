@@ -1,9 +1,13 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
+function prueba(props) {
+	return props.left ? 'left' : 'center';
+}
+
 export const ContentLink = styled.div`
-	text-align: center;
-	font-size: 1.088rem;
+	text-align: ${prueba};
+	font-size: 1.01rem;
 	${({ theme }) => ({
 		color: theme.colors.green5,
 		fontFamily: theme.fonts.segoeui
@@ -25,7 +29,7 @@ export default styled(Link)`
 		color: ${({ theme }) => theme.calendarNotify.blue2};
 	}
 
-	&:clip {
+	&:active {
 		color: ${({ theme }) => theme.calendarNotify.blue2};
 	}
 `;
