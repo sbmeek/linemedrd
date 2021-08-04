@@ -1,16 +1,16 @@
 import FormLogin from '../../components/formLogin/FormLogin';
-import { Container, LinkBottom, Titulo } from './Login.styles';
-import Link from '@/shared/link';
+import { Container, Titulo } from './Login.styles';
+import Link, { ContentLink } from '@/shared/link/Link';
 
 const Login = () => {
 	return (
 		<Container>
 			<Titulo>Iniciar Sesión</Titulo>
 			<FormLogin />
-			<LinkBottom>
+			<ContentLink>
 				<span>Nuevo en Concitmed</span>
-				<Link to="#?"> Crea una Cuenta</Link>.
-			</LinkBottom>
+				<Link to="./Signup">Crea una Cuenta</Link>.
+			</ContentLink>
 		</Container>
 	);
 };
