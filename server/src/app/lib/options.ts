@@ -1,21 +1,17 @@
 import * as path from 'path';
-import { GqlModuleOptions } from '@nestjs/graphql';
 import { MongooseModuleOptions } from '@nestjs/mongoose';
 import { JwtModuleOptions } from '@nestjs/jwt';
 import { IAuthModuleOptions } from '@nestjs/passport';
 import { ServeStaticModuleOptions } from '@nestjs/serve-static';
-import { GraphQLError } from 'graphql';
 import { Connection } from 'mongoose';
 import { MailerOptions } from '@nestjs-modules/mailer';
-import { ValidationError, ValidationPipeOptions } from '@nestjs/common';
 import { MemoryStore, SessionOptions } from 'express-session';
 import MongoStore from 'connect-mongo';
+import { GqlModuleOptions } from '@nestjs/graphql';
+import { GraphQLError } from 'graphql';
 
-import {
-	dbConnectionHandler,
-	gqlErrorFormatter,
-	validationExceptionHandler
-} from './util';
+import { dbConnectionHandler } from './util';
+import { gqlErrorFormatter } from './handlers/gql.exceptions';
 
 const {
 	G_MAIL_ACCOUNT,
@@ -84,12 +80,6 @@ export const mailerOptions: MailerOptions = {
 	defaults: {
 		from: G_MAIL_ACCOUNT
 	}
-};
-
-export const validationPipeOptions: ValidationPipeOptions = {
-	transform: true,
-	exceptionFactory: (errors: ValidationError[]) =>
-		validationExceptionHandler(errors)
 };
 
 export const sessionCookieName = '_ss';
