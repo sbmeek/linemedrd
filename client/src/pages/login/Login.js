@@ -10,7 +10,7 @@ const Login = () => {
 			<Title>Iniciar Sesión</Title>
 			<FormLogin />
 			<ContentLink>
-				<span>Nuevo en ${appName}</span>
+				<span>Nuevo en {appName}</span>
 				<Link to="./Signup">Crea una Cuenta</Link>.
 			</ContentLink>
 		</Container>
