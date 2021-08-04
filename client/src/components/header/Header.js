@@ -1,10 +1,5 @@
 import MenuIcon from '@/assets/icon/MenuIcon';
-import {
-	ContainerLogo,
-	ContainerTop,
-	ContentMenu,
-	Rombo
-} from './Header.styles';
+import { ContainerLogo, ContainerTop, ContentMenu, Rombo } from './Header.styles';
 
 const Header = () => {
 	return (

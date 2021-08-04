@@ -4,7 +4,7 @@
 		"build": "snowpack build",
 		"cypress:open": "cypress open",
 		"test": "cross-env CYPRESS_BASE_URL=http://localhost:3000 cypress run",
-		"lint": "eslint . --fix"
+		"lint:fix": "eslint --fix ./src"
 	},
 	"dependencies": {
 		"@apollo/client": "^3.3.21",
@@ -24,13 +24,16 @@
 		"@snowpack/plugin-babel": "^2.1.7",
 		"@snowpack/plugin-react-refresh": "^2.5.0",
 		"@snowpack/plugin-webpack": "^3.0.0",
-		"eslint": "^7.31.0",
+		"eslint": "^7.32.0",
+		"eslint-config-prettier": "^8.3.0",
 		"eslint-config-standard": "^16.0.3",
 		"eslint-plugin-import": "^2.23.4",
 		"eslint-plugin-json-format": "^2.0.1",
 		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-prettier": "^3.4.0",
 		"eslint-plugin-promise": "^5.1.0",
 		"eslint-plugin-react": "^7.24.0",
+		"prettier": "^2.3.2",
 		"snowpack": "^3.3.7"
 	},
 	"optionalDependencies": {

@@ -43,8 +43,7 @@ const FormSignup = () => {
 			<CheckboxContainer>
 				<input type="checkbox" name="polity" />
 				<label>
-					Declaro que soy mayor de edad y acepto el{' '}
-					<a href="#?">Aviso de privacidad</a> y los{' '}
+					Declaro que soy mayor de edad y acepto el <a href="#?">Aviso de privacidad</a> y los{' '}
 					<a href="#?">Términos y condiciones</a> de uso de Concitmed.
 				</label>
 			</CheckboxContainer>
