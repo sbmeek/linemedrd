@@ -1,20 +1,16 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header';
+import Header from './components/header/Header';
 import GlobalStyle from './styles/GlobalStyle';
 
-const Home = lazy(() => import('@/pages/Home'));
-const Login = lazy(() => import('@/pages/Login'));
-const Signup = lazy(() => import('@/pages/Signup'));
+const Home = lazy(() => import('@/pages/home/Home'));
+const Login = lazy(() => import('@/pages/login/Login'));
+const Signup = lazy(() => import('@/pages/signup/Signup'));
 const About = lazy(() => import('@/pages/About'));
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
 
-function App(props) {
-	// var IsVisible = props.IsVisible;
-	// IsVisible = true;
-
-	// if (IsVisible) {
+function App() {
 	return (
 		<div>
 			<GlobalStyle />
@@ -54,30 +50,6 @@ function App(props) {
 			</Router>
 		</div>
 	);
-	// }
-	// return(
-	// 	<Router>
-	// 		<Suspense fallback={<div>Loading...</div>}>
-	// 			<div className="App">
-
-	// 				<Switch>
-	// 					<Route exact path="/">
-	// 						<Home />
-	// 					</Route>
-	// 					<Route path="/about">
-	// 						<About />
-	// 					</Route>
-	// 					<Route path="/dashboard">
-	// 						<Dashboard />
-	// 					</Route>
-	// 					<Route path="/Login">
-	// 						<Login />
-	// 					</Route>
-	// 				</Switch>
-	// 			</div>
-	// 		</Suspense>
-	// 	</Router>
-	// );
 }
 
 export default App;
