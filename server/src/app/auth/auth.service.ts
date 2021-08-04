@@ -68,81 +68,43 @@ export class AuthService {
 	}
 
 	async verifyEmailConfCode(encToken: string) {
-		try {
-			const tokenObj = this.decryptToken(encToken);
-			const user = await this.userService.getByEmail(tokenObj.em);
-			if (user === null || user === undefined) return { ok: false };
-
-			if (user.codConfEmail === tokenObj.ky) {
-				if (!user.isEmailConfirmed) {
-					await user.updateOne({ $set: { isEmailConfirmed: true } });
-					return { ok: true };
-				} else return { ok: false };
-			} else return { ok: false };
-		} catch (err) {
-			console.log(err);
-			return {
-				ok: false,
-				err:
-					process.env.NODE_ENV === 'development'
-						? err.stack
-						: 'Something went wrong...'
-			};
+		const tokenObj = this.decryptToken(encToken);
+		const user = await this.userService.getByEmail(tokenObj.em);
+		if (user === null || user === undefined) return { ok: false };
+		if (user.codConfEmail === tokenObj.ky && !user.isEmailConfirmed) {
+			await user.updateOne({ $set: { isEmailConfirmed: true } });
+			return { ok: true };
 		}
+		return { ok: false };
 	}
 
 	async recoverPwdRequest(email: string, origin: string) {
-		try {
-			const user = await this.userService.getByEmail(email);
-			if (user === null || user === undefined)
-				return {
-					ok: false,
-					userNonExistent: true
-				};
-			else {
-				this.mailService.sendEmailRecoverPwd(origin, user);
-				return { ok: true };
-			}
-		} catch (err) {
-			console.log(err);
+		const user = await this.userService.getByEmail(email);
+		if (!user) {
 			return {
 				ok: false,
-				err:
-					process.env.NODE_ENV === 'development'
-						? err.stack
-						: 'Something went wrong...'
+				userNonExistent: true
 			};
 		}
+		this.mailService.sendEmailRecoverPwd(origin, user);
+		return { ok: true };
 	}
 
 	async recoverPwdSetNew(encToken: string, newPwd: string) {
-		try {
-			const tokenObj = this.decryptToken(encToken);
-			const user = await this.userService.getByEmail(tokenObj.em);
+		const tokenObj = this.decryptToken(encToken);
+		const user = await this.userService.getByEmail(tokenObj.em);
+		if (!user) return { ok: false };
 
-			if (user === null || user === undefined) return { ok: false };
-			else {
-				const isTokenOk = user.codRecPwd === tokenObj.ky;
-
-				if (newPwd === null || newPwd === undefined) return { ok: isTokenOk };
-				if (newPwd && isTokenOk) {
-					const pwd = await user.hashPwd(newPwd);
-					await user.updateOne({ $set: { password: pwd, codRecPwd: '-' } });
-					return {
-						ok: true,
-						pwdUpdated: true
-					};
-				} else return { ok: false, pwdUpdated: false };
-			}
-		} catch (err) {
-			console.log(err);
+		const isTokenOk = user.codRecPwd === tokenObj.ky;
+		if (!newPwd) return { ok: isTokenOk };
+		if (newPwd && isTokenOk) {
+			const pwd = await user.hashPwd(newPwd);
+			await user.updateOne({ $set: { password: pwd, codRecPwd: '-' } });
 			return {
-				ok: false,
-				err:
-					process.env.NODE_ENV === 'development'
-						? err.stack
-						: 'Something went wrong...'
+				ok: true,
+				pwdUpdated: true
 			};
 		}
+		return { ok: false, pwdUpdated: false };
 	}
 }
