@@ -1,5 +1,6 @@
 import { ContentInput, CheckboxContainer } from './FormSignup.styles';
 import Submit from '@/shared/submit/Submit';
+import { appName } from '@/constants';
 
 const FormSignup = () => {
 	return (
@@ -46,7 +47,7 @@ const FormSignup = () => {
 				<label>
 					Declaro que soy mayor de edad y acepto el{' '}
 					<a href="#?">Aviso de privacidad</a> y los{' '}
-					<a href="#?">Términos y condiciones</a> de uso de Concitmed.
+					<a href="#?">Términos y condiciones</a> de uso de {appName}.
 				</label>
 			</CheckboxContainer>
 			<Submit type="submit">Regístrate</Submit>

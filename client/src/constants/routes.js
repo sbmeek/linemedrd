@@ -12,6 +12,10 @@ const routes = {
 	signup: {
 		path: '/Signup',
 		component: asyncComponent(() => import('@/pages/signup/Signup'))
+	},
+	homeWithoutHeader: {
+		path: '/HomeWithoutHeader',
+		component: asyncComponent(() => import('@/pages/home/Home'))
 	}
 };
 

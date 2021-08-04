@@ -1,12 +1,23 @@
+import { useLocation } from 'react-router-dom';
+import { appName } from '@/constants';
 import MenuIcon from '@/assets/icon/MenuIcon';
-import { ContainerLogo, ContainerTop, ContentMenu, Rombo } from './Header.styles';
+import {
+	ContainerLogo,
+	ContainerTop,
+	ContentMenu,
+	Rombo
+} from './Header.styles';
+
+const dontShowIn = ['/HomeWithoutHeader'];
 
 const Header = () => {
+	const location = useLocation();
+	if (dontShowIn.indexOf(location.pathname) !== -1) return null;
 	return (
 		<ContainerTop>
 			<ContainerLogo>
 				<Rombo></Rombo>
-				<h1>Concitmed</h1>
+				<h1>{appName}</h1>
 			</ContainerLogo>
 			<ContentMenu
 				onClick={() => {
