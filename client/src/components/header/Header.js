@@ -1,12 +1,18 @@
+import { appName } from '@/constants';
 import MenuIcon from '@/assets/icon/MenuIcon';
-import { ContainerLogo, ContainerTop, ContentMenu, Rombo } from './Header.styles';
+import {
+	ContainerLogo,
+	ContainerTop,
+	ContentMenu,
+	Rombo
+} from './Header.styles';
 
 const Header = () => {
 	return (
 		<ContainerTop>
 			<ContainerLogo>
 				<Rombo></Rombo>
-				<h1>Concitmed</h1>
+				<h1>{appName}</h1>
 			</ContainerLogo>
 			<ContentMenu
 				onClick={() => {
