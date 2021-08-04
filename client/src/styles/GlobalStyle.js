@@ -1,11 +1,11 @@
 import { Global, css } from '@emotion/react';
 import { Fragment } from 'react';
 
-import NeufreitExtraBold from '../assets/fonts/NeufreitExtraBold.otf';
-import SegoeUI from '../assets/fonts/SegoeUI.ttf';
-import SegoeUIBold from '../assets/fonts/SegoeUIBold.ttf';
-import SegoeUIBoldItalic from '../assets/fonts/SegoeUIBoldItalic.ttf';
-import SegoeUIItalic from '../assets/fonts/SegoeUIItalic.ttf';
+import NeufreitExtraBold from '@/assets/fonts/NeufreitExtraBold.otf';
+import SegoeUI from '@/assets/fonts/SegoeUI.ttf';
+import SegoeUIBold from '@/assets/fonts/SegoeUIBold.ttf';
+import SegoeUIBoldItalic from '@/assets/fonts/SegoeUIBoldItalic.ttf';
+import SegoeUIItalic from '@/assets/fonts/SegoeUIItalic.ttf';
 
 const GlobalStyle = () => {
 	return (

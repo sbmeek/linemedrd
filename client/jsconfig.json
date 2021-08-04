@@ -11,5 +11,9 @@
 			"@/*": ["src/*"]
 		}
 	},
+	"typeAcquisition": {
+		"enable": true,
+		"include": ["./global.d.ts"]
+	},
 	"exclude": ["node_modules", "dist", "docs"]
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ThemeContext from '../../context/theme/themeContext';
+import ThemeContext from '@/context/theme/themeContext';
 
 const ThemeState = ({ children }) => {
 	const [theme, setTheme] = useState(false);
