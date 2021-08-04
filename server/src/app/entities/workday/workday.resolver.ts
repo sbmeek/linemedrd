@@ -43,10 +43,11 @@ export class WorkdayResolver {
 	}
 
 	@ResolveField(() => UserAdress)
-	async w_adress(
+	async adress(
 		@Parent() workday: WorkdayDocument,
 		@Args('populate') populate: boolean
 	) {
+		console.log(UserAdress.name);
 		if (populate)
 			await workday
 				.populate({
@@ -58,7 +59,7 @@ export class WorkdayResolver {
 	}
 
 	@ResolveField(() => Days)
-	async w_days(
+	async days(
 		@Parent() workday: WorkdayDocument,
 		@Args('populate') populate: boolean
 	) {
