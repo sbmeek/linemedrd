@@ -53,12 +53,8 @@ export class MailService {
 					subject: 'Bienvenido a LineMedRD',
 					html: verifyEmailHtml(user.name, user.lastname, href, encToken)
 				})
-				.then(success => {
-					console.log(success);
-				})
-				.catch(err => {
-					console.log(err);
-				});
+				.then(s => console.log(s))
+				.catch(err => console.log(err));
 		});
 	}
 
@@ -71,12 +67,8 @@ export class MailService {
 					subject: 'Contraseña de LineMedRD',
 					html: recoverPwdHtml(user.name, href, encToken)
 				})
-				.then(success => {
-					console.log(success);
-				})
-				.catch(err => {
-					console.log(err);
-				});
+				.then(s => console.log(s))
+				.catch(err => console.log(err));
 		});
 	}
 }

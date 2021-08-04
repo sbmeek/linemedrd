@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 import { NestFactory } from '@nestjs/core';
-import session from 'express-session';
 import { ValidationPipe } from '@nestjs/common';
+import session from 'express-session';
 
 import { AppModule } from './app/app.module';
 import {

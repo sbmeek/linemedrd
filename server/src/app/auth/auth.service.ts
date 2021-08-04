@@ -83,7 +83,10 @@ export class AuthService {
 			console.log(err);
 			return {
 				ok: false,
-				err: process.env.NODE_ENV === 'development' ? err.stack : 'Bobo'
+				err:
+					process.env.NODE_ENV === 'development'
+						? err.stack
+						: 'Something went wrong...'
 			};
 		}
 	}
@@ -104,7 +107,10 @@ export class AuthService {
 			console.log(err);
 			return {
 				ok: false,
-				err: process.env.NODE_ENV === 'development' ? err.stack : 'Bobo'
+				err:
+					process.env.NODE_ENV === 'development'
+						? err.stack
+						: 'Something went wrong...'
 			};
 		}
 	}
@@ -132,7 +138,10 @@ export class AuthService {
 			console.log(err);
 			return {
 				ok: false,
-				err: process.env.NODE_ENV === 'development' ? err.stack : 'Bobo'
+				err:
+					process.env.NODE_ENV === 'development'
+						? err.stack
+						: 'Something went wrong...'
 			};
 		}
 	}

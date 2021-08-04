@@ -10,22 +10,20 @@ import { Schema as MSchema } from 'mongoose';
 import { UseGuards } from '@nestjs/common';
 
 import { Roles } from 'app/lib/enums';
+import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
+import { RolesGuard } from 'app/auth/guard/roles.guard';
+import { RequiredRole } from 'app/lib/decorators/roles.decorator';
 import { User, UserDocument } from './user.model';
 import { CreateUserInput, UpdateUserInput, ListUserInput } from './user.input';
 import { UserService } from './user.service';
 import { UserAdress } from '../user-adress/user-adress.model';
 import { UserPreferences } from '../user-preferences/user-preferences.model';
-import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
-import { RolesGuard } from 'app/auth/guard/roles.guard';
-//import { CurrentUser } from 'app/lib/decorators/currentUser.decorator';
-import { RequiredRole } from 'app/lib/decorators/roles.decorator';
 
 @Resolver(() => User)
 export class UserResolver {
 	constructor(private userService: UserService) {}
 
 	@Query(() => User)
-	//@UseGuards(GqlAuthGuard)
 	async user(@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId) {
 		return this.userService.getById(_id);
 	}
