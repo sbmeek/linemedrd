@@ -1,6 +1,12 @@
-import { Anclaje, Input, Link, Submit } from './FormLogin.styles';
+import Link, { ContentLink } from '@/shared/link/Link';
+import Submit from '@/shared/submit/Submit';
+import { Input } from './FormLogin.styles';
 
 const FormLogin = () => {
+	const align = {
+		left: true
+	};
+
 	return (
 		<form>
 			<div>
@@ -23,9 +29,9 @@ const FormLogin = () => {
 					required
 				/>
 			</div>
-			<Link>
-				<Anclaje href="#?	">¿Olvidaste la contraseña?</Anclaje>
-			</Link>
+			<ContentLink {...align}>
+				<Link to="#?">¿Olvidaste la contraseña?</Link>
+			</ContentLink>
 			<Submit type="submit" aria-label="Iniciar Sesión">
 				Iniciar Sesión
 			</Submit>

@@ -1,14 +1,17 @@
 import FormSignup from '@/components/formSignup/FormSignup';
-import { Container, Titulo, LinkBottom, Anclaje } from './Signup.styles';
+import { Container } from './Signup.styles';
+import Link, { ContentLink } from '@/shared/link/Link';
+import Title from '@/shared/title/Title';
 
 const Signup = () => {
 	return (
 		<Container>
-			<Titulo>Regístrate</Titulo>
+			<Title>Regístrate</Title>
 			<FormSignup />
-			<LinkBottom>
-				¿Ya tienes una cuenta? <Anclaje href="#?">Iniciar Sesión</Anclaje>
-			</LinkBottom>
+			<ContentLink>
+				¿Ya tienes una cuenta?
+				<Link to="/Login">Iniciar Sesión</Link>
+			</ContentLink>
 		</Container>
 	);
 };

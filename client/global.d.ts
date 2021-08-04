@@ -6,6 +6,8 @@ declare module '@emotion/react' {
 	}
 }
 
+declare module '@emotion/styled' {}
+
 declare global {
 	declare module '*.ttf';
 	declare module '*.otf';

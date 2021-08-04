@@ -1,5 +1,6 @@
+import { ContentInput, CheckboxContainer } from './FormSignup.styles';
+import Submit from '@/shared/submit/Submit';
 import { appName } from '@/constants';
-import { ContentInput, CheckboxContainer, Submit } from './FormSignup.styles';
 
 const FormSignup = () => {
 	return (
