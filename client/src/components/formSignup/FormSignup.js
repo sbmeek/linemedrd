@@ -1,3 +1,4 @@
+import { appName } from '@/constants';
 import { ContentInput, CheckboxContainer, Submit } from './FormSignup.styles';
 
 const FormSignup = () => {
@@ -43,8 +44,9 @@ const FormSignup = () => {
 			<CheckboxContainer>
 				<input type="checkbox" name="polity" />
 				<label>
-					Declaro que soy mayor de edad y acepto el <a href="#?">Aviso de privacidad</a> y los{' '}
-					<a href="#?">Términos y condiciones</a> de uso de Concitmed.
+					Declaro que soy mayor de edad y acepto el{' '}
+					<a href="#?">Aviso de privacidad</a> y los{' '}
+					<a href="#?">Términos y condiciones</a> de uso de {appName}.
 				</label>
 			</CheckboxContainer>
 			<Submit type="submit">Regístrate</Submit>
