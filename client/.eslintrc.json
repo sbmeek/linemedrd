@@ -4,7 +4,7 @@
 		"es2021": true,
 		"node": true
 	},
-	"extends": ["plugin:react/recommended", "standard"],
+	"extends": ["plugin:react/recommended", "standard", "prettier", "plugin:prettier/recommended"],
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
@@ -12,17 +12,13 @@
 		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
-	"plugins": ["react", "json-format"],
+	"plugins": ["react", "json-format", "prettier"],
 	"rules": {
-		"no-console": "off",
-		"no-unused-vars": "off",
-		"no-tabs": "off",
+		"prettier/prettier": "error",
+		"arrow-body-style": "off",
+		"prefer-arrow-callback": "off",
 		"react/prop-types": "off",
-		"semi": ["error", "always"],
-		"indent": "off",
-		"react/react-in-jsx-scope": "off",
-		"space-before-function-paren": ["error", "always"],
-		"no-undef": "off"
+		"react/react-in-jsx-scope": "off"
 	},
 	"settings": {
 		"react": {
