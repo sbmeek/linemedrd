@@ -4,11 +4,11 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { jwtOptions, passportOptions } from 'app/lib/options';
 import { UserModule } from 'app/entities/user/user.module';
+import { MailModule } from 'app/mail/mail.module';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
-import { MailModule } from 'app/mail/mail.module';
 
 @Module({
 	imports: [

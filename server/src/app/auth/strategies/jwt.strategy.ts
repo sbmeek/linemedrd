@@ -6,7 +6,7 @@ import { UserService } from 'app/entities/user/user.service';
 import { sessionCookieName } from 'app/lib/options';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwtStrat') {
 	constructor(private readonly userService: UserService) {
 		super({
 			jwtFromRequest: ExtractJwt.fromExtractors([
