@@ -1,19 +1,37 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import {
+	Args,
+	Mutation,
+	Parent,
+	Query,
+	ResolveField,
+	Resolver
+} from '@nestjs/graphql';
 import { Schema as MSchema } from 'mongoose';
+import { UseGuards } from '@nestjs/common';
 
-import { AppointmentContent } from './appointment-content.model';
+import { Roles } from 'app/lib/enums';
+import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
+import { RolesGuard } from 'app/auth/guard/roles.guard';
+import { RequiredRole } from 'app/lib/decorators/roles.decorator';
+import {
+	ApmtContentDocument,
+	AppointmentContent
+} from './appointment-content.model';
 import {
 	CreateApmtContentInput,
 	UpdateApmtContentInput,
 	ListApmtContentInput
 } from './appointment-content.input';
 import { ApmtContentService } from './appointment-content.service';
+import { Specialties } from '../specialties/specialties.model';
 
 @Resolver(() => AppointmentContent)
 export class AppointmentContentResolver {
 	constructor(private apmtContentService: ApmtContentService) {}
 
 	@Query(() => AppointmentContent)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async apmtContent(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
@@ -21,6 +39,8 @@ export class AppointmentContentResolver {
 	}
 
 	@Query(() => [AppointmentContent])
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async apmtContents(
 		@Args('filters', { nullable: true }) filters: ListApmtContentInput
 	) {
@@ -28,19 +48,40 @@ export class AppointmentContentResolver {
 	}
 
 	@Mutation(() => AppointmentContent)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async createApmtContent(@Args('payload') payload: CreateApmtContentInput) {
 		return this.apmtContentService.create(payload);
 	}
 
 	@Mutation(() => AppointmentContent)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async updateApmtContent(@Args('payload') payload: UpdateApmtContentInput) {
 		return this.apmtContentService.update(payload);
 	}
 
 	@Mutation(() => AppointmentContent)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async deleteApmtContent(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
 		return this.apmtContentService.delete(_id);
+	}
+
+	@ResolveField(() => Specialties)
+	async specialtyId(
+		@Parent() apmtContent: ApmtContentDocument,
+		@Args('populate') populate: boolean
+	) {
+		if (populate)
+			await apmtContent
+				.populate({
+					path: 'specialties',
+					model: Specialties.name
+				})
+				.execPopulate();
+		return apmtContent.specialtyId;
 	}
 }
