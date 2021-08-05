@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloProvider } from '@apollo/client';
 import { client } from './client';
@@ -7,12 +7,16 @@ import { data } from './styles/Theme';
 import App from './App';
 import ThemeState from './context/theme/themeState';
 
+import './i18next';
+
 ReactDOM.render(
 	<React.StrictMode>
 		<ApolloProvider client={client}>
 			<ThemeState>
 				<Main theme={data}>
-					<App />
+					<Suspense fallback={<div>Loading...</div>}>
+						<App />
+					</Suspense>
 				</Main>
 			</ThemeState>
 		</ApolloProvider>
