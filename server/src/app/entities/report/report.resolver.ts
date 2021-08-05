@@ -7,7 +7,12 @@ import {
 	Resolver
 } from '@nestjs/graphql';
 import { Schema as MSchema } from 'mongoose';
+import { UseGuards } from '@nestjs/common';
 
+import { Roles } from 'app/lib/enums';
+import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
+import { RolesGuard } from 'app/auth/guard/roles.guard';
+import { RequiredRole } from 'app/lib/decorators/roles.decorator';
 import { Report, ReportDocument } from './report.model';
 import {
 	CreateReportInput,
@@ -23,6 +28,8 @@ export class ReportResolver {
 	constructor(private reportService: ReportService) {}
 
 	@Query(() => Report)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async report(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
@@ -30,21 +37,29 @@ export class ReportResolver {
 	}
 
 	@Query(() => [Report])
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async reports(@Args('filters', { nullable: true }) filters: ListReportInput) {
 		return this.reportService.list(filters);
 	}
 
 	@Mutation(() => Report)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async createReport(@Args('payload') payload: CreateReportInput) {
 		return this.reportService.create(payload);
 	}
 
 	@Mutation(() => Report)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async updateReport(@Args('payload') payload: UpdateReportInput) {
 		return this.reportService.update(payload);
 	}
 
 	@Mutation(() => Report)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async deleteReport(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {

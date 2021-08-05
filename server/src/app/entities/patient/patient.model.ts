@@ -12,7 +12,7 @@ export class Patient {
 
 	@Field(() => User)
 	@Prop({ required: true, type: MSchema.Types.ObjectId, ref: User.name })
-	UserId: MSchema.Types.ObjectId | User;
+	userId: MSchema.Types.ObjectId | User;
 
 	@Field(() => [String])
 	@Prop({ type: [String], nullable: true })

@@ -16,7 +16,7 @@ client
 	.query({
 		query: gql`
 			query {
-				drs(filters: {}) {
+				doctors(filters: {}) {
 					_id
 					user(populate: true) {
 						_id

@@ -78,7 +78,7 @@ export class AppointmentContentResolver {
 		if (populate)
 			await apmtContent
 				.populate({
-					path: 'specialties',
+					path: 'specialtyId',
 					model: Specialties.name
 				})
 				.execPopulate();

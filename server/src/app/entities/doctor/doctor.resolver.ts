@@ -7,7 +7,13 @@ import {
 	Resolver
 } from '@nestjs/graphql';
 import { Schema as MSchema } from 'mongoose';
+import { UseGuards } from '@nestjs/common';
 
+import { Roles } from 'app/lib/enums';
+import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
+import { RolesGuard } from 'app/auth/guard/roles.guard';
+import { RequiredRole } from 'app/lib/decorators/roles.decorator';
+import { Public } from 'app/lib/decorators/public.decorator';
 import { Doctor, DoctorDocument } from './doctor.model';
 import {
 	CreateDoctorInput,
@@ -24,26 +30,38 @@ export class DoctorResolver {
 	constructor(private drService: DoctorService) {}
 
 	@Query(() => Doctor)
-	async dr(@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId) {
+	@Public()
+	async doctor(
+		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
+	) {
 		return this.drService.getById(_id);
 	}
 
 	@Query(() => [Doctor])
-	async drs(@Args('filters', { nullable: true }) filters?: ListDoctorInput) {
+	@Public()
+	async doctors(
+		@Args('filters', { nullable: true }) filters?: ListDoctorInput
+	) {
 		return this.drService.list(filters);
 	}
 
 	@Mutation(() => Doctor)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.DOCTOR, Roles.ADMIN)
 	async createDr(@Args('payload') payload: CreateDoctorInput) {
 		return this.drService.create(payload);
 	}
 
 	@Mutation(() => Doctor)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.DOCTOR, Roles.ADMIN)
 	async updateDr(@Args('payload') payload: UpdateDoctorInput) {
 		return this.drService.update(payload);
 	}
 
 	@Mutation(() => Doctor)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.DOCTOR, Roles.ADMIN)
 	async deleteDr(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
