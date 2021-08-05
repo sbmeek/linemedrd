@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Header from './components/header/Header';
@@ -6,13 +7,25 @@ import GlobalStyle from './styles/GlobalStyle';
 import './App.css';
 
 function App() {
+	const { t, i18n } = useTranslation();
+	function handleClick(lang) {
+		i18n.changeLanguage(lang);
+	}
 	return (
 		<div>
 			<GlobalStyle />
 			<Router>
 				<Suspense fallback={<div>Loading...</div>}>
+					<Header />
 					<div className="App">
-						<Header />
+						<div>
+							<button onClick={() => handleClick('es')}>
+								{t('button.spanish')}
+							</button>
+							<button onClick={() => handleClick('en')}>
+								{t('button.english')}
+							</button>
+						</div>
 						<ul>
 							{Object.entries(routes).map(([key, route]) => (
 								<li key={route.path}>
