@@ -7,7 +7,12 @@ import {
 	Resolver
 } from '@nestjs/graphql';
 import { Schema as MSchema } from 'mongoose';
+import { UseGuards } from '@nestjs/common';
 
+import { Roles } from 'app/lib/enums';
+import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
+import { RolesGuard } from 'app/auth/guard/roles.guard';
+import { RequiredRole } from 'app/lib/decorators/roles.decorator';
 import { Appointment, AppointmentDocument } from './appointment.model';
 import {
 	CreateAppointmentInput,
@@ -22,6 +27,8 @@ export class AppointmentResolver {
 	constructor(private apmtService: AppointmentService) {}
 
 	@Query(() => Appointment)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async appointment(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
@@ -29,6 +36,8 @@ export class AppointmentResolver {
 	}
 
 	@Query(() => [Appointment])
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async appointments(
 		@Args('filters', { nullable: true }) filters: ListAppointmentInput
 	) {
@@ -36,16 +45,22 @@ export class AppointmentResolver {
 	}
 
 	@Mutation(() => Appointment)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async createAppointment(@Args('payload') payload: CreateAppointmentInput) {
 		return this.apmtService.create(payload);
 	}
 
 	@Mutation(() => Appointment)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async updateAppointment(@Args('payload') payload: UpdateAppointmentInput) {
 		return this.apmtService.update(payload);
 	}
 
 	@Mutation(() => Appointment)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.PATIENT, Roles.ADMIN)
 	async deleteAppointment(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
