@@ -7,7 +7,13 @@ import {
 	Resolver
 } from '@nestjs/graphql';
 import { Schema as MSchema } from 'mongoose';
+import { UseGuards } from '@nestjs/common';
 
+import { Roles } from 'app/lib/enums';
+import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
+import { RolesGuard } from 'app/auth/guard/roles.guard';
+import { RequiredRole } from 'app/lib/decorators/roles.decorator';
+import { Public } from 'app/lib/decorators/public.decorator';
 import { Workday, WorkdayDocument } from './workday.model';
 import { CreateWorkdayInput, UpdateWorkdayInput } from './workday.input';
 import { WorkdayService } from './workday.service';
@@ -19,6 +25,7 @@ export class WorkdayResolver {
 	constructor(private workdayService: WorkdayService) {}
 
 	@Query(() => Workday)
+	@Public()
 	async workday(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
@@ -26,16 +33,22 @@ export class WorkdayResolver {
 	}
 
 	@Mutation(() => Workday)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.DOCTOR, Roles.ADMIN)
 	async createWorkday(@Args('payload') payload: CreateWorkdayInput) {
 		return this.workdayService.create(payload);
 	}
 
 	@Mutation(() => Workday)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.DOCTOR, Roles.ADMIN)
 	async updateWorkday(@Args('payload') payload: UpdateWorkdayInput) {
 		return this.workdayService.update(payload);
 	}
 
 	@Mutation(() => Workday)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.DOCTOR, Roles.ADMIN)
 	async deleteWorkday(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
