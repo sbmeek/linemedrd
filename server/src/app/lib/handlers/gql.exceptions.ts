@@ -2,12 +2,6 @@ import { GraphQLError, GraphQLFormattedError } from 'graphql';
 import { ValidationError, ValidationPipeOptions } from '@nestjs/common';
 import { UserInputError } from 'apollo-server-express';
 
-export const validationExceptionHandler = (errors: ValidationError[]) => {
-	return new UserInputError('VALIDATION_ERROR', {
-		invalidArgs: errors
-	});
-};
-
 export const gqlErrorFormatter = (error: GraphQLError) => {
 	if (error.message === 'VALIDATION_ERROR') {
 		const extensions = {
@@ -35,6 +29,12 @@ export const gqlErrorFormatter = (error: GraphQLError) => {
 		return graphQLFormattedError;
 	}
 	return error;
+};
+
+const validationExceptionHandler = (errors: ValidationError[]) => {
+	return new UserInputError('VALIDATION_ERROR', {
+		invalidArgs: errors
+	});
 };
 
 export const validationPipeOptions: ValidationPipeOptions = {

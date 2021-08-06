@@ -5,6 +5,7 @@ import {
 	HttpException,
 	HttpStatus
 } from '@nestjs/common';
+
 import { logToFile } from '../util';
 
 @Catch()
@@ -21,8 +22,8 @@ export class AllExceptionsFilter implements ExceptionFilter {
 				: HttpStatus.INTERNAL_SERVER_ERROR;
 
 		response.status(status).json({
-			statusCode: status,
 			ok: false,
+			statusCode: status,
 			err:
 				process.env.NODE_ENV === 'development'
 					? exception.stack

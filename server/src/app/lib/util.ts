@@ -31,7 +31,7 @@ export const dbConnectionHandler = (conn: Promise<Connection>) => {
 	return conn;
 };
 
-export const logToFile = async err => {
+export const logToFile = async (err: { stack: any }) => {
 	console.error(err);
 	const logsDir = 'logs';
 	const logsDirPath = path.join(process.cwd(), logsDir);
