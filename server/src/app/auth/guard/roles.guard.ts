@@ -25,6 +25,8 @@ export class RolesGuard extends AuthGuard('jwtStrat') implements CanActivate {
 		]);
 		if (!roles || isPublic) return true;
 		const user = context.getContext().req.user as User;
+
+		if (user.role === Roles.ADMIN) return true;
 		return roles.indexOf(user.role as Roles) !== -1;
 	}
 }

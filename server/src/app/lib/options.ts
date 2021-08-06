@@ -1,14 +1,14 @@
 import * as path from 'path';
 import { MongooseModuleOptions } from '@nestjs/mongoose';
+import { GqlModuleOptions } from '@nestjs/graphql';
 import { JwtModuleOptions } from '@nestjs/jwt';
 import { IAuthModuleOptions } from '@nestjs/passport';
 import { ServeStaticModuleOptions } from '@nestjs/serve-static';
-import { Connection } from 'mongoose';
 import { MailerOptions } from '@nestjs-modules/mailer';
-import { MemoryStore, SessionOptions } from 'express-session';
-import MongoStore from 'connect-mongo';
-import { GqlModuleOptions } from '@nestjs/graphql';
 import { GraphQLError } from 'graphql';
+import { Connection } from 'mongoose';
+import MongoStore from 'connect-mongo';
+import { MemoryStore, SessionOptions } from 'express-session';
 
 import { dbConnectionHandler } from './util';
 import { gqlErrorFormatter } from './handlers/gql.exceptions';
