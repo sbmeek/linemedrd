@@ -1,8 +1,16 @@
-import { ContentInput, CheckboxContainer } from './FormSignup.styles';
+import { useState } from 'react';
+import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
+
+import { CheckboxContainer } from './FormSignup.styles';
 import Submit from '@/shared/submit/Submit';
 import { appName } from '@/constants';
+import Link from '@/shared/link/Link';
+import ContentInput from '@/shared/inputForm/InputForm';
+import ContentInputIcon, { Icon } from '@/shared/inputIconForm/InputIconForm';
 
 const FormSignup = () => {
+	const [passwordIcon, setPasswordIcon] = useState(false);
+
 	return (
 		<form>
 			<ContentInput>
@@ -30,10 +38,10 @@ const FormSignup = () => {
 					required
 				/>
 			</ContentInput>
-			<ContentInput>
+			<ContentInputIcon>
 				<label htmlFor="signup-password">Contraseña</label>
 				<input
-					type="text"
+					type="password"
 					name="signupPassword"
 					aria-label="Ingresar contraseña"
 					placeholder="Ingresar contraseña"
@@ -41,14 +49,18 @@ const FormSignup = () => {
 					id="signup-password"
 					required
 				/>
-			</ContentInput>
-			<CheckboxContainer>
-				<input type="checkbox" name="polity" />
-				<label>
+				<Icon onClick={() => setPasswordIcon(!passwordIcon)}>
+					{passwordIcon ? <IoIosEye /> : <IoIosEyeOff />}
+				</Icon>
+			</ContentInputIcon>
+			<CheckboxContainer htmlFor="polity">
+				<input type="checkbox" name="polity" id="polity" />
+
+				<span>
 					Declaro que soy mayor de edad y acepto el{' '}
-					<a href="#?">Aviso de privacidad</a> y los{' '}
-					<a href="#?">Términos y condiciones</a> de uso de {appName}.
-				</label>
+					<Link to="#">Aviso de privacidad</Link> y los{' '}
+					<Link to="#">Términos y condiciones</Link> de uso de {appName}.
+				</span>
 			</CheckboxContainer>
 			<Submit type="submit">Regístrate</Submit>
 		</form>

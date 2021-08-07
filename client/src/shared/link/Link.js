@@ -17,7 +17,6 @@ export const ContentLink = styled.div`
 export default styled(Link)`
 	text-decoration: none;
 	font-size: 1rem;
-	margin-left: 0.2rem;
 	${({ theme }) => ({
 		fontFamily: theme.fonts.segoeui,
 		color: theme.calendarNotify.blue1

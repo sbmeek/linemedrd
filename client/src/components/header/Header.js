@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { appName } from '@/constants';
-import MenuIcon from '@/assets/icon/MenuIcon';
+import { FiMenu } from 'react-icons/fi';
 import {
 	ContainerLogo,
 	ContainerTop,
@@ -19,12 +19,17 @@ const Header = () => {
 				<Rombo></Rombo>
 				<h1>{appName}</h1>
 			</ContainerLogo>
+
 			<ContentMenu
 				onClick={() => {
 					console.log('menu');
 				}}
 			>
-				<MenuIcon size="20" color="white" />
+				{/* <TiThMenu size="1.6rem" color="white" /> */}
+				{/* <BsList size="1.6rem" color="white" />
+				<BsDash size="1.6rem" color="white" /> */}
+				<FiMenu size="1.6rem" color="white" />
+				{/* <FiMinus size="1.6rem" color="white" /> */}
 			</ContentMenu>
 		</ContainerTop>
 	);

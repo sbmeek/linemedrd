@@ -1,6 +1,6 @@
 import Link, { ContentLink } from '@/shared/link/Link';
 import Submit from '@/shared/submit/Submit';
-import { Input } from './FormLogin.styles';
+import ContentInput from '@/shared/inputForm/InputForm';
 
 const FormLogin = () => {
 	const align = {
@@ -9,8 +9,8 @@ const FormLogin = () => {
 
 	return (
 		<form>
-			<div>
-				<Input
+			<ContentInput>
+				<input
 					type="text"
 					name="name"
 					placeholder="Ingresar correo electrónico o nombre de usuario"
@@ -18,9 +18,9 @@ const FormLogin = () => {
 					aria-required="true"
 					required
 				/>
-			</div>
-			<div>
-				<Input
+			</ContentInput>
+			<ContentInput>
+				<input
 					type="password"
 					name="password"
 					placeholder="Ingresar Contraseña"
@@ -28,7 +28,7 @@ const FormLogin = () => {
 					aria-required="true"
 					required
 				/>
-			</div>
+			</ContentInput>
 			<ContentLink {...align}>
 				<Link to="#?">¿Olvidaste la contraseña?</Link>
 			</ContentLink>
