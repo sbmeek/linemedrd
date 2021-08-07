@@ -1,15 +1,21 @@
+import { useState } from 'react';
+
 import Link, { ContentLink } from '@/shared/link/Link';
 import Submit from '@/shared/submit/Submit';
 import ContentInput from '@/shared/inputForm/InputForm';
+import ContentInputIcon, { Icon } from '@/shared/inputIconForm/InputIconForm';
+import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
 
 const FormLogin = () => {
+	const [passwordIcon, setPasswordIcon] = useState(true);
+
 	const align = {
 		left: true
 	};
 
 	return (
 		<form>
-			<ContentInput>
+			<ContentInput {...{ login: true }}>
 				<input
 					type="text"
 					name="name"
@@ -19,16 +25,22 @@ const FormLogin = () => {
 					required
 				/>
 			</ContentInput>
-			<ContentInput>
+			<ContentInputIcon {...{ login: true }}>
 				<input
-					type="password"
+					type={passwordIcon ? 'password' : 'text'}
 					name="password"
 					placeholder="Ingresar Contraseña"
 					aria-label="Ingresar nombre de usuario o correo"
 					aria-required="true"
 					required
 				/>
-			</ContentInput>
+				<Icon
+					onClick={() => setPasswordIcon(!passwordIcon)}
+					{...{ label: true }}
+				>
+					{passwordIcon ? <IoIosEye /> : <IoIosEyeOff />}
+				</Icon>
+			</ContentInputIcon>
 			<ContentLink {...align}>
 				<Link to="#?">¿Olvidaste la contraseña?</Link>
 			</ContentLink>

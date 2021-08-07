@@ -9,7 +9,7 @@ import ContentInput from '@/shared/inputForm/InputForm';
 import ContentInputIcon, { Icon } from '@/shared/inputIconForm/InputIconForm';
 
 const FormSignup = () => {
-	const [passwordIcon, setPasswordIcon] = useState(false);
+	const [passwordIcon, setPasswordIcon] = useState(true);
 
 	return (
 		<form>
@@ -41,7 +41,7 @@ const FormSignup = () => {
 			<ContentInputIcon>
 				<label htmlFor="signup-password">Contraseña</label>
 				<input
-					type="password"
+					type={passwordIcon ? 'password' : 'text'}
 					name="signupPassword"
 					aria-label="Ingresar contraseña"
 					placeholder="Ingresar contraseña"

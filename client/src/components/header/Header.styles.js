@@ -1,5 +1,14 @@
 import styled from '@emotion/styled';
 
+export const ContentHeader = styled.header`
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-width: 100%;
+	min-height: 100vh;
+`;
+
 export const ContainerTop = styled.nav`
 	display: flex;
 	width: 100%;
@@ -7,6 +16,7 @@ export const ContainerTop = styled.nav`
 	padding: 1rem;
 	border: none;
 	justify-content: space-between;
+	z-index: 4;
 
 	${({ theme }) => ({
 		backgroundColor: theme.colors.green5,
@@ -42,7 +52,7 @@ export const Rombo = styled.div`
 	transform: rotate(45deg);
 `;
 
-export const ContentMenu = styled.div`
+export const ContentIconMenu = styled.div`
 	display: flex;
 	align-items: center;
 `;

@@ -35,28 +35,36 @@ export const CheckboxContainer = styled.label`
 			top: 45%;
 			left: 0%;
 		}
+
+		&::after {
+			content: '';
+			opacity: 0;
+			position: absolute;
+			/* display: none; */
+			top: 46%;
+			left: 0.36rem;
+			display: block;
+			min-height: 0.7rem;
+			min-width: 0.3rem;
+			border-bottom: 0.1rem solid;
+			border-right: 0.1rem solid;
+			transform: rotate(45deg);
+		}
 	}
 
 	& input:checked + span::after {
 		content: '';
-		font-size: 0.8em;
-		display: block;
-		position: absolute;
-		top: 46%;
-		left: 1.5%;
-		min-height: 0.7rem;
-		min-width: 0.4rem;
-		transform: rotate(45deg);
-		border-bottom: 0.1rem solid;
-		border-right: 0.1rem solid;
-		color: ${({ theme }) => theme.calendarNotify.blue1};
+		animation-name: checkContent;
+		animation-timing-function: linear;
+		animation-fill-mode: forwards;
+		animation-duration: 250ms;
 	}
 
 	& input:checked + span::before {
 		animation-name: checkContent;
 		animation-timing-function: ease;
 		animation-fill-mode: forwards;
-		animation-duration: 4ms;
+		animation-duration: 500ms;
 	}
 
 	@keyframes checkContent {

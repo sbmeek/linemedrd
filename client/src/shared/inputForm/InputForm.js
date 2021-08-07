@@ -1,10 +1,12 @@
 import styled from '@emotion/styled';
 
+const marginBottom = props => (props.login ? '0rem' : '0.5rem');
+
 export default styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	margin-bottom: 0.5rem;
+	margin-bottom: ${marginBottom};
 	outline: none;
 
 	& label {
