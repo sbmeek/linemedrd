@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"start": "set PORT=3003 && snowpack dev",
+		"start": "snowpack dev",
 		"build": "snowpack build",
 		"cypress:open": "cypress open",
 		"test": "cross-env CYPRESS_BASE_URL=http://localhost:3000 cypress run",
@@ -14,8 +14,12 @@
 		"cross-env": "^7.0.3",
 		"cypress": "^7.7.0",
 		"graphql": "^15.5.1",
+		"i18next": "^20.3.5",
+		"i18next-browser-languagedetector": "^6.1.2",
+		"i18next-http-backend": "^1.3.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
+		"react-i18next": "^11.11.4",
 		"react-icons": "^4.2.0",
 		"react-router-dom": "^5.2.0"
 	},

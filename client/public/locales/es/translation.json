@@ -1,0 +1,27 @@
+{
+	"button": {
+		"english": "Ingles",
+		"spanish": "Español"
+	},
+	"forms": {
+		"formLogin": {
+			"inputEmail": {
+				"placeholder": "Ingresar correo electrónico o nombre de usuario",
+				"areaLabel": "Ingresar nombre de usuario o correo"
+			},
+			"inputPassword": {
+				"placeholder": "Ingresar contraseña",
+				"areaLabel": "Ingresar contraseña"
+			},
+			"forgetPassword": "Olvidaste tu contraseña",
+			"startSession": "Iniciar sesión"
+		}
+	},
+	"pages": {
+		"login": {
+			"title": "Iniciar Sesión",
+			"firstTime": "Nuevo en ",
+			"createAccount": "Crear una Cuenta"
+		}
+	}
+}

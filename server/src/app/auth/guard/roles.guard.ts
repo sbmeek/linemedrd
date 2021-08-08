@@ -7,7 +7,7 @@ import { User } from 'app/entities/user/user.model';
 import { Roles } from 'app/lib/enums';
 
 @Injectable()
-export class RolesGuard extends AuthGuard('jwt') implements CanActivate {
+export class RolesGuard extends AuthGuard('jwtStrat') implements CanActivate {
 	constructor(private reflector: Reflector) {
 		super();
 	}
@@ -25,6 +25,8 @@ export class RolesGuard extends AuthGuard('jwt') implements CanActivate {
 		]);
 		if (!roles || isPublic) return true;
 		const user = context.getContext().req.user as User;
+
+		if (user.role === Roles.ADMIN) return true;
 		return roles.indexOf(user.role as Roles) !== -1;
 	}
 }

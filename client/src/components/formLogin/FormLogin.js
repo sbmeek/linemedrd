@@ -5,10 +5,11 @@ import Submit from '@/shared/submit/Submit';
 import ContentInput from '@/shared/inputForm/InputForm';
 import ContentInputIcon, { Icon } from '@/shared/inputIconForm/InputIconForm';
 import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
+import { useTranslation } from 'react-i18next';
 
 const FormLogin = () => {
 	const [passwordIcon, setPasswordIcon] = useState(true);
-
+	const { t } = useTranslation();
 	const align = {
 		left: true
 	};
@@ -19,8 +20,8 @@ const FormLogin = () => {
 				<input
 					type="text"
 					name="name"
-					placeholder="Ingresar correo electrónico o nombre de usuario"
-					aria-label="Ingresar nombre de usuario o correo"
+					placeholder={t('forms.formLogin.inputEmail.placeholder')}
+					aria-label={t('forms.formLogin.inputEmail.areaLabel')}
 					aria-required="true"
 					required
 				/>
@@ -29,8 +30,8 @@ const FormLogin = () => {
 				<input
 					type={passwordIcon ? 'password' : 'text'}
 					name="password"
-					placeholder="Ingresar Contraseña"
-					aria-label="Ingresar nombre de usuario o correo"
+					placeholder={t('forms.formLogin.inputEmail.placeholder')}
+					aria-label={t('forms.formLogin.inputEmail.placeholder')}
 					aria-required="true"
 					required
 				/>
@@ -42,10 +43,10 @@ const FormLogin = () => {
 				</Icon>
 			</ContentInputIcon>
 			<ContentLink {...align}>
-				<Link to="#?">¿Olvidaste la contraseña?</Link>
+				<Link to="#?">{t('forms.formLogin.forgetPassword')}</Link>
 			</ContentLink>
-			<Submit type="submit" aria-label="Iniciar Sesión">
-				Iniciar Sesión
+			<Submit type="submit" aria-label={t('forms.formLogin.startSession')}>
+				{t('forms.formLogin.startSession')}
 			</Submit>
 		</form>
 	);

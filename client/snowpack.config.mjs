@@ -12,7 +12,7 @@ export default {
 	routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],
 	devOptions: {
 		open: 'none',
-		port: 3003
+		port: 3002
 	},
 	packageOptions: {
 		knownEntrypoints: ['react/jsx-runtime']

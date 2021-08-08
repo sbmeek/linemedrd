@@ -16,9 +16,17 @@ client
 	.query({
 		query: gql`
 			query {
-				appointments {
+				doctors(filters: {}) {
 					_id
-					issueDate
+					user(populate: true) {
+						_id
+						name
+						lastname
+					}
+					specialties(populate: true) {
+						_id
+						description
+					}
 				}
 			}
 		`

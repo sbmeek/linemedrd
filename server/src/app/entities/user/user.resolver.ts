@@ -13,6 +13,7 @@ import { Roles } from 'app/lib/enums';
 import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
 import { RolesGuard } from 'app/auth/guard/roles.guard';
 import { RequiredRole } from 'app/lib/decorators/roles.decorator';
+import { Public } from 'app/lib/decorators/public.decorator';
 import { User, UserDocument } from './user.model';
 import { CreateUserInput, UpdateUserInput, ListUserInput } from './user.input';
 import { UserService } from './user.service';
@@ -24,6 +25,7 @@ export class UserResolver {
 	constructor(private userService: UserService) {}
 
 	@Query(() => User)
+	@UseGuards(GqlAuthGuard)
 	async user(@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId) {
 		return this.userService.getById(_id);
 	}
@@ -36,6 +38,7 @@ export class UserResolver {
 	}
 
 	@Mutation(() => User)
+	@Public()
 	async createUser(
 		@Args('payload') payload: CreateUserInput,
 		@Args('origin') origin: string
@@ -51,6 +54,7 @@ export class UserResolver {
 
 	@Mutation(() => User)
 	@UseGuards(GqlAuthGuard)
+	@RequiredRole(Roles.ADMIN)
 	async deleteUser(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
@@ -64,7 +68,7 @@ export class UserResolver {
 	) {
 		if (populate)
 			await user
-				.populate({ path: 'useradresses', model: UserAdress.name })
+				.populate({ path: 'userAdress', model: UserAdress.name })
 				.execPopulate();
 		return user.userAdress;
 	}
@@ -77,7 +81,7 @@ export class UserResolver {
 		if (populate)
 			await user
 				.populate({
-					path: 'userpreferences',
+					path: 'userPreferences',
 					model: UserPreferences.name
 				})
 				.execPopulate();

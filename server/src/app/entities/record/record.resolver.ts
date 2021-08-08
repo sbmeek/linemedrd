@@ -7,7 +7,12 @@ import {
 	Resolver
 } from '@nestjs/graphql';
 import { Schema as MSchema } from 'mongoose';
+import { UseGuards } from '@nestjs/common';
 
+import { Roles } from 'app/lib/enums';
+import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
+import { RolesGuard } from 'app/auth/guard/roles.guard';
+import { RequiredRole } from 'app/lib/decorators/roles.decorator';
 import { Record, RecordDocument } from './record.model';
 import {
 	CreateRecordInput,
@@ -24,6 +29,8 @@ export class RecordResolver {
 	constructor(private recordService: RecordService) {}
 
 	@Query(() => Record)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.DOCTOR, Roles.ADMIN)
 	async record(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
@@ -31,21 +38,29 @@ export class RecordResolver {
 	}
 
 	@Query(() => [Record])
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.DOCTOR, Roles.ADMIN)
 	async records(@Args('filters') filters: ListRecordInput) {
 		return this.recordService.list(filters);
 	}
 
 	@Mutation(() => Record)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.DOCTOR, Roles.ADMIN)
 	async createRecord(@Args('payload') payload: CreateRecordInput) {
 		return this.recordService.create(payload);
 	}
 
 	@Mutation(() => Record)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.DOCTOR, Roles.ADMIN)
 	async updateRecord(@Args('payload') payload: UpdateRecordInput) {
 		return this.recordService.update(payload);
 	}
 
 	@Mutation(() => Record)
+	@UseGuards(GqlAuthGuard, RolesGuard)
+	@RequiredRole(Roles.ADMIN)
 	async deleteRecord(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
@@ -68,7 +83,7 @@ export class RecordResolver {
 	}
 
 	@ResolveField(() => Patient)
-	async patientId(
+	async patient(
 		@Parent() record: RecordDocument,
 		@Args('populate') populate: boolean
 	) {
