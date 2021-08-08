@@ -1,20 +1,40 @@
 import styled from '@emotion/styled';
 import { Link as ComponentLink } from 'react-router-dom';
 
+const mostrar = props => {
+	console.log(props);
+	return props.show ? 'animation: mostrarNav 40ms ease-out forwards;' : null;
+};
+
 export const ContentNav = styled.nav`
-	max-width: 100%;
-	width: 100vw;
+	width: 100%;
+	height: 100%;
+	background-color: ${({ theme }) => theme.colors.green4};
+	z-index: 5;
+	transform: translateY(-300rem);
+
+	${mostrar};
+
+	@keyframes mostrarNav {
+		0% {
+			opacity: 0;
+			transform: translateY(inherit);
+		}
+		90% {
+			opacity: 0.8;
+		}
+		95% {
+			opacity: 0.7;
+		}
+		100% {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
 `;
 
-export const SideBarMain = styled.div`
-	background-color: ${props => props.theme.colors.green4};
-	width: inherit;
-	max-height: 80%;
-	z-index: 100;
-`;
-
-export const SideBarTop = styled.div`
-	z-index: 4;
+export const SideTop = styled.div`
+	z-index: 5;
 	background-color: ${({ theme }) => theme.colors.green5};
 	display: flex;
 	align-items: center;
