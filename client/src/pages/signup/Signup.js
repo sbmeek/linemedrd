@@ -9,8 +9,7 @@ const Signup = () => {
 			<Title>Regístrate</Title>
 			<FormSignup />
 			<ContentLink>
-				¿Ya tienes una cuenta?
-				<Link to="/Login">Iniciar Sesión</Link>
+				¿Ya tienes una cuenta? <Link to="/Login">Iniciar Sesión</Link>
 			</ContentLink>
 		</Container>
 	);

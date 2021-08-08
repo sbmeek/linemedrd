@@ -1,32 +1,25 @@
-import { useLocation } from 'react-router-dom';
-import { appName } from '@/constants';
-import MenuIcon from '@/assets/icon/MenuIcon';
-import {
-	ContainerLogo,
-	ContainerTop,
-	ContentMenu,
-	Rombo
-} from './Header.styles';
+// import { useLocation } from 'react-router-dom';
+import SideBarTop from '@/components/menu/sideBarTop/SideBarTop';
+import { useState } from 'react';
+import Sidebar from '@/components/menu/sideBar/SideBar';
+import { ContainerTop, ContentHeader } from './Header.styles';
 
-const dontShowIn = ['/HomeWithoutHeader'];
+// const dontShowIn = ['/HomeWithoutHeader'];
 
 const Header = () => {
-	const location = useLocation();
-	if (dontShowIn.indexOf(location.pathname) !== -1) return null;
+	// const location = useLocation();
+	// if (dontShowIn.indexOf(location.pathname) !== -1) return null;
+	const [showSideBar, setShowSideBar] = useState(false);
+
 	return (
-		<ContainerTop>
-			<ContainerLogo>
-				<Rombo></Rombo>
-				<h1>{appName}</h1>
-			</ContainerLogo>
-			<ContentMenu
-				onClick={() => {
-					console.log('menu');
-				}}
-			>
-				<MenuIcon size="20" color="white" />
-			</ContentMenu>
-		</ContainerTop>
+		<ContentHeader>
+			<div>
+				<ContainerTop>
+					<SideBarTop show={showSideBar} setShow={setShowSideBar} />
+				</ContainerTop>
+			</div>
+			{showSideBar ? <Sidebar show={showSideBar} /> : null}
+		</ContentHeader>
 	);
 };
 

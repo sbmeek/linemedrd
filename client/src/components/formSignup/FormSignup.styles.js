@@ -1,57 +1,82 @@
 import styled from '@emotion/styled';
 
-export const ContentInput = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-
-	margin-bottom: 0.5rem;
-
-	& label {
-		color: ${({ theme }) => theme.colors.green5};
-		font-family: ${({ theme }) => theme.fonts.segoeuiBold};
-		text-align: left;
-		font-size: 0.88rem;
-	}
-
-	& input {
-		width: 100%;
-		max-width: 100%;
-		margin: 0.6rem 0;
-		padding: 0.7rem 0.5rem;
-		border-radius: 0.4rem;
-		border: none;
-		${({ theme }) => ({
-			backgroundColor: theme.colors.green1,
-			color: theme.calendarNotify.blue1,
-			fontFamily: theme.fonts.segoeui
-		})}
-
-		&::placeholder {
-			color: ${({ theme }) => theme.iconPlaceholder.grayTraps1};
-		}
-	}
-`;
-
-export const CheckboxContainer = styled.div`
+export const CheckboxContainer = styled.label`
 	display: flex;
 	justify-content: flex-start;
+	position: relative;
+	cursor: pointer;
 	align-items: center;
-	vertical-align: middle;
 	margin: 0.7rem 0;
+	position: relative;
 
-	& label {
+	& input {
+		display: none;
+		--webkit-appearance: none;
+	}
+
+	& span {
 		text-align: justify;
-		padding: 0rem 0.5rem;
+		padding: 0 1.4rem;
 		cursor: pointer;
 		${({ theme }) => ({
 			color: theme.colors.green5,
 			fontFamily: theme.fonts.segoeui
 		})}
+
+		&::before {
+			content: '';
+			border-radius: 0.2rem;
+			border-color: ${({ theme }) => theme.colors.green5};
+			border-width: 0.1rem;
+			border-style: solid;
+			width: 1rem;
+			height: 1rem;
+			position: absolute;
+			top: 45%;
+			left: 0%;
+		}
+
+		&::after {
+			content: '';
+			opacity: 0;
+			position: absolute;
+			/* display: none; */
+			top: 46%;
+			left: 0.36rem;
+			display: block;
+			min-height: 0.7rem;
+			min-width: 0.3rem;
+			border-bottom: 0.1rem solid;
+			border-right: 0.1rem solid;
+			transform: rotate(45deg);
+		}
 	}
 
-	& input[type='checkbox'] {
-		cursor: pointer;
-		border-color: ${({ theme }) => theme.colors.green5};
+	& input:checked + span::after {
+		content: '';
+		animation-name: checkContent;
+		animation-timing-function: linear;
+		animation-fill-mode: forwards;
+		animation-duration: 250ms;
+	}
+
+	& input:checked + span::before {
+		animation-name: checkContent;
+		animation-timing-function: ease;
+		animation-fill-mode: forwards;
+		animation-duration: 500ms;
+	}
+
+	@keyframes checkContent {
+		from {
+			opacity: 0;
+		}
+		to {
+			${({ theme }) => ({
+				borderColor: theme.calendarNotify.blue1,
+				color: theme.calendarNotify.blue1
+			})}
+			opacity: 1;
+		}
 	}
 `;

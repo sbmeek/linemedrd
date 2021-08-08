@@ -1,9 +1,14 @@
+import { useState } from 'react';
+
 import Link, { ContentLink } from '@/shared/link/Link';
 import Submit from '@/shared/submit/Submit';
-import { Input } from './FormLogin.styles';
+import ContentInput from '@/shared/inputForm/InputForm';
+import ContentInputIcon, { Icon } from '@/shared/inputIconForm/InputIconForm';
+import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
 import { useTranslation } from 'react-i18next';
 
 const FormLogin = () => {
+	const [passwordIcon, setPasswordIcon] = useState(true);
 	const { t } = useTranslation();
 	const align = {
 		left: true
@@ -11,8 +16,8 @@ const FormLogin = () => {
 
 	return (
 		<form>
-			<div>
-				<Input
+			<ContentInput {...{ login: true }}>
+				<input
 					type="text"
 					name="name"
 					placeholder={t('forms.formLogin.inputEmail.placeholder')}
@@ -20,17 +25,23 @@ const FormLogin = () => {
 					aria-required="true"
 					required
 				/>
-			</div>
-			<div>
-				<Input
-					type="password"
+			</ContentInput>
+			<ContentInputIcon {...{ login: true }}>
+				<input
+					type={passwordIcon ? 'password' : 'text'}
 					name="password"
 					placeholder={t('forms.formLogin.inputEmail.placeholder')}
 					aria-label={t('forms.formLogin.inputEmail.placeholder')}
 					aria-required="true"
 					required
 				/>
-			</div>
+				<Icon
+					onClick={() => setPasswordIcon(!passwordIcon)}
+					{...{ label: true }}
+				>
+					{passwordIcon ? <IoIosEye /> : <IoIosEyeOff />}
+				</Icon>
+			</ContentInputIcon>
 			<ContentLink {...align}>
 				<Link to="#?">{t('forms.formLogin.forgetPassword')}</Link>
 			</ContentLink>

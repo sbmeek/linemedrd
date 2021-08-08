@@ -17,13 +17,13 @@ export const ContentLink = styled.div`
 export default styled(Link)`
 	text-decoration: none;
 	font-size: 1rem;
-	margin-left: 0.2rem;
+	transition: color 200ms ease-out;
+	margin: 0%;
+
 	${({ theme }) => ({
 		fontFamily: theme.fonts.segoeui,
 		color: theme.calendarNotify.blue1
 	})};
-
-	transition: color 200ms ease-out;
 
 	&:hover {
 		color: ${({ theme }) => theme.calendarNotify.blue2};

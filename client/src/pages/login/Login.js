@@ -13,10 +13,8 @@ const Login = () => {
 			<Title>{t('pages.login.title')}</Title>
 			<FormLogin />
 			<ContentLink>
-				<span>
-					{t('pages.login.firstTime')} {appName}
-				</span>
-				<Link to="./Signup">{t('pages.login.createAccount')}</Link>.
+				<span>Nuevo en {appName}</span>{' '}
+				<Link to="./Signup">Crea una Cuenta</Link>.
 			</ContentLink>
 		</Container>
 	);
