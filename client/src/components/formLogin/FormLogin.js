@@ -10,9 +10,6 @@ import { useTranslation } from 'react-i18next';
 const FormLogin = () => {
 	const [passwordIcon, setPasswordIcon] = useState(true);
 	const { t } = useTranslation();
-	const align = {
-		left: true
-	};
 
 	return (
 		<form>
@@ -42,7 +39,11 @@ const FormLogin = () => {
 					{passwordIcon ? <IoIosEye /> : <IoIosEyeOff />}
 				</Icon>
 			</ContentInputIcon>
-			<ContentLink {...align}>
+			<ContentLink
+				{...{
+					left: true
+				}}
+			>
 				<Link to="#?">{t('forms.formLogin.forgetPassword')}</Link>
 			</ContentLink>
 			<Submit type="submit" aria-label={t('forms.formLogin.startSession')}>

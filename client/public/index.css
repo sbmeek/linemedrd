@@ -23,6 +23,9 @@
 	--green-num5: #005e4b;
 	--green-num6: #00392d;
 
+	/*--color fondo--*/
+	--background: var(--white);
+
 	/*--color secondary--*/
 
 	/* placeholder and letter */

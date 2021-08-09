@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Header from './components/header/Header';
 import routes from './constants/routes';
 import GlobalStyle from './styles/GlobalStyle';
+import Principal from '@/shared/container/Container';
 import './App.css';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
 		i18n.changeLanguage(lang);
 	}
 	return (
-		<div>
+		<Principal id="main">
 			<GlobalStyle />
 			<Router>
 				<Suspense fallback={<div>Loading...</div>}>
@@ -37,7 +38,6 @@ function App() {
 						</ul>
 
 						<hr />
-
 						<Switch>
 							{Object.values(routes).map(route => (
 								<Route
@@ -51,7 +51,7 @@ function App() {
 					</div>
 				</Suspense>
 			</Router>
-		</div>
+		</Principal>
 	);
 }
 
