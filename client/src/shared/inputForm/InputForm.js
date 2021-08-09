@@ -21,9 +21,11 @@ export default styled.div`
 		max-width: 100%;
 		margin: 0.6rem 0;
 		padding: 0.7rem 0.5rem;
-		border-radius: 0.4rem;
+		outline: none;
 		border: none;
+		border-radius: 0.4rem;
 		font-size: 1rem;
+		transition: border 120ms cubic-bezier(0.1, -0.6, 0.2, 0), color 400ms;
 
 		${({ theme }) => ({
 			backgroundColor: theme.colors.green1,
@@ -37,30 +39,11 @@ export default styled.div`
 		}
 	}
 
-	/* & input:hover {
-		transition: none;
-		animation-name: border;
-		animation-duration: 0.55s;
-		animation-fill-mode: forwards;
-	} */
-
 	& input:focus {
-		animation-name: border;
-		animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
-		animation-duration: 100ms;
-		animation-fill-mode: forwards;
+		border: 0.0995rem solid ${({ theme }) => theme.colors.green4};
 	}
 
 	& input:not(:placeholder-shown) {
-		outline: 0.0996rem solid ${({ theme }) => theme.calendarNotify.blue1};
-	}
-
-	@keyframes border {
-		from {
-			outline: 0 solid ${({ theme }) => theme.colors.green4};
-		}
-		to {
-			outline: 0.0996rem solid ${({ theme }) => theme.colors.green4};
-		}
+		border: 0.0995rem solid ${({ theme }) => theme.calendarNotify.blue1};
 	}
 `;

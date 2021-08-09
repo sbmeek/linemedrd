@@ -10,6 +10,9 @@ export const data = {
 			green5: 'var(--green-num5)',
 			green6: 'var(--green-num6)'
 		},
+		background: {
+			content: 'var(--background)'
+		},
 		letter: {
 			gray1: 'var(--gray-num1)',
 			gray2: 'var(--gray-num2)'
@@ -52,5 +55,3 @@ export const data = {
 		}
 	}
 };
-
-// console.warn(data.light.fonts.familyNum2);

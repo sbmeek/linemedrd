@@ -13,11 +13,9 @@ const Header = () => {
 
 	return (
 		<ContentHeader>
-			<div>
-				<ContainerTop>
-					<SideBarTop show={showSideBar} setShow={setShowSideBar} />
-				</ContainerTop>
-			</div>
+			<ContainerTop>
+				<SideBarTop show={showSideBar} setShow={setShowSideBar} />
+			</ContainerTop>
 			{showSideBar ? <Sidebar show={showSideBar} /> : null}
 		</ContentHeader>
 	);

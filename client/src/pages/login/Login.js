@@ -1,10 +1,11 @@
 import FormLogin from '../../components/formLogin/FormLogin';
-import { Container } from './Login.styles';
 import Link, { ContentLink } from '@/shared/link/Link';
 import Title from '@/shared/title/Title';
 import { appName } from '@/constants';
 
 import { useTranslation } from 'react-i18next';
+
+import { Container } from '@/shared/container/Container';
 
 const Login = () => {
 	const { t } = useTranslation();

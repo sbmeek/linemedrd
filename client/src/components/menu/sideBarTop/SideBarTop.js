@@ -10,7 +10,7 @@ import {
 
 const SideBarTop = ({ show, setShow }) => {
 	const showMenu = () => {
-		document.querySelector('body').style.overflow = show ? 'auto' : 'hidden';
+		// document.querySelector('body').style.overflow = show ? 'auto' : 'hidden';
 		setShow(!show);
 	};
 
