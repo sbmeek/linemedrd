@@ -62,6 +62,7 @@ const ButtonLink = styled.button`
 	border-radius: 0.25rem;
 	outline: unset;
 	border: none;
+	text-align: center;
 `;
 
 export const Link = ButtonLink.withComponent(ComponentLink);
