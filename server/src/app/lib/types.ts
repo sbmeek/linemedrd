@@ -1,3 +1,5 @@
+import { Stream } from 'stream';
+
 export enum Roles {
 	PATIENT = 'Paciente',
 	DOCTOR = 'Doctor',
@@ -10,4 +12,11 @@ export enum States {
 	DECLINED = 'Declinada',
 	SUSPENDED = 'Suspendida',
 	ARCHIVED = 'Archivada'
+}
+
+export interface Updload {
+	filename: string;
+	mimetype: string;
+	encoding: string;
+	createReadStream: () => Stream;
 }

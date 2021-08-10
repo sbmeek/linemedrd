@@ -5,7 +5,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { Patient } from '../patient/patient.model';
 import { Doctor } from '../doctor/doctor.model';
 import { AppointmentContent } from '../appointment-content/appointment-content.model';
-import { States } from 'app/lib/enums';
+import { States } from 'app/lib/types';
 
 @ObjectType()
 @Schema({ timestamps: true })

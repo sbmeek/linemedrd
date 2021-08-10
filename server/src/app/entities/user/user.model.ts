@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Field, ObjectType } from '@nestjs/graphql';
 import { hash, compare, genSalt } from 'bcryptjs';
 
-import { Roles } from 'app/lib/enums';
+import { Roles } from 'app/lib/types';
 import { UserAdress } from '../user-adress/user-adress.model';
 import { UserPreferences } from '../user-preferences/user-preferences.model';
 

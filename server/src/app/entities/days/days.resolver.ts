@@ -2,7 +2,7 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Schema as MSchema } from 'mongoose';
 import { UseGuards } from '@nestjs/common';
 
-import { Roles } from 'app/lib/enums';
+import { Roles } from 'app/lib/types';
 import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
 import { RolesGuard } from 'app/auth/guard/roles.guard';
 import { RequiredRole } from 'app/lib/decorators/roles.decorator';

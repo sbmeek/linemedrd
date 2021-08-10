@@ -4,7 +4,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Reflector } from '@nestjs/core';
 
 import { User } from 'app/entities/user/user.model';
-import { Roles } from 'app/lib/enums';
+import { Roles } from 'app/lib/types';
 
 @Injectable()
 export class RolesGuard extends AuthGuard('jwtStrat') implements CanActivate {
