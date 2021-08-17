@@ -5,8 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { AES as crypt } from 'crypto-js';
 
 import { UserDocument } from 'app/entities/user/user.model';
-import { verifyEmailHtml } from './templates/verify-email-html';
-import { recoverPwdHtml } from './templates/recover-pwd-html';
+import { recoverPwdHtml, verifyEmailHtml } from './templates';
 
 @Injectable()
 export class MailService {
