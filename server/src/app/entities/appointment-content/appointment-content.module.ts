@@ -7,6 +7,7 @@ import {
 } from './appointment-content.model';
 import { ApmtContentService } from './appointment-content.service';
 import { AppointmentContentResolver } from './appointment-content.resolver';
+import { AppointmentContentController } from './appointment-content.controller';
 
 @Module({
 	imports: [
@@ -17,6 +18,7 @@ import { AppointmentContentResolver } from './appointment-content.resolver';
 			}
 		])
 	],
-	providers: [ApmtContentService, AppointmentContentResolver]
+	providers: [ApmtContentService, AppointmentContentResolver],
+	controllers: [AppointmentContentController]
 })
 export class AppointmentContentModule {}

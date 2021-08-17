@@ -8,14 +8,11 @@ import {
 } from '@nestjs/graphql';
 import { Schema as MSchema } from 'mongoose';
 import { UseGuards } from '@nestjs/common';
-import { GraphQLUpload } from 'apollo-server-express';
-import { createWriteStream } from 'fs';
 
-import { Roles, Updload } from 'app/lib/types';
+import { Roles } from 'app/lib/types';
 import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
 import { RolesGuard } from 'app/auth/guard/roles.guard';
 import { RequiredRole } from 'app/lib/decorators/roles.decorator';
-import { Public } from 'app/lib/decorators/public.decorator';
 import {
 	ApmtContentDocument,
 	AppointmentContent
@@ -71,23 +68,6 @@ export class AppointmentContentResolver {
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
 	) {
 		return this.apmtContentService.delete(_id);
-	}
-
-	@Mutation(() => Boolean)
-	@Public() //temporal
-	async uploadContentFiles(
-		@Args('attachment', { type: () => GraphQLUpload })
-		{ filename, createReadStream }: Updload
-	): Promise<boolean> {
-		return new Promise(async (res, rej) => {
-			createReadStream()
-				.pipe(createWriteStream(process.cwd() + `/files/${filename}`))
-				.on('finish', () => res(true))
-				.on('error', err => {
-					console.log(err);
-					rej(false);
-				});
-		});
 	}
 
 	@ResolveField(() => Specialties)
