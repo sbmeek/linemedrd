@@ -17,12 +17,12 @@ export class UserService {
 		return this.userModel.findById(_id).exec();
 	}
 
-	list(filters: ListUserInput) {
-		return this.userModel.find({ ...filters }).exec();
-	}
-
 	async getByEmail(email: string): Promise<UserDocument> {
 		return await this.userModel.findOne({ email });
+	}
+
+	list(filters: ListUserInput) {
+		return this.userModel.find({ ...filters }).exec();
 	}
 
 	async create(payload: CreateUserInput, origin: string) {

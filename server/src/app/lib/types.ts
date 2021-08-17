@@ -14,7 +14,7 @@ export enum States {
 	ARCHIVED = 'Archivada'
 }
 
-export interface Updload {
+export interface Upload {
 	filename: string;
 	mimetype: string;
 	encoding: string;
