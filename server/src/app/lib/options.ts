@@ -11,7 +11,7 @@ import MongoStore from 'connect-mongo';
 import { MemoryStore, SessionOptions } from 'express-session';
 
 import { dbConnectionHandler } from './util';
-import { gqlErrorFormatter } from './handlers/gql.exceptions';
+import { gqlErrorFormatter } from './handlers';
 
 const {
 	G_MAIL_ACCOUNT,

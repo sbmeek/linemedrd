@@ -3,9 +3,8 @@ import { Schema as MSchema } from 'mongoose';
 import { UseGuards } from '@nestjs/common';
 
 import { Roles } from 'app/lib/types';
-import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
-import { RolesGuard } from 'app/auth/guard/roles.guard';
-import { RequiredRole } from 'app/lib/decorators/roles.decorator';
+import { GqlAuthGuard, RolesGuard } from 'app/auth/guard';
+import { RequiredRole } from 'app/lib/decorators';
 import { Days } from './days.model';
 import { DaysService } from './days.service';
 import { CreateDaysInput, UpdateDaysInput } from './days.input';

@@ -10,10 +10,8 @@ import { Schema as MSchema } from 'mongoose';
 import { UseGuards } from '@nestjs/common';
 
 import { Roles } from 'app/lib/types';
-import { GqlAuthGuard } from 'app/auth/guard/gql-auth.guard';
-import { RolesGuard } from 'app/auth/guard/roles.guard';
-import { RequiredRole } from 'app/lib/decorators/roles.decorator';
-import { Public } from 'app/lib/decorators/public.decorator';
+import { GqlAuthGuard, RolesGuard } from 'app/auth/guard';
+import { RequiredRole, Public } from 'app/lib/decorators';
 import { User, UserDocument } from './user.model';
 import { CreateUserInput, UpdateUserInput, ListUserInput } from './user.input';
 import { UserService } from './user.service';

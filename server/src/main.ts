@@ -6,8 +6,7 @@ import session from 'express-session';
 
 import { AppModule } from 'app/app.module';
 import { corsOptions, sessionOptions } from 'app/lib/options';
-import { AllExceptionsFilter } from 'app/lib/handlers/all.exceptions';
-import { validationPipeOptions } from 'app/lib/handlers/gql.exceptions';
+import { AllExceptionsFilter, validationPipeOptions } from 'app/lib/handlers';
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
