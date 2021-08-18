@@ -46,3 +46,17 @@ export const logToFile = async (err: { stack: any }) => {
 	await fs.appendFile(errLogPath, `[${time}]: ${err.stack}\n\n`);
 	console.log(`Log created: ${errLogPath}`);
 };
+
+export const renameFile = (
+	_req: any,
+	file: Express.Multer.File,
+	callback: (error: Error, filename: string) => void
+) => {
+	const fileName = file.originalname;
+	const randomNumber = Array(4)
+		.fill(null)
+		.map(() => Math.round(Math.random() * 16).toString(16))
+		.join('');
+
+	callback(null, `${randomNumber}-${fileName}`);
+};
