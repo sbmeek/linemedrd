@@ -1,4 +1,11 @@
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, gql, makeVar } from '@apollo/client';
+import AuthService from './services/auth';
+
+export const typeDefs = gql`
+	extend type Query {
+		isLoggedIn: Boolean!
+	}
+`;
 
 const apiUrls = {
 	development: 'http://localhost:3000',
@@ -7,28 +14,23 @@ const apiUrls = {
 
 export const apiUrl = apiUrls[process.env.NODE_ENV];
 
+export const isLoggedInVar = makeVar(false);
+AuthService.isAuthenticated().then(isLoggedInVar);
+
 export const client = new ApolloClient({
 	uri: apiUrl + '/graphql',
-	cache: new InMemoryCache()
-});
-
-client
-	.query({
-		query: gql`
-			query {
-				doctors(filters: {}) {
-					_id
-					user(populate: true) {
-						_id
-						name
-						lastname
-					}
-					specialties(populate: true) {
-						_id
-						description
+	cache: new InMemoryCache({
+		typePolicies: {
+			Query: {
+				fields: {
+					isLoggedIn: {
+						read() {
+							return isLoggedInVar();
+						}
 					}
 				}
 			}
-		`
-	})
-	.then(result => console.log(result));
+		}
+	}),
+	typeDefs
+});
