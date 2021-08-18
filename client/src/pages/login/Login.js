@@ -15,7 +15,7 @@ const Login = () => {
 			<FormLogin />
 			<ContentLink>
 				<span>Nuevo en {appName}</span>{' '}
-				<Link to="./Signup">Crea una Cuenta</Link>.
+				<Link to="/Signup">Crea una Cuenta</Link>.
 			</ContentLink>
 		</Container>
 	);
