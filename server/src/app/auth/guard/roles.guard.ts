@@ -3,8 +3,8 @@ import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthGuard } from '@nestjs/passport';
 import { Reflector } from '@nestjs/core';
 
-import { User } from 'app/entities/user/user.model';
 import { Roles } from 'app/lib/types';
+import { User } from 'app/entities/user/user.model';
 
 @Injectable()
 export class RolesGuard extends AuthGuard('jwtStrat') implements CanActivate {
