@@ -5,7 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 import session from 'express-session';
 
 import { AppModule } from 'app/app.module';
-import { corsOptions, sessionOptions } from 'app/lib/options';
+import { corsOptions, sessionOptions } from 'app/config/options';
 import { AllExceptionsFilter, validationPipeOptions } from 'app/lib/handlers';
 
 async function bootstrap() {

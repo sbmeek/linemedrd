@@ -20,3 +20,7 @@ export interface Upload {
 	encoding: string;
 	createReadStream: () => Stream;
 }
+
+export interface ConfigModuleOptions {
+	env: string;
+}

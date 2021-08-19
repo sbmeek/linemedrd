@@ -6,7 +6,7 @@ import { Request } from 'express';
 import { User } from 'app/entities/user/user.model';
 import { UserService } from 'app/entities/user/user.service';
 import { MailService } from 'app/mail/mail.service';
-import { sessionCookieName } from 'app/lib/options';
+import { sessionCookieName } from 'app/config/options';
 
 @Injectable()
 export class AuthService {

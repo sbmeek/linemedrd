@@ -10,8 +10,9 @@ import { Connection } from 'mongoose';
 import MongoStore from 'connect-mongo';
 import { MemoryStore, SessionOptions } from 'express-session';
 
-import { dbConnectionHandler } from './util';
-import { gqlErrorFormatter } from './handlers';
+import { ConfigModuleOptions } from 'app/lib/types';
+import { dbConnectionHandler } from 'app/lib/util';
+import { gqlErrorFormatter } from 'app/lib/handlers';
 
 const {
 	G_MAIL_ACCOUNT,
@@ -101,4 +102,8 @@ export const sessionOptions: SessionOptions = {
 		maxAge: 120 * 60000,
 		secure: false
 	}
+};
+
+export const configOptions: ConfigModuleOptions = {
+	env: process.env.NODE_ENV
 };
