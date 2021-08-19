@@ -3,7 +3,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { JwtModule } from '@nestjs/jwt';
 
 import { MailService } from './mail.service';
-import { mailerOptions, jwtOptions } from 'app/lib/options';
+import { mailerOptions, jwtOptions } from 'app/config/options';
 
 @Module({
 	imports: [
