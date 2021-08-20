@@ -23,4 +23,5 @@ export interface Upload {
 
 export interface ConfigModuleOptions {
 	env: string;
+	folder?: string;
 }

@@ -10,8 +10,8 @@ import { recoverPwdHtml, verifyEmailHtml } from './templates';
 @Injectable()
 export class MailService {
 	constructor(
-		private mailerService: MailerService,
-		private jwtService: JwtService
+		private readonly mailerService: MailerService,
+		private readonly jwtService: JwtService
 	) {}
 
 	private generateToken(
@@ -46,7 +46,7 @@ export class MailService {
 	async sendEmailConfirmationCode(origin: string, user: UserDocument) {
 		this.generateToken(user.email, origin, async ({ encToken, key, href }) => {
 			await user.updateOne({ $set: { codConfEmail: key } });
-			await this.mailerService
+			this.mailerService
 				.sendMail({
 					to: user.email,
 					subject: 'Bienvenido a LineMedRD',
@@ -60,7 +60,7 @@ export class MailService {
 	async sendEmailRecoverPwd(origin: string, user: UserDocument) {
 		this.generateToken(user.email, origin, async ({ encToken, key, href }) => {
 			await user.updateOne({ $set: { codRecPwd: key } });
-			await this.mailerService
+			this.mailerService
 				.sendMail({
 					to: user.email,
 					subject: 'Contraseña de LineMedRD',

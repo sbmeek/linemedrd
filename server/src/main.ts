@@ -4,9 +4,13 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import session from 'express-session';
 
+import {
+	corsOptions,
+	sessionOptions,
+	validationPipeOptions
+} from 'app/config/options';
 import { AppModule } from 'app/app.module';
-import { corsOptions, sessionOptions } from 'app/config/options';
-import { AllExceptionsFilter, validationPipeOptions } from 'app/lib/handlers';
+import { AllExceptionsFilter } from 'app/lib/handlers';
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);

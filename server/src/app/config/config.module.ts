@@ -34,7 +34,7 @@ export class ConfigModule {
 				module: ConfigModule,
 				imports: [
 					ServeStaticModule.forRoot(serveStaticOptions),
-					MongooseModule.forRoot(dbUri[process.env.NODE_ENV], mongoOptions),
+					MongooseModule.forRoot(dbUri[options.env], mongoOptions),
 					GraphQLModule.forRoot(gqlOptions),
 					UserModule,
 					UserAdressModule,
@@ -57,7 +57,7 @@ export class ConfigModule {
 			return {
 				module: ConfigModule,
 				imports: [
-					MongooseModule.forRoot(dbUri[process.env.NODE_ENV], mongoOptions),
+					MongooseModule.forRoot(dbUri[options.env], mongoOptions),
 					GraphQLModule.forRoot(gqlOptions),
 					UserModule,
 					UserAdressModule,
