@@ -1,18 +1,24 @@
 import * as path from 'path';
-import { MongooseModuleOptions } from '@nestjs/mongoose';
-import { GqlModuleOptions } from '@nestjs/graphql';
-import { JwtModuleOptions } from '@nestjs/jwt';
-import { IAuthModuleOptions } from '@nestjs/passport';
-import { ServeStaticModuleOptions } from '@nestjs/serve-static';
-import { MailerOptions } from '@nestjs-modules/mailer';
-import { GraphQLError } from 'graphql';
+import { diskStorage } from 'multer';
 import { Connection } from 'mongoose';
+import { GraphQLError } from 'graphql';
 import MongoStore from 'connect-mongo';
+import { JwtModuleOptions } from '@nestjs/jwt';
+import { GqlModuleOptions } from '@nestjs/graphql';
+import { IAuthModuleOptions } from '@nestjs/passport';
+import { MailerOptions } from '@nestjs-modules/mailer';
+import { MongooseModuleOptions } from '@nestjs/mongoose';
 import { MemoryStore, SessionOptions } from 'express-session';
+import { ServeStaticModuleOptions } from '@nestjs/serve-static';
+import { ValidationError, ValidationPipeOptions } from '@nestjs/common';
+import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
 
+import {
+	gqlErrorFormatter,
+	validationExceptionHandler
+} from 'app/lib/handlers';
 import { ConfigModuleOptions } from 'app/lib/types';
-import { dbConnectionHandler } from 'app/lib/util';
-import { gqlErrorFormatter } from 'app/lib/handlers';
+import { dbConnectionHandler, renameFile } from 'app/lib/util';
 
 const {
 	G_MAIL_ACCOUNT,
@@ -106,4 +112,17 @@ export const sessionOptions: SessionOptions = {
 
 export const configOptions: ConfigModuleOptions = {
 	env: process.env.NODE_ENV
+};
+
+export const filesInterceptorOptions: MulterOptions = {
+	storage: diskStorage({
+		destination: process.cwd() + '\\files',
+		filename: renameFile
+	})
+};
+
+export const validationPipeOptions: ValidationPipeOptions = {
+	transform: true,
+	exceptionFactory: (errors: ValidationError[]) =>
+		validationExceptionHandler(errors)
 };

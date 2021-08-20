@@ -2,27 +2,27 @@ import { Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 
 import { AuthService } from './auth.service';
-import { LocalAuthGuard, JwtAuthGuard } from './guard';
 import { CurrentUser } from 'app/lib/decorators';
+import { LocalAuthGuard, JwtAuthGuard } from './guard';
 
 @Controller('auth')
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}
 
-	@UseGuards(LocalAuthGuard)
 	@Post('login')
+	@UseGuards(LocalAuthGuard)
 	login(@Req() req: Request) {
 		return this.authService.login(req);
 	}
 
-	@UseGuards(JwtAuthGuard)
 	@Post('logout')
+	@UseGuards(JwtAuthGuard)
 	logout(@Req() req: Request) {
 		return this.authService.logout(req);
 	}
 
-	@UseGuards(JwtAuthGuard)
 	@Post('check-auth')
+	@UseGuards(JwtAuthGuard)
 	async checkAuth(@CurrentUser() currentUser: any) {
 		return currentUser;
 	}
@@ -35,8 +35,8 @@ export class AuthController {
 
 	@Post('recover-pwd/request')
 	async recoverPwdRequest(@Req() req: Request) {
-		const { origin } = req.headers;
 		const { body } = req;
+		const { origin } = req.headers;
 		return await this.authService.recoverPwdRequest(body.email, origin);
 	}
 

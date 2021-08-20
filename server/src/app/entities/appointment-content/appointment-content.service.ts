@@ -16,10 +16,18 @@ import {
 
 @Injectable()
 export class ApmtContentService {
+	private archive: archiver.Archiver;
+	private filesPath: string;
+
 	constructor(
 		@InjectModel(AppointmentContent.name)
 		private contentModel: Model<ApmtContentDocument>
-	) {}
+	) {
+		this.archive = archiver('zip', {
+			zlib: { level: 9 }
+		});
+		this.filesPath = process.cwd() + '\\files\\';
+	}
 
 	getById(_id: MSchema.Types.ObjectId) {
 		return this.contentModel.findById(_id).exec();
@@ -61,35 +69,33 @@ export class ApmtContentService {
 
 	async returnZipFile(_id: MSchema.Types.ObjectId): Promise<string> {
 		const currentContent = await this.getById(_id);
-		const filesPath = process.cwd() + '\\files\\';
 		const zipName = `${currentContent.appointmentDate}-Appointment.zip`;
-		const archive = archiver('zip', {
-			zlib: { level: 9 }
-		});
-		const output = fs.createWriteStream(filesPath + zipName);
+		const output = fs.createWriteStream(this.filesPath + zipName);
 
-		archive.on('error', err => {
+		this.archive.on('error', err => {
 			throw err;
 		});
-		archive.on('warning', err => {
+		this.archive.on('warning', err => {
 			if (err.code === 'ENOENT') console.log(err);
 			else throw err;
 		});
-		archive.pipe(output);
+		this.archive.pipe(output);
 
 		for (const attachment of currentContent.attachments) {
-			const attachmentPath = filesPath + attachment;
-			archive.append(fs.createReadStream(attachmentPath), { name: attachment });
+			const attachmentPath = this.filesPath + attachment;
+			this.archive.append(fs.createReadStream(attachmentPath), {
+				name: attachment
+			});
 		}
-		archive.finalize();
+		this.archive.finalize();
 
 		return new Promise(res => {
 			output.once('close', () => {
-				console.log(archive.pointer() + ' total bytes');
+				console.log(this.archive.pointer() + ' total bytes');
 				console.log(
 					'archiver has been finalized and the output file descriptor has closed.'
 				);
-				res(filesPath + zipName);
+				res(this.filesPath + zipName);
 			});
 		});
 	}

@@ -1,9 +1,9 @@
 import {
-	ExceptionFilter,
 	Catch,
+	HttpStatus,
 	ArgumentsHost,
 	HttpException,
-	HttpStatus
+	ExceptionFilter
 } from '@nestjs/common';
 
 import { logToFile } from '../util';

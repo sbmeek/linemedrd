@@ -1,6 +1,6 @@
-import { GraphQLError, GraphQLFormattedError } from 'graphql';
-import { ValidationError, ValidationPipeOptions } from '@nestjs/common';
+import { ValidationError } from '@nestjs/common';
 import { UserInputError } from 'apollo-server-express';
+import { GraphQLError, GraphQLFormattedError } from 'graphql';
 
 export const gqlErrorFormatter = (error: GraphQLError) => {
 	if (error.message === 'VALIDATION_ERROR') {
@@ -31,14 +31,8 @@ export const gqlErrorFormatter = (error: GraphQLError) => {
 	return error;
 };
 
-const validationExceptionHandler = (errors: ValidationError[]) => {
+export const validationExceptionHandler = (errors: ValidationError[]) => {
 	return new UserInputError('VALIDATION_ERROR', {
 		invalidArgs: errors
 	});
-};
-
-export const validationPipeOptions: ValidationPipeOptions = {
-	transform: true,
-	exceptionFactory: (errors: ValidationError[]) =>
-		validationExceptionHandler(errors)
 };

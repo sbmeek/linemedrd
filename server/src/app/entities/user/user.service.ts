@@ -10,7 +10,7 @@ import { MailService } from 'app/mail/mail.service';
 export class UserService {
 	constructor(
 		@InjectModel(User.name) private userModel: Model<UserDocument>,
-		private mailService: MailService
+		private readonly mailService: MailService
 	) {}
 
 	getById(_id: MSchema.Types.ObjectId) {
