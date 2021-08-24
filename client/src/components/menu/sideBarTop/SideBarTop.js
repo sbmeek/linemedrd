@@ -10,7 +10,7 @@ import {
 	LinkLogo
 } from '@/components/menu/sideBarTop/SideBarTop.styles';
 
-const SideBarTop = ({ show, setShow }) => {
+const SideBarTop = ({ color, show, setShow }) => {
 	const showMenu = () => {
 		// document.querySelector('body').style.overflow = show ? 'auto' : 'hidden';
 		setShow(!show);
@@ -19,12 +19,12 @@ const SideBarTop = ({ show, setShow }) => {
 	return (
 		<Fragment>
 			<ContainerLogo onClick={show ? showMenu : null}>
-				<Rombo></Rombo>
-				<LinkLogo to={routes.home.path}>
+				<Rombo {...{ color }}></Rombo>
+				<LinkLogo {...{ color }} to={routes.home.path}>
 					<h1>{appName}</h1>
 				</LinkLogo>
 			</ContainerLogo>
-			<ContentIconMenu onClick={showMenu}>
+			<ContentIconMenu {...{ color }} onClick={showMenu}>
 				{show ? (
 					<FiMinus className="icon" title="menu icon one line" />
 				) : (

@@ -15,7 +15,11 @@ const Header = () => {
 	return (
 		<ContentHeader>
 			<ContainerTop {...{ location: direction }}>
-				<SideBarTop show={showSideBar} setShow={setShowSideBar} />
+				<SideBarTop
+					color={direction}
+					show={showSideBar}
+					setShow={setShowSideBar}
+				/>
 			</ContainerTop>
 			{showSideBar ? (
 				<Sidebar show={showSideBar} setShow={setShowSideBar} />

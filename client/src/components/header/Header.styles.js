@@ -1,5 +1,17 @@
 import styled from '@emotion/styled';
 
+const TopContentColor = props => {
+	return props.location === '/'
+		? {
+				backgroundColor: 'white',
+				color: props.theme.colors.green5
+		  }
+		: {
+				backgroundColor: props.theme.colors.green5,
+				color: 'white'
+		  };
+};
+
 export const ContentHeader = styled.header`
 	position: fixed;
 	display: flex;
@@ -11,11 +23,6 @@ export const ContentHeader = styled.header`
 	z-index: 5;
 `;
 
-// const topColor = props => {
-// 	console.log(location);
-// 	return location === '/' ? 'white' : 'theme.colors.green5';
-// };
-
 export const ContainerTop = styled.div`
 	display: flex;
 	width: 100%;
@@ -25,10 +32,13 @@ export const ContainerTop = styled.div`
 	justify-content: space-between;
 	z-index: 6;
 
-	${({ theme }) => ({
-		backgroundColor: theme.colors.green5,
-		fontFamily: theme.fonts.segoeui
-	})}
+	${props => {
+		const background = TopContentColor(props);
+		return {
+			...background,
+			fontFamily: props.theme.fonts.segoeui
+		};
+	}}
 
 	& h1 {
 		font-size: 1rem;

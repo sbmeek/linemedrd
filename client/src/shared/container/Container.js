@@ -9,6 +9,6 @@ export default styled.main`
 export const Container = styled.div`
 	width: 80%;
 	margin: auto;
-	padding-top: 3.6rem;
+	padding-top: 3.5rem;
 	padding-bottom: 1rem;
 `;

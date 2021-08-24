@@ -7,5 +7,5 @@ export default styled.h2`
 	})};
 	text-align: left;
 	font-size: 1.9rem;
-	margin: 1.7rem 0;
+	margin: 1.7rem 0rem;
 `;

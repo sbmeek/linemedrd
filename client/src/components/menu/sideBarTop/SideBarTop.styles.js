@@ -2,10 +2,15 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 export const LinkLogo = styled(Link)`
-	color: ${({ theme }) => theme.colors.white};
-	font-family: ${({ theme }) => theme.fonts.neufreit};
 	margin-left: 2%;
 	text-decoration: none;
+
+	& h1 {
+		font-family: ${({ theme }) => theme.fonts.neufreit};
+		font-size: 1.5rem;
+	}
+	color: ${props =>
+		props.color === '/' ? props.theme.colors.green5 : props.theme.colors.white};
 `;
 
 export const ContainerLogo = styled.div`
@@ -20,7 +25,8 @@ export const ContainerLogo = styled.div`
 export const Rombo = styled.div`
 	width: 1rem;
 	height: 1rem;
-	background-color: white;
+	background-color: ${props =>
+		props.color === '/' ? props.theme.colors.green5 : props.theme.colors.white};
 	border-radius: 0.2rem;
 	transform: rotate(45deg);
 `;
@@ -30,12 +36,10 @@ export const ContentIconMenu = styled.div`
 	align-items: center;
 	font-size: 1.6rem;
 
-	/* &:active {
-		animation: found 3s ease-in-out both;
-	} */
+	color: ${props =>
+		props.color === '/' ? props.theme.colors.green5 : props.theme.colors.white};
 
 	& .icon {
-		color: ${({ theme }) => theme.colors.white};
 		animation: found 600ms ease-in-out both;
 	}
 
