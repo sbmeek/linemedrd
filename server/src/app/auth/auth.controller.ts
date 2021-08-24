@@ -35,9 +35,9 @@ export class AuthController {
 
 	@Post('recover-pwd/request')
 	async recoverPwdRequest(@Req() req: Request) {
-		const { body } = req;
+		const { email } = req.body;
 		const { origin } = req.headers;
-		return await this.authService.recoverPwdRequest(body.email, origin);
+		return await this.authService.recoverPwdRequest(email, origin);
 	}
 
 	@Post('recover-pwd/set-new-pwd')
