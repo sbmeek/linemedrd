@@ -1,5 +1,6 @@
 import { Link, ContentTop, ContentNav, SideTop } from './SideBar.styles';
 import styled from '@emotion/styled';
+import routes from '@/constants/routes';
 
 const Title = styled.h3`
 	font-size: 1rem;
@@ -33,13 +34,21 @@ const SideMain = styled.div`
 	}
 `;
 
-const Sidebar = ({ show }) => {
+const Sidebar = ({ show, setShow }) => {
+	const hideMenu = () => {
+		setShow(!show);
+	};
+
 	return (
 		<ContentNav {...{ show }}>
 			<SideTop>
 				<ContentTop>
-					<Link to="./Login">Iniciar sesión</Link>
-					<Link to="./Signup">Regístrate</Link>
+					<Link to={routes.login.path} onClick={hideMenu}>
+						Iniciar sesión
+					</Link>
+					<Link to={routes.signup.path} onClick={hideMenu}>
+						Regístrate
+					</Link>
 				</ContentTop>
 			</SideTop>
 			<SideMain className="sideMain">

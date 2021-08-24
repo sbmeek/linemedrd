@@ -11,6 +11,11 @@ export const ContentHeader = styled.header`
 	z-index: 5;
 `;
 
+// const topColor = props => {
+// 	console.log(location);
+// 	return location === '/' ? 'white' : 'theme.colors.green5';
+// };
+
 export const ContainerTop = styled.div`
 	display: flex;
 	width: 100%;
@@ -18,11 +23,10 @@ export const ContainerTop = styled.div`
 	padding: 1rem;
 	border: none;
 	justify-content: space-between;
-	z-index: 5;
+	z-index: 6;
 
 	${({ theme }) => ({
 		backgroundColor: theme.colors.green5,
-		color: theme.calendarNotify.blue1,
 		fontFamily: theme.fonts.segoeui
 	})}
 

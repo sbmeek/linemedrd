@@ -1,11 +1,13 @@
 import { Fragment } from 'react';
 import { appName } from '@/constants';
+import routes from '@/constants/routes';
 import { FiMenu, FiMinus } from 'react-icons/fi';
 
 import {
 	ContainerLogo,
 	ContentIconMenu,
-	Rombo
+	Rombo,
+	LinkLogo
 } from '@/components/menu/sideBarTop/SideBarTop.styles';
 
 const SideBarTop = ({ show, setShow }) => {
@@ -16,15 +18,17 @@ const SideBarTop = ({ show, setShow }) => {
 
 	return (
 		<Fragment>
-			<ContainerLogo>
+			<ContainerLogo onClick={show ? showMenu : null}>
 				<Rombo></Rombo>
-				<h1>{appName}</h1>
+				<LinkLogo to={routes.home.path}>
+					<h1>{appName}</h1>
+				</LinkLogo>
 			</ContainerLogo>
 			<ContentIconMenu onClick={showMenu}>
 				{show ? (
-					<FiMinus title="menu icon one line" />
+					<FiMinus className="icon" title="menu icon one line" />
 				) : (
-					<FiMenu title="menu three line" />
+					<FiMenu className="icon" title="menu three line" />
 				)}
 			</ContentIconMenu>
 		</Fragment>
