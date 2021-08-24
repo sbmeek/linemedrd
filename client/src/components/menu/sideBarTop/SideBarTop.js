@@ -1,14 +1,16 @@
 import { Fragment } from 'react';
 import { appName } from '@/constants';
+import routes from '@/constants/routes';
 import { FiMenu, FiMinus } from 'react-icons/fi';
 
 import {
 	ContainerLogo,
 	ContentIconMenu,
-	Rombo
+	Rombo,
+	LinkLogo
 } from '@/components/menu/sideBarTop/SideBarTop.styles';
 
-const SideBarTop = ({ show, setShow }) => {
+const SideBarTop = ({ color, show, setShow }) => {
 	const showMenu = () => {
 		// document.querySelector('body').style.overflow = show ? 'auto' : 'hidden';
 		setShow(!show);
@@ -16,15 +18,17 @@ const SideBarTop = ({ show, setShow }) => {
 
 	return (
 		<Fragment>
-			<ContainerLogo>
-				<Rombo></Rombo>
-				<h1>{appName}</h1>
+			<ContainerLogo onClick={show ? showMenu : null}>
+				<Rombo {...{ color }}></Rombo>
+				<LinkLogo {...{ color }} to={routes.home.path}>
+					<h1>{appName}</h1>
+				</LinkLogo>
 			</ContainerLogo>
-			<ContentIconMenu onClick={showMenu}>
+			<ContentIconMenu {...{ color }} onClick={showMenu}>
 				{show ? (
-					<FiMinus title="menu icon one line" />
+					<FiMinus className="icon" title="menu icon one line" />
 				) : (
-					<FiMenu title="menu three line" />
+					<FiMenu className="icon" title="menu three line" />
 				)}
 			</ContentIconMenu>
 		</Fragment>

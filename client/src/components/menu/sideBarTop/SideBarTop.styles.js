@@ -1,4 +1,17 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
+
+export const LinkLogo = styled(Link)`
+	margin-left: 2%;
+	text-decoration: none;
+
+	& h1 {
+		font-family: ${({ theme }) => theme.fonts.neufreit};
+		font-size: 1.5rem;
+	}
+	color: ${props =>
+		props.color === '/' ? props.theme.colors.green5 : props.theme.colors.white};
+`;
 
 export const ContainerLogo = styled.div`
 	display: flex;
@@ -7,18 +20,13 @@ export const ContainerLogo = styled.div`
 	width: 80%;
 	margin-right: auto;
 	max-width: 100%;
-
-	& h1 {
-		color: ${({ theme }) => theme.colors.white};
-		font-family: ${({ theme }) => theme.fonts.neufreit};
-		margin-left: 2%;
-	}
 `;
 
 export const Rombo = styled.div`
 	width: 1rem;
 	height: 1rem;
-	background-color: white;
+	background-color: ${props =>
+		props.color === '/' ? props.theme.colors.green5 : props.theme.colors.white};
 	border-radius: 0.2rem;
 	transform: rotate(45deg);
 `;
@@ -27,10 +35,12 @@ export const ContentIconMenu = styled.div`
 	display: flex;
 	align-items: center;
 	font-size: 1.6rem;
-	color: ${({ theme }) => theme.colors.white};
 
-	&:active {
-		animation: found 80ms both forwards;
+	color: ${props =>
+		props.color === '/' ? props.theme.colors.green5 : props.theme.colors.white};
+
+	& .icon {
+		animation: found 600ms ease-in-out both;
 	}
 
 	@keyframes found {

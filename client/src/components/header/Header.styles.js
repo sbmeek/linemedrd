@@ -1,5 +1,17 @@
 import styled from '@emotion/styled';
 
+const TopContentColor = props => {
+	return props.location === '/'
+		? {
+				backgroundColor: 'white',
+				color: props.theme.colors.green5
+		  }
+		: {
+				backgroundColor: props.theme.colors.green5,
+				color: 'white'
+		  };
+};
+
 export const ContentHeader = styled.header`
 	position: fixed;
 	display: flex;
@@ -18,13 +30,15 @@ export const ContainerTop = styled.div`
 	padding: 1rem;
 	border: none;
 	justify-content: space-between;
-	z-index: 5;
+	z-index: 6;
 
-	${({ theme }) => ({
-		backgroundColor: theme.colors.green5,
-		color: theme.calendarNotify.blue1,
-		fontFamily: theme.fonts.segoeui
-	})}
+	${props => {
+		const background = TopContentColor(props);
+		return {
+			...background,
+			fontFamily: props.theme.fonts.segoeui
+		};
+	}}
 
 	& h1 {
 		font-size: 1rem;
