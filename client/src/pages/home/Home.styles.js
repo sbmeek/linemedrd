@@ -73,3 +73,31 @@ export const ContainerHome = styled.section`
 
 	${ContainerSection};
 `;
+
+export const HomeTitle = styled.h3`
+	width: 100%;
+	padding: 2rem;
+	letter-spacing: 0.08rem;
+	font-size: 1.4rem;
+
+	${({ theme }) => ({
+		color: theme.colors.white,
+		fontFamily: theme.fonts.neufreit
+	})}
+`;
+
+export const ContentCard = styled.div`
+	width: 80%;
+	min-height: 40vh;
+	margin: auto;
+	display: grid;
+	gap: 1rem;
+	grid-template-rows: repeat(2, 1fr);
+	grid-template-columns: repeat(2, 1fr);
+`;
+
+export const Card = styled.div`
+	background-color: ${({ theme }) => theme.colors.green1};
+	color: ${({ theme }) => theme.colors.white};
+	border-radius: 0.5rem;
+`;

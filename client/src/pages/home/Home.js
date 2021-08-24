@@ -1,6 +1,13 @@
 import { Fragment, useContext } from 'react';
 import ThemeContext from '@/context/theme/themeContext';
-import { Button, Parrafo, ContainerHome } from './Home.styles';
+import {
+	Button,
+	Parrafo,
+	ContainerHome,
+	HomeTitle,
+	ContentCard,
+	Card
+} from './Home.styles';
 // import { Container } from '@/shared/container/Container';
 import Title from '@/shared/title/Title';
 import { Container } from '@/shared/container/Container';
@@ -27,12 +34,13 @@ const Home = () => {
 				</Container>
 			</ContainerHome>
 			<ContainerHome {...{ index: 3, heigth: '60vh' }} className="hideTop">
-				<div>
-					<h3>Especialidades</h3>
-				</div>
-				<div>
-					<div></div>
-				</div>
+				<HomeTitle>Especialidades</HomeTitle>
+				<ContentCard>
+					<Card>Dermatologia</Card>
+					<Card>Urologia</Card>
+					<Card>Dentista</Card>
+					<Card>Bionalista</Card>
+				</ContentCard>
 			</ContainerHome>
 			<ContainerHome
 				{...{ index: 2, heigth: '40vh' }}
