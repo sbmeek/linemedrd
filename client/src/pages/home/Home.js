@@ -14,7 +14,7 @@ const Home = () => {
 
 	return (
 		<Fragment>
-			<ContainerHome {...{ scaleSize: 4 }}>
+			<ContainerHome {...{ index: 4, heigth: '30vh' }}>
 				<Container>
 					<Title>Realiza tu cita desde la comodidad de tu casa.</Title>
 					<Parrafo>
@@ -26,12 +26,22 @@ const Home = () => {
 					</Button>
 				</Container>
 			</ContainerHome>
-			<ContainerHome {...{ scaleSize: 3 }} className="order">
-				<h2>Especialidades</h2>
+			<ContainerHome {...{ index: 3, heigth: '60vh' }} className="hideTop">
+				<div>
+					<h3>Especialidades</h3>
+				</div>
 				<div>
 					<div></div>
 				</div>
 			</ContainerHome>
+			<ContainerHome
+				{...{ index: 2, heigth: '40vh' }}
+				className="hideTop"
+			></ContainerHome>
+			<ContainerHome
+				{...{ index: 1, heigth: '30vh' }}
+				className="hideTop"
+			></ContainerHome>
 		</Fragment>
 	);
 };

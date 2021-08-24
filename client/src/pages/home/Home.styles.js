@@ -39,9 +39,37 @@ export const Button = styled.button`
 	}
 `;
 
-export const ContainerHome = styled.div`
+const ContainerSection = props => {
+	const {
+		index,
+		heigth,
+		theme: {
+			colors: { white, green6 }
+		}
+	} = props;
+
+	return index % 2 === 0
+		? {
+				backgroundColor: white,
+				zIndex: index,
+				minHeight: heigth
+		  }
+		: {
+				backgroundColor: green6,
+				zIndex: index,
+				minHeight: heigth
+		  };
+};
+
+export const ContainerHome = styled.section`
 	width: 100%;
-	min-height: 30vh;
 	border-radius: 0rem 0rem 1rem 1rem;
 	position: relative;
+
+	&.hideTop {
+		padding-top: 1rem;
+		margin-top: -1rem;
+	}
+
+	${ContainerSection};
 `;
