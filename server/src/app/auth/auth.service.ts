@@ -46,7 +46,7 @@ export class AuthService {
 		return user;
 	}
 
-	login(req: Request): { accessToken: string } {
+	login(req: Request) {
 		const user = req.user as any;
 		const payload = {
 			email: user.email,
@@ -80,12 +80,12 @@ export class AuthService {
 
 	async recoverPwdRequest(email: string, origin: string) {
 		const user = await this.userService.getByEmail(email);
-		if (!user) {
+		if (!user)
 			return {
 				ok: false,
 				userNonExistent: true
 			};
-		}
+
 		this.mailService.sendEmailRecoverPwd(origin, user);
 		return { ok: true };
 	}

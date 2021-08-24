@@ -92,8 +92,8 @@ export const UserSchema = SchemaFactory.createForClass(User);
 UserSchema.methods.hashPwd = async function (pwd: string): Promise<string> {
 	try {
 		const salt = await genSalt(10);
-		const _hash = await hash(pwd, salt);
-		return _hash;
+		const hashedPwd = await hash(pwd, salt);
+		return hashedPwd;
 	} catch (err) {
 		console.error(err);
 	}
