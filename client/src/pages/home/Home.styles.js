@@ -67,18 +67,19 @@ export const ContainerHome = styled.section`
 	position: relative;
 
 	&.hideTop {
-		padding-top: 1rem;
+		padding: 1rem 0rem;
 		margin-top: -1rem;
 	}
-
 	${ContainerSection};
 `;
 
 export const HomeTitle = styled.h3`
 	width: 100%;
-	padding: 2rem;
+	margin: 2rem 0rem;
 	letter-spacing: 0.08rem;
 	font-size: 1.4rem;
+	word-break: break-all;
+	background-color: yellow;
 
 	${({ theme }) => ({
 		color: theme.colors.white,
@@ -87,9 +88,7 @@ export const HomeTitle = styled.h3`
 `;
 
 export const ContentCard = styled.div`
-	width: 80%;
 	min-height: 40vh;
-	margin: auto;
 	display: grid;
 	gap: 1rem;
 	grid-template-rows: repeat(2, 1fr);
