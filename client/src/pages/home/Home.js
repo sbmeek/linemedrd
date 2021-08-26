@@ -11,6 +11,7 @@ import {
 // import { Container } from '@/shared/container/Container';
 import Title from '@/shared/title/Title';
 import { Container, ContainerSection } from '@/shared/container/Container';
+import Menu from '@/assets/icon/menu_icon/Menu';
 // Nunca es usado
 // import { useTranslation } from 'react-i18next';
 
@@ -45,10 +46,9 @@ const Home = () => {
 					<Button>Ver todas las especialidades</Button>
 				</ContainerSection>
 			</ContainerHome>
-			<ContainerHome
-				{...{ index: 2, heigth: '40vh' }}
-				className="hideTop"
-			></ContainerHome>
+			<ContainerHome {...{ index: 2, heigth: '40vh' }} className="hideTop">
+				<Menu />
+			</ContainerHome>
 			<ContainerHome
 				{...{ index: 1, heigth: '30vh' }}
 				className="hideTop"

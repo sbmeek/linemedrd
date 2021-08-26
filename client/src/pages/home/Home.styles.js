@@ -79,7 +79,6 @@ export const HomeTitle = styled.h3`
 	letter-spacing: 0.08rem;
 	font-size: 1.4rem;
 	word-break: break-all;
-	background-color: yellow;
 
 	${({ theme }) => ({
 		color: theme.colors.white,
