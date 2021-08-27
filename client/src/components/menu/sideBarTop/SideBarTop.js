@@ -1,7 +1,8 @@
 import { Fragment } from 'react';
 import { appName } from '@/constants';
 import routes from '@/constants/routes';
-import { FiMenu, FiMinus } from 'react-icons/fi';
+// import { FiMinus } from 'react-icons/fi';
+import Menu from '@/assets/icon/menu_icon/Menu';
 
 import {
 	ContainerLogo,
@@ -26,9 +27,11 @@ const SideBarTop = ({ color, show, setShow }) => {
 			</ContainerLogo>
 			<ContentIconMenu {...{ color }} onClick={showMenu}>
 				{show ? (
-					<FiMinus className="icon" title="menu icon one line" />
+					<Menu color={color} showMenu={show} />
 				) : (
-					<FiMenu className="icon" title="menu three line" />
+					// <FiMinus className="icon" title="menu icon one line" />
+					<Menu color={color} showMenu={show} />
+					// <FiMenu className="icon" title="menu three line" />
 				)}
 			</ContentIconMenu>
 		</Fragment>

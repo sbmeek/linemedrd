@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Link as ComponentLink } from 'react-router-dom';
 
 const mostrar = props => {
-	return props.show ? 'animation: mostrarNav 250ms linear both;' : null;
+	return props.show ? 'animation: mostrarNav 450ms linear both;' : null;
 };
 
 export const ContentNav = styled.nav`
@@ -10,7 +10,7 @@ export const ContentNav = styled.nav`
 	height: 100%;
 	background-color: ${({ theme }) => theme.colors.green4};
 	z-index: 5;
-	transform: translateY(-100rem);
+	transform: translateY(-80rem);
 
 	${mostrar};
 

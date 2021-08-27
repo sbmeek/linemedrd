@@ -46,9 +46,10 @@ const Home = () => {
 					<Button>Ver todas las especialidades</Button>
 				</ContainerSection>
 			</ContainerHome>
-			<ContainerHome {...{ index: 2, heigth: '40vh' }} className="hideTop">
-				<Menu />
-			</ContainerHome>
+			<ContainerHome
+				{...{ index: 2, heigth: '40vh' }}
+				className="hideTop"
+			></ContainerHome>
 			<ContainerHome
 				{...{ index: 1, heigth: '30vh' }}
 				className="hideTop"
