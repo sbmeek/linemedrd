@@ -25,14 +25,8 @@ const SideBarTop = ({ color, show, setShow }) => {
 					<h1>{appName}</h1>
 				</LinkLogo>
 			</ContainerLogo>
-			<ContentIconMenu {...{ color }} onClick={showMenu}>
-				{show ? (
-					<Menu color={color} showMenu={show} />
-				) : (
-					// <FiMinus className="icon" title="menu icon one line" />
-					<Menu color={color} showMenu={show} />
-					// <FiMenu className="icon" title="menu three line" />
-				)}
+			<ContentIconMenu onClick={showMenu}>
+				<Menu color={color} showMenu={show} />
 			</ContentIconMenu>
 		</Fragment>
 	);

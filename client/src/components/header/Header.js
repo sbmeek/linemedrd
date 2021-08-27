@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import SideBarTop from '@/components/menu/sideBarTop/SideBarTop';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import Sidebar from '@/components/menu/sideBar/SideBar';
 import { ContainerTop, ContentHeader } from './Header.styles';
 
@@ -13,18 +13,18 @@ const Header = () => {
 	const [showSideBar, setShowSideBar] = useState(false);
 
 	return (
-		<ContentHeader>
-			<ContainerTop {...{ location: direction }}>
-				<SideBarTop
-					color={direction}
-					show={showSideBar}
-					setShow={setShowSideBar}
-				/>
-			</ContainerTop>
-			{showSideBar ? (
-				<Sidebar show={showSideBar} setShow={setShowSideBar} />
-			) : null}
-		</ContentHeader>
+		<Fragment>
+			<ContentHeader>
+				<ContainerTop {...{ location: direction }}>
+					<SideBarTop
+						color={direction}
+						show={showSideBar}
+						setShow={setShowSideBar}
+					/>
+				</ContainerTop>
+			</ContentHeader>
+			<Sidebar show={showSideBar} setShow={setShowSideBar} />
+		</Fragment>
 	);
 };
 

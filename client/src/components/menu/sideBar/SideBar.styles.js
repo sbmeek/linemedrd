@@ -1,8 +1,35 @@
 import styled from '@emotion/styled';
 import { Link as ComponentLink } from 'react-router-dom';
 
+const mostrarNavigation = `
+animation: showNav 450ms linear both;
+
+@keyframes showNav {
+	from {
+		transform: translateY(-80rem);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+`;
+
+const ocultarNavigation = `
+animation: hideNav 250ms linear both;
+@keyframes hideNav {
+	0% {
+		transform: translateY(0);
+		
+	}
+	100% {
+		transform: translateY(-80rem);
+	}
+}
+
+`;
+
 const mostrar = props => {
-	return props.show ? 'animation: mostrarNav 450ms linear both;' : null;
+	return props.show ? mostrarNavigation : ocultarNavigation;
 };
 
 export const ContentNav = styled.nav`
@@ -13,17 +40,6 @@ export const ContentNav = styled.nav`
 	transform: translateY(-80rem);
 
 	${mostrar};
-
-	@keyframes mostrarNav {
-		from {
-			opacity: 0;
-			transform: translateY(inherit);
-		}
-		to {
-			transform: translateY(0);
-			opacity: 1;
-		}
-	}
 `;
 
 export const SideTop = styled.div`
