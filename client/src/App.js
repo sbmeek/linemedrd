@@ -47,12 +47,12 @@ function App() {
 	};
 
 	return (
-		<Principal id="main">
+		<div className="App">
 			<GlobalStyle />
 			<Router>
 				<Suspense fallback={<div>Loading...</div>}>
 					<Header />
-					<div className="App">
+					<Principal id="main">
 						{/* <div>
 							<button onClick={() => handleLangChange('es')}>
 								{t('button.spanish')}
@@ -70,13 +70,11 @@ function App() {
 								</li>
 							))}
 						</ul> */}
-
-						<hr />
 						<Switch>{Object.values(routes).map(renderRoute)}</Switch>
-					</div>
+					</Principal>
 				</Suspense>
 			</Router>
-		</Principal>
+		</div>
 	);
 }
 

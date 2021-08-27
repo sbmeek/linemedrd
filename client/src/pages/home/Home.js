@@ -11,7 +11,6 @@ import {
 // import { Container } from '@/shared/container/Container';
 import Title from '@/shared/title/Title';
 import { Container, ContainerSection } from '@/shared/container/Container';
-import Menu from '@/assets/icon/menu_icon/Menu';
 // Nunca es usado
 // import { useTranslation } from 'react-i18next';
 
@@ -38,7 +37,15 @@ const Home = () => {
 				<ContainerSection>
 					<HomeTitle>Especialidades</HomeTitle>
 					<ContentCard>
-						<Card>Dermatologia</Card>
+						{/* Esto va hacer un componente llamado card donde se va a iterar */}
+						<Card>
+							<div className="card-content">
+								<div className="card-body"></div>
+								<div className="card-footer">
+									<div>Dermatologia</div>
+								</div>
+							</div>
+						</Card>
 						<Card>Urologia</Card>
 						<Card>Dentista</Card>
 						<Card>Bionalista</Card>

@@ -34,16 +34,17 @@ const mostrar = props => {
 
 export const ContentNav = styled.nav`
 	width: 100%;
-	height: 100%;
+	min-height: 100vh;
 	background-color: ${({ theme }) => theme.colors.green4};
-	z-index: 5;
+	z-index: 200;
+	padding-top: 3.5rem;
 	transform: translateY(-80rem);
-
+	position: fixed;
 	${mostrar};
 `;
 
 export const SideTop = styled.div`
-	z-index: 5;
+	z-index: 200;
 	background-color: ${({ theme }) => theme.colors.green5};
 	display: flex;
 	align-items: center;
