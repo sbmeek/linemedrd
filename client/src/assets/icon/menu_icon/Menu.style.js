@@ -68,6 +68,11 @@ const changeMenu = ({props}) =>{
   return props.showMenu?threeMinus:minus;
 }
 
+const changeColor = (props) =>{
+  const {props:{color:direction}, theme:{colors:{green5, white}}} = props
+  return direction==="/"?green5:white;
+}
+
 export const ContentLine = styled.g`
     
     ${changeMenu}
@@ -75,7 +80,7 @@ export const ContentLine = styled.g`
     & .line{
       stroke-opacity: 100%;
       stroke-width: 12;
-      stroke: ${({theme}) => theme.colors.green5};
+      stroke: ${changeColor};
       fill: none;
 
       path {
