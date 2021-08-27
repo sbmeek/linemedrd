@@ -10,7 +10,7 @@ import {
 } from './Home.styles';
 // import { Container } from '@/shared/container/Container';
 import Title from '@/shared/title/Title';
-import { Container } from '@/shared/container/Container';
+import { Container, ContainerSection } from '@/shared/container/Container';
 // Nunca es usado
 // import { useTranslation } from 'react-i18next';
 
@@ -34,13 +34,24 @@ const Home = () => {
 				</Container>
 			</ContainerHome>
 			<ContainerHome {...{ index: 3, heigth: '60vh' }} className="hideTop">
-				<HomeTitle>Especialidades</HomeTitle>
-				<ContentCard>
-					<Card>Dermatologia</Card>
-					<Card>Urologia</Card>
-					<Card>Dentista</Card>
-					<Card>Bionalista</Card>
-				</ContentCard>
+				<ContainerSection>
+					<HomeTitle>Especialidades</HomeTitle>
+					<ContentCard>
+						{/* Esto va hacer un componente llamado card donde se va a iterar */}
+						<Card>
+							<div className="card-content">
+								<div className="card-body"></div>
+								<div className="card-footer">
+									<div>Dermatologia</div>
+								</div>
+							</div>
+						</Card>
+						<Card>Urologia</Card>
+						<Card>Dentista</Card>
+						<Card>Bionalista</Card>
+					</ContentCard>
+					<Button>Ver todas las especialidades</Button>
+				</ContainerSection>
 			</ContainerHome>
 			<ContainerHome
 				{...{ index: 2, heigth: '40vh' }}

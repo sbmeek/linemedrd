@@ -19,8 +19,9 @@ export const ContentHeader = styled.header`
 	top: 0;
 	left: 0;
 	width: 100%;
+	height: auto;
 	max-height: 100%;
-	z-index: 5;
+	z-index: 300;
 `;
 
 export const ContainerTop = styled.div`
@@ -30,7 +31,7 @@ export const ContainerTop = styled.div`
 	padding: 1rem;
 	border: none;
 	justify-content: space-between;
-	z-index: 6;
+	z-index: 300;
 
 	${props => {
 		const background = TopContentColor(props);

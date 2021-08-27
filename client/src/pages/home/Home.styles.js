@@ -18,6 +18,12 @@ export const Prueba = styled.div`
 	})};
 `;
 
+const changeColorButton = props => {
+	return props.children === 'Ver todas las especialidades'
+		? { backgroundColor: props.theme.colors.green5 }
+		: { backgroundColor: props.theme.colors.green4 };
+};
+
 export const Button = styled.button`
 	border: none;
 	border-radius: 0.3rem;
@@ -29,12 +35,13 @@ export const Button = styled.button`
 	font-weight: 500;
 
 	${props => ({
-		backgroundColor: props.theme.colors.green4,
 		color: props.theme.colors.white,
 		fontFamily: props.theme.fonts.segoeui
-	})}
+	})};
 
-	&:hover {
+	${changeColorButton}
+
+	.dark {
 		background-color: ${props => props.theme.colors.green5};
 	}
 `;
@@ -67,18 +74,18 @@ export const ContainerHome = styled.section`
 	position: relative;
 
 	&.hideTop {
-		padding-top: 1rem;
+		padding: 1rem 0rem;
 		margin-top: -1rem;
 	}
-
 	${ContainerSection};
 `;
 
 export const HomeTitle = styled.h3`
 	width: 100%;
-	padding: 2rem;
+	margin: 2rem 0rem;
 	letter-spacing: 0.08rem;
 	font-size: 1.4rem;
+	word-break: break-all;
 
 	${({ theme }) => ({
 		color: theme.colors.white,
@@ -87,17 +94,52 @@ export const HomeTitle = styled.h3`
 `;
 
 export const ContentCard = styled.div`
-	width: 80%;
 	min-height: 40vh;
-	margin: auto;
 	display: grid;
-	gap: 1rem;
-	grid-template-rows: repeat(2, 1fr);
-	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
 `;
 
 export const Card = styled.div`
-	background-color: ${({ theme }) => theme.colors.green1};
-	color: ${({ theme }) => theme.colors.white};
+	${({ theme }) => ({
+		backgroundColor: theme.colors.white,
+		fontFamily: theme.fonts.neufreit,
+		color: theme.colors.white
+	})};
+
 	border-radius: 0.5rem;
+
+	.card-content {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		position: relative;
+		border-radius: 0.5rem;
+
+		.card-body {
+			/* height: 7.5rem; */
+			height: 75%;
+			width: 100%;
+			border-radius: inherit;
+			background-color: inherit;
+			position: absolute;
+			z-index: 12;
+			background-color: ${({ theme }) => theme.colors.green1};
+		}
+
+		.card-footer {
+			height: 30%;
+			border-radius: 0rem 0rem 0.5rem 0.5rem;
+			width: inherit;
+			background-color: ${({ theme }) => theme.colors.green3};
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			bottom: 0;
+			z-index: 10;
+			letter-spacing: 1px;
+		}
+	}
 `;
