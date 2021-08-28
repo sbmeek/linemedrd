@@ -6,10 +6,10 @@ import {
 	ContainerHome,
 	HomeTitle,
 	ContentCard,
-	Card
+	Card,
+	TitleHeadHome
 } from './Home.styles';
 // import { Container } from '@/shared/container/Container';
-import Title from '@/shared/title/Title';
 import { Container, ContainerSection } from '@/shared/container/Container';
 // Nunca es usado
 // import { useTranslation } from 'react-i18next';
@@ -23,7 +23,9 @@ const Home = () => {
 		<Fragment>
 			<ContainerHome {...{ index: 4, heigth: '30vh' }}>
 				<Container>
-					<Title>Realiza tu cita desde la comodidad de tu casa.</Title>
+					<TitleHeadHome>
+						Realiza tu cita desde la comodidad de tu casa.
+					</TitleHeadHome>
 					<Parrafo>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 						eiusmod tempor incididunt ut labore et dolore magna aliqua.

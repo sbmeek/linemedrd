@@ -3,12 +3,12 @@ import styled from '@emotion/styled';
 const TopContentColor = props => {
 	return props.location === '/'
 		? {
-				backgroundColor: 'white',
+				backgroundColor: props.theme.colors.white,
 				color: props.theme.colors.green5
 		  }
 		: {
 				backgroundColor: props.theme.colors.green5,
-				color: 'white'
+				color: props.theme.colors.white
 		  };
 };
 
