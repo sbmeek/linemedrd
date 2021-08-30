@@ -51,7 +51,7 @@ export class UserResolver {
 	}
 
 	@Mutation(() => User)
-	@UseGuards(GqlAuthGuard)
+	@UseGuards(GqlAuthGuard, RolesGuard)
 	@RequiredRole(Roles.ADMIN)
 	async deleteUser(
 		@Args('_id', { type: () => String }) _id: MSchema.Types.ObjectId
