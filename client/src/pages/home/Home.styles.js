@@ -56,13 +56,14 @@ const ContainerSection = props => {
 		index,
 		heigth,
 		theme: {
-			colors: { white, green6 }
+			colors: { green6 },
+			background: { content }
 		}
 	} = props;
 
 	return index % 2 === 0
 		? {
-				backgroundColor: white,
+				backgroundColor: content,
 				zIndex: index,
 				minHeight: heigth
 		  }

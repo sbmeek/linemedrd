@@ -9,9 +9,7 @@ import {
 	Card,
 	TitleHeadHome
 } from './Home.styles';
-// import { Container } from '@/shared/container/Container';
 import { Container, ContainerSection } from '@/shared/container/Container';
-// Nunca es usado
 // import { useTranslation } from 'react-i18next';
 
 const Home = () => {

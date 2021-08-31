@@ -31,9 +31,13 @@ const TextLink = styled.div`
 
 	${fontStyle}
 
+	:hover {
+		background-color: #adffc2;
+	}
+
 	.icon {
-		height: 1.1rem;
-		width: 1.1rem;
+		height: 1.2rem;
+		width: 1.2rem;
 		fill: ${({ theme }) => theme.colors.green5};
 	}
 

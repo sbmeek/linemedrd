@@ -16,6 +16,11 @@ const routes = {
 		component: asyncComponent(() => import('@/pages/signup/Signup')),
 		requiresAuth: false
 	},
+	notificationReserve: {
+		path: '/notification',
+		component: asyncComponent(() => import('@/pages/')),
+		requiresAuth: true
+	},
 	homeWithoutHeader: {
 		path: '/HomeWithoutHeader',
 		component: asyncComponent(() => import('@/pages/home/Home')),

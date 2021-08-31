@@ -10,13 +10,13 @@ const sideTopDr = props => {
 		<SideDrTop>
 			<ContentDr onClick={props.hideMenu}>
 				<NameBar>¡Hola, Dr. Jeffrey Nicolás!</NameBar>
-				<TextLink to={routes.home.path}>
+				<TextLink to={routes.login.path}>
 					<div className="icon">
 						<Calendario />
 					</div>
 					<div className="name">Citas reservadas</div>
 				</TextLink>
-				<TextLink to={routes.home.path}>
+				<TextLink to={routes.signup.path}>
 					<div className="icon">
 						<UserIcon />
 					</div>

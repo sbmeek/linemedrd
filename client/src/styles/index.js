@@ -18,7 +18,6 @@ const Main = ({ children, theme: { light, dark } }) => {
 	useEffect(() => {
 		theme ? setColorsTheme(dark) : setColorsTheme(light);
 	}, [theme]);
-
 	return (
 		<CacheProvider value={cache}>
 			<ThemeProvider theme={colorsTheme}>{children}</ThemeProvider>
