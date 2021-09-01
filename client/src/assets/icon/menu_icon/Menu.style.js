@@ -7,11 +7,11 @@ export default styled.svg`
 
 const minus = `
 & #svgLineTop{
-  animation: dashAnimation 300ms ease-in-out forwards;
+  animation: dashAnimation 400ms ease-in-out forwards;
 }
 
 & #svgLineBottom{
-  animation: dashAnimationUp 300ms ease-in-out forwards;
+  animation: dashAnimationUp 400ms ease-in-out forwards;
 }
 
 @keyframes dashAnimation{
@@ -37,11 +37,11 @@ const minus = `
 const threeMinus = `
 
 & #svgLineTop{
-  animation: threeAnimation 450ms ease-in-out forwards;
+  animation: threeAnimation 500ms ease-in-out forwards;
 }
 
 & #svgLineBottom{
-  animation: threeAnimationUp 450ms ease-in-out forwards;
+  animation: threeAnimationUp 500ms ease-in-out forwards;
 }
 
 @keyframes threeAnimation{
