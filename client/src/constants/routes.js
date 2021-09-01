@@ -18,7 +18,9 @@ const routes = {
 	},
 	notificationReserve: {
 		path: '/notification',
-		component: asyncComponent(() => import('@/pages/')),
+		component: asyncComponent(() =>
+			import('@/pages/notificationReserve/NotificationReserve.js')
+		),
 		requiresAuth: true
 	},
 	homeWithoutHeader: {
