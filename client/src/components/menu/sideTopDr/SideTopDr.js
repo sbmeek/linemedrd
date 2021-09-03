@@ -1,18 +1,18 @@
 import TextLink, { ContentDr, SideDrTop, NameBar } from './SideTopDr.styles';
 import routes from '@/constants/routes';
-import Calendario from '@/assets/icon/calendario_icon/Calendario';
+import CalendarIcon from '@/assets/icon/calendar_icon/CalendarIcon';
 import UserIcon from '@/assets/icon/user_icon/UserIcon';
 import SettingIcon from '@/assets/icon/setting_icon/SettingIcon';
-import CerrarSesion from '@/assets/icon/cerrarSesion_icon/CerrarSesion';
+import LogoutIcon from '@/assets/icon/logout_icon/LogoutIcon';
 
-const sideTopDr = props => {
+const SideTopDr = props => {
 	return (
 		<SideDrTop>
 			<ContentDr onClick={props.hideMenu}>
 				<NameBar>¡Hola, Dr. Jeffrey Nicolás!</NameBar>
 				<TextLink to={routes.login.path}>
 					<div className="icon">
-						<Calendario />
+						<CalendarIcon />
 					</div>
 					<div className="name">Citas reservadas</div>
 				</TextLink>
@@ -30,7 +30,7 @@ const sideTopDr = props => {
 				</TextLink>
 				<TextLink to={routes.home.path}>
 					<div className="icon">
-						<CerrarSesion />
+						<LogoutIcon />
 					</div>
 					<div className="name">Cerrar Sesion</div>
 				</TextLink>
@@ -39,4 +39,4 @@ const sideTopDr = props => {
 	);
 };
 
-export default sideTopDr;
+export default SideTopDr;

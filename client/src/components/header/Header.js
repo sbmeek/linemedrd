@@ -8,9 +8,10 @@ const dontShowIn = ['/HomeWithoutHeader'];
 
 const Header = () => {
 	const location = useLocation();
+	const [showSideBar, setShowSideBar] = useState(false);
+
 	if (dontShowIn.indexOf(location.pathname) !== -1) return null;
 	const direction = location.pathname;
-	const [showSideBar, setShowSideBar] = useState(false);
 
 	return (
 		<Fragment>

@@ -1,11 +1,10 @@
-import MenuIcon, {ContentLine} from './Menu.style';
+import MenuStyles, {ContentLine} from './MenuIcon.style';
 
-function Menu(props) {
+function MenuIcon(props) {
   return (
-    <MenuIcon
+    <MenuStyles
       viewBox="0 0 130 60"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <ContentLine id="svgMenu" {...{props}}>
 
         <g id="svgLineTop" className="line">
@@ -20,8 +19,8 @@ function Menu(props) {
         <path d="M 20 25 l 85 0"/>
         </g>
       </ContentLine>
-    </MenuIcon>
+    </MenuStyles>
   )
 }
 
-export default Menu;
+export default MenuIcon;

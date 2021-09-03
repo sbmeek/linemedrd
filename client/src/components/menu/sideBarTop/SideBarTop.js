@@ -1,8 +1,7 @@
 import { Fragment } from 'react';
 import { appName } from '@/constants';
 import routes from '@/constants/routes';
-// import { FiMinus } from 'react-icons/fi';
-import Menu from '@/assets/icon/menu_icon/Menu';
+import MenuIcon from '@/assets/icon/menu_icon/MenuIcon';
 
 import {
 	ContainerLogo,
@@ -26,7 +25,7 @@ const SideBarTop = ({ color, show, setShow }) => {
 				</LinkLogo>
 			</ContainerLogo>
 			<ContentIconMenu onClick={showMenu}>
-				<Menu color={color} showMenu={show} />
+				<MenuIcon color={color} showMenu={show} />
 			</ContentIconMenu>
 		</Fragment>
 	);

@@ -10,15 +10,14 @@ export const ContentDr = ContentTop;
 
 const fontStyle = ({ theme }) => ({
 	fontFamily: theme.fonts.segoeuiBold,
-	color: theme.colors.green5
+	color: theme.colors.green5,
+	fontSize: '1rem',
+	letterSpacing: '0.006rem'
 });
 
-export const NameBar = styled.h3`
+export const NameBar = styled.div`
 	text-align: left;
-	font-size: 1rem;
-	font-weight: 500;
-	letter-spacing: 0.009rem;
-	${fontStyle}
+	${fontStyle};
 `;
 
 const TextLink = styled.div`
@@ -28,8 +27,6 @@ const TextLink = styled.div`
 	justify-content: flex-start;
 	align-items: center;
 	margin-top: 1rem;
-
-	${fontStyle}
 
 	:hover {
 		background-color: #adffc2;
@@ -43,6 +40,7 @@ const TextLink = styled.div`
 
 	.name {
 		margin-left: 0.5rem;
+		${fontStyle}
 	}
 `;
 

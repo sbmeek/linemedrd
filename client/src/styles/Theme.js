@@ -67,8 +67,8 @@ export const data = {
 			neufreit: 'neufreit',
 			segoeui: 'segoeNormal',
 			segoeuiBold: 'segoeBold',
-			segoeuiItalic: 'segoeBoldItalic',
-			segoeuiBoldItalic: 'segoeItalic'
+			segoeuiItalic: 'segoeItalic',
+			segoeuiBoldItalic: 'segoeBoldItalic'
 		}
 	}
 };
