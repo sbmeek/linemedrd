@@ -1,11 +1,8 @@
-import { gql, useQuery } from '@apollo/client';
-// import { useTranslation } from 'react-i18next';
 import { Suspense } from 'react';
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	// Link,
 	Redirect
 } from 'react-router-dom';
 import Header from './components/header/Header';
@@ -13,26 +10,14 @@ import routes from './constants/routes';
 import GlobalStyle from './styles/GlobalStyle';
 import Principal from '@/shared/container/Container';
 import './App.css';
-
-const IS_LOGGED_IN = gql`
-	query IsUserLoggedIn {
-		isLoggedIn @client
-	}
-`;
+import useAuth from './context/authContext';
 
 function App() {
-	const {
-		data: { isLoggedIn }
-	} = useQuery(IS_LOGGED_IN);
-	// const { t, i18n } = useTranslation();
-
-	// function handleLangChange(lang) {
-	// 	i18n.changeLanguage(lang);
-	// }
+	const { user } = useAuth();
 
 	const renderRoute = ({ path, component: Component, requiresAuth }) => {
 		const renderComponent = props =>
-			isLoggedIn !== requiresAuth ? (
+			user.isAuthenticated !== requiresAuth ? (
 				<Redirect
 					to={{
 						pathname: requiresAuth ? '/Login' : '/HomeWithoutHeader',
@@ -53,23 +38,6 @@ function App() {
 				<Suspense fallback={<div>Loading...</div>}>
 					<Header />
 					<Principal id="main">
-						{/* <div>
-							<button onClick={() => handleLangChange('es')}>
-								{t('button.spanish')}
-							</button>
-							<button onClick={() => handleLangChange('en')}>
-								{t('button.english')}
-							</button>
-						</div> */}
-						{/* <ul>
-							{Object.entries(routes).map(([key, route]) => (
-								<li key={route.path}>
-									<Link to={route.path}>
-										{key[0].toUpperCase() + key.substring(1)}
-									</Link>
-								</li>
-							))}
-						</ul> */}
 						<Switch>{Object.values(routes).map(renderRoute)}</Switch>
 					</Principal>
 				</Suspense>
