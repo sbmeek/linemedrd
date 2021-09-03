@@ -1,7 +1,6 @@
 import { Fragment } from 'react';
 import { appName } from '@/constants';
 import routes from '@/constants/routes';
-// import { FiMinus } from 'react-icons/fi';
 import MenuIcon from '@/assets/icon/menu_icon/MenuIcon';
 
 import {
