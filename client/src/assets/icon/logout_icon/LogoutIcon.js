@@ -1,4 +1,4 @@
-function CerrarSesion(props) {
+function LogoutIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,4 +14,4 @@ function CerrarSesion(props) {
   )
 }
 
-export default CerrarSesion;
+export default LogoutIcon;

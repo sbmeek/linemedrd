@@ -1,4 +1,5 @@
-function Calendario(props) {
+function CalendarIcon(props) {
+  
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -33,4 +34,4 @@ function Calendario(props) {
   )
 }
 
-export default Calendario
+export default CalendarIcon;

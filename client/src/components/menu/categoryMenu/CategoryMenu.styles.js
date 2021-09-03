@@ -4,9 +4,11 @@ export default styled.div`
 	width: 75%;
 	margin: auto;
 	text-align: left;
+	overflow-y: auto;
 
 	ul {
 		list-style: none;
+		padding-bottom: 0.5rem;
 
 		li {
 			margin-bottom: 0.4rem;
