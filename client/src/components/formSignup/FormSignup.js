@@ -6,7 +6,9 @@ import Submit from '@/shared/submit/Submit';
 import { appName } from '@/constants';
 import Link from '@/shared/link/Link';
 import ContentInput from '@/shared/inputForm/InputForm';
-import ContentInputIcon, { Icon } from '@/shared/inputIconForm/InputIconForm';
+import ContentInputIcon, {
+	IconLabel
+} from '@/shared/inputIconForm/InputIconForm';
 
 const FormSignup = () => {
 	const [passwordIcon, setPasswordIcon] = useState(true);
@@ -49,9 +51,9 @@ const FormSignup = () => {
 					id="signup-password"
 					required
 				/>
-				<Icon onClick={() => setPasswordIcon(!passwordIcon)}>
+				<IconLabel onClick={() => setPasswordIcon(!passwordIcon)}>
 					{passwordIcon ? <IoIosEye /> : <IoIosEyeOff />}
-				</Icon>
+				</IconLabel>
 			</ContentInputIcon>
 			<CheckboxContainer htmlFor="polity">
 				<input type="checkbox" name="polity" id="polity" />
