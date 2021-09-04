@@ -9,7 +9,7 @@ export const Icon = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	font-size: 1.3rem;
-	color: ${({ theme }) => theme.colors.green5};
+	fill: ${({ theme }) => theme.colors.green5};
 `;
 
 export const IconLabel = styled(Icon)`

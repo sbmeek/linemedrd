@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
-
 import { CheckboxContainer } from './FormSignup.styles';
 import Submit from '@/shared/submit/Submit';
 import { appName } from '@/constants';
@@ -9,6 +7,8 @@ import ContentInput from '@/shared/inputForm/InputForm';
 import ContentInputIcon, {
 	IconLabel
 } from '@/shared/inputIconForm/InputIconForm';
+import EyeIcon from '@/assets/icon/eye_icon/EyeIcon';
+import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
 
 const FormSignup = () => {
 	const [passwordIcon, setPasswordIcon] = useState(true);
@@ -40,6 +40,7 @@ const FormSignup = () => {
 					required
 				/>
 			</ContentInput>
+
 			<ContentInputIcon>
 				<label htmlFor="signup-password">Contraseña</label>
 				<input
@@ -52,7 +53,7 @@ const FormSignup = () => {
 					required
 				/>
 				<IconLabel onClick={() => setPasswordIcon(!passwordIcon)}>
-					{passwordIcon ? <IoIosEye /> : <IoIosEyeOff />}
+					{passwordIcon ? <EyeIcon /> : <EyeCloseIcon />}
 				</IconLabel>
 			</ContentInputIcon>
 			<CheckboxContainer htmlFor="polity">
