@@ -1,5 +1,4 @@
-import { Fragment, useContext } from 'react';
-import ThemeContext from '@/context/theme/themeContext';
+import { Fragment, useState } from 'react';
 import {
 	Button,
 	Parrafo,
@@ -11,15 +10,21 @@ import {
 import Title from '@/shared/title/Title';
 
 import { Container, ContainerSection } from '@/shared/container/Container';
+import ModalReserve from '@/components/modal/ModalReserve/ModalReserve';
 // import { useTranslation } from 'react-i18next';
 
 const Home = () => {
-	const themeContext = useContext(ThemeContext);
-	const { theme, setTheme } = themeContext;
 	// const { t } = useTranslation();
 
+	const [showModal, setShowModal] = useState(false);
+	const handleModal = () => {
+		setShowModal(prev => !prev);
+		console.log(showModal);
+	};
 	return (
 		<Fragment>
+			{/* This a Test to the first modal */}
+			<ModalReserve showModal={showModal} setShowModal={setShowModal} />
 			<ContainerHome {...{ index: 4, heigth: '30vh' }}>
 				<Container>
 					<Title>Realiza tu cita desde la comodidad de tu casa.</Title>
@@ -27,9 +32,7 @@ const Home = () => {
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 						eiusmod tempor incididunt ut labore et dolore magna aliqua.
 					</Parrafo>
-					<Button onClick={() => setTheme(!theme)}>
-						Quiero empezar mi busqueda
-					</Button>
+					<Button>Quiero empezar mi busqueda</Button>
 				</Container>
 			</ContainerHome>
 			<ContainerHome {...{ index: 3, heigth: '60vh' }} className="hideTop">
@@ -49,7 +52,7 @@ const Home = () => {
 						<Card>Dentista</Card>
 						<Card>Bionalista</Card>
 					</ContentCard>
-					<Button>Ver todas las especialidades</Button>
+					<Button onClick={handleModal}>Ver todas las especialidades</Button>
 				</ContainerSection>
 			</ContainerHome>
 			<ContainerHome
