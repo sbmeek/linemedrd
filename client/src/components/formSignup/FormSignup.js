@@ -9,9 +9,7 @@ import ContentInputIcon, {
 } from '@/shared/inputIconForm/InputIconForm';
 import EyeIcon from '@/assets/icon/eye_icon/EyeIcon';
 import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
-import InputAnimation, {
-	ContainerInputS
-} from '@/shared/InputTestAnimation/InputAnimation';
+import Input, { ContainerInputS } from '@/shared/Input/Input';
 
 const FormSignup = () => {
 	const [passwordIcon, setPasswordIcon] = useState(true);
@@ -47,8 +45,8 @@ const FormSignup = () => {
 			</ContentInput> */}
 
 			<ContainerInputS>
-				<label htmlFor="signup-username">Username</label>
-				<InputAnimation {...{ text: userSignup.name }}>
+				<label htmlFor="signup-username">Nombre de usuario</label>
+				<Input {...{ text: userSignup.name }}>
 					<input
 						{...{ text: userSignup.name }}
 						type="text"
@@ -59,12 +57,12 @@ const FormSignup = () => {
 						onChange={handleChange}
 						required
 					/>
-				</InputAnimation>
+				</Input>
 			</ContainerInputS>
 
 			<ContainerInputS>
 				<label htmlFor="signup-email">Email</label>
-				<InputAnimation {...{ text: userSignup.email }}>
+				<Input {...{ text: userSignup.email }}>
 					<input
 						type="text"
 						name="email"
@@ -74,7 +72,7 @@ const FormSignup = () => {
 						onChange={handleChange}
 						required
 					/>
-				</InputAnimation>
+				</Input>
 			</ContainerInputS>
 
 			{/* <ContentInput>

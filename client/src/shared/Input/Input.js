@@ -1,20 +1,5 @@
 import styled from '@emotion/styled';
 
-export const ContainerInputS = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	margin-bottom: 1rem;
-	outline: none;
-
-	& label {
-		color: ${({ theme }) => theme.colors.green5};
-		font-family: ${({ theme }) => theme.fonts.segoeuiBold};
-		text-align: left;
-		font-size: 0.88rem;
-	}
-`;
-
 const changeText = props => {
 	console.info(props);
 	const {
@@ -24,21 +9,63 @@ const changeText = props => {
 	return value !== '' ? `content: ${value}` : `content: '${placeholder}'`;
 };
 
-const styleAnimation = `
-    padding: 0rem 1.2rem;
+const inputEmpty = `
+    padding-left: 1.2rem;
+
     &:focus {
-    animation: moveInput 0.3s ease-in-out forwards;
+    animation: moveInput 0.25s ease-in-out forwards;
     };
 `;
 
+const inputNotEmpty = `
+    padding-left: 0rem;
+`;
+
+const inputEmptyBorder = color => `
+	&:focus-within {
+		border: 0.0995rem solid ${color};
+	}
+`;
+
+const inputNotEmptyBorder = color => `
+	&:focus-within {
+		border: 0.0995rem solid ${color};
+	}
+`;
+
 const paddingInput = props => {
-	console.info(props);
 	const {
 		text: { value }
 	} = props;
 
-	return value !== '' ? `padding: 0rem 0rem` : styleAnimation;
+	return value !== '' ? inputNotEmpty : inputEmpty;
 };
+
+const colorBorder = props => {
+	const {
+		text: { value },
+		theme
+	} = props;
+
+	return value === ''
+		? inputNotEmptyBorder(theme.colors.green4)
+		: inputEmptyBorder(theme.calendarNotify.blue1);
+};
+
+export const ContainerInputS = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	margin-bottom: 0.7rem;
+	outline: none;
+
+	label {
+		color: ${({ theme }) => theme.colors.green5};
+		font-family: ${({ theme }) => theme.fonts.segoeui};
+		text-align: left;
+		font-size: 0.888rem;
+	}
+`;
 
 export default styled.div`
 	outline: none;
@@ -61,7 +88,7 @@ export default styled.div`
 	::after {
 		${changeText};
 		position: absolute;
-		left: 0.5rem;
+		left: 0.6rem;
 		z-index: 0;
 
 		${({ theme }) => ({
@@ -94,8 +121,5 @@ export default styled.div`
 			}
 		}
 	}
-
-	&:focus-within {
-		border: 0.0995rem solid ${({ theme }) => theme.colors.green4};
-	}
+	${colorBorder};
 `;
