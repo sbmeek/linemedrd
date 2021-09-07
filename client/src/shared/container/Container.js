@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export default styled.main`
 	width: 100%;
-	max-height: 100vh;
+	min-height: 100vh;
 	background-color: ${({ theme }) => theme.background.content};
 `;
 

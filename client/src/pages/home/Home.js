@@ -1,36 +1,30 @@
-import { Fragment, useContext } from 'react';
-import ThemeContext from '@/context/theme/themeContext';
+import { Fragment } from 'react';
 import {
 	Button,
 	Parrafo,
 	ContainerHome,
 	HomeTitle,
 	ContentCard,
-	Card,
-	TitleHeadHome
+	Card
 } from './Home.styles';
+import Title from '@/shared/title/Title';
+
 import { Container, ContainerSection } from '@/shared/container/Container';
 // import { useTranslation } from 'react-i18next';
 
 const Home = () => {
-	const themeContext = useContext(ThemeContext);
-	const { theme, setTheme } = themeContext;
 	// const { t } = useTranslation();
-
 	return (
 		<Fragment>
+			{/* This a Test to the first modal */}
 			<ContainerHome {...{ index: 4, heigth: '30vh' }}>
 				<Container>
-					<TitleHeadHome>
-						Realiza tu cita desde la comodidad de tu casa.
-					</TitleHeadHome>
+					<Title>Realiza tu cita desde la comodidad de tu casa.</Title>
 					<Parrafo>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 						eiusmod tempor incididunt ut labore et dolore magna aliqua.
 					</Parrafo>
-					<Button onClick={() => setTheme(!theme)}>
-						Quiero empezar mi busqueda
-					</Button>
+					<Button>Quiero empezar mi busqueda</Button>
 				</Container>
 			</ContainerHome>
 			<ContainerHome {...{ index: 3, heigth: '60vh' }} className="hideTop">

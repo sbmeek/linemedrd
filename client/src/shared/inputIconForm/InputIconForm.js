@@ -1,19 +1,19 @@
 import styled from '@emotion/styled';
 import Input from '@/shared/inputForm/InputForm';
 
-function iconLabel(props) {
-	return props.label ? '1.4rem' : '50%';
-}
-
 export const Icon = styled.div`
 	position: absolute;
 	right: 0.5rem;
-	top: ${iconLabel};
+	top: 1.4rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	font-size: 1.3rem;
-	color: ${({ theme }) => theme.colors.green5};
+	fill: ${({ theme }) => theme.colors.green5};
+`;
+
+export const IconLabel = styled(Icon)`
+	top: 50%;
 `;
 
 export default styled(Input)`

@@ -4,10 +4,11 @@ import Link, { ContentLink } from '@/shared/link/Link';
 import Submit from '@/shared/submit/Submit';
 import ContentInput from '@/shared/inputForm/InputForm';
 import ContentInputIcon, { Icon } from '@/shared/inputIconForm/InputIconForm';
-import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
 import { useTranslation } from 'react-i18next';
 import { useField } from '@/hooks/useField';
 import useAuth from '@/context/authContext';
+import EyeIcon from '@/assets/icon/eye_icon/EyeIcon';
+import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
 
 const FormLogin = () => {
 	const [passwordIcon, setPasswordIcon] = useState(true);
@@ -45,7 +46,7 @@ const FormLogin = () => {
 					{...passwordField}
 				/>
 				<Icon onClick={() => setPasswordIcon(!passwordIcon)}>
-					{passwordIcon ? <IoIosEye /> : <IoIosEyeOff />}
+					{passwordIcon ? <EyeIcon /> : <EyeCloseIcon />}
 				</Icon>
 			</ContentInputIcon>
 			<ContentLink

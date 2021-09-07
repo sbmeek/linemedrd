@@ -1,19 +1,36 @@
 import { useState } from 'react';
-import { IoIosEye, IoIosEyeOff } from 'react-icons/io';
-
 import { CheckboxContainer } from './FormSignup.styles';
 import Submit from '@/shared/submit/Submit';
 import { appName } from '@/constants';
 import Link from '@/shared/link/Link';
-import ContentInput from '@/shared/inputForm/InputForm';
-import ContentInputIcon, { Icon } from '@/shared/inputIconForm/InputIconForm';
+import ContentInputIcon, {
+	IconLabel
+} from '@/shared/inputIconForm/InputIconForm';
+import EyeIcon from '@/assets/icon/eye_icon/EyeIcon';
+import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
+import Input, { ContainerInputS } from '@/shared/Input/Input';
 
 const FormSignup = () => {
 	const [passwordIcon, setPasswordIcon] = useState(true);
+	const [userSignup, setUserSignup] = useState({
+		name: { value: '', placeholder: 'Ingresar Username' },
+		email: { value: '', placeholder: 'Ingresar Email' },
+		password: { value: '', placeholder: 'Ingresar username' }
+	});
+
+	const handleChange = e => {
+		setUserSignup({
+			...userSignup,
+			[e.target.name]: {
+				value: e.target.value,
+				placeholder: userSignup[e.target.name].placeholder
+			}
+		});
+	};
 
 	return (
 		<form>
-			<ContentInput>
+			{/* <ContentInput>
 				<label htmlFor="signup-name">Nombre de usuario</label>
 				<input
 					type="text"
@@ -24,9 +41,40 @@ const FormSignup = () => {
 					id="signup-name"
 					required
 				/>
-			</ContentInput>
+			</ContentInput> */}
 
-			<ContentInput>
+			<ContainerInputS>
+				<label htmlFor="signup-username">Nombre de usuario</label>
+				<Input {...{ text: userSignup.name }}>
+					<input
+						{...{ text: userSignup.name }}
+						type="text"
+						name="name"
+						aria-label="Ingresar username"
+						aria-required="true"
+						id="signup-username"
+						onChange={handleChange}
+						required
+					/>
+				</Input>
+			</ContainerInputS>
+
+			<ContainerInputS>
+				<label htmlFor="signup-email">Email</label>
+				<Input {...{ text: userSignup.email }}>
+					<input
+						type="text"
+						name="email"
+						aria-label="Ingresar email"
+						aria-required="true"
+						id="signup-email"
+						onChange={handleChange}
+						required
+					/>
+				</Input>
+			</ContainerInputS>
+
+			{/* <ContentInput>
 				<label htmlFor="signup-email">Correo electrónico</label>
 				<input
 					type="text"
@@ -37,7 +85,8 @@ const FormSignup = () => {
 					id="signup-email"
 					required
 				/>
-			</ContentInput>
+			</ContentInput> */}
+
 			<ContentInputIcon>
 				<label htmlFor="signup-password">Contraseña</label>
 				<input
@@ -49,9 +98,9 @@ const FormSignup = () => {
 					id="signup-password"
 					required
 				/>
-				<Icon onClick={() => setPasswordIcon(!passwordIcon)}>
-					{passwordIcon ? <IoIosEye /> : <IoIosEyeOff />}
-				</Icon>
+				<IconLabel onClick={() => setPasswordIcon(!passwordIcon)}>
+					{passwordIcon ? <EyeIcon /> : <EyeCloseIcon />}
+				</IconLabel>
 			</ContentInputIcon>
 			<CheckboxContainer htmlFor="polity">
 				<input type="checkbox" name="polity" id="polity" />

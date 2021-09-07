@@ -12,7 +12,6 @@ const AddIcon = () => {
           width={94}
           height={94}
           rx={15}
-          fill="#005e4b"
         />
         <path
           data-name="Path 36"

@@ -1,10 +1,4 @@
 import styled from '@emotion/styled';
-import Title from '@/shared/title/Title';
-
-export const TitleHeadHome = styled(Title)`
-	/* margin-top: 7rem; */
-	font-size: 2.5rem;
-`;
 
 export const Parrafo = styled.div`
 	color: ${props => props.theme.colors.green5};
