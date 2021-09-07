@@ -3,19 +3,37 @@ import { CheckboxContainer } from './FormSignup.styles';
 import Submit from '@/shared/submit/Submit';
 import { appName } from '@/constants';
 import Link from '@/shared/link/Link';
-import ContentInput from '@/shared/inputForm/InputForm';
+// import ContentInput from '@/shared/inputForm/InputForm';
 import ContentInputIcon, {
 	IconLabel
 } from '@/shared/inputIconForm/InputIconForm';
 import EyeIcon from '@/assets/icon/eye_icon/EyeIcon';
 import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
+import InputAnimation, {
+	ContainerInputS
+} from '@/shared/InputTestAnimation/InputAnimation';
 
 const FormSignup = () => {
 	const [passwordIcon, setPasswordIcon] = useState(true);
+	const [userSignup, setUserSignup] = useState({
+		name: { value: '', placeholder: 'Ingresar Username' },
+		email: { value: '', placeholder: 'Ingresar Email' },
+		password: { value: '', placeholder: 'Ingresar username' }
+	});
+
+	const handleChange = e => {
+		setUserSignup({
+			...userSignup,
+			[e.target.name]: {
+				value: e.target.value,
+				placeholder: userSignup[e.target.name].placeholder
+			}
+		});
+	};
 
 	return (
 		<form>
-			<ContentInput>
+			{/* <ContentInput>
 				<label htmlFor="signup-name">Nombre de usuario</label>
 				<input
 					type="text"
@@ -26,9 +44,40 @@ const FormSignup = () => {
 					id="signup-name"
 					required
 				/>
-			</ContentInput>
+			</ContentInput> */}
 
-			<ContentInput>
+			<ContainerInputS>
+				<label htmlFor="signup-username">Username</label>
+				<InputAnimation {...{ text: userSignup.name }}>
+					<input
+						{...{ text: userSignup.name }}
+						type="text"
+						name="name"
+						aria-label="Ingresar username"
+						aria-required="true"
+						id="signup-username"
+						onChange={handleChange}
+						required
+					/>
+				</InputAnimation>
+			</ContainerInputS>
+
+			<ContainerInputS>
+				<label htmlFor="signup-email">Email</label>
+				<InputAnimation {...{ text: userSignup.email }}>
+					<input
+						type="text"
+						name="email"
+						aria-label="Ingresar email"
+						aria-required="true"
+						id="signup-email"
+						onChange={handleChange}
+						required
+					/>
+				</InputAnimation>
+			</ContainerInputS>
+
+			{/* <ContentInput>
 				<label htmlFor="signup-email">Correo electrónico</label>
 				<input
 					type="text"
@@ -39,7 +88,7 @@ const FormSignup = () => {
 					id="signup-email"
 					required
 				/>
-			</ContentInput>
+			</ContentInput> */}
 
 			<ContentInputIcon>
 				<label htmlFor="signup-password">Contraseña</label>
