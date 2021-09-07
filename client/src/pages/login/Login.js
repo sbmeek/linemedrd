@@ -9,6 +9,8 @@ import { Container } from '@/shared/container/Container';
 import { Fragment, useState } from 'react';
 import ModalReserve from '@/components/modal/ModalReserve/ModalReserve';
 
+import { Button } from '@material-ui/core';
+
 const Login = () => {
 	const { t } = useTranslation();
 
@@ -29,6 +31,7 @@ const Login = () => {
 					<Link to="/Signup">Crea una Cuenta</Link>.
 				</ContentLink>
 			</Container>
+			<Button>Material Ui</Button>
 			<button onClick={handleModal} type="button">
 				Abrir Modal Test
 			</button>

@@ -3,7 +3,6 @@ import { CheckboxContainer } from './FormSignup.styles';
 import Submit from '@/shared/submit/Submit';
 import { appName } from '@/constants';
 import Link from '@/shared/link/Link';
-// import ContentInput from '@/shared/inputForm/InputForm';
 import ContentInputIcon, {
 	IconLabel
 } from '@/shared/inputIconForm/InputIconForm';
