@@ -6,7 +6,7 @@ function CalendarIcon(props) {
       viewBox="0 0 51.019 46.434"
       {...props}
     >
-      <g data-name="Group 21" transform="translate(-217 -556)" fill="#005e4b">
+      <g data-name="Group 21" transform="translate(-217 -556)">
         <path
           data-name="Rectangle 40"
           d="M217 575.98h51.019v21.454a5 5 0 01-5 5H222a5 5 0 01-5-5V575.98z"

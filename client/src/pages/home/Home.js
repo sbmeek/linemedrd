@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import {
 	Button,
 	Parrafo,
@@ -10,21 +10,13 @@ import {
 import Title from '@/shared/title/Title';
 
 import { Container, ContainerSection } from '@/shared/container/Container';
-import ModalReserve from '@/components/modal/ModalReserve/ModalReserve';
 // import { useTranslation } from 'react-i18next';
 
 const Home = () => {
 	// const { t } = useTranslation();
-
-	const [showModal, setShowModal] = useState(false);
-	const handleModal = () => {
-		setShowModal(prev => !prev);
-		console.log(showModal);
-	};
 	return (
 		<Fragment>
 			{/* This a Test to the first modal */}
-			<ModalReserve showModal={showModal} setShowModal={setShowModal} />
 			<ContainerHome {...{ index: 4, heigth: '30vh' }}>
 				<Container>
 					<Title>Realiza tu cita desde la comodidad de tu casa.</Title>
@@ -52,7 +44,7 @@ const Home = () => {
 						<Card>Dentista</Card>
 						<Card>Bionalista</Card>
 					</ContentCard>
-					<Button onClick={handleModal}>Ver todas las especialidades</Button>
+					<Button>Ver todas las especialidades</Button>
 				</ContainerSection>
 			</ContainerHome>
 			<ContainerHome
