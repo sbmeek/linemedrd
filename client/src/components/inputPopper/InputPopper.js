@@ -1,21 +1,27 @@
 import ExclamationIcon from '@/assets/icon/exclamation_icon/ExclamationIcon';
 import { useState } from 'react';
 import { usePopper } from 'react-popper';
-import { ContentPopper, Emergente } from './InputPopper.styles';
+import { ArrowPopper, ContentPopper, Emergente } from './InputPopper.styles';
 
 const InputPopper = props => {
 	const { elementReference } = props;
 
 	const [popperElement, setPopperElement] = useState(null);
-
-	console.log(elementReference);
+	const [arrowElement, setArrowElement] = useState(null);
 
 	const { styles, attributes } = usePopper(elementReference, popperElement, {
 		modifiers: [
 			{
 				name: 'offset',
 				options: {
-					offset: [85, 15]
+					offset: [78, 22]
+				}
+			},
+			{
+				name: 'arrow',
+				options: {
+					element: arrowElement,
+					padding: 5
 				}
 			}
 		]
@@ -32,16 +38,20 @@ const InputPopper = props => {
 			{...attributes.popper}
 		>
 			<ContentPopper>
+				<ArrowPopper
+					id="arrow"
+					ref={setArrowElement}
+					style={styles.arrow}
+					data-popper-arrow
+				/>
 				<div className="icon-content">
 					<div className="icon-popper">
 						<ExclamationIcon />
 					</div>
 				</div>
-				<div>
-					Este es el popper yo no recuerdo nada todo bien por el momento
-				</div>
+				<div>Por favor rellene este campo</div>
+				{/* <div>Su nombre debe contener un minimo de 4 caracteres</div> */}
 			</ContentPopper>
-			<div style={styles.arrow}></div>
 		</Emergente>
 	);
 };

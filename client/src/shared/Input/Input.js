@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 const changeText = props => {
-	console.info(props);
 	const {
 		text: { value, placeholder }
 	} = props;

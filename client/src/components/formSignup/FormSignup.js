@@ -1,4 +1,5 @@
-import { createRef, useState } from 'react';
+import { useState } from 'react';
+
 import { CheckboxContainer } from './FormSignup.styles';
 import Submit from '@/shared/submit/Submit';
 import { appName } from '@/constants';
@@ -11,17 +12,30 @@ import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
 import Input, { ContainerInputS } from '@/shared/Input/Input';
 import InputPopper from '../inputPopper/InputPopper';
 
+import { useForm } from 'react-hook-form';
+
 const FormSignup = () => {
 	const [passwordIcon, setPasswordIcon] = useState(true);
-
-	const [popperOpen, setPopperOpen] = useState(false);
 	const [referenceElement, setReferenceElement] = useState(null);
 
 	const [userSignup, setUserSignup] = useState({
-		name: { value: '', placeholder: 'Ingresar Username', ref: createRef() },
-		email: { value: '', placeholder: 'Ingresar Email' },
+		name: {
+			value: '',
+			placeholder: 'Escribe tu nombre de usuario'
+		},
+		email: {
+			value: '',
+			placeholder: 'Escribe tu correo'
+		},
 		password: { value: '', placeholder: 'Ingresar username' }
 	});
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		watch
+	} = useForm();
 
 	const handleChange = e => {
 		setUserSignup({
@@ -33,21 +47,32 @@ const FormSignup = () => {
 		});
 	};
 
-	const handlefocus = e => {
-		console.log(e);
-		// console.info(userSignup.name.ref);
-		setReferenceElement(userSignup.name.ref.current);
+	const handleFocus = e => {
+		setReferenceElement(e.target);
 	};
 
+	const handleBlur = e => {
+		setReferenceElement(null);
+	};
+
+	const onSubmit = data => console.log(data);
+
 	return (
-		<form>
+		<form onSubmit={handleSubmit(onSubmit)}>
 			<ContainerInputS>
 				<label htmlFor="signup-username">Nombre de usuario</label>
 				<Input {...{ text: userSignup.name }}>
 					<input
 						{...{ text: userSignup.name }}
-						ref={userSignup.name.ref}
-						onFocus={handlefocus}
+						{...register('name', {
+							required: 'Este campo es requerido',
+							maxLength: {
+								value: 2,
+								message: 'El máximo de carácteres para este campos es 2'
+							}
+						})}
+						onFocus={handleFocus}
+						onBlur={handleBlur}
 						type="text"
 						name="name"
 						aria-label="Ingresar username"
@@ -58,11 +83,15 @@ const FormSignup = () => {
 					/>
 				</Input>
 			</ContainerInputS>
-
+			<h4>{errors?.name?.message}</h4>
+			{console.log(errors)}
 			<ContainerInputS>
 				<label htmlFor="signup-email">Email</label>
 				<Input {...{ text: userSignup.email }}>
 					<input
+						{...{ text: userSignup.email }}
+						onFocus={handleFocus}
+						onBlur={handleBlur}
 						type="text"
 						name="email"
 						aria-label="Ingresar email"
@@ -98,8 +127,9 @@ const FormSignup = () => {
 					<Link to="#">Términos y condiciones</Link> de uso de {appName}.
 				</span>
 			</CheckboxContainer>
-
-			<InputPopper elementReference={referenceElement} />
+			{referenceElement !== null ? (
+				<InputPopper elementReference={referenceElement} />
+			) : null}
 			<Submit type="submit">Regístrate</Submit>
 		</form>
 	);

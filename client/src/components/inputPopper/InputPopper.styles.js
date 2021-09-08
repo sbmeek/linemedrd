@@ -4,9 +4,9 @@ export const Emergente = styled.div`
 	background-color: ${({ theme }) => theme.letter.gray1};
 	color: ${({ theme }) => theme.colors.white};
 	padding: 0.38rem;
-	font-size: 1rem;
-	border-radius: 0.4rem;
-	width: 13rem;
+	border-radius: 0.3rem;
+	width: 9rem;
+	padding: 0.4rem 0.1rem;
 `;
 
 export const ContentPopper = styled.div`
@@ -16,30 +16,31 @@ export const ContentPopper = styled.div`
 	position: relative;
 
 	.icon-content {
-		padding-top: 0.2rem;
 		fill: ${({ theme }) => theme.colors.white};
 
 		.icon-popper {
-			height: 1.2rem;
-			width: 1.2rem;
+			height: 1rem;
+			width: 1rem;
 		}
 	}
 
 	div:last-child {
-		margin-left: 0.3rem;
-		text-align: justify;
+		margin-left: 0.2rem;
+		text-align: left;
+		font-size: 0.68rem;
+		word-wrap: break-word;
+		margin-left: 0.2rem;
 	}
+`;
 
-	:before {
-		content: '';
-		position: absolute;
-		left: 0.5rem;
-		top: -0.91rem;
-		width: 0.95rem;
-		height: 0px;
-		border-left: 7px solid transparent;
-		border-right: 7px solid transparent;
-		border-bottom: 14px solid ${({ theme }) => theme.letter.gray1};
-		border-radius: 2px;
-	}
+export const ArrowPopper = styled.div`
+	position: absolute;
+	left: 0.2rem;
+	top: -0.89rem;
+	width: 1rem;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 14px solid ${({ theme }) => theme.letter.gray1};
+	border-radius: 2px;
 `;
