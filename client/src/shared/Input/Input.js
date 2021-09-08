@@ -114,10 +114,10 @@ export default styled.div`
 
 		@keyframes moveInput {
 			from {
-				padding: 0rem 1.2rem;
+				padding-left: 1.2rem;
 			}
 			to {
-				padding: 0rem 0rem;
+				padding-left: 0rem;
 			}
 		}
 	}
