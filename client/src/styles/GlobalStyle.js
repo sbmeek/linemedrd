@@ -36,6 +36,10 @@ const GlobalStyle = () => {
 						font-family: 'segoeItalic';
 						src: url(${SegoeUIItalic});
 					}
+
+					body {
+						font-family: segoeNormal;
+					}
 				`}
 			/>
 		</Fragment>
