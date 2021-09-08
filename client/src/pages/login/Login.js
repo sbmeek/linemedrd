@@ -72,6 +72,7 @@ const Login = () => {
 
 	const handlePopper = () => {
 		setPopperOpen(open => !open);
+		console.log(referenceElement);
 	};
 
 	const { styles, attributes } = usePopper(referenceElement, popperElement, {

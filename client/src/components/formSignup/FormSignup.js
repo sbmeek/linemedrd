@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { createRef, useState } from 'react';
 import { CheckboxContainer } from './FormSignup.styles';
 import Submit from '@/shared/submit/Submit';
 import { appName } from '@/constants';
@@ -9,11 +9,16 @@ import ContentInputIcon, {
 import EyeIcon from '@/assets/icon/eye_icon/EyeIcon';
 import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
 import Input, { ContainerInputS } from '@/shared/Input/Input';
+import InputPopper from '../inputPopper/InputPopper';
 
 const FormSignup = () => {
 	const [passwordIcon, setPasswordIcon] = useState(true);
+
+	const [popperOpen, setPopperOpen] = useState(false);
+	const [referenceElement, setReferenceElement] = useState(null);
+
 	const [userSignup, setUserSignup] = useState({
-		name: { value: '', placeholder: 'Ingresar Username' },
+		name: { value: '', placeholder: 'Ingresar Username', ref: createRef() },
 		email: { value: '', placeholder: 'Ingresar Email' },
 		password: { value: '', placeholder: 'Ingresar username' }
 	});
@@ -28,26 +33,21 @@ const FormSignup = () => {
 		});
 	};
 
+	const handlefocus = e => {
+		console.log(e);
+		// console.info(userSignup.name.ref);
+		setReferenceElement(userSignup.name.ref.current);
+	};
+
 	return (
 		<form>
-			{/* <ContentInput>
-				<label htmlFor="signup-name">Nombre de usuario</label>
-				<input
-					type="text"
-					name="signupName"
-					aria-label="Ingresar nombre de usuario"
-					placeholder="Ingresar nombre de usuario"
-					aria-required="true"
-					id="signup-name"
-					required
-				/>
-			</ContentInput> */}
-
 			<ContainerInputS>
 				<label htmlFor="signup-username">Nombre de usuario</label>
 				<Input {...{ text: userSignup.name }}>
 					<input
 						{...{ text: userSignup.name }}
+						ref={userSignup.name.ref}
+						onFocus={handlefocus}
 						type="text"
 						name="name"
 						aria-label="Ingresar username"
@@ -74,19 +74,6 @@ const FormSignup = () => {
 				</Input>
 			</ContainerInputS>
 
-			{/* <ContentInput>
-				<label htmlFor="signup-email">Correo electrónico</label>
-				<input
-					type="text"
-					name="signupEmail"
-					aria-label="Ingresar correo electrónico"
-					placeholder="Ingresar correo electrónico"
-					aria-required="true"
-					id="signup-email"
-					required
-				/>
-			</ContentInput> */}
-
 			<ContentInputIcon>
 				<label htmlFor="signup-password">Contraseña</label>
 				<input
@@ -111,6 +98,8 @@ const FormSignup = () => {
 					<Link to="#">Términos y condiciones</Link> de uso de {appName}.
 				</span>
 			</CheckboxContainer>
+
+			<InputPopper elementReference={referenceElement} />
 			<Submit type="submit">Regístrate</Submit>
 		</form>
 	);
