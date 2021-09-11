@@ -16,17 +16,17 @@ import {
 
 @Injectable()
 export class ApmtContentService {
-	private archive: archiver.Archiver;
 	private filesPath: string;
+	private archive: archiver.Archiver;
 
 	constructor(
 		@InjectModel(AppointmentContent.name)
 		private contentModel: Model<ApmtContentDocument>
 	) {
+		this.filesPath = process.cwd() + '\\files\\';
 		this.archive = archiver('zip', {
 			zlib: { level: 9 }
 		});
-		this.filesPath = process.cwd() + '\\files\\';
 	}
 
 	getById(_id: MSchema.Types.ObjectId) {

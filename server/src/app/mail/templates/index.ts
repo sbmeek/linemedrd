@@ -1,2 +1,2 @@
-export * from './recover-pwd-html';
-export * from './verify-email-html';
+export * from './recoverPwd.template';
+export * from './verifyEmail.template';
