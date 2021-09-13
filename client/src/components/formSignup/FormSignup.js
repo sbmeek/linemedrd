@@ -30,13 +30,6 @@ const FormSignup = () => {
 		password: { value: '', placeholder: 'Ingresar username' }
 	});
 
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		watch
-	} = useForm();
-
 	const handleChange = e => {
 		setUserSignup({
 			...userSignup,
@@ -55,7 +48,15 @@ const FormSignup = () => {
 		setReferenceElement(null);
 	};
 
+	const {
+		register,
+		handleSubmit,
+		formState: { errors }
+	} = useForm();
+
 	const onSubmit = data => console.log(data);
+
+	console.log(errors, errors.username);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -64,13 +65,7 @@ const FormSignup = () => {
 				<Input {...{ text: userSignup.name }}>
 					<input
 						{...{ text: userSignup.name }}
-						{...register('name', {
-							required: 'Este campo es requerido',
-							maxLength: {
-								value: 2,
-								message: 'El máximo de carácteres para este campos es 2'
-							}
-						})}
+						{...register('username', { required: true, maxLength: 80 })}
 						onFocus={handleFocus}
 						onBlur={handleBlur}
 						type="text"
@@ -84,7 +79,6 @@ const FormSignup = () => {
 				</Input>
 			</ContainerInputS>
 			<h4>{errors?.name?.message}</h4>
-			{console.log(errors)}
 			<ContainerInputS>
 				<label htmlFor="signup-email">Email</label>
 				<Input {...{ text: userSignup.email }}>
