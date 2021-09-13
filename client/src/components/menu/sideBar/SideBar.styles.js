@@ -33,11 +33,14 @@ const mostrar = props => {
 
 export const ContentNav = styled.nav`
 	width: 100%;
-	min-height: 100vh;
+	height: 100vh;
+	min-height: 50vh;
+	max-height: 100vh;
 	background-color: ${({ theme }) => theme.colors.green4};
 	z-index: 200;
 	padding-top: 3.6rem;
 	transform: translateY(-200rem);
 	position: fixed;
+	overflow-y: auto;
 	${mostrar};
 `;
