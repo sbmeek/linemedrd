@@ -1,4 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import Link, { ContentLink } from '@/shared/link/Link';
 import Submit from '@/shared/submit/Submit';
@@ -9,20 +12,24 @@ import { useField } from '@/hooks/useField';
 import useAuth from '@/context/authContext';
 import EyeIcon from '@/assets/icon/eye_icon/EyeIcon';
 import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
-import { useForm } from 'react-hook-form';
+
+const schema = yup.object().shape({
+	email: yup.string().email().required(),
+	pwd: yup.string().required()
+});
 
 const FormLogin = () => {
-	const [passwordIcon, setPasswordIcon] = useState(true);
-	const emailField = useField({ name: 'email', type: 'text' });
-	const passwordField = useField({ name: 'pwd', type: 'password' });
-	const { login } = useAuth();
-	const { t } = useTranslation();
-
 	const {
 		register,
 		handleSubmit,
 		formState: { errors }
-	} = useForm();
+	} = useForm({ resolver: yupResolver(schema) });
+
+	const [passwordIcon, setPasswordIcon] = useState(true);
+	const emailField = useField({ ...register('email'), type: 'text' });
+	const passwordField = useField({ ...register('pwd'), type: 'password' });
+	const { login } = useAuth();
+	const { t } = useTranslation();
 
 	const handleFormSubmit = evt => {
 		evt.preventDefault();
@@ -64,7 +71,9 @@ const FormLogin = () => {
 					aria-required="true"
 					required
 					{...passwordField}
+					type={passwordIcon ? 'password' : 'text'}
 				/>
+				{errors.pwd && <span>{errors.pwd.message}</span>}
 				<Icon onClick={() => setPasswordIcon(!passwordIcon)}>
 					{passwordIcon ? <EyeIcon /> : <EyeCloseIcon />}
 				</Icon>
