@@ -7,12 +7,14 @@ import { useTranslation } from 'react-i18next';
 
 import { Container } from '@/shared/container/Container';
 import { Fragment, useState } from 'react';
-import ModalReserve from '@/components/modal/ModalReserve/ModalReserve';
+import ModalReserve from '@/components/modal/modalReserve/ModalReserve';
 
 import { usePopper } from 'react-popper';
 
 import styled from '@emotion/styled';
 import ExclamationIcon from '@/assets/icon/exclamation_icon/ExclamationIcon';
+import useAlerta from '@/context/alerta/alertaState';
+import ModalFullScreen from '@/components/modal/modalFullScreen/ModalFullScreen';
 
 const Emergente = styled.div`
 	background-color: ${({ theme }) => theme.letter.gray1};
@@ -61,14 +63,11 @@ const ContentPopper = styled.div`
 const Login = () => {
 	const { t } = useTranslation();
 
-	const [showModal, setShowModal] = useState(false);
+	const { showModal } = useAlerta();
+
 	const [popperOpen, setPopperOpen] = useState(false);
 	const [referenceElement, setReferenceElement] = useState(null);
 	const [popperElement, setPopperElement] = useState(null);
-
-	const handleModal = () => {
-		setShowModal(prev => !prev);
-	};
 
 	const handlePopper = () => {
 		setPopperOpen(open => !open);
@@ -88,7 +87,9 @@ const Login = () => {
 
 	return (
 		<Fragment>
-			<ModalReserve showModal={showModal} setShowModal={setShowModal} />
+			<ModalFullScreen>
+				<ModalReserve />
+			</ModalFullScreen>
 			<Container>
 				<Title>{t('pages.login.title')}</Title>
 				<FormLogin />
@@ -121,7 +122,7 @@ const Login = () => {
 				</Emergente>
 			) : null}
 
-			<button onClick={handleModal} type="button">
+			<button onClick={showModal} type="button">
 				Abrir Modal Test
 			</button>
 		</Fragment>

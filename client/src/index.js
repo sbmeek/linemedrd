@@ -7,22 +7,25 @@ import { data } from './styles/Theme';
 import App from './App';
 import ThemeState from './context/theme/themeState';
 import { AuthProvider } from './context/authContext';
+import { AlertaState } from './context/alerta/alertaState';
 
 import './i18next';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<AuthProvider>
-			<ApolloProvider client={client}>
-				<ThemeState>
-					<Main theme={data}>
-						<Suspense fallback={<div>Loading...</div>}>
-							<App />
-						</Suspense>
-					</Main>
-				</ThemeState>
-			</ApolloProvider>
-		</AuthProvider>
+		<AlertaState>
+			<AuthProvider>
+				<ApolloProvider client={client}>
+					<ThemeState>
+						<Main theme={data}>
+							<Suspense fallback={<div>Loading...</div>}>
+								<App />
+							</Suspense>
+						</Main>
+					</ThemeState>
+				</ApolloProvider>
+			</AuthProvider>
+		</AlertaState>
 	</React.StrictMode>,
 	document.getElementById('root')
 );
