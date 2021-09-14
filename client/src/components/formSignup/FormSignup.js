@@ -1,87 +1,72 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
-import { CheckboxContainer } from './FormSignup.styles';
+// import { CheckboxContainer } from './FormSignup.styles';
 import Submit from '@/shared/submit/Submit';
-import { appName } from '@/constants';
-import Link from '@/shared/link/Link';
-import ContentInputIcon, {
-	IconLabel
-} from '@/shared/inputIconForm/InputIconForm';
-import EyeIcon from '@/assets/icon/eye_icon/EyeIcon';
-import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
-import Input, { ContainerInputS } from '@/shared/Input/Input';
-import InputPopper from '../inputPopper/InputPopper';
+// import { appName } from '@/constants';
+// import Link from '@/shared/link/Link';
+// import ContentInputIcon, {
+// 	IconLabel
+// } from '@/shared/inputIconForm/InputIconForm';
+// import EyeIcon from '@/assets/icon/eye_icon/EyeIcon';
+// import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
+import { ContentInput, InputWrapper, Wrapper } from '@/shared/Input/Input';
+// import InputPopper from '../inputPopper/InputPopper';
 
 import { useForm } from 'react-hook-form';
+import { useFormSignup } from '@/hooks/useFormSignup';
+// import FormErrorPopper from '../formErrorPopper/FormErrorPopper';
 
 const FormSignup = () => {
-	const [passwordIcon, setPasswordIcon] = useState(true);
-	const [referenceElement, setReferenceElement] = useState(null);
-
-	const [userSignup, setUserSignup] = useState({
-		name: {
-			value: '',
-			placeholder: 'Escribe tu nombre de usuario'
-		},
-		email: {
-			value: '',
-			placeholder: 'Escribe tu correo'
-		},
-		password: { value: '', placeholder: 'Ingresar username' }
-	});
-
-	const handleChange = e => {
-		setUserSignup({
-			...userSignup,
-			[e.target.name]: {
-				value: e.target.value,
-				placeholder: userSignup[e.target.name].placeholder
-			}
-		});
-	};
-
-	const handleFocus = e => {
-		setReferenceElement(e.target);
-	};
-
-	const handleBlur = e => {
-		setReferenceElement(null);
-	};
+	// const [passwordIcon, setPasswordIcon] = useState(true);
+	// const [referenceElement, setReferenceElement] = useState(null);
 
 	const {
 		register,
+		watch,
 		handleSubmit,
 		formState: { errors }
 	} = useForm();
 
+	// const [userSignup, setUserSignup] = useState({
+	// 	name: {
+	// 		value: '',
+	// 		placeholder: 'Escribe tu nombre de usuario'
+	// 	},
+	// 	email: {
+	// 		value: '',
+	// 		placeholder: 'Escribe tu correo'
+	// 	},
+	// 	password: { value: '', placeholder: 'Ingresar username' }
+	// });
+
+	const [Input] = useFormSignup(
+		'username',
+		'nombre de usuario',
+		'Ingresar nombre de usuario'
+	);
+
 	const onSubmit = data => console.log(data);
 
-	console.log(errors, errors.username);
+	console.log(errors, errors.userName);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<ContainerInputS>
+			<ContentInput>
 				<label htmlFor="signup-username">Nombre de usuario</label>
-				<Input {...{ text: userSignup.name }}>
-					<input
-						{...{ text: userSignup.name }}
-						{...register('username', { required: true, maxLength: 80 })}
-						onFocus={handleFocus}
-						onBlur={handleBlur}
+				<Wrapper {...username}>
+					<InputWrapper
+						{...username}
 						type="text"
-						name="name"
-						aria-label="Ingresar username"
-						aria-required="true"
 						id="signup-username"
-						onChange={handleChange}
-						required
+						aria-label="Ingresar username"
 					/>
-				</Input>
-			</ContainerInputS>
-			<h4>{errors?.name?.message}</h4>
-			<ContainerInputS>
+				</Wrapper>
+			</ContentInput>
+			{errors.userName && <p>{errors.userName?.message}</p>}
+			{Input(register)}
+			{/* <ContentInput>
 				<label htmlFor="signup-email">Email</label>
-				<Input {...{ text: userSignup.email }}>
+				<Wrapper {...{ text: userSignup.email }}>
 					<input
 						{...{ text: userSignup.email }}
 						onFocus={handleFocus}
@@ -94,10 +79,10 @@ const FormSignup = () => {
 						onChange={handleChange}
 						required
 					/>
-				</Input>
-			</ContainerInputS>
+				</Wrapper>
+			</ContentInput> */}
 
-			<ContentInputIcon>
+			{/* <ContentInputIcon>
 				<label htmlFor="signup-password">Contraseña</label>
 				<input
 					type={passwordIcon ? 'password' : 'text'}
@@ -111,8 +96,8 @@ const FormSignup = () => {
 				<IconLabel onClick={() => setPasswordIcon(!passwordIcon)}>
 					{passwordIcon ? <EyeIcon /> : <EyeCloseIcon />}
 				</IconLabel>
-			</ContentInputIcon>
-			<CheckboxContainer htmlFor="polity">
+			</ContentInputIcon> */}
+			{/* <CheckboxContainer htmlFor="polity">
 				<input type="checkbox" name="polity" id="polity" />
 
 				<span>
@@ -120,10 +105,10 @@ const FormSignup = () => {
 					<Link to="#">Aviso de privacidad</Link> y los{' '}
 					<Link to="#">Términos y condiciones</Link> de uso de {appName}.
 				</span>
-			</CheckboxContainer>
-			{referenceElement !== null ? (
+			</CheckboxContainer> */}
+			{/* {referenceElement !== null ? (
 				<InputPopper elementReference={referenceElement} />
-			) : null}
+			) : null} */}
 			<Submit type="submit">Regístrate</Submit>
 		</form>
 	);

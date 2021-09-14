@@ -1,57 +1,59 @@
 import styled from '@emotion/styled';
 
-const changeText = props => {
-	const {
-		text: { value, placeholder }
-	} = props;
-
-	return value !== '' ? `content: ${value}` : `content: '${placeholder}'`;
+const contenText = props => {
+	console.warn(props);
+	const { theme, value, content } = props;
+	return {
+		content: !value ? `"${content}"` : null,
+		color: theme.iconPlaceholder.grayTraps1
+	};
 };
 
-const inputEmpty = `
-    padding-left: 1.2rem;
+// const inputEmpty = `
+//     padding-left: 1.2rem;
 
-    &:focus {
-    animation: moveInput 0.25s ease-in-out forwards;
-    };
-`;
+//     &:focus {
+//     animation: moveInput 0.25s ease-in-out forwards;
+//     };
+// `;
 
-const inputNotEmpty = `
-    padding-left: 0rem;
-`;
+// const inputNotEmpty = `
+//     padding-left: 0rem;
+// `;
 
-const inputEmptyBorder = color => `
-	&:focus-within {
-		border: 0.0995rem solid ${color};
-	}
-`;
+// const inputEmptyBorder = color => `
+// 	&:focus-within {
+// 		border: 0.0995rem solid ${color};
+// 	}
+// `;
 
-const inputNotEmptyBorder = color => `
-	&:focus-within {
-		border: 0.0995rem solid ${color};
-	}
-`;
+// const inputNotEmptyBorder = color => `
+// 	&:focus-within {
+// 		border: 0.0995rem solid ${color};
+// 	}
+// `;
 
-const paddingInput = props => {
-	const {
-		text: { value }
-	} = props;
+// const paddingInput = props => {
+// 	const {
+// 		text: { value }
+// 	} = props;
 
-	return value !== '' ? inputNotEmpty : inputEmpty;
-};
+// 	return value !== '' ? inputNotEmpty : inputEmpty;
+// };
 
-const colorBorder = props => {
-	const {
-		text: { value },
-		theme
-	} = props;
+// const colorBorder = props => {
+// 	console.log(props, 'color');
+// 	const {
+// 		text: { value },
+// 		theme
+// 	} = props;
 
-	return value === ''
-		? inputNotEmptyBorder(theme.colors.green4)
-		: inputEmptyBorder(theme.calendarNotify.blue1);
-};
+// 	return value === ''
+// 		? inputNotEmptyBorder(theme.colors.green4)
+// 		: inputEmptyBorder(theme.calendarNotify.blue1);
+// };
 
-export const ContainerInputS = styled.div`
+export const ContentInput = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -66,7 +68,7 @@ export const ContainerInputS = styled.div`
 	}
 `;
 
-export default styled.div`
+export const Wrapper = styled.div`
 	outline: none;
 	border: unset;
 	outline: none;
@@ -85,40 +87,35 @@ export default styled.div`
 	})}
 
 	::after {
-		${changeText};
+		${contenText};
 		position: absolute;
 		left: 0.6rem;
 		z-index: 0;
-
-		${({ theme }) => ({
-			color: theme.iconPlaceholder.grayTraps1,
-			fontFamily: theme.fonts.segoeui
-		})};
+		pointer-events: none;
 	}
+`;
 
-	input {
-		background: none;
-		width: 100%;
-		outline: none;
-		border: none;
-		border-radius: 0.4rem;
-		font-size: 1rem;
-		${({ theme }) => ({
-			color: theme.calendarNotify.blue1,
-			fontFamily: theme.fonts.segoeui,
-			caretColor: theme.colors.green4
-		})};
+export const InputWrapper = styled.input`
+	background: none;
+	width: 100%;
+	outline: none;
+	border: none;
+	border-radius: 0.4rem;
+	font-size: 1rem;
+	${({ theme }) => ({
+		color: theme.calendarNotify.blue1,
+		fontFamily: theme.fonts.segoeui,
+		caretColor: theme.colors.green4
+	})};
 
-		${paddingInput};
+	/* paddingInput */
 
-		@keyframes moveInput {
-			from {
-				padding-left: 1.2rem;
-			}
-			to {
-				padding-left: 0rem;
-			}
+	@keyframes moveInput {
+		from {
+			padding-left: 1.2rem;
+		}
+		to {
+			padding-left: 0rem;
 		}
 	}
-	${colorBorder};
 `;
