@@ -13,31 +13,39 @@ import useAuth from '@/context/authContext';
 import EyeIcon from '@/assets/icon/eye_icon/EyeIcon';
 import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
 
+// import { Translate as t } from '@/translate/Translate';
+
 const schema = yup.object().shape({
-	email: yup.string().email().required(),
-	pwd: yup.string().required()
+	email: yup.string().email().required('Obligatorio'),
+	pwd: yup.string().required('Obligatorio')
 });
 
 const FormLogin = () => {
 	const {
 		register,
+		setError,
 		handleSubmit,
+		clearErrors,
 		formState: { errors }
 	} = useForm({ resolver: yupResolver(schema) });
 
 	const [passwordIcon, setPasswordIcon] = useState(true);
+
 	const emailField = useField({ ...register('email'), type: 'text' });
 	const passwordField = useField({ ...register('pwd'), type: 'password' });
+
 	const { login } = useAuth();
 	const { t } = useTranslation();
-
 	const handleFormSubmit = evt => {
 		evt.preventDefault();
 		console.info(evt);
+		clearErrors();
 		login(emailField.value, passwordField.value);
 	};
 
 	console.info(errors);
+
+	// console.info(emailField, passwordField);
 
 	useEffect(() => {
 		passwordField.type = passwordIcon ? 'password' : 'text';
@@ -47,33 +55,42 @@ const FormLogin = () => {
 		<form onSubmit={handleSubmit(handleFormSubmit)}>
 			<ContentInput {...{ login: true }}>
 				<input
-					{...register('email', {
-						required: { value: true, message: 'este campo es requerido' },
-						minLength: { value: 5, message: 'el minimo de caracteres es 5' },
-						maxLength: { value: 20, message: 'el maximo de caracteres es 20' },
-						pattern: {
-							value: /\d+/,
-							message: 'This input is number only.'
-						}
-					})}
 					placeholder={t('forms.formLogin.inputEmail.placeholder')}
 					aria-label={t('forms.formLogin.inputEmail.areaLabel')}
-					aria-required="true"
-					required
-					// {...emailField}
+					{...emailField}
+					onFocus={e => {
+						const { value } = emailField;
+
+						if (value.length === 0) {
+							setError('email', {
+								type: 'required',
+								message: 'El email es obligatorio'
+							});
+						}
+					}}
+					onChange={e => {
+						emailField.onChange(e);
+						const { value } = emailField;
+						if (value.length < 7) {
+							setError('email', {
+								type: 'minLength',
+								message: `cantidad de caracter necesario 8`
+							});
+						} else {
+							clearErrors();
+						}
+					}}
 				/>
-				{errors?.email?.message}
+				<span>{errors.email?.message}</span>
 			</ContentInput>
 			<ContentInputIcon {...{ login: true }}>
 				<input
 					placeholder={t('forms.formLogin.inputPassword.placeholder')}
 					aria-label={t('forms.formLogin.inputPassword.placeholder')}
-					aria-required="true"
-					required
 					{...passwordField}
 					type={passwordIcon ? 'password' : 'text'}
 				/>
-				{errors.pwd && <span>{errors.pwd.message}</span>}
+				{errors.pwd && <span>{errors?.pwd?.message}</span>}
 				<Icon onClick={() => setPasswordIcon(!passwordIcon)}>
 					{passwordIcon ? <EyeIcon /> : <EyeCloseIcon />}
 				</Icon>
