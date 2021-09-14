@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -38,10 +38,6 @@ const FormLogin = () => {
 		console.log(data);
 	};
 
-	useEffect(() => {
-		passwordField.type = passwordIcon ? 'password' : 'text';
-	}, [passwordIcon]);
-
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<ContentInput {...{ login: true }}>
@@ -61,6 +57,7 @@ const FormLogin = () => {
 					aria-required="true"
 					required
 					{...passwordField}
+					type={passwordIcon ? 'password' : 'text'}
 				/>
 				{errors.pwd && <span>{errors.pwd.message}</span>}
 				<Icon onClick={() => setPasswordIcon(!passwordIcon)}>

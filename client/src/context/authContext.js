@@ -43,8 +43,10 @@ export function AuthProvider({ children }) {
 
 		authService
 			.login({ email, pwd })
-			.then(user => {
-				setUser(user);
+			.then(response => {
+				console.log(response);
+				if (!response.ok) return;
+				setUser(response);
 				history.push('/');
 			})
 			.catch(error => setError(error))
