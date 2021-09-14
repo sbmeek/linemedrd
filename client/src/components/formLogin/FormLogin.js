@@ -1,4 +1,8 @@
+// @ts-nocheck
 import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import Link, { ContentLink } from '@/shared/link/Link';
 import Submit from '@/shared/submit/Submit';
@@ -10,16 +14,28 @@ import useAuth from '@/context/authContext';
 import EyeIcon from '@/assets/icon/eye_icon/EyeIcon';
 import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
 
+const schema = yup.object().shape({
+	email: yup.string().email().required(),
+	pwd: yup.string().required()
+});
+
 const FormLogin = () => {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors }
+	} = useForm({ resolver: yupResolver(schema) });
+
 	const [passwordIcon, setPasswordIcon] = useState(true);
-	const emailField = useField({ name: 'email', type: 'text' });
-	const passwordField = useField({ name: 'pwd', type: 'password' });
+	const emailField = useField({ ...register('email'), type: 'text' });
+	const passwordField = useField({ ...register('pwd'), type: 'password' });
 	const { login } = useAuth();
 	const { t } = useTranslation();
 
-	const handleFormSubmit = evt => {
-		evt.preventDefault();
+	const onSubmit = data => {
+		data.preventDefault();
 		login(emailField.value, passwordField.value);
+		console.log(data);
 	};
 
 	useEffect(() => {
@@ -27,7 +43,7 @@ const FormLogin = () => {
 	}, [passwordIcon]);
 
 	return (
-		<form onSubmit={handleFormSubmit}>
+		<form onSubmit={handleSubmit(onSubmit)}>
 			<ContentInput {...{ login: true }}>
 				<input
 					placeholder={t('forms.formLogin.inputEmail.placeholder')}
@@ -36,6 +52,7 @@ const FormLogin = () => {
 					required
 					{...emailField}
 				/>
+				{errors.email && <span>{errors.email.message}</span>}
 			</ContentInput>
 			<ContentInputIcon {...{ login: true }}>
 				<input
@@ -45,6 +62,7 @@ const FormLogin = () => {
 					required
 					{...passwordField}
 				/>
+				{errors.pwd && <span>{errors.pwd.message}</span>}
 				<Icon onClick={() => setPasswordIcon(!passwordIcon)}>
 					{passwordIcon ? <EyeIcon /> : <EyeCloseIcon />}
 				</Icon>
