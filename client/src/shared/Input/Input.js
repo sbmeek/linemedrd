@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 const contenText = props => {
-	console.warn(props);
 	const { theme, value, content } = props;
 	return {
 		content: !value ? `"${content}"` : null,
@@ -9,55 +8,10 @@ const contenText = props => {
 	};
 };
 
-// const inputEmpty = `
-//     padding-left: 1.2rem;
-
-//     &:focus {
-//     animation: moveInput 0.25s ease-in-out forwards;
-//     };
-// `;
-
-// const inputNotEmpty = `
-//     padding-left: 0rem;
-// `;
-
-// const inputEmptyBorder = color => `
-// 	&:focus-within {
-// 		border: 0.0995rem solid ${color};
-// 	}
-// `;
-
-// const inputNotEmptyBorder = color => `
-// 	&:focus-within {
-// 		border: 0.0995rem solid ${color};
-// 	}
-// `;
-
-// const paddingInput = props => {
-// 	const {
-// 		text: { value }
-// 	} = props;
-
-// 	return value !== '' ? inputNotEmpty : inputEmpty;
-// };
-
-// const colorBorder = props => {
-// 	console.log(props, 'color');
-// 	const {
-// 		text: { value },
-// 		theme
-// 	} = props;
-
-// 	return value === ''
-// 		? inputNotEmptyBorder(theme.colors.green4)
-// 		: inputEmptyBorder(theme.calendarNotify.blue1);
-// };
-
 export const ContentInput = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	margin-bottom: 0.7rem;
 	outline: none;
 
 	label {
@@ -77,14 +31,15 @@ export const Wrapper = styled.div`
 	font-size: 1rem;
 	width: 100%;
 	max-width: 100%;
-	margin: 0.6rem 0;
+	margin-top: 0.6rem;
 	padding: 0.7rem 0.5rem;
 	position: relative;
 	transition: border 120ms cubic-bezier(0.1, -0.6, 0.2, 0), color 400ms;
+	background-color: ${({ theme }) => theme.colors.green1};
 
-	${({ theme }) => ({
-		backgroundColor: theme.colors.green1
-	})}
+	&.empty:focus-within {
+		border: 0.0995rem ${({ theme }) => theme.colors.green4};
+	}
 
 	::after {
 		${contenText};
@@ -109,6 +64,13 @@ export const InputWrapper = styled.input`
 	})};
 
 	/* paddingInput */
+	&.empty:focus {
+		padding-left: 1.2rem;
+
+		&:focus {
+			animation: moveInput 0.25s ease-in-out forwards;
+		}
+	}
 
 	@keyframes moveInput {
 		from {

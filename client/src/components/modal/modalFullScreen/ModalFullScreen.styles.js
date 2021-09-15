@@ -36,13 +36,14 @@ export default styled.div`
 	width: 100%;
 	height: 100vh;
 	background-color: ${({ theme }) => theme.background.content};
+	transition: tranform 1s;
 
 	&.open {
 		animation: modalAnimated 500ms ease-in-out forwards;
 	}
 
 	&.close {
-		animation: modalHideAnimated 500ms ease-in-out forwards;
+		transform: translateY(-200rem);
 	}
 
 	@keyframes modalAnimated {
@@ -53,17 +54,6 @@ export default styled.div`
 		to {
 			opacity: 1;
 			transform: translateY(0rem);
-		}
-	}
-
-	@keyframes modalHideAnimated {
-		from {
-			opacity: 1;
-			transform: translateY(0rem);
-		}
-		to {
-			opacity: 0;
-			transform: translateY(-90rem);
 		}
 	}
 `;

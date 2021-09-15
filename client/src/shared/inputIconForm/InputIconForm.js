@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import Input from '@/shared/inputForm/InputForm';
+import { InputWrapper } from '../Input/Input';
 
 export const Icon = styled.div`
 	position: absolute;
-	right: 0.5rem;
-	top: 1.4rem;
+	right: 0.6rem;
+	top: 30%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -13,12 +13,9 @@ export const Icon = styled.div`
 `;
 
 export const IconLabel = styled(Icon)`
-	top: 50%;
+	top: 30%;
 `;
 
-export default styled(Input)`
-	position: relative;
-	& input {
-		padding-right: 2rem;
-	}
+export const InputWrapperIcon = styled(InputWrapper)`
+	padding-right: 2rem;
 `;

@@ -1,20 +1,12 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-function align(props) {
-	return props.left ? 'left' : 'center';
-}
-
 export const ContentLink = styled.div`
-	text-align: ${align};
 	font-size: 1.01rem;
 	${({ theme }) => ({
 		color: theme.colors.green5,
 		fontFamily: theme.fonts.segoeui
 	})}
-
-	.modal {
-	}
 `;
 
 export default styled(Link)`
