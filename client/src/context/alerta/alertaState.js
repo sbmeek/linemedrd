@@ -1,4 +1,4 @@
-import { OPEN_MODAL, CLOSE_MODAL } from '@/types/types';
+import { OPEN_MODAL, CLOSE_MODAL } from '@/type/types';
 import { useContext, useMemo, useReducer } from 'react';
 import AlertaContext from './alertaContext';
 import AlertaReducer from './alertaReducer';
@@ -12,17 +12,16 @@ export const AlertaState = ({ children }) => {
 	const { alerta } = state;
 
 	const showModal = () => {
-		// @ts-ignore
-		dispatch({
+		const setDispatch = {
 			types: OPEN_MODAL,
 			payload: {
 				open: true
 			}
-		});
+		};
+		dispatch(setDispatch);
 	};
 
 	const hideModal = () => {
-		// @ts-ignore
 		dispatch({
 			types: CLOSE_MODAL
 		});

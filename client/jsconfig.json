@@ -15,5 +15,5 @@
 		"enable": true,
 		"include": ["./global.d.ts"]
 	},
-	"exclude": ["node_modules", "dist", "docs"]
+	"exclude": ["node_modules", "dist", "docs", "types"]
 }

@@ -14,7 +14,6 @@ import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
 
 import FormErrorPopper from '../formErrorPopper/FormErrorPopper';
 
-// import * as authService from '@/services/authService';
 import useAuth from '@/context/authContext';
 
 const FormLogin = () => {
@@ -29,28 +28,12 @@ const FormLogin = () => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [message, setMessage] = useState(null);
 
-	const [loading, setLoading] = useState(false);
-
 	const [test, setTest] = useState(null);
 
 	const [visible, setVisible] = useState(true);
 
 	const { t } = useTranslation();
 	const history = useHistory();
-
-	/*	async function login(email, pwd) {
-		setLoading(true);
-		let notify = false;
-		notify = await authService
-			.login({ email, pwd })
-			.then(response => {
-				if (!response.ok) return response;
-				history.push('/');
-			})
-			.catch(error => error)
-			.finally(() => setLoading(false));
-		return notify;
-	} */
 
 	const { login, error } = useAuth();
 
@@ -64,7 +47,7 @@ const FormLogin = () => {
 		const response = await login(email, pwd);
 		console.log(response, 'second');
 		console.log(test);
-		// history.push('/');
+		history.push('/');
 		clearErrors();
 	};
 
@@ -114,8 +97,7 @@ const FormLogin = () => {
 					<InputWrapperIcon
 						aria-label={t('forms.formLogin.inputPassword.placeholder')}
 						{...register('pwd', {
-							required: 'La contraseña es requerida',
-							validate: value => value === 'martin' || 'contraseña incorrecta'
+							required: 'La contraseña es requerida'
 						})}
 						onFocus={handleFocus}
 						onBlur={() => setAnchorEl(null)}

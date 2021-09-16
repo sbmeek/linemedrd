@@ -6,84 +6,16 @@ import { appName } from '@/constants';
 import { useTranslation } from 'react-i18next';
 
 import { Container } from '@/shared/container/Container';
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import ModalReserve from '@/components/modal/modalReserve/ModalReserve';
 
-import { usePopper } from 'react-popper';
-
-import styled from '@emotion/styled';
-import ExclamationIcon from '@/assets/icon/exclamation_icon/ExclamationIcon';
 import useAlerta from '@/context/alerta/alertaState';
 import ModalFullScreen from '@/components/modal/modalFullScreen/ModalFullScreen';
-
-const Emergente = styled.div`
-	background-color: ${({ theme }) => theme.letter.gray1};
-	color: ${({ theme }) => theme.colors.white};
-	padding: 0.38rem;
-	font-size: 1rem;
-	border-radius: 0.4rem;
-	width: 13rem;
-`;
-
-const ContentPopper = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	position: relative;
-
-	.icon-content {
-		padding-top: 0.2rem;
-		fill: ${({ theme }) => theme.colors.white};
-
-		.icon-popper {
-			height: 1.2rem;
-			width: 1.2rem;
-		}
-	}
-
-	div:last-child {
-		margin-left: 0.3rem;
-		text-align: justify;
-	}
-
-	:before {
-		content: '';
-		position: absolute;
-		left: 0.5rem;
-		top: -0.91rem;
-		width: 0.95rem;
-		height: 0px;
-		border-left: 7px solid transparent;
-		border-right: 7px solid transparent;
-		border-bottom: 14px solid ${({ theme }) => theme.letter.gray1};
-		border-radius: 2px;
-	}
-`;
 
 const Login = () => {
 	const { t } = useTranslation();
 
 	const { showModal } = useAlerta();
-
-	const [popperOpen, setPopperOpen] = useState(false);
-	const [referenceElement, setReferenceElement] = useState(null);
-	const [popperElement, setPopperElement] = useState(null);
-
-	const handlePopper = () => {
-		setPopperOpen(open => !open);
-		console.log(referenceElement);
-	};
-
-	const { styles, attributes } = usePopper(referenceElement, popperElement, {
-		modifiers: [
-			{
-				name: 'offset',
-				options: {
-					offset: [85, 15]
-				}
-			}
-		]
-	});
 
 	return (
 		<Fragment>
@@ -98,30 +30,6 @@ const Login = () => {
 					<Link to="/Signup">Crea una Cuenta</Link>.
 				</ContentLink>
 			</Container>
-			<button type="button" ref={setReferenceElement} onClick={handlePopper}>
-				Test Popper
-			</button>
-			{popperOpen ? (
-				<Emergente
-					ref={setPopperElement}
-					style={styles.popper}
-					{...attributes.popper}
-				>
-					<ContentPopper>
-						<div className="icon-content">
-							<div className="icon-popper">
-								<ExclamationIcon />
-							</div>
-						</div>
-						<div>
-							Este es el popper yo no recuerdo nada todo bien por el momento
-						</div>
-					</ContentPopper>
-
-					<div style={styles.arrow}></div>
-				</Emergente>
-			) : null}
-
 			<button onClick={showModal} type="button">
 				Abrir Modal Test
 			</button>
