@@ -11,7 +11,7 @@ const FormErrorPopper = ({ anchorEl, open, message }) => {
 
 	return (
 		<ContainerPopper
-			placement="bottom-start"
+			placement="bottom-end"
 			open={open}
 			anchorEl={anchorEl}
 			disablePortal={false}

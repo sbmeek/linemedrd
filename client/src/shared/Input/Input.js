@@ -8,6 +8,17 @@ const contenText = props => {
 	};
 };
 
+const bordersColor = props => {
+	const { theme, value } = props;
+	const colorB = value ? theme.calendarNotify.blue1 : theme.colors.green4;
+	return colorB;
+};
+
+const bordersError = props => {
+	const { error, theme } = props;
+	return error && `0.0995rem solid ${theme.calendarNotify.orange2}`;
+};
+
 export const ContentInput = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -37,10 +48,6 @@ export const Wrapper = styled.div`
 	transition: border 120ms cubic-bezier(0.1, -0.6, 0.2, 0), color 400ms;
 	background-color: ${({ theme }) => theme.colors.green1};
 
-	&.empty:focus-within {
-		border: 0.0995rem ${({ theme }) => theme.colors.green4};
-	}
-
 	::after {
 		${contenText};
 		position: absolute;
@@ -48,6 +55,12 @@ export const Wrapper = styled.div`
 		z-index: 0;
 		pointer-events: none;
 	}
+
+	&:focus-within {
+		border: 0.0995rem solid ${bordersColor};
+	}
+
+	border: ${bordersError} !important;
 `;
 
 export const InputWrapper = styled.input`
@@ -63,13 +76,8 @@ export const InputWrapper = styled.input`
 		caretColor: theme.colors.green4
 	})};
 
-	/* paddingInput */
 	&.empty:focus {
-		padding-left: 1.2rem;
-
-		&:focus {
-			animation: moveInput 0.25s ease-in-out forwards;
-		}
+		animation: moveInput 0.25s ease-in-out forwards;
 	}
 
 	@keyframes moveInput {

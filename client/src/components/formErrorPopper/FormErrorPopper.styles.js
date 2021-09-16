@@ -8,6 +8,7 @@ export const ContainerPopper = styled(Popper)`
 	border-radius: 0.3rem;
 	width: 9rem;
 	padding: 0.4rem 0.1rem;
+	margin-top: 1rem;
 `;
 
 export const ContentPopper = styled.div`
@@ -36,8 +37,8 @@ export const ContentPopper = styled.div`
 
 export const ArrowPopper = styled.div`
 	position: absolute;
-	left: 0.2rem;
-	top: -0.89rem;
+	left: 1rem;
+	top: -1rem;
 	width: 1rem;
 	height: 0;
 	border-left: 7px solid transparent;

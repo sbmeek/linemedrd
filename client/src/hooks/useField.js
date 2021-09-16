@@ -1,11 +1,17 @@
 import { useState } from 'react';
 
-export function useField({ name, type }) {
-	const [fieldValue, setFieldValue] = useState('');
-	console.log(name);
-	const onChange = ({ target }) => {
-		setFieldValue(target.value);
+export function useField(props) {
+	const [values, setValues] = useState({
+		email: '',
+		pwd: ''
+	});
+
+	const onChange = e => {
+		const {
+			target: { name, value }
+		} = e;
+		setValues({ ...values, [name]: value });
 	};
 
-	return { name, type, value: fieldValue, onChange };
+	return { values, onChange };
 }

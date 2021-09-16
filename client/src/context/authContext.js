@@ -38,19 +38,20 @@ export function AuthProvider({ children }) {
 			.finally(() => setLoadingInitial(false));
 	}, []);
 
-	function login(email, pwd) {
+	async function login(email, pwd) {
 		setLoading(true);
-
-		authService
+		let notify = false;
+		notify = await authService
 			.login({ email, pwd })
 			.then(response => {
-				console.log(response);
-				if (!response.ok) return;
+				setError(response);
+				if (!response.ok) return setError(response);
 				setUser(response);
 				history.push('/');
 			})
-			.catch(error => setError(error))
+			.catch(error => error)
 			.finally(() => setLoading(false));
+		return notify;
 	}
 
 	function logout() {
