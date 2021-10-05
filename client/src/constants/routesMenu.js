@@ -1,4 +1,4 @@
-import { appName } from '@/constants/index';
+import { appName } from 'constants/index';
 
 export default {
 	[appName]: {

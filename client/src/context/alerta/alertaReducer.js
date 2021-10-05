@@ -1,4 +1,4 @@
-import { OPEN_MODAL, CLOSE_MODAL } from '@/type/types';
+import { OPEN_MODAL, CLOSE_MODAL } from 'constants/types';
 
 const AlertaReducer = (state, action) => {
 	switch (action.types) {

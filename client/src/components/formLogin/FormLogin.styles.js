@@ -1,4 +1,4 @@
-import { ContentLink } from '@/shared/link/Link';
+import { ContentLink } from 'shared/link/Link';
 import styled from '@emotion/styled';
 
 export const Input = styled.input`
