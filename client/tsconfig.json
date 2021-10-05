@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"target": "es6",
+		"module": "esnext",
+		"allowJs": true,
+		"checkJs": false,
+		"jsx": "react-jsx",
+		"sourceMap": false,
+		"outDir": "./dist",
+		"rootDir": "./src",
+		"baseUrl": "./src",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowSyntheticDefaultImports": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"useDefineForClassFields": true,
+		"types": ["vite/client", "node"]
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules"]
+}

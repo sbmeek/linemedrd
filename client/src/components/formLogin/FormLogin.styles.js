@@ -1,3 +1,4 @@
+import { ContentLink } from 'shared/link/Link';
 import styled from '@emotion/styled';
 
 export const Input = styled.input`
@@ -19,6 +20,11 @@ export const Input = styled.input`
 `;
 
 export const Link = styled.div`
+	text-align: left;
+	color: ${({ theme }) => theme.colors.green5};
+`;
+
+export const ContainerLink = styled(ContentLink)`
 	text-align: left;
 	color: ${({ theme }) => theme.colors.green5};
 `;

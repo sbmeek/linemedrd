@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Link as ComponentLink } from 'react-router-dom';
-import SideTop, { ContentTop } from '@/shared/sideTop/SideTop';
+import SideTop, { ContentTop } from 'shared/sideTop/SideTop';
 
 export const SideUserTop = styled(SideTop)`
 	background-color: ${({ theme }) => theme.colors.green5};

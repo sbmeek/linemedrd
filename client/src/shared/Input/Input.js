@@ -1,62 +1,28 @@
 import styled from '@emotion/styled';
 
-const changeText = props => {
-	console.info(props);
-	const {
-		text: { value, placeholder }
-	} = props;
-
-	return value !== '' ? `content: ${value}` : `content: '${placeholder}'`;
+const contenText = props => {
+	const { theme, value, content } = props;
+	return {
+		content: !value ? `"${content}"` : null,
+		color: theme.iconPlaceholder.grayTraps1
+	};
 };
 
-const inputEmpty = `
-    padding-left: 1.2rem;
-
-    &:focus {
-    animation: moveInput 0.25s ease-in-out forwards;
-    };
-`;
-
-const inputNotEmpty = `
-    padding-left: 0rem;
-`;
-
-const inputEmptyBorder = color => `
-	&:focus-within {
-		border: 0.0995rem solid ${color};
-	}
-`;
-
-const inputNotEmptyBorder = color => `
-	&:focus-within {
-		border: 0.0995rem solid ${color};
-	}
-`;
-
-const paddingInput = props => {
-	const {
-		text: { value }
-	} = props;
-
-	return value !== '' ? inputNotEmpty : inputEmpty;
+const bordersColor = props => {
+	const { theme, value } = props;
+	const colorB = value ? theme.calendarNotify.blue1 : theme.colors.green4;
+	return colorB;
 };
 
-const colorBorder = props => {
-	const {
-		text: { value },
-		theme
-	} = props;
-
-	return value === ''
-		? inputNotEmptyBorder(theme.colors.green4)
-		: inputEmptyBorder(theme.calendarNotify.blue1);
+const bordersError = props => {
+	const { error, theme } = props;
+	return error && `0.0995rem solid ${theme.calendarNotify.orange2}`;
 };
 
-export const ContainerInputS = styled.div`
+export const ContentInput = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	margin-bottom: 0.7rem;
 	outline: none;
 
 	label {
@@ -67,7 +33,7 @@ export const ContainerInputS = styled.div`
 	}
 `;
 
-export default styled.div`
+export const Wrapper = styled.div`
 	outline: none;
 	border: unset;
 	outline: none;
@@ -76,50 +42,50 @@ export default styled.div`
 	font-size: 1rem;
 	width: 100%;
 	max-width: 100%;
-	margin: 0.6rem 0;
+	margin-top: 0.6rem;
 	padding: 0.7rem 0.5rem;
 	position: relative;
 	transition: border 120ms cubic-bezier(0.1, -0.6, 0.2, 0), color 400ms;
-
-	${({ theme }) => ({
-		backgroundColor: theme.colors.green1
-	})}
+	background-color: ${({ theme }) => theme.colors.green1};
 
 	::after {
-		${changeText};
+		${contenText};
 		position: absolute;
 		left: 0.6rem;
 		z-index: 0;
-
-		${({ theme }) => ({
-			color: theme.iconPlaceholder.grayTraps1,
-			fontFamily: theme.fonts.segoeui
-		})};
+		pointer-events: none;
 	}
 
-	input {
-		background: none;
-		width: 100%;
-		outline: none;
-		border: none;
-		border-radius: 0.4rem;
-		font-size: 1rem;
-		${({ theme }) => ({
-			color: theme.calendarNotify.blue1,
-			fontFamily: theme.fonts.segoeui,
-			caretColor: theme.colors.green4
-		})};
+	&:focus-within {
+		border: 0.0995rem solid ${bordersColor};
+	}
 
-		${paddingInput};
+	border: ${bordersError} !important;
+`;
 
-		@keyframes moveInput {
-			from {
-				padding-left: 1.2rem;
-			}
-			to {
-				padding-left: 0rem;
-			}
+export const InputWrapper = styled.input`
+	background: none;
+	width: 100%;
+	outline: none;
+	border: none;
+	border-radius: 0.4rem;
+	font-size: 1rem;
+	${({ theme }) => ({
+		color: theme.calendarNotify.blue1,
+		fontFamily: theme.fonts.segoeui,
+		caretColor: theme.colors.green4
+	})};
+
+	&.empty:focus {
+		animation: moveInput 0.25s ease-in-out forwards;
+	}
+
+	@keyframes moveInput {
+		from {
+			padding-left: 1.2rem;
+		}
+		to {
+			padding-left: 0rem;
 		}
 	}
-	${colorBorder};
 `;

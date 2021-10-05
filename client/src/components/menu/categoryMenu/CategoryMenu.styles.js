@@ -4,7 +4,6 @@ export default styled.div`
 	width: 75%;
 	margin: auto;
 	text-align: left;
-	overflow-y: auto;
 
 	ul {
 		list-style: none;

@@ -58,7 +58,7 @@ export const gqlOptions: GqlModuleOptions = {
 };
 
 export const serveStaticOptions: ServeStaticModuleOptions = {
-	rootPath: path.join(process.cwd(), '..', 'client', 'build')
+	rootPath: path.join(process.cwd(), '..', 'client', 'dist')
 };
 
 export const jwtOptions: JwtModuleOptions = {
