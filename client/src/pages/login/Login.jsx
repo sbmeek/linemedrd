@@ -23,11 +23,13 @@ const Login = () => {
 				<ModalReserve />
 			</ModalFullScreen>
 			<Container>
-				<Title>{t('pages.login.title')}</Title>
+				<Title>{t('pages.Login.title')}</Title>
 				<FormLogin />
 				<ContentLink>
-					<span>Nuevo en {appName}</span>{' '}
-					<Link to="/Signup">Crea una Cuenta</Link>.
+					<span>
+						{t('pages.Login.newIn')} {appName}
+					</span>{' '}
+					<Link to="/Signup">{t('pages.Login.createAccount')}</Link>.
 				</ContentLink>
 			</Container>
 			<button onClick={showModal} type="button">

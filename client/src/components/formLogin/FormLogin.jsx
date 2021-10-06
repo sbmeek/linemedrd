@@ -67,12 +67,12 @@ const FormLogin = () => {
 					{...{
 						value: watch('email'),
 						error: errors.email,
-						content: t('forms.formLogin.inputEmail.placeholder')
+						content: t('formLogin.inputEmail')
 					}}
 				>
 					<InputWrapper
 						{...register('email', {
-							required: 'El email es requido',
+							required: t('required.email'),
 							pattern: {
 								value: /^[\w-.]+@(gmail|hotmail).+[\w-]{2,4}$/,
 								message: 'Revisar su correo electronico'
@@ -80,7 +80,7 @@ const FormLogin = () => {
 						})}
 						onFocus={handleFocus}
 						onBlur={() => setAnchorEl(null)}
-						aria-label={t('forms.formLogin.inputEmail.areaLabel')}
+						aria-label={t('formLogin.inputEmail')}
 						className={!watch('email') && 'empty'}
 					/>
 				</Wrapper>
@@ -91,13 +91,13 @@ const FormLogin = () => {
 					{...{
 						value: watch('pwd'),
 						error: errors.pwd,
-						content: t('forms.formLogin.inputPassword.placeholder')
+						content: t('formLogin.inputPassword')
 					}}
 				>
 					<InputWrapperIcon
-						aria-label={t('forms.formLogin.inputPassword.placeholder')}
+						aria-label={t('formLogin.inputPassword')}
 						{...register('pwd', {
-							required: 'La contraseña es requerida'
+							required: t('required.password')
 						})}
 						onFocus={handleFocus}
 						onBlur={() => setAnchorEl(null)}
@@ -111,7 +111,7 @@ const FormLogin = () => {
 			</ContentInput>
 
 			<ContainerLink>
-				<Link to="#?">{t('forms.formLogin.forgetPassword')}</Link>
+				<Link to="#?">{t('formLogin.forgetPassword')}</Link>
 			</ContainerLink>
 			<FormErrorPopper
 				anchorEl={anchorEl}
@@ -119,7 +119,7 @@ const FormLogin = () => {
 				message={message}
 			/>
 			<Submit type="submit" aria-label={t('forms.formLogin.startSession')}>
-				{t('forms.formLogin.startSession')}
+				{t('formLogin.startSession')}
 			</Submit>
 		</form>
 	);
