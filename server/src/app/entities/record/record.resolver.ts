@@ -72,12 +72,10 @@ export class RecordResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await record
-				.populate({
-					path: 'actualDoc',
-					model: Doctor.name
-				})
-				.execPopulate();
+			await record.populate({
+				path: 'actualDoc',
+				model: Doctor.name
+			});
 		return record.actualDoc;
 	}
 
@@ -87,12 +85,10 @@ export class RecordResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await record
-				.populate({
-					path: 'patientId',
-					model: Patient.name
-				})
-				.execPopulate();
+			await record.populate({
+				path: 'patientId',
+				model: Patient.name
+			});
 		return record.patientId;
 	}
 
@@ -102,12 +98,10 @@ export class RecordResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await record
-				.populate({
-					path: 'content',
-					model: AppointmentContent.name
-				})
-				.execPopulate();
+			await record.populate({
+				path: 'content',
+				model: AppointmentContent.name
+			});
 		return record.content;
 	}
 }

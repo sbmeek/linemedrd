@@ -2,8 +2,9 @@ import * as path from 'path';
 import { promises as fs } from 'fs';
 import { Connection, Collection } from 'mongoose';
 
-export const dbConnectionHandler = (conn: Promise<Connection>) => {
+export const dbConnectionHandler = (conn: Connection) => {
 	conn
+		.asPromise()
 		.then(async conn => {
 			console.log(`Connected to db: ${conn.name}`);
 			if (process.env.NODE_ENV !== 'test') return;
