@@ -71,12 +71,10 @@ export class ReportResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await report
-				.populate({
-					path: 'doctorId',
-					model: Doctor.name
-				})
-				.execPopulate();
+			await report.populate({
+				path: 'doctorId',
+				model: Doctor.name
+			});
 		return report.doctorId;
 	}
 
@@ -86,12 +84,10 @@ export class ReportResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await report
-				.populate({
-					path: 'patientId',
-					model: Patient.name
-				})
-				.execPopulate();
+			await report.populate({
+				path: 'patientId',
+				model: Patient.name
+			});
 		return report.patientId;
 	}
 }

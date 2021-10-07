@@ -72,12 +72,10 @@ export class AppointmentResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await apmnt
-				.populate({
-					path: 'content',
-					model: AppointmentContent.name
-				})
-				.execPopulate();
+			await apmnt.populate({
+				path: 'content',
+				model: AppointmentContent.name
+			});
 		return apmnt.content;
 	}
 }

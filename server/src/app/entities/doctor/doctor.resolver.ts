@@ -72,12 +72,10 @@ export class DoctorResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await dr
-				.populate({
-					path: 'userId',
-					model: User.name
-				})
-				.execPopulate();
+			await dr.populate({
+				path: 'userId',
+				model: User.name
+			});
 		return dr.userId;
 	}
 
@@ -87,12 +85,10 @@ export class DoctorResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await dr
-				.populate({
-					path: 'specialties',
-					model: Specialties.name
-				})
-				.execPopulate();
+			await dr.populate({
+				path: 'specialties',
+				model: Specialties.name
+			});
 		return dr.specialties;
 	}
 
@@ -102,12 +98,10 @@ export class DoctorResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await dr
-				.populate({
-					path: 'workday',
-					model: Workday.name
-				})
-				.execPopulate();
+			await dr.populate({
+				path: 'workday',
+				model: Workday.name
+			});
 		return dr.workday;
 	}
 }

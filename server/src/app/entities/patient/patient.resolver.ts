@@ -70,12 +70,10 @@ export class PatientResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await patient
-				.populate({
-					path: 'userId',
-					model: User.name
-				})
-				.execPopulate();
+			await patient.populate({
+				path: 'userId',
+				model: User.name
+			});
 		return patient.userId;
 	}
 }
