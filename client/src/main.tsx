@@ -3,29 +3,26 @@ import ReactDOM from 'react-dom';
 import { ApolloProvider } from '@apollo/client';
 import { client } from './client';
 import Main from './styles/index';
-import { data } from './styles/Theme';
+import { data } from './styles/theme';
 import App from './App';
 import ThemeState from './context/theme/themeState';
 import { AuthProvider } from './context/authContext';
-import { AlertaState } from './context/alerta/alertaState';
 
 import './i18n';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<AlertaState>
-			<AuthProvider>
-				<ApolloProvider client={client}>
-					<ThemeState>
-						<Main theme={data}>
-							<Suspense fallback={<div>Loading...</div>}>
-								<App />
-							</Suspense>
-						</Main>
-					</ThemeState>
-				</ApolloProvider>
-			</AuthProvider>
-		</AlertaState>
+		<AuthProvider>
+			<ApolloProvider client={client}>
+				<ThemeState>
+					<Main theme={data}>
+						<Suspense fallback={<div>Loading...</div>}>
+							<App />
+						</Suspense>
+					</Main>
+				</ThemeState>
+			</ApolloProvider>
+		</AuthProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );

@@ -1,6 +1,9 @@
+import { Props } from '@emotion/react';
 import styled from '@emotion/styled';
 
-const TopContentColor = props => {
+type ContainerTopProp = { location: string };
+
+const TopContentColor = (props: Props & ContainerTopProp) => {
 	return props.location === '/'
 		? {
 				backgroundColor: props.theme.colors.white,
@@ -24,7 +27,7 @@ export const ContentHeader = styled.header`
 	z-index: 300;
 `;
 
-export const ContainerTop = styled.div`
+export const ContainerTop = styled.div<ContainerTopProp>`
 	display: flex;
 	width: 100%;
 	max-width: 100%;

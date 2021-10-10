@@ -1,16 +1,21 @@
+import { Props } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-export const LinkLogo = styled(Link)`
+type PathnameProp = { pathname: string };
+
+const getPathnameColor = (props: Props & PathnameProp) =>
+	props.pathname === '/' ? props.theme.colors.green5 : props.theme.colors.white;
+
+export const LinkLogo = styled(Link)<PathnameProp>`
 	margin-left: 2%;
 	text-decoration: none;
+	color: ${getPathnameColor};
 
 	& h1 {
 		font-family: ${({ theme }) => theme.fonts.neufreit};
 		font-size: 1.5rem;
 	}
-	color: ${props =>
-		props.color === '/' ? props.theme.colors.green5 : props.theme.colors.white};
 `;
 
 export const ContainerLogo = styled.div`
@@ -22,22 +27,19 @@ export const ContainerLogo = styled.div`
 	max-width: 100%;
 `;
 
-export const Rombo = styled.div`
+export const Diamond = styled.div<PathnameProp>`
 	width: 1rem;
 	height: 1rem;
-	background-color: ${props =>
-		props.color === '/' ? props.theme.colors.green5 : props.theme.colors.white};
+	background-color: ${getPathnameColor};
 	border-radius: 0.2rem;
 	transform: rotate(45deg);
 `;
 
-export const ContentIconMenu = styled.div`
+export const ContentIconMenu = styled.div<PathnameProp>`
 	display: flex;
 	align-items: center;
 	font-size: 1.6rem;
-
-	color: ${props =>
-		props.color === '/' ? props.theme.colors.green5 : props.theme.colors.white};
+	color: ${getPathnameColor};
 
 	& .icon {
 		animation: found 600ms ease-in-out both;
