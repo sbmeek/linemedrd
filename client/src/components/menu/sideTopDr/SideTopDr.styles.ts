@@ -1,3 +1,4 @@
+import { Props } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link as ComponentLink } from 'react-router-dom';
 import SideTop, { ContentTop } from 'shared/sideTop/SideTop';
@@ -8,7 +9,7 @@ export const SideDrTop = styled(SideTop)`
 
 export const ContentDr = ContentTop;
 
-const fontStyle = ({ theme }) => ({
+const fontStyle = ({ theme }: Props) => ({
 	fontFamily: theme.fonts.segoeuiBold,
 	color: theme.colors.green5,
 	fontSize: '1rem',

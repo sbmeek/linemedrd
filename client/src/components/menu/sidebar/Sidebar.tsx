@@ -1,9 +1,18 @@
-import { ContentNav } from './SideBar.styles';
-import SideBarMenu from '../sideBarMenu/SideBarMenu';
+import { ContentNav } from './Sidebar.styles';
+import SideBarMenu from '../sidebarMenu/SidebarMenu';
 // import SideTopDr from '../sideTopDr/SideTopDr';
 import SideTopUser from '../sideTopUser/SideTopUser';
+import React from 'react';
 
-const Sidebar = ({ show, setShow }) => {
+const Sidebar = <
+	TProps extends {
+		show: boolean;
+		setShow: React.Dispatch<React.SetStateAction<boolean>>;
+	}
+>({
+	show,
+	setShow
+}: TProps) => {
 	const hideMenu = () => {
 		setShow(!show);
 	};

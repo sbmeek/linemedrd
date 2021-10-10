@@ -5,7 +5,7 @@ import UserIcon from 'assets/icon/user_icon/UserIcon';
 import SettingIcon from 'assets/icon/setting_icon/SettingIcon';
 import LogoutIcon from 'assets/icon/logout_icon/LogoutIcon';
 
-const SideTopDr = props => {
+const SideTopDr = (props: any) => {
 	return (
 		<SideDrTop>
 			<ContentDr onClick={props.hideMenu}>

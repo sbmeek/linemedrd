@@ -4,7 +4,7 @@ import createCache from '@emotion/cache';
 import ThemeContext from '../context/theme/themeContext';
 
 const cache = createCache({
-	key: 'cache-linemerd',
+	key: 'lmed-ch',
 	...(process.env.NODE_ENV === 'development' && { stylisPlugins: [] })
 });
 

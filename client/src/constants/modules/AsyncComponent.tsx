@@ -1,11 +1,13 @@
-import { Component } from 'react';
+import { Component, ElementType } from 'react';
 
-/**
- * @param {() => PromiseLike<{default: any;}> | {default: any;}} importComponent
- */
-export default function asyncComponent(importComponent) {
-	class AsyncComponent extends Component {
-		constructor(props) {
+export default function asyncComponent(
+	importComponent: () => PromiseLike<{ default: ElementType | any }>
+) {
+	class AsyncComponent extends Component<
+		{},
+		{ component: ElementType | null }
+	> {
+		constructor(props: {}) {
 			super(props);
 			this.state = { component: null };
 		}
