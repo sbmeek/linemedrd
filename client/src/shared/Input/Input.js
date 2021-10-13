@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const contenText = props => {
+const textContent = props => {
 	const { theme, value, content } = props;
 	return {
 		content: !value ? `"${content}"` : null,
@@ -49,7 +49,7 @@ export const Wrapper = styled.div`
 	background-color: ${({ theme }) => theme.colors.green1};
 
 	::after {
-		${contenText};
+		${textContent};
 		position: absolute;
 		left: 0.6rem;
 		z-index: 0;
@@ -63,7 +63,7 @@ export const Wrapper = styled.div`
 	border: ${bordersError} !important;
 `;
 
-export const InputWrapper = styled.input`
+export const Input = styled.input`
 	background: none;
 	width: 100%;
 	outline: none;

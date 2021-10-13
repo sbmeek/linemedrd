@@ -3,7 +3,7 @@ import { CheckboxContainer } from './FormSignup.styles';
 import Submit from 'shared/submit/Submit';
 import { appName } from 'constants/index';
 import Link from 'shared/link/Link';
-import { ContentInput, Wrapper, InputWrapper } from 'shared/Input/Input';
+import { ContentInput, Wrapper, InputWrapper } from 'shared/input/Input';
 
 const FormSignup = () => {
 	const [userSignup, setUserSignup] = useState({
