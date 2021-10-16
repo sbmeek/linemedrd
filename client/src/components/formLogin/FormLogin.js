@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -14,7 +14,8 @@ import EyeCloseIcon from '@/assets/icon/eyeClose_icon/EyeCloseIcon';
 
 import FormErrorPopper from '../formErrorPopper/FormErrorPopper';
 
-import useAuth from '@/context/authContext';
+// import useAuth from '@/context/authContext';
+import { SessionContext } from '@/context/session/sessionContext';
 
 const FormLogin = () => {
 	const {
@@ -35,17 +36,21 @@ const FormLogin = () => {
 	const { t } = useTranslation();
 	const history = useHistory();
 
-	const { login, error } = useAuth();
+	// const { error } = useAuth();
+
+	const { login, error, user } = useContext(SessionContext);
 
 	useEffect(() => {
 		setTest(error);
-		console.log(error);
+		// console.log('login failed', error);
 	}, [error]);
 
 	const handleFormSubmit = async e => {
 		const { email, pwd } = e;
-		const response = await login(email, pwd);
-		console.log(response, 'second');
+		await login(email, pwd);
+
+		console.log('login success', user);
+		console.log('login failed', error);
 		console.log(test);
 		history.push('/');
 		clearErrors();
