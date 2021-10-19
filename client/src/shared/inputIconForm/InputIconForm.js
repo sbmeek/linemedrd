@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { InputWrapper } from '../Input/Input';
+import { Input } from 'shared/input/Input';
 
 export const Icon = styled.div`
 	position: absolute;
@@ -16,6 +16,6 @@ export const IconLabel = styled(Icon)`
 	top: 30%;
 `;
 
-export const InputWrapperIcon = styled(InputWrapper)`
+export const InputWithIcon = styled(Input)`
 	padding-right: 2rem;
 `;

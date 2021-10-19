@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import * as authService from 'services/authService';
 
 const initUserState = {
@@ -14,17 +13,16 @@ const initUserState = {
 const AuthContext = createContext({
 	user: initUserState,
 	loading: false,
-	error: undefined,
+	error: {},
 	login: (email, pwd) => {},
 	logout: () => {}
 });
 
 export function AuthProvider({ children }) {
 	const [user, setUser] = useState(initUserState);
-	const [error, setError] = useState();
+	const [error, setError] = useState({});
 	const [loading, setLoading] = useState(false);
 	const [loadingInitial, setLoadingInitial] = useState(true);
-	const history = useHistory();
 
 	useEffect(() => {
 		if (error) setError(null);
@@ -39,19 +37,22 @@ export function AuthProvider({ children }) {
 	}, []);
 
 	async function login(email, pwd) {
-		setLoading(true);
-		let notify = false;
-		notify = await authService
-			.login({ email, pwd })
-			.then(response => {
-				setError(response);
-				if (!response.ok) return setError(response);
-				setUser(response);
-				history.push('/');
-			})
-			.catch(error => error)
-			.finally(() => setLoading(false));
-		return notify;
+		try {
+			setLoading(true);
+			const response = await authService.login({ email, pwd });
+
+			if (!response.ok) setError({ message: 'Unauthorized' });
+
+			// setUser(response);s
+			// history.push('/');
+			return response;
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setLoading(false);
+		}
+
+		return 'TESTING';
 	}
 
 	function logout() {

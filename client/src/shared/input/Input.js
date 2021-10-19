@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const contenText = props => {
+const textContent = props => {
 	const { theme, value, content } = props;
 	return {
 		content: !value ? `"${content}"` : null,
@@ -17,6 +17,15 @@ const bordersColor = props => {
 const bordersError = props => {
 	const { error, theme } = props;
 	return error && `0.0995rem solid ${theme.calendarNotify.orange2}`;
+};
+
+const animationInput = props => {
+	const { value } = props;
+	return value
+		? null
+		: `&:focus {
+			animation: moveInput 0.25s ease-in-out forwards;
+		}`;
 };
 
 export const ContentInput = styled.div`
@@ -49,7 +58,7 @@ export const Wrapper = styled.div`
 	background-color: ${({ theme }) => theme.colors.green1};
 
 	::after {
-		${contenText};
+		${textContent};
 		position: absolute;
 		left: 0.6rem;
 		z-index: 0;
@@ -63,7 +72,7 @@ export const Wrapper = styled.div`
 	border: ${bordersError} !important;
 `;
 
-export const InputWrapper = styled.input`
+export const Input = styled.input`
 	background: none;
 	width: 100%;
 	outline: none;
@@ -76,9 +85,7 @@ export const InputWrapper = styled.input`
 		caretColor: theme.colors.green4
 	})};
 
-	&.empty:focus {
-		animation: moveInput 0.25s ease-in-out forwards;
-	}
+	${animationInput}
 
 	@keyframes moveInput {
 		from {
