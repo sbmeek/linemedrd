@@ -35,20 +35,24 @@ const Login = () => {
 				<Title>{t('pages.Login.title')}</Title>
 				<form onSubmit={handleFormSubmit}>
 					<ContentInput>
-						<Wrapper content={t('formLogin.inputEmail')}>
+						<Wrapper value={values.email} content={t('formLogin.inputEmail')}>
 							<Input
 								aria-label={t('formLogin.inputEmail')}
 								onChange={handleChange}
+								value={values.email}
+								name="email"
 							/>
 						</Wrapper>
 					</ContentInput>
 
 					<ContentInput>
-						<Wrapper content={t('formLogin.inputPassword')}>
+						<Wrapper value={values.pwd} content={t('formLogin.inputPassword')}>
 							<InputWithIcon
 								onChange={handleChange}
 								aria-label={t('formLogin.inputPassword')}
 								type={showPwd ? 'password' : 'text'}
+								value={values.pwd}
+								name="pwd"
 							/>
 							<Icon onClick={() => setShowPwd(prev => !prev)}>
 								{showPwd ? <EyeIcon /> : <EyeCloseIcon />}

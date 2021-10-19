@@ -19,6 +19,15 @@ const bordersError = props => {
 	return error && `0.0995rem solid ${theme.calendarNotify.orange2}`;
 };
 
+const animationInput = props => {
+	const { value } = props;
+	return value
+		? null
+		: `&:focus {
+			animation: moveInput 0.25s ease-in-out forwards;
+		}`;
+};
+
 export const ContentInput = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -76,9 +85,7 @@ export const Input = styled.input`
 		caretColor: theme.colors.green4
 	})};
 
-	&.empty:focus {
-		animation: moveInput 0.25s ease-in-out forwards;
-	}
+	${animationInput}
 
 	@keyframes moveInput {
 		from {
