@@ -3,7 +3,7 @@ import { CheckboxContainer } from './FormSignup.styles';
 import Submit from 'shared/submit/Submit';
 import { appName } from 'constants/index';
 import Link from 'shared/link/Link';
-import { ContentInput, Wrapper, InputWrapper } from 'shared/input/Input';
+import { ContentInput, Wrapper, Input } from 'shared/input/Input';
 
 const FormSignup = () => {
 	const [userSignup, setUserSignup] = useState({
@@ -26,8 +26,8 @@ const FormSignup = () => {
 		<form>
 			<ContentInput>
 				<Wrapper>
-					<InputWrapper
-						{...{ text: userSignup.name }}
+					<Input
+						text={userSignup.name}
 						type="text"
 						name="name"
 						aria-label="Ingresar username"
@@ -35,7 +35,7 @@ const FormSignup = () => {
 						id="signup-username"
 						onChange={handleChange}
 						required
-					></InputWrapper>
+					></Input>
 				</Wrapper>
 			</ContentInput>
 
