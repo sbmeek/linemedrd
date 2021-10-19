@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
-import SideBarTop from '@/components/menu/sideBarTop/SideBarTop';
+import SideBarTop from 'components/menu/sidebarTop/SidebarTop';
 import { Fragment, useState } from 'react';
-import Sidebar from '@/components/menu/sideBar/SideBar';
+import Sidebar from 'components/menu/sidebar/Sidebar';
 import { ContainerTop, ContentHeader } from './Header.styles';
 
 const dontShowIn = ['/HomeWithoutHeader'];
@@ -11,14 +11,13 @@ const Header = () => {
 	const [showSideBar, setShowSideBar] = useState(false);
 
 	if (dontShowIn.indexOf(location.pathname) !== -1) return null;
-	const direction = location.pathname;
 
 	return (
 		<Fragment>
 			<ContentHeader>
-				<ContainerTop {...{ location: direction }}>
+				<ContainerTop location={location.pathname}>
 					<SideBarTop
-						color={direction}
+						pathname={location.pathname}
 						show={showSideBar}
 						setShow={setShowSideBar}
 					/>

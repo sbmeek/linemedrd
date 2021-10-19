@@ -69,7 +69,7 @@ export class User {
 	codRecPwd?: string;
 
 	@Field(() => String)
-	@Prop({ required: true, type: Roles, default: Roles.PATIENT })
+	@Prop({ required: true, type: String, default: Roles.PATIENT })
 	role?: Roles | number;
 
 	@Field(() => Boolean)

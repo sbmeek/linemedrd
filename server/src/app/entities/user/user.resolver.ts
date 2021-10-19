@@ -65,9 +65,7 @@ export class UserResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await user
-				.populate({ path: 'userAdress', model: UserAdress.name })
-				.execPopulate();
+			await user.populate({ path: 'userAdress', model: UserAdress.name });
 		return user.userAdress;
 	}
 
@@ -77,12 +75,10 @@ export class UserResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await user
-				.populate({
-					path: 'userPreferences',
-					model: UserPreferences.name
-				})
-				.execPopulate();
+			await user.populate({
+				path: 'userPreferences',
+				model: UserPreferences.name
+			});
 		return user.userPreferences;
 	}
 }

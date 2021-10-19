@@ -60,12 +60,10 @@ export class WorkdayResolver {
 	) {
 		console.log(UserAdress.name);
 		if (populate)
-			await workday
-				.populate({
-					path: 'adress',
-					model: UserAdress.name
-				})
-				.execPopulate();
+			await workday.populate({
+				path: 'adress',
+				model: UserAdress.name
+			});
 		return workday.adress;
 	}
 
@@ -75,12 +73,10 @@ export class WorkdayResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await workday
-				.populate({
-					path: 'days',
-					model: Days.name
-				})
-				.execPopulate();
+			await workday.populate({
+				path: 'days',
+				model: Days.name
+			});
 		return workday.days;
 	}
 }

@@ -71,12 +71,10 @@ export class AgendaResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await agenda
-				.populate({
-					path: 'doctorId',
-					model: Doctor.name
-				})
-				.execPopulate();
+			await agenda.populate({
+				path: 'doctorId',
+				model: Doctor.name
+			});
 		return agenda.doctorId;
 	}
 
@@ -86,12 +84,10 @@ export class AgendaResolver {
 		@Args('populate') populate: boolean
 	) {
 		if (populate)
-			await agenda
-				.populate({
-					path: 'appointments',
-					model: Appointment.name
-				})
-				.execPopulate();
+			await agenda.populate({
+				path: 'appointments',
+				model: Appointment.name
+			});
 		return agenda.appointments;
 	}
 }

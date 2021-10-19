@@ -35,12 +35,8 @@ export const dbUri = {
 };
 
 export const mongoOptions: MongooseModuleOptions = {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useFindAndModify: true,
-	useCreateIndex: true,
 	connectTimeoutMS: 1000,
-	connectionFactory: (conn: Promise<Connection>) => dbConnectionHandler(conn)
+	connectionFactory: (conn: Connection) => dbConnectionHandler(conn)
 };
 
 export const corsOptions = {
@@ -58,7 +54,7 @@ export const gqlOptions: GqlModuleOptions = {
 };
 
 export const serveStaticOptions: ServeStaticModuleOptions = {
-	rootPath: path.join(process.cwd(), '..', 'client', 'build')
+	rootPath: path.join(process.cwd(), '..', 'client', 'dist')
 };
 
 export const jwtOptions: JwtModuleOptions = {
