@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Input } from '../input/Input';
+import { Input } from 'shared/input/Input';
 
 export const Icon = styled.div`
 	position: absolute;
