@@ -23,9 +23,7 @@ const animationInput = props => {
 	const { value } = props;
 	return value
 		? null
-		: `&:focus {
-			animation: moveInput 0.25s ease-in-out forwards;
-		}`;
+		: `&:focus {animation: moveInput 0.25s ease-in-out forwards;}`;
 };
 
 export const ContentInput = styled.div`

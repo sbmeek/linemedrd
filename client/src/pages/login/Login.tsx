@@ -9,7 +9,7 @@ import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
 import useAuth from 'context/authContext';
 import { useHistory } from 'react-router-dom';
 import { ContentInput, Wrapper, Input } from 'shared/input/Input';
-import { InputWithIcon, Icon } from 'shared/inputIconForm/InputIconForm';
+import { InputWithIcon, Icon } from 'shared/inputIcon/InputIcon';
 import Submit from 'shared/submit/Submit';
 import { useFields } from 'hooks/useFields';
 import { ContainerLink } from './Login.styles';
@@ -38,9 +38,9 @@ const Login = () => {
 						<Wrapper value={values.email} content={t('formLogin.inputEmail')}>
 							<Input
 								aria-label={t('formLogin.inputEmail')}
-								onChange={handleChange}
 								value={values.email}
 								name="email"
+								onChange={handleChange}
 							/>
 						</Wrapper>
 					</ContentInput>
@@ -48,11 +48,11 @@ const Login = () => {
 					<ContentInput>
 						<Wrapper value={values.pwd} content={t('formLogin.inputPassword')}>
 							<InputWithIcon
-								onChange={handleChange}
 								aria-label={t('formLogin.inputPassword')}
 								type={showPwd ? 'password' : 'text'}
 								value={values.pwd}
 								name="pwd"
+								onChange={handleChange}
 							/>
 							<Icon onClick={() => setShowPwd(prev => !prev)}>
 								{showPwd ? <EyeIcon /> : <EyeCloseIcon />}
