@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 export const ContentLink = styled.div`
+	text-align: center;
 	font-size: 1.01rem;
 	${({ theme }) => ({
 		color: theme.colors.green5,
