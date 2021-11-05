@@ -41,6 +41,8 @@ const Login = () => {
 								value={values.email}
 								name="email"
 								onChange={handleChange}
+								value={values.email}
+								name="email"
 							/>
 						</Wrapper>
 					</ContentInput>
