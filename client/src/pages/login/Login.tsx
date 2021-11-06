@@ -14,7 +14,6 @@ import Submit from 'shared/submit/Submit';
 import { useFields } from 'hooks/useFields';
 import { ContainerLink } from './Login.styles';
 
-//TODO Dalvin: Input field animations/transitions not working properly...
 const Login = () => {
 	const { t } = useTranslation();
 	const [showPwd, setShowPwd] = useState(true);

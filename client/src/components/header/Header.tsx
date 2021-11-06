@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
-import SideBarTop from 'components/menu/sidebarTop/SidebarTop';
+import SideBarTop from 'components/menu/sideBarTop/SidebarTop.component';
 import { Fragment, useState } from 'react';
-import Sidebar from 'components/menu/sidebar/Sidebar';
+import Sidebar from 'components/menu/sideBar/Sidebar.component';
 import { ContainerTop, ContentHeader } from './Header.styles';
 
 const dontShowIn = ['/HomeWithoutHeader'];

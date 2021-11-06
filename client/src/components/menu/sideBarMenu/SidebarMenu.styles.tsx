@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
+import styled, { Props } from '@emotion/styled';
 
-export default styled.div`
+export default styled.div<Props>`
 	min-height: 55vh;
 	display: flex;
 	flex-flow: column nowrap;

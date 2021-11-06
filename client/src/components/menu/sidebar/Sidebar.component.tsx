@@ -1,5 +1,5 @@
 import { ContentNav } from './Sidebar.styles';
-import SideBarMenu from '../sidebarMenu/SidebarMenu';
+import SideBarMenu from '../sideBarMenu/SidebarMenu.component';
 // import SideTopDr from '../sideTopDr/SideTopDr';
 import SideTopUser from '../sideTopUser/SideTopUser';
 import React from 'react';

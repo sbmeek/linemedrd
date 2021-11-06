@@ -10,17 +10,17 @@ import {
 	LinkLogo
 } from './SidebarTop.styles';
 
-const SidebarTop = <
-	TProps extends {
-		pathname: string;
-		show: boolean;
-		setShow: React.Dispatch<React.SetStateAction<boolean>>;
-	}
->({
+interface IPropsProperty {
+	pathname: string;
+	show: boolean;
+	setShow: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SidebarTop = <T extends IPropsProperty>({
 	pathname,
 	show,
 	setShow
-}: TProps) => {
+}: T) => {
 	const showMenu = () => {
 		document.body.style.overflow = show ? 'auto' : 'hidden';
 		setShow(!show);
@@ -28,7 +28,7 @@ const SidebarTop = <
 
 	return (
 		<Fragment>
-			<ContainerLogo onClick={showMenu}>
+			<ContainerLogo>
 				<Diamond pathname={pathname}></Diamond>
 				<LinkLogo pathname={pathname} to={routes.home.path}>
 					<h1>{appName}</h1>
