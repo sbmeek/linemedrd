@@ -2,7 +2,6 @@ import { ContentNav } from './Sidebar.styles';
 import SideBarMenu from '../sidebarMenu/SidebarMenu';
 // import SideTopDr from '../sideTopDr/SideTopDr';
 import SideTopUser from '../sideTopUser/SideTopUser';
-import React from 'react';
 
 const Sidebar = <
 	TProps extends {
