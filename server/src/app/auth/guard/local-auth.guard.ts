@@ -1,4 +1,3 @@
-import { UnauthorizedException } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 export class LocalAuthGuard extends AuthGuard('localStrat') {
@@ -7,8 +6,6 @@ export class LocalAuthGuard extends AuthGuard('localStrat') {
 		if (!user) {
 			return { ok: false, isAuthenticated: false };
 		}
-
-		throw new UnauthorizedException();
 
 		if (!user.isEmailConfirmed) {
 			return {

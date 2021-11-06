@@ -15,7 +15,8 @@ export const data = {
 		},
 		letter: {
 			gray1: 'var(--gray-num1)',
-			gray2: 'var(--gray-num2)'
+			gray2: 'var(--gray-num2)',
+			error01: 'var(--error-01)'
 		},
 		iconPlaceholder: {
 			grayTraps1: 'var(--grayTraps-num1)',
@@ -51,7 +52,8 @@ export const data = {
 		},
 		letter: {
 			gray1: 'var(--gray-num1)',
-			gray2: 'var(--gray-num2)'
+			gray2: 'var(--gray-num2)',
+			error01: 'var(--error-01)'
 		},
 		iconPlaceholder: {
 			grayTraps1: 'var(--grayTraps-num1)',

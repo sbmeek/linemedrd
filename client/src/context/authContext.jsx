@@ -1,3 +1,4 @@
+// TODO Dalvin (W/Angel): migrar a typescript
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import * as authService from 'services/authService';
 
@@ -20,13 +21,8 @@ const AuthContext = createContext({
 
 export function AuthProvider({ children }) {
 	const [user, setUser] = useState(initUserState);
-	const [error, setError] = useState({});
 	const [loading, setLoading] = useState(false);
 	const [loadingInitial, setLoadingInitial] = useState(true);
-
-	useEffect(() => {
-		if (error) setError(null);
-	}, []);
 
 	useEffect(() => {
 		authService
@@ -40,11 +36,6 @@ export function AuthProvider({ children }) {
 		try {
 			setLoading(true);
 			const response = await authService.login({ email, pwd });
-
-			if (!response.ok) setError({ message: 'Unauthorized' });
-
-			// setUser(response);s
-			// history.push('/');
 			return response;
 		} catch (error) {
 			console.log(error);
@@ -63,11 +54,10 @@ export function AuthProvider({ children }) {
 		() => ({
 			user,
 			loading,
-			error,
 			login,
 			logout
 		}),
-		[user, loading, error]
+		[user, loading]
 	);
 
 	return (

@@ -1,35 +1,37 @@
 {
-	"button": {
+	"languages": {
 		"english": "English",
 		"spanish": "Spanish"
 	},
-	"required": {
-		"name": "Name is required",
-		"password": "Password is required",
-		"email": "Email is required",
-		"age": "Age is required",
-		"user": "User is required"
+	"errors": {
+		"incorrectEmail": "Incorrect email",
+		"incorrectNumber": "Incorrect number",
+		"required": {
+			"name": "Name is required",
+			"password": "Password is required",
+			"email": "Email is required",
+			"age": "Age is required",
+			"user": "User is required"
+		}
+	},
+	"login": {
+		"title": "Sign In",
+		"createAccount": "Create new account",
+		"newIn": "New in",
+		"inputEmail": "Enter email or username",
+		"inputPassword": "Enter your password",
+		"forgetPassword": "Forgot your password?",
+		"signIn": "Sign In"
 	},
 	"pages": {
 		"home": {
 			"title": "Home",
 			"description": "Esta es la pagina de inicio"
 		},
-		"Login": {
-			"title": "Iniciar Session",
-			"createAccount": "Crear nueva cuenta",
-			"newIn": "Nuevo en"
-		},
 		"Register": {
 			"title": "Register",
 			"description": "Esta es la pagina de contacto"
 		}
-	},
-	"formLogin": {
-		"inputEmail": "Enter email or username",
-		"inputPassword": "Enter your password",
-		"forgetPassword": "Forgot your password?",
-		"startSession": "Start Session"
 	},
 	"formRegister": {
 		"inputName": "Enter your name",

@@ -1,25 +1,25 @@
+import { Props } from '@emotion/react';
 import styled from '@emotion/styled';
 
-const textContent = props => {
-	const { theme, value, content } = props;
-	return {
-		content: !value ? `"${content}"` : null,
-		color: theme.iconPlaceholder.grayTraps1
-	};
+type InputProps = { value: string; placeholder?: string; error?: string };
+
+const textContent = (props: InputProps & Props) => {
+	const { value, placeholder } = props;
+	return !value ? placeholder : null;
 };
 
-const bordersColor = props => {
+const borderColor = (props: InputProps & Props) => {
 	const { theme, value } = props;
 	const colorB = value ? theme.calendarNotify.blue1 : theme.colors.green4;
 	return colorB;
 };
 
-const bordersError = props => {
+const borderError = (props: InputProps & Props) => {
 	const { error, theme } = props;
-	return error && `0.0995rem solid ${theme.calendarNotify.orange2}`;
+	return error && `border-color: ${theme.letter.error01};`;
 };
 
-const animationInput = props => {
+const animationInput = (props: InputProps & Props) => {
 	const { value } = props;
 	return value
 		? null
@@ -40,23 +40,23 @@ export const ContentInput = styled.div`
 	}
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<InputProps>`
+	display: flex;
+	align-items: center;
 	outline: none;
-	border: unset;
-	outline: none;
-	border: none;
+	border: 0.0995rem solid transparent;
 	border-radius: 0.4rem;
 	font-size: 1rem;
 	width: 100%;
 	max-width: 100%;
 	margin-top: 0.6rem;
-	padding: 0.7rem 0.5rem;
 	position: relative;
 	transition: border 120ms cubic-bezier(0.1, -0.6, 0.2, 0), color 400ms;
 	background-color: ${({ theme }) => theme.colors.green1};
 
 	::after {
-		${textContent};
+		content: '${textContent}';
+		color: ${({ theme }) => theme.iconPlaceholder.grayTraps1};
 		position: absolute;
 		left: 0.6rem;
 		z-index: 0;
@@ -64,19 +64,20 @@ export const Wrapper = styled.div`
 	}
 
 	&:focus-within {
-		border: 0.0995rem solid ${bordersColor};
+		border-color: ${borderColor};
 	}
 
-	border: ${bordersError} !important;
+	${borderError}
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<InputProps>`
 	background: none;
 	width: 100%;
 	outline: none;
 	border: none;
 	border-radius: 0.4rem;
 	font-size: 1rem;
+	padding: 0.7rem 0.5rem;
 	${({ theme }) => ({
 		color: theme.calendarNotify.blue1,
 		fontFamily: theme.fonts.segoeui,
@@ -87,10 +88,26 @@ export const Input = styled.input`
 
 	@keyframes moveInput {
 		from {
-			padding-left: 1.2rem;
+			padding-left: 1.7rem;
 		}
 		to {
-			padding-left: 0rem;
+			padding-left: 0.5rem;
 		}
+	}
+`;
+
+export const InputHelper = styled.div<{ hide: boolean }>`
+	display: ${({ hide }) => (hide ? 'none' : 'flex')};
+	color: ${({ theme }) => theme.letter.error01};
+	padding-left: 3px;
+
+	span {
+		padding-left: 5px;
+	}
+
+	svg {
+		fill: ${({ theme }) => theme.letter.error01};
+		width: 1em;
+		margin-top: 2px;
 	}
 `;
