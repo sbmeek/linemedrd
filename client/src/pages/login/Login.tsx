@@ -8,46 +8,64 @@ import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
 import useAuth from 'context/authContext';
 import { useHistory } from 'react-router-dom';
-import { ContentInput, Wrapper, Input } from 'shared/input/Input';
+import { ContentInput, Wrapper, Input, InputHelper } from 'shared/input/Input';
 import { InputWithIcon, Icon } from 'shared/inputIcon/InputIcon';
 import Submit from 'shared/submit/Submit';
 import { useFields } from 'hooks/useFields';
 import { ContainerLink } from './Login.styles';
+import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
+import { emailValid, inputEmpty } from 'helpers/validators';
 
 const Login = () => {
 	const { t } = useTranslation();
 	const [showPwd, setShowPwd] = useState(true);
 	const history = useHistory();
 	const { login } = useAuth();
-	const { values, handleChange } = useFields({ email: '', pwd: '' });
+	const { values, errors, handleChange, handleBlur } = useFields({
+		email: {
+			value: '',
+			validations: [inputEmpty, emailValid]
+		},
+		pwd: {
+			value: '',
+			validations: []
+		}
+	});
 
 	const handleFormSubmit = () => {
 		const { email, pwd } = values;
+		//TODO Dalvin: No llamar este metodo si todos los campos no estan OKs
 		const response = login(email, pwd);
 		console.log({ response });
+		//TODO Angel: Mostrar respuesta del servidor
 		history.push('/');
 	};
 
 	return (
 		<Fragment>
 			<Container>
-				<Title>{t('pages.Login.title')}</Title>
+				<Title>{t('login.title')}</Title>
 				<form onSubmit={handleFormSubmit}>
 					<ContentInput>
-						<Wrapper value={values.email} content={t('formLogin.inputEmail')}>
+						<Wrapper value={values.email} placeholder={t('login.inputEmail')}>
 							<Input
-								aria-label={t('formLogin.inputEmail')}
+								aria-label={t('login.inputEmail')}
 								value={values.email}
 								name="email"
 								onChange={handleChange}
+								onBlur={handleBlur}
 							/>
 						</Wrapper>
+						<InputHelper hide={!errors.email}>
+							<ExclamationIcon />
+							<span>{errors.email}</span>
+						</InputHelper>
 					</ContentInput>
 
 					<ContentInput>
-						<Wrapper value={values.pwd} content={t('formLogin.inputPassword')}>
+						<Wrapper value={values.pwd} placeholder={t('login.inputPassword')}>
 							<InputWithIcon
-								aria-label={t('formLogin.inputPassword')}
+								aria-label={t('login.inputPassword')}
 								type={showPwd ? 'password' : 'text'}
 								value={values.pwd}
 								name="pwd"
@@ -60,17 +78,17 @@ const Login = () => {
 					</ContentInput>
 
 					<ContainerLink>
-						<Link to="#?">{t('formLogin.forgetPassword')}</Link>
+						<Link to="#?">{t('login.forgetPassword')}</Link>
 					</ContainerLink>
-					<Submit type="submit" aria-label={t('forms.formLogin.startSession')}>
-						{t('formLogin.startSession')}
+					<Submit type="submit" aria-label={t('login.signIn')}>
+						{t('login.signIn')}
 					</Submit>
 				</form>
 				<ContentLink>
 					<span>
-						{t('pages.Login.newIn')} {appName}
+						{t('login.newIn')} {appName}
 					</span>{' '}
-					<Link to="/Signup">{t('pages.Login.createAccount')}</Link>.
+					<Link to="/Signup">{t('login.createAccount')}</Link>.
 				</ContentLink>
 			</Container>
 		</Fragment>

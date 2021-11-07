@@ -1,35 +1,37 @@
 {
-	"button": {
+	"languages": {
 		"english": "Ingles",
 		"spanish": "Español"
 	},
-	"required": {
-		"name": "El nombre es requerido",
-		"password": "La contraseña es requerida",
-		"email": "El correo es requerido",
-		"age": "La edad es requerida",
-		"user": "El usuario es requerido"
+	"errors": {
+		"incorrectEmail": "Correo electrónico incorrecto",
+		"incorrectNumber": "Número incorrecto",
+		"required": {
+			"name": "El nombre es requerido",
+			"password": "La contraseña es requerida",
+			"email": "El correo electrónico es requerido",
+			"age": "La edad es requerida",
+			"user": "El usuario es requerido"
+		}
+	},
+	"login": {
+		"title": "Iniciar Sesión",
+		"createAccount": "Crear nueva cuenta",
+		"newIn": "Nuevo en",
+		"inputEmail": "Introduzca su nombre de usuario o email",
+		"inputPassword": "Introduzca su contraseña",
+		"forgetPassword": "¿Olvidaste tu contraseña?",
+		"signIn": "Iniciar"
 	},
 	"pages": {
 		"home": {
 			"title": "Inicio",
 			"description": "Esta es la pagina de inicio"
 		},
-		"Login": {
-			"title": "Iniciar Session",
-			"createAccount": "Crear nueva cuenta",
-			"newIn": "Nuevo en"
-		},
 		"Register": {
 			"title": "Registro",
 			"description": "Esta es la pagina de contacto"
 		}
-	},
-	"formLogin": {
-		"inputEmail": "Ingresa correo electronico o nombre de usuario",
-		"inputPassword": "Ingresa contraseña",
-		"forgetPassword": "¿Olvidaste tu contraseña?",
-		"startSession": "Iniciar sesión"
 	},
 	"formRegister": {
 		"inputName": "Ingresa tu nombre",
