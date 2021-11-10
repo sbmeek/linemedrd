@@ -6,12 +6,16 @@
 	"errors": {
 		"incorrectEmail": "Correo electrónico incorrecto",
 		"incorrectNumber": "Número incorrecto",
+		"incorrectDate": "Fecha incorrecta",
 		"required": {
 			"name": "El nombre es requerido",
-			"password": "La contraseña es requerida",
+			"pwd": "La contraseña es requerida",
 			"email": "El correo electrónico es requerido",
 			"age": "La edad es requerida",
-			"user": "El usuario es requerido"
+			"user": "El usuario es requerido",
+			"phoneNumber": "El número telefonico es requerido",
+			"identification": "La identificación es requerida",
+			"date": "La fecha es requerida"
 		}
 	},
 	"login": {
