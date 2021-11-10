@@ -14,7 +14,7 @@ import Submit from 'shared/submit/Submit';
 import { useFields } from 'hooks/useFields';
 import { ContainerLink } from './Login.styles';
 import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
-import { emailValid, inputEmpty } from 'helpers/validators';
+import { emailValid, inputEmpty, passwordValidation } from 'helpers/validators';
 
 const Login = () => {
 	const { t } = useTranslation();
@@ -27,7 +27,8 @@ const Login = () => {
 			validations: [inputEmpty, emailValid]
 		},
 		pwd: {
-			value: ''
+			value: '',
+			validations: [inputEmpty, passwordValidation]
 		}
 	});
 
@@ -70,11 +71,16 @@ const Login = () => {
 								value={values.pwd}
 								name="pwd"
 								onChange={handleChange}
+								onBlur={handleBlur}
 							/>
 							<Icon onClick={() => setShowPwd(prev => !prev)}>
 								{showPwd ? <EyeIcon /> : <EyeCloseIcon />}
 							</Icon>
 						</Wrapper>
+						<InputHelper hide={!errors.pwd}>
+							<ExclamationIcon />
+							<span>{errors.pwd}</span>
+						</InputHelper>
 					</ContentInput>
 
 					<ContainerLink>

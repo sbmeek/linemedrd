@@ -6,12 +6,16 @@
 	"errors": {
 		"incorrectEmail": "Incorrect email",
 		"incorrectNumber": "Incorrect number",
+		"incorrectDate": "Incorrect date",
 		"required": {
 			"name": "Name is required",
-			"password": "Password is required",
+			"pwd": "Password is required",
 			"email": "Email is required",
 			"age": "Age is required",
-			"user": "User is required"
+			"user": "User is required",
+			"phoneNumber": "Phone number is required",
+			"identification": "Identification is required",
+			"date": "Date is required"
 		}
 	},
 	"login": {
