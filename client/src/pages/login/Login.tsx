@@ -3,7 +3,7 @@ import Title from 'shared/title/Title';
 import { appName } from 'constants/index';
 import { useTranslation } from 'react-i18next';
 import { Container } from 'shared/container/Container';
-import { Fragment, useState } from 'react';
+import { FormEvent, Fragment, useState } from 'react';
 import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
 import useAuth from 'context/authContext';
@@ -27,12 +27,12 @@ const Login = () => {
 			validations: [inputEmpty, emailValid]
 		},
 		pwd: {
-			value: '',
-			validations: []
+			value: ''
 		}
 	});
 
-	const handleFormSubmit = () => {
+	const handleFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
+		e.preventDefault();
 		const { email, pwd } = values;
 		//TODO Dalvin: No llamar este metodo si todos los campos no estan OKs
 		const response = login(email, pwd);

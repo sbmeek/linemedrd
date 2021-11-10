@@ -41,7 +41,7 @@ const routesMenu = {
 			path: ''
 		}
 	},
-	['© 2021 Concitmed, Inc.']: {
+	[`© ${new Date().getFullYear()} Concitmed, Inc.`]: {
 		polity: {
 			title: 'Términos y condiciones',
 			path: ''

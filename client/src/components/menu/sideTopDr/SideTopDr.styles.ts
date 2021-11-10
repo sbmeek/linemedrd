@@ -1,7 +1,8 @@
 import { Props } from '@emotion/react';
-import styled from '@emotion/styled';
+import styled, { StyledComponent } from '@emotion/styled';
+import { ComponentProps, ElementType, JSXElementConstructor } from 'react';
 import { Link as ComponentLink } from 'react-router-dom';
-import SideTop, { ContentTop } from 'shared/sideTop/SideTop';
+import { SideTop, ContentTop } from 'shared/sideTop/SideTop';
 
 export const SideDrTop = styled(SideTop)`
 	background-color: ${({ theme }) => theme.colors.white};
@@ -45,4 +46,4 @@ const TextLink = styled.div`
 	}
 `;
 
-export default TextLink.withComponent(ComponentLink);
+export const TextLinks = TextLink.withComponent(ComponentLink);

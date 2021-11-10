@@ -18,18 +18,3 @@ declare module '@emotion/react' {
 		HTMLElement
 	> & {};
 }
-
-declare module '@emotion/styled' {
-	type ThemeObject = typeof data;
-	type ThemeObjectExtends = ThemeObject['dark'] & ThemeObject['light'];
-
-	declare type Theme = Theme & ThemeObjectExtends;
-
-	declare type Props = {
-		theme: Theme;
-		as?: React.ElementType<any> | undefined;
-	} & React.DetailedHTMLProps<
-		React.HTMLAttributes<HTMLElement>,
-		HTMLElement
-	> & {};
-}

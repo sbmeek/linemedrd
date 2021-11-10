@@ -1,14 +1,12 @@
 import { Fragment } from 'react';
-import Link, { SideUserTop, Content } from './SideTopUser.styles';
+import { Link, SideUserTop, Content } from './SideTopUser.styles';
 import routes from 'constants/routes';
 
-const SideContentUser = <
-	TProps extends {
-		hideMenu: () => void;
-	}
->(
-	props: TProps
-) => {
+type TProps = {
+	hideMenu: () => void;
+};
+
+const SideContentUser = <T extends TProps>(props: T): JSX.Element => {
 	return (
 		<Fragment>
 			<SideUserTop>

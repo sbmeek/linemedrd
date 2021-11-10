@@ -1,20 +1,17 @@
 import SideContent, { Category } from './CategoryMenu.styles';
 import { Fragment } from 'react';
-import routesMenu, { Categories, Modules } from 'constants/routesMenu';
+import { Categories, Modules } from 'constants/routesMenu';
 
-const CategoryMenu = <
-	TProps extends { name: Modules; categories: Categories }
->({
-	name,
-	categories
-}: TProps) => {
+type IProps = { name: Modules; categories: Categories };
+
+const CategoryMenu = <T extends IProps>({ name, categories }: T) => {
 	return (
 		<Fragment>
 			<SideContent>
 				<ul>
 					<Category>{name}</Category>
-					{Object.entries(categories).map(([, { title, path }], index) => (
-						<li key={path + index}>{title}</li>
+					{Object.entries(categories).map(([key, values], index) => (
+						<li key={index}>{values.title}</li>
 					))}
 				</ul>
 			</SideContent>

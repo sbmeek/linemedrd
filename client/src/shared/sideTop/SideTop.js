@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export default styled.div`
+export const SideTop = styled.div`
 	z-index: 300;
 	display: flex;
 	align-items: center;

@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import SideBarTop from 'components/menu/sideBarTop/SidebarTop.component';
 import { Fragment, useState } from 'react';
 import Sidebar from 'components/menu/sideBar/Sidebar.component';
@@ -6,18 +6,18 @@ import { ContainerTop, ContentHeader } from './Header.styles';
 
 const dontShowIn = ['/HomeWithoutHeader'];
 
-const Header = () => {
-	const location = useLocation();
-	const [showSideBar, setShowSideBar] = useState(false);
-
-	if (dontShowIn.indexOf(location.pathname) !== -1) return null;
+const Header = <T extends RouteComponentProps>({
+	location: { pathname }
+}: T): JSX.Element => {
+	const [showSideBar, setShowSideBar] = useState<boolean>(false);
+	if (dontShowIn.indexOf(pathname) !== -1) return <Fragment />;
 
 	return (
 		<Fragment>
 			<ContentHeader>
-				<ContainerTop location={location.pathname}>
+				<ContainerTop location={pathname}>
 					<SideBarTop
-						pathname={location.pathname}
+						pathname={pathname}
 						show={showSideBar}
 						setShow={setShowSideBar}
 					/>
@@ -28,4 +28,4 @@ const Header = () => {
 	);
 };
 
-export default Header;
+export default withRouter(Header);

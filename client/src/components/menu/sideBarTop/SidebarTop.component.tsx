@@ -21,9 +21,9 @@ const SidebarTop = <T extends IPropsProperty>({
 	show,
 	setShow
 }: T) => {
-	const showMenu = () => {
+	const showMenu: () => void = () => {
 		document.body.style.overflow = show ? 'auto' : 'hidden';
-		setShow(!show);
+		setShow(prev => !prev);
 	};
 
 	return (
