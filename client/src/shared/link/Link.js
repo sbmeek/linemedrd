@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import { Link as BrowserLink } from 'react-router-dom';
 
 export const ContentLink = styled.div`
 	text-align: center;
@@ -10,7 +10,7 @@ export const ContentLink = styled.div`
 	})}
 `;
 
-export default styled(Link)`
+export const Link = styled(BrowserLink)`
 	text-decoration: none;
 	font-size: 1rem;
 	transition: color 200ms ease-out;

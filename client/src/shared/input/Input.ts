@@ -37,6 +37,8 @@ export const ContentInput = styled.div`
 		font-family: ${({ theme }) => theme.fonts.segoeui};
 		text-align: left;
 		font-size: 0.888rem;
+		font-weight: 600;
+		letter-spacing: 0.05rem;
 	}
 `;
 

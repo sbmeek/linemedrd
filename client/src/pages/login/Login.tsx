@@ -1,4 +1,4 @@
-import Link, { ContentLink } from 'shared/link/Link';
+import { ContentLink, Link } from 'shared/link/Link';
 import Title from 'shared/title/Title';
 import { appName } from 'constants/index';
 import { useTranslation } from 'react-i18next';
@@ -14,7 +14,11 @@ import Submit from 'shared/submit/Submit';
 import { useFields } from 'hooks/useFields';
 import { ContainerLink } from './Login.styles';
 import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
-import { emailValid, inputEmpty, passwordValidation } from 'helpers/validators';
+import {
+	emailValid,
+	inputEmpty,
+	inputPasswordValidation
+} from 'helpers/validators';
 
 const Login = () => {
 	const { t } = useTranslation();
@@ -28,7 +32,7 @@ const Login = () => {
 		},
 		pwd: {
 			value: '',
-			validations: [inputEmpty, passwordValidation]
+			validations: [inputEmpty, inputPasswordValidation]
 		}
 	});
 
@@ -48,7 +52,11 @@ const Login = () => {
 				<Title>{t('login.title')}</Title>
 				<form onSubmit={handleFormSubmit}>
 					<ContentInput>
-						<Wrapper value={values.email} placeholder={t('login.inputEmail')}>
+						<Wrapper
+							value={values.email}
+							error={errors.email}
+							placeholder={t('login.inputEmail')}
+						>
 							<Input
 								aria-label={t('login.inputEmail')}
 								value={values.email}
@@ -64,7 +72,11 @@ const Login = () => {
 					</ContentInput>
 
 					<ContentInput>
-						<Wrapper value={values.pwd} placeholder={t('login.inputPassword')}>
+						<Wrapper
+							value={values.pwd}
+							error={errors.pwd}
+							placeholder={t('login.inputPassword')}
+						>
 							<InputWithIcon
 								aria-label={t('login.inputPassword')}
 								type={showPwd ? 'password' : 'text'}

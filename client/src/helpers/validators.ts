@@ -14,7 +14,7 @@ export const inputNumberValidation = ({ value }: ValueNameType) => {
 	return isNaN(+value) && i18n.t('errors.incorrectNumber');
 };
 
-export const passwordValidation = ({ value, name }: ValueNameType) => {
+export const inputPasswordValidation = ({ value, name }: ValueNameType) => {
 	return value.length < 6 && i18n.t(`errors.required.${name}`);
 };
 
@@ -22,4 +22,20 @@ export const dateValidation = ({ value }: ValueNameType) => {
 	const date = new Date(value);
 	const currentDate = new Date();
 	return date < currentDate && i18n.t('errors.incorrectDate');
+};
+
+export const inputCheckboxPolityValidation = ({
+	value,
+	name
+}: ValueNameType) => {
+	console.log(value);
+	return !!value && i18n.t(`errors.required.${name}`);
+};
+
+export const validationAllInputs = (errors: { [key: string]: string }) => {
+	console.log(errors, 'desde validation');
+	return Object.values(errors).reduce(
+		(accumulator, values) => (accumulator ? accumulator : !!values),
+		false as boolean
+	);
 };

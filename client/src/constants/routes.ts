@@ -13,7 +13,7 @@ const routes = {
 	},
 	signup: {
 		path: '/Signup',
-		component: asyncComponent(() => import('pages/signup/Signup')),
+		component: asyncComponent(() => import('../pages/signup/Signup')),
 		requiresAuth: false
 	},
 	homeWithoutHeader: {

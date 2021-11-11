@@ -1,6 +1,7 @@
+import { Props } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const CheckboxContainer = styled.label`
+export const CheckboxContainer = styled.label<{ error: boolean }>`
 	display: flex;
 	justify-content: flex-start;
 	position: relative;
@@ -26,7 +27,6 @@ export const CheckboxContainer = styled.label`
 		&::before {
 			content: '';
 			border-radius: 0.2rem;
-			border-color: ${({ theme }) => theme.colors.green5};
 			border-width: 0.1rem;
 			border-style: solid;
 			width: 1rem;
@@ -34,6 +34,12 @@ export const CheckboxContainer = styled.label`
 			position: absolute;
 			top: 45%;
 			left: 0%;
+
+			${({ error, theme }: Props & { error: boolean }) => {
+				return error
+					? { borderColor: theme.letter.error01 }
+					: theme.colors.green5;
+			}}
 		}
 
 		&::after {

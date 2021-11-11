@@ -8,9 +8,11 @@
 		"incorrectNumber": "Número incorrecto",
 		"incorrectDate": "Fecha incorrecta",
 		"required": {
+			"username": "El nombre de usuarop es requerido",
 			"name": "El nombre es requerido",
 			"pwd": "La contraseña es requerida",
 			"email": "El correo electrónico es requerido",
+			"polity": "Debes aceptar las politicas",
 			"age": "La edad es requerida",
 			"user": "El usuario es requerido",
 			"phoneNumber": "El número telefonico es requerido",
@@ -27,25 +29,37 @@
 		"forgetPassword": "¿Olvidaste tu contraseña?",
 		"signIn": "Iniciar"
 	},
+	"Register": {
+		"title": "Registrarse",
+		"description": "Esta es la pagina de contacto"
+	},
 	"pages": {
 		"home": {
-			"title": "Inicio",
+			"title": "Home",
 			"description": "Esta es la pagina de inicio"
-		},
-		"Register": {
-			"title": "Registro",
-			"description": "Esta es la pagina de contacto"
 		}
 	},
 	"formRegister": {
-		"inputName": "Ingresa tu nombre",
-		"inputEmail": "Ingresa correo electronico",
-		"inputPassword": "Ingresa contraseña",
-		"inputAge": "Ingresa tu edad",
-		"inputUser": "Ingresa tu nombre de usuario",
-		"register": "Registrar",
-		"alreadyUser": "¿Ya tienes una cuenta?",
-		"startSession": "Iniciar sesión"
+		"label": {
+			"inputName": "Nombre de usuario",
+			"inputEmail": "Correo electrónico",
+			"inputPassword": "Contraseña",
+			"inputAge": "Ingresa tu edad",
+			"inputUser": "Ingresa tu nombre de usuario",
+			"register": "Registrar",
+			"alreadyUser": "¿Ya tienes una cuenta?",
+			"startSession": "Iniciar sesión"
+		},
+		"inputsPlaceholder": {
+			"inputName": "Ingresa tu nombre",
+			"inputEmail": "Ingresa correo electronico",
+			"inputPassword": "Ingresa contraseña",
+			"inputAge": "Ingresa tu edad",
+			"inputUser": "Ingresa tu nombre de usuario",
+			"register": "Registrar",
+			"alreadyUser": "¿Ya tienes una cuenta?",
+			"startSession": "Iniciar sesión"
+		}
 	},
 	"formForgetPassword": {
 		"inputEmail": "Ingresa tu correo electronico",

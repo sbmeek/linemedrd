@@ -8,8 +8,10 @@
 		"incorrectNumber": "Incorrect number",
 		"incorrectDate": "Incorrect date",
 		"required": {
+			"username": "Username is required",
 			"name": "Name is required",
 			"pwd": "Password is required",
+			"polity": "You must accept polity",
 			"email": "Email is required",
 			"age": "Age is required",
 			"user": "User is required",
@@ -27,25 +29,37 @@
 		"forgetPassword": "Forgot your password?",
 		"signIn": "Sign In"
 	},
+	"Register": {
+		"title": "Sign Up",
+		"description": "Esta es la pagina de contacto"
+	},
 	"pages": {
 		"home": {
 			"title": "Home",
 			"description": "Esta es la pagina de inicio"
-		},
-		"Register": {
-			"title": "Register",
-			"description": "Esta es la pagina de contacto"
 		}
 	},
 	"formRegister": {
-		"inputName": "Enter your name",
-		"inputEmail": "Enter your email",
-		"inputPassword": "Enter your password",
-		"inputAge": "Enter your age",
-		"inputUser": "Enter your username",
-		"register": "Register",
-		"alreadyUser": "Already have an account?",
-		"startSession": "Start Session"
+		"label": {
+			"inputName": "Username",
+			"inputEmail": "Email",
+			"inputPassword": "Password",
+			"inputAge": "Enter your age",
+			"inputUser": "Enter your username",
+			"register": "Register",
+			"alreadyUser": "Already have an account?",
+			"startSession": "Start Session"
+		},
+		"inputsPlaceholder": {
+			"inputName": "Enter your name",
+			"inputEmail": "Enter your email",
+			"inputPassword": "Enter your password",
+			"inputAge": "Enter your age",
+			"inputUser": "Enter your username",
+			"register": "Register",
+			"alreadyUser": "Already have an account?",
+			"startSession": "Start Session"
+		}
 	},
 	"formForgetPassword": {
 		"inputEmail": "Enter your email",
