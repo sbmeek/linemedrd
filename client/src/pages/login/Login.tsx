@@ -1,13 +1,13 @@
 import { ContentLink, Link } from 'shared/link/Link';
 import Title from 'shared/title/Title';
 import { appName } from 'constants/index';
-import { useTranslation } from 'react-i18next';
+import i18n from 'i18n';
 import { Container } from 'shared/container/Container';
 import { FormEvent, Fragment, useState } from 'react';
 import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
-import useAuth from 'context/authContext';
-import { useHistory } from 'react-router-dom';
+import useAuth from 'context/auth/authContext';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { ContentInput, Wrapper, Input, InputHelper } from 'shared/input/Input';
 import { InputWithIcon, Icon } from 'shared/inputIcon/InputIcon';
 import Submit from 'shared/submit/Submit';
@@ -17,14 +17,15 @@ import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
 import {
 	emailValid,
 	inputEmpty,
-	inputPasswordValidation
-} from 'helpers/validators';
+	inputPasswordValidation,
+	validationAllInputs
+} from 'Helpers/validators';
 
-const Login = () => {
-	const { t } = useTranslation();
+const Login = <T extends RouteComponentProps>({ history }: T) => {
 	const [showPwd, setShowPwd] = useState(true);
-	const history = useHistory();
+
 	const { login } = useAuth();
+
 	const { values, errors, handleChange, handleBlur } = useFields({
 		email: {
 			value: '',
@@ -36,29 +37,37 @@ const Login = () => {
 		}
 	});
 
-	const handleFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
+	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const { email, pwd } = values;
-		//TODO Dalvin: No llamar este metodo si todos los campos no estan OKs
-		const response = login(email, pwd);
-		console.log({ response });
+
 		//TODO Angel: Mostrar respuesta del servidor
+		if (validationAllInputs(errors)) {
+			//TODO: deshabilitar el input submit o agregar una ventana emergente de error:
+			return;
+		}
+		const response = await login(values);
+
+		if (!response.ok) {
+			console.log('error');
+			return;
+		}
+
 		history.push('/');
 	};
 
 	return (
 		<Fragment>
 			<Container>
-				<Title>{t('login.title')}</Title>
+				<Title>{i18n.t('login.title')}</Title>
 				<form onSubmit={handleFormSubmit}>
 					<ContentInput>
 						<Wrapper
 							value={values.email}
 							error={errors.email}
-							placeholder={t('login.inputEmail')}
+							placeholder={i18n.t('login.inputEmail')}
 						>
 							<Input
-								aria-label={t('login.inputEmail')}
+								aria-label={i18n.t('login.inputEmail')}
 								value={values.email}
 								name="email"
 								onChange={handleChange}
@@ -75,10 +84,10 @@ const Login = () => {
 						<Wrapper
 							value={values.pwd}
 							error={errors.pwd}
-							placeholder={t('login.inputPassword')}
+							placeholder={i18n.t('login.inputPassword')}
 						>
 							<InputWithIcon
-								aria-label={t('login.inputPassword')}
+								aria-label={i18n.t('login.inputPassword')}
 								type={showPwd ? 'password' : 'text'}
 								value={values.pwd}
 								name="pwd"
@@ -96,21 +105,21 @@ const Login = () => {
 					</ContentInput>
 
 					<ContainerLink>
-						<Link to="#?">{t('login.forgetPassword')}</Link>
+						<Link to="#?">{i18n.t('login.forgetPassword')}</Link>
 					</ContainerLink>
-					<Submit type="submit" aria-label={t('login.signIn')}>
-						{t('login.signIn')}
+					<Submit type="submit" aria-label={i18n.t('login.signIn')}>
+						{i18n.t('login.signIn')}
 					</Submit>
 				</form>
 				<ContentLink>
 					<span>
-						{t('login.newIn')} {appName}
+						{i18n.t('login.newIn')} {appName}
 					</span>{' '}
-					<Link to="/Signup">{t('login.createAccount')}</Link>.
+					<Link to="/Signup">{i18n.t('login.createAccount')}</Link>.
 				</ContentLink>
 			</Container>
 		</Fragment>
 	);
 };
 
-export default Login;
+export default withRouter(Login);

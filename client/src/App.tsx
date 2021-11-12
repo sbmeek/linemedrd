@@ -10,7 +10,7 @@ import Header from './components/header/Header';
 import routes from './constants/routes';
 import GlobalStyle from './styles/GlobalStyle';
 import Principal from './shared/container/Container';
-import useAuth from './context/authContext';
+import useAuth from './context/auth/authContext';
 
 type RouteType = {
 	path: string;

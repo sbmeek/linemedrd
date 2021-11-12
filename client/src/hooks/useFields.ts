@@ -15,7 +15,6 @@ export const useFields = <T extends FieldsType>(fields: T) => {
 			},
 			{} as KeyWithString
 		);
-
 		setValues(fieldsValues);
 	}, []);
 
@@ -39,17 +38,12 @@ export const useFields = <T extends FieldsType>(fields: T) => {
 				...prevErrors,
 				[name as FieldsKeys]: errorMsg
 			}));
-
-			if (errorMsg) {
-				return;
-			}
 		}
 	};
 
 	const handleBlur = (evt: FocusEvent<EventElements>) => {
 		const { name, value } = evt.target;
 
-		console.log('blur');
 		for (let validate of fields[name].validations || []) {
 			const errorMsg = validate({ name, value });
 			setErrors(prevErrors => ({

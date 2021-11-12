@@ -6,7 +6,7 @@ import Main from './styles/index';
 import { data } from './styles/theme';
 import App from './App';
 import ThemeState from './context/theme/themeState';
-import { AuthProvider } from './context/authContext';
+import { AuthProvider } from './context/auth/authContext';
 
 import './i18n';
 

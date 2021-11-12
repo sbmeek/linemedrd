@@ -4,7 +4,7 @@ export default styled.button`
 	border-radius: 0.4rem;
 	width: 100%;
 	max-width: 100%;
-	padding: 0.5rem 0;
+	padding: 0.5rem 0.5rem;
 	margin: 2rem 0 1.4rem 0;
 	text-align: center;
 	border: none;

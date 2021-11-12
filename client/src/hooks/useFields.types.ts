@@ -1,4 +1,4 @@
-import { ValueNameType } from 'helpers/validators.types';
+import { ValueNameType } from 'Helpers/validators.types';
 
 export type FieldsType = {
 	[key: string]: {

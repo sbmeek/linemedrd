@@ -1,9 +1,16 @@
+import { FormEvent, useState } from 'react';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { ContentInputSignup } from './Signup.styles';
+
 import { ContentLink, Link } from 'shared/link/Link';
 import Title from 'shared/title/Title';
 import { Container } from 'shared/container/Container';
 import Submit from 'shared/submit/Submit';
+import { Wrapper, Input, InputHelper } from 'shared/input/Input';
+import { Icon, InputWithIcon } from 'shared/inputIcon/InputIcon';
+import { CheckboxContainer } from 'shared/checkbox/checkbox';
+
 import { appName } from 'constants/index';
-import { ContentInput, Wrapper, Input, InputHelper } from 'shared/input/Input';
 import i18n from 'i18n';
 import { useFields } from 'hooks/useFields';
 import {
@@ -12,15 +19,11 @@ import {
 	inputEmpty,
 	inputPasswordValidation,
 	validationAllInputs
-} from 'helpers/validators';
-import { CheckboxContainer } from 'shared/checkbox/checkbox';
+} from 'Helpers/validators';
+
 import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
-import { FormEvent, useState } from 'react';
-import { Icon, InputWithIcon } from 'shared/inputIcon/InputIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
 import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
-import { ContentInputSignup } from './Signup.styles';
-import { RouteComponentProps, withRouter } from 'react-router';
 
 const Signup = <T extends RouteComponentProps>({ history }: T) => {
 	const [showPwd, setShowPwd] = useState<boolean>(true);
@@ -53,7 +56,6 @@ const Signup = <T extends RouteComponentProps>({ history }: T) => {
 			return;
 		}
 
-		console.log(values);
 		//history.push("/login");
 	};
 

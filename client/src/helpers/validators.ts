@@ -28,12 +28,10 @@ export const inputCheckboxPolityValidation = ({
 	value,
 	name
 }: ValueNameType) => {
-	console.log(value);
 	return !!value && i18n.t(`errors.required.${name}`);
 };
 
 export const validationAllInputs = (errors: { [key: string]: string }) => {
-	console.log(errors, 'desde validation');
 	return Object.values(errors).reduce(
 		(accumulator, values) => (accumulator ? accumulator : !!values),
 		false as boolean
