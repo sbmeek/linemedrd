@@ -15,6 +15,7 @@ declare module '@emotion/react' {
 		as?: React.ElementType<any> | undefined;
 	} & React.DetailedHTMLProps<
 		React.HTMLAttributes<HTMLElement>,
-		HTMLElement
+		HTMLElement,
+		HTMLButtonElement
 	> & {};
 }

@@ -4,13 +4,10 @@ import { Fragment, useState } from 'react';
 import Sidebar from 'components/menu/sideBar/Sidebar.component';
 import { ContainerTop, ContentHeader } from './Header.styles';
 
-const dontShowIn = ['/HomeWithoutHeader'];
-
 const Header = <T extends RouteComponentProps>({
 	location: { pathname }
 }: T): JSX.Element => {
 	const [showSideBar, setShowSideBar] = useState<boolean>(false);
-	if (dontShowIn.indexOf(pathname) !== -1) return <Fragment />;
 
 	return (
 		<Fragment>

@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 
 type PathnameProp = { pathname: string };
 
-const getPathnameColor = (props: Props & PathnameProp) =>
-	props.pathname === '/' ? props.theme.colors.green5 : props.theme.colors.white;
-
+const getPathnameColor = (props: Props & PathnameProp) => {
+	const { pathname } = props;
+	const WhiteHeader = ['/', '/Home'].includes(pathname);
+	return WhiteHeader ? props.theme.colors.green5 : props.theme.colors.white;
+};
 export const LinkLogo = styled(Link)<PathnameProp>`
 	margin-left: 2%;
 	text-decoration: none;

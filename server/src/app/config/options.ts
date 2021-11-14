@@ -102,7 +102,8 @@ export const sessionOptions: SessionOptions = {
 	cookie: {
 		httpOnly: true,
 		maxAge: 120 * 60000,
-		secure: false
+		secure: false,
+		sameSite: 'strict'
 	}
 };
 

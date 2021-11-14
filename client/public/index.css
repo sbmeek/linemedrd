@@ -3,11 +3,16 @@
 	margin: 0%;
 	box-sizing: border-box;
 	transition: color 500ms ease-in-out;
+	scrollbar-width: none; /* Firefox */
 }
 
 *::after,
 *::before {
 	box-sizing: inherit;
+}
+
+*::-webkit-scrollbar {
+	display: none;
 }
 
 :root {

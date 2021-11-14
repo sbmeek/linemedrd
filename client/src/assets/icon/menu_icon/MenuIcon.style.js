@@ -73,7 +73,9 @@ const changeColor = props => {
 			colors: { green5, white }
 		}
 	} = props;
-	return pathname === '/' ? green5 : white;
+
+	const WhiteMenu = ['/', '/Home'].includes(pathname);
+	return WhiteMenu ? green5 : white;
 };
 
 export const ContentLine = styled.g`

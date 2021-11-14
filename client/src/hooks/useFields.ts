@@ -56,5 +56,16 @@ export const useFields = <T extends FieldsType>(fields: T) => {
 		}
 	};
 
-	return { values, errors, handleChange, handleChangeCheckBox, handleBlur };
+	const reset = () => {
+		setValues({} as KeyWithString);
+	};
+
+	return {
+		values,
+		errors,
+		reset,
+		handleChange,
+		handleChangeCheckBox,
+		handleBlur
+	};
 };

@@ -4,7 +4,10 @@ import styled from '@emotion/styled';
 type ContainerTopProp = { location: string };
 
 const TopContentColor = (props: Props & ContainerTopProp) => {
-	return props.location === '/'
+	const { location } = props;
+	const WhiteHeader = ['/', '/Home'].includes(location);
+
+	return WhiteHeader
 		? {
 				backgroundColor: props.theme.colors.white,
 				color: props.theme.colors.green5

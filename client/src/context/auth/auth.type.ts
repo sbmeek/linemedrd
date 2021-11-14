@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type TypeInitUserState = {
 	ok: boolean;
 	isEmailConfirmed: boolean;
@@ -12,9 +14,11 @@ export type TypeAuthProvider = {
 };
 
 export type TypeAuth = {
+	user: TypeInitUserState;
+	setUser?: React.Dispatch<React.SetStateAction<TypeInitUserState>>;
 	loading: false;
 	error?: any;
-	login: ({ email, pwd }: TypeParameterAuth) => any;
+	login: TypeFunctionLogin;
 	logout: () => any;
 };
 

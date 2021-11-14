@@ -28,7 +28,11 @@ const SidebarTop = <T extends IPropsProperty>({
 
 	return (
 		<Fragment>
-			<ContainerLogo>
+			<ContainerLogo
+				onClick={() => {
+					if (show) showMenu();
+				}}
+			>
 				<Diamond pathname={pathname}></Diamond>
 				<LinkLogo pathname={pathname} to={routes.home.path}>
 					<h1>{appName}</h1>

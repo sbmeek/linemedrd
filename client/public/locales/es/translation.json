@@ -29,6 +29,18 @@
 		"forgetPassword": "¿Olvidaste tu contraseña?",
 		"signIn": "Iniciar"
 	},
+	"searchDr": {
+		"title": "Busca y encuentra a tu médico ideal",
+		"btnSearch": "Buscar",
+		"btnStart": "Comenzar",
+		"inputSpecility": "Buscar especialidad",
+		"inputService": "Condiciones y servicios",
+		"inputLocation": "Buscar por ubicación",
+		"buttonDate": "Fecha",
+		"buttonFilter": "Filtro",
+		"titleHelp": "¿Necesitas ayuda?",
+		"infoHelp": "Te ayudamos a encontrar al doctor que estás buscando."
+	},
 	"Register": {
 		"title": "Registrarse",
 		"description": "Esta es la pagina de contacto"

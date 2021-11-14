@@ -3,7 +3,6 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import {
 	TypeAuthProvider,
 	TypeInitUserState,
-	TypeParameterAuth,
 	TypeAuth,
 	TypeFunctionLogin
 } from './auth.type';
@@ -47,7 +46,10 @@ export const AuthProvider = <T extends TypeAuthProvider>({ children }: T) => {
 			const response = (await authService.login(
 				paramsAuthentic
 			)) as TypeInitUserState;
-			if (!response.isAuthenticated) return response;
+
+			return !response.isAuthenticated
+				? { ...response, msg: 'Verificar que las credenciales son correctas.' }
+				: response;
 		} catch (error) {
 			console.log(error);
 		} finally {
@@ -56,7 +58,9 @@ export const AuthProvider = <T extends TypeAuthProvider>({ children }: T) => {
 	};
 
 	const logout: () => void = function logout() {
-		authService.logout().then(() => setUser({} as TypeInitUserState));
+		authService.logout().then(() => {
+			setUser(initUserState);
+		});
 	};
 
 	const memoedValue = useMemo(
@@ -64,6 +68,7 @@ export const AuthProvider = <T extends TypeAuthProvider>({ children }: T) => {
 			({
 				user,
 				loading,
+				setUser,
 				login,
 				logout
 			} as TypeAuth),

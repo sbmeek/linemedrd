@@ -16,6 +16,7 @@ type RouteType = {
 	path: string;
 	component: any;
 	requiresAuth: boolean;
+	requireAnonimoUser?: boolean;
 };
 
 function App() {
@@ -24,13 +25,15 @@ function App() {
 	const renderRoute = ({
 		path,
 		component: Component,
-		requiresAuth
+		requiresAuth,
+		requireAnonimoUser
 	}: RouteType) => {
 		const renderComponent = (props: RouteComponentProps<any>) =>
-			user.isAuthenticated !== requiresAuth ? (
+			user.isAuthenticated !== requiresAuth &&
+			(!requireAnonimoUser || false) ? (
 				<Redirect
 					to={{
-						pathname: requiresAuth ? '/Login' : '/HomeWithoutHeader',
+						pathname: requiresAuth ? '/Login' : '/Home',
 						state: { from: props.location }
 					}}
 				/>

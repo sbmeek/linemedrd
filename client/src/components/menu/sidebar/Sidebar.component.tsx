@@ -1,7 +1,8 @@
 import { ContentNav } from './Sidebar.styles';
 import SideBarMenu from '../sideBarMenu/SidebarMenu.component';
-// import SideTopDr from '../sideTopDr/SideTopDr';
+import SideTopDr from '../sideTopDr/SideTopDr';
 import SideTopUser from '../sideTopUser/SideTopUser';
+import useAuth from 'context/auth/authContext';
 
 interface IPropsProperty {
 	show: boolean;
@@ -13,11 +14,16 @@ const Sidebar = <TProps extends IPropsProperty>({ show, setShow }: TProps) => {
 		setShow(prev => !prev);
 	};
 
-	// TODO: David: El sideTopDr es para cuando esta logeado el user
+	const { user } = useAuth();
+
 	return (
 		<ContentNav show={show}>
-			<SideTopUser hideMenu={hideMenu} />
-			{/* <SideTopDr hideMenu={hideMenu} /> */}
+			{user.isAuthenticated ? (
+				<SideTopDr hideMenu={hideMenu} />
+			) : (
+				<SideTopUser hideMenu={hideMenu} />
+			)}
+
 			<SideBarMenu />
 		</ContentNav>
 	);

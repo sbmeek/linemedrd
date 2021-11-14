@@ -1,6 +1,5 @@
 import { Props } from '@emotion/react';
-import styled, { StyledComponent } from '@emotion/styled';
-import { ComponentProps, ElementType, JSXElementConstructor } from 'react';
+import styled from '@emotion/styled';
 import { Link as ComponentLink } from 'react-router-dom';
 import { SideTop, ContentTop } from 'shared/sideTop/SideTop';
 
@@ -22,13 +21,14 @@ export const NameBar = styled.div`
 	${fontStyle};
 `;
 
-const TextLink = styled.div`
+export const TextLink = styled.div`
 	text-decoration: unset;
 	font-size: 1rem;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	margin-top: 1rem;
+	cursor: pointer;
 
 	:hover {
 		background-color: #adffc2;

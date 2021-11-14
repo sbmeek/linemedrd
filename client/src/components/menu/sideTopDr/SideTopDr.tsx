@@ -1,9 +1,16 @@
-import { TextLinks, ContentDr, SideDrTop, NameBar } from './SideTopDr.styles';
+import {
+	TextLink,
+	TextLinks,
+	ContentDr,
+	SideDrTop,
+	NameBar
+} from './SideTopDr.styles';
 import routes from 'constants/routes';
 import CalendarIcon from 'assets/icon/calendar_icon/CalendarIcon';
 import UserIcon from 'assets/icon/user_icon/UserIcon';
 import SettingIcon from 'assets/icon/setting_icon/SettingIcon';
 import LogoutIcon from 'assets/icon/logout_icon/LogoutIcon';
+import useAuth from 'context/auth/authContext';
 
 type IProps = {
 	hideMenu: () => void;
@@ -11,6 +18,8 @@ type IProps = {
 
 const SideTopDr = <T extends IProps>(props: T) => {
 	const { hideMenu } = props;
+
+	const { logout } = useAuth();
 
 	return (
 		<SideDrTop>
@@ -34,12 +43,12 @@ const SideTopDr = <T extends IProps>(props: T) => {
 					</div>
 					<div className="name">Configuración</div>
 				</TextLinks>
-				<TextLinks to={routes.home.path}>
+				<TextLink onClick={() => logout()}>
 					<div className="icon">
 						<LogoutIcon />
 					</div>
 					<div className="name">Cerrar Sesion</div>
-				</TextLinks>
+				</TextLink>
 			</ContentDr>
 		</SideDrTop>
 	);

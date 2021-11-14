@@ -75,7 +75,7 @@ const Signup = <T extends RouteComponentProps>({ history }: T) => {
 					>
 						<Input
 							aria-label={i18n.t('formRegister.inputsPlaceholder.inputName')}
-							value={values.username}
+							value={values.username || ''}
 							aria-required="true"
 							name="username"
 							onChange={handleChange}
@@ -99,7 +99,7 @@ const Signup = <T extends RouteComponentProps>({ history }: T) => {
 					>
 						<Input
 							aria-label={i18n.t('formRegister.inputsPlaceholder.inputEmail')}
-							value={values.email}
+							value={values.email || ''}
 							aria-required="true"
 							name="email"
 							onChange={handleChange}
@@ -126,7 +126,7 @@ const Signup = <T extends RouteComponentProps>({ history }: T) => {
 								'formRegister.inputsPlaceholder.inputPassword'
 							)}
 							type={showPwd ? 'password' : 'text'}
-							value={values.pwd}
+							value={values.pwd || ''}
 							name="pwd"
 							onChange={handleChange}
 							onBlur={handleBlur}

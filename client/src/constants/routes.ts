@@ -13,13 +13,20 @@ const routes = {
 	},
 	signup: {
 		path: '/Signup',
-		component: asyncComponent(() => import('../pages/signup/Signup')),
+		component: asyncComponent(() => import('pages/signup/Signup')),
 		requiresAuth: false
 	},
-	homeWithoutHeader: {
-		path: '/HomeWithoutHeader',
+	searchDr: {
+		path: '/SearchDoctor',
+		component: asyncComponent(() => import('pages/searchDr/searchDr')),
+		requiresAuth: false,
+		requireAnonimoUser: true
+	},
+	homeUser: {
+		path: '/Home',
 		component: asyncComponent(() => import('pages/home/Home')),
-		requiresAuth: true
+		requiresAuth: true,
+		requireAnonimoUser: true
 	}
 };
 
