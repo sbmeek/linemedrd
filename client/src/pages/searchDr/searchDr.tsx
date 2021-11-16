@@ -4,6 +4,14 @@ import i18n from 'i18n';
 
 import Title from 'shared/title/Title';
 import { ContainerSearchDr } from './searchDr.style';
+import {
+	ContentSelect,
+	WraperSelect,
+	InputSelect,
+	ContentIconSelect
+} from 'shared/inputSelect/inputSelect';
+import ArrowRightIcon from '../../assets/icon/arrowRight_icon/ArrowRightIcon';
+import Search from 'assets/icon/search_icon/SearchIcon';
 
 const searchDr = (props: PropsWithChildren<any>) => {
 	return (
@@ -11,7 +19,31 @@ const searchDr = (props: PropsWithChildren<any>) => {
 			<ContainerSearchDr>
 				<Title>{i18n.t('searchDr.title')}</Title>
 				<form>
-					<input list="browsers" name="browser" id="browser" />
+					<label htmlFor="browser">Choose your browser from the list:</label>
+					<ContentSelect>
+						<WraperSelect>
+							<Search />
+							<InputSelect
+								name="cars"
+								id="cars"
+								placeholder="Buscar Especialidad"
+							>
+								<optgroup label="Swedish Cars">
+									<option value="volvo">Volvo</option>
+									<option value="saab">Saab</option>
+								</optgroup>
+								<optgroup label="German Cars">
+									<option value="mercedes">Mercedes</option>
+									<option value="audi">Audi</option>
+								</optgroup>
+							</InputSelect>
+							<ContentIconSelect>
+								<ArrowRightIcon />
+							</ContentIconSelect>
+						</WraperSelect>
+					</ContentSelect>
+
+					{/* <input list="browsers" name="browser" id="browser" />
 					<datalist id="browsers">
 						<option value="Edge" />
 						<option value="Firefox" />
@@ -29,11 +61,11 @@ const searchDr = (props: PropsWithChildren<any>) => {
 						<option value="Nose" />
 						<option value="Matar a yefri" />
 						<option value="ESe culo de el que va hacer ese diseño" />
-					</datalist>
+					</datalist> */}
 					<button>No recuerdo</button>
 					<button>Filtro</button>
 
-					<input type="submit">submit</input>
+					<button type="submit">Submit</button>
 				</form>
 			</ContainerSearchDr>
 		</Fragment>
