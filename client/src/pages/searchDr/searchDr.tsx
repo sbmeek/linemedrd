@@ -12,7 +12,7 @@ import {
 } from 'shared/inputSelect/inputSelect';
 import ArrowRightIcon from '../../assets/icon/arrowRight_icon/ArrowRightIcon';
 import Search from 'assets/icon/search_icon/SearchIcon';
-
+//TODO Angel: Desarrollar esta jodienda
 const searchDr = (props: PropsWithChildren<any>) => {
 	return (
 		<Fragment>

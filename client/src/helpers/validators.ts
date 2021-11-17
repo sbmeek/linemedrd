@@ -31,7 +31,7 @@ export const inputCheckboxPolityValidation = ({
 	return !!value && i18n.t(`errors.required.${name}`);
 };
 
-export const validationAllInputs = (errors: { [key: string]: string }) => {
+export const someFieldInvalid = (errors: { [key: string]: string }) => {
 	return Object.values(errors).reduce(
 		(accumulator, values) => (accumulator ? accumulator : !!values),
 		false as boolean
