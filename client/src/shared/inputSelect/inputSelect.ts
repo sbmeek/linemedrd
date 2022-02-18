@@ -39,6 +39,7 @@ export const WraperSelect = styled.div`
 	position: relative;
 	transition: border 120ms cubic-bezier(0.1, -0.6, 0.2, 0), color 400ms;
 	background-color: ${({ theme }) => theme.colors.white};
+	overflow: hidden;
 
 	::after {
 		content: 'Buscar especialidad';
@@ -55,8 +56,8 @@ export const WraperSelect = styled.div`
 `;
 
 export const InputSelect = styled.select`
-	background: none;
 	width: 100%;
+	height: 100%;
 	outline: none;
 	border: none;
 	border-radius: 0.4rem;

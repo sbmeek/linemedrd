@@ -3,7 +3,7 @@ import { Fragment, PropsWithChildren } from 'react';
 import i18n from 'i18n';
 
 import Title from 'shared/title/Title';
-import { ContainerSearchDr } from './searchDr.style';
+import { ContainerSearchDr, WrapperDatalist } from './searchDr.style';
 import {
 	ContentSelect,
 	WraperSelect,
@@ -12,6 +12,7 @@ import {
 } from 'shared/inputSelect/inputSelect';
 import ArrowRightIcon from '../../assets/icon/arrowRight_icon/ArrowRightIcon';
 import Search from 'assets/icon/search_icon/SearchIcon';
+import { Wrapper } from 'shared/inputDatalist/inputDatalist';
 
 const searchDr = (props: PropsWithChildren<any>) => {
 	return (
@@ -19,38 +20,20 @@ const searchDr = (props: PropsWithChildren<any>) => {
 			<ContainerSearchDr>
 				<Title>{i18n.t('searchDr.title')}</Title>
 				<form>
-					<label htmlFor="browser">Choose your browser from the list:</label>
-					<ContentSelect>
-						<WraperSelect>
-							<Search />
-							<InputSelect
-								name="cars"
-								id="cars"
-								placeholder="Buscar Especialidad"
-							>
-								<optgroup label="Swedish Cars">
-									<option value="volvo">Volvo</option>
-									<option value="saab">Saab</option>
-								</optgroup>
-								<optgroup label="German Cars">
-									<option value="mercedes">Mercedes</option>
-									<option value="audi">Audi</option>
-								</optgroup>
-							</InputSelect>
-							<ContentIconSelect>
-								<ArrowRightIcon />
-							</ContentIconSelect>
-						</WraperSelect>
-					</ContentSelect>
+					<WrapperDatalist>
+						<input list="browsers" name="browser" id="browser" />
+						<datalist id="browsers">
+							<option value="Brave">GroupA</option>
+							<option value="Firefox"></option>
+							<option value="Safari"></option>
+							<option className="groupOpt">GroupB</option>
+							<option value="Internet Explorer"></option>
+							<option value="Microsoft Edge"></option>
+							<option value="Edge" />
+						</datalist>
+					</WrapperDatalist>
 
-					{/* <input list="browsers" name="browser" id="browser" />
-					<datalist id="browsers">
-						<option value="Edge" />
-						<option value="Firefox" />
-						<option value="Chrome" />
-						<option value="Opera" />
-						<option value="Safari" />
-					</datalist>
+					{/* 
 					<input list="especility" name="especility" id="especility" />
 					<datalist id="especility">
 						<option value="Odontologo" />
