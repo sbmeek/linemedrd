@@ -72,7 +72,7 @@ export const Wrapper = styled.div<InputProps>`
 	${borderError}
 `;
 
-export const Input = styled.input<InputProps>`
+export const Input = styled.input<Partial<InputProps>>`
 	background: none;
 	width: 100%;
 	outline: none;
