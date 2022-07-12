@@ -19,4 +19,11 @@ export default styled.button`
 	&:active {
 		background-color: ${({ theme }) => theme.colors.green5};
 	}
+
+	&:disabled {
+		background-color: ${({ theme }) => theme.colors.green2};
+		color: ${({ theme }) => theme.colors.green1};
+		cursor: not-allowed;
+		border: none;
+	}
 `;

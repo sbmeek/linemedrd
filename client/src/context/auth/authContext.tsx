@@ -1,4 +1,3 @@
-// TODO Dalvin (W/Angel): migrar a typescript
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import {
 	TypeAuthProvider,
@@ -19,28 +18,22 @@ const initUserState: TypeInitUserState = {
 
 const AuthContext = createContext({
 	user: initUserState,
-	loading: false,
-	error: {},
-	login: () => {},
-	logout: () => {}
+	loading: false
 } as TypeAuth);
 
 export const AuthProvider = <T extends TypeAuthProvider>({ children }: T) => {
 	const [user, setUser] = useState<typeof initUserState>(initUserState);
-
 	const [loading, setLoading] = useState<boolean>(false);
-
-	const [loadingInitial, setLoadingInitial] = useState<boolean>(true);
+	const [initialLoading, setInitialLoading] = useState<boolean>(true);
 
 	useEffect(() => {
 		authService
 			.isAuthenticated()
 			.then(user => setUser(user))
-			.catch(_error => {})
-			.finally(() => setLoadingInitial(false));
+			.finally(() => setInitialLoading(false));
 	}, []);
 
-	const login: TypeFunctionLogin = async function login(paramsAuthentic) {
+	const login: TypeFunctionLogin = async paramsAuthentic => {
 		try {
 			setLoading(true);
 			const response = (await authService.login(
@@ -77,7 +70,7 @@ export const AuthProvider = <T extends TypeAuthProvider>({ children }: T) => {
 
 	return (
 		<AuthContext.Provider value={memoedValue}>
-			{!loadingInitial && children}
+			{!initialLoading && children}
 		</AuthContext.Provider>
 	);
 };

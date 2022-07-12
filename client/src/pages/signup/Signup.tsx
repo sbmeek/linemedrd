@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import { ContentInputSignup } from './Signup.styles';
 
 import { ContentLink, Link } from 'shared/link/Link';
@@ -18,45 +18,40 @@ import {
 	inputCheckboxPolityValidation,
 	inputEmpty,
 	inputPasswordValidation,
-	validationAllInputs
+	someFieldInvalid
 } from 'Helpers/validators';
 
 import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
 import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
 
+const defaultFieldValues = {
+	username: {
+		value: '',
+		validations: [inputEmpty]
+	},
+	email: {
+		value: '',
+		validations: [inputEmpty, emailValid]
+	},
+	pwd: {
+		value: '',
+		validations: [inputEmpty, inputPasswordValidation]
+	},
+	polity: {
+		value: 'true',
+		validations: [inputCheckboxPolityValidation]
+	}
+};
+
 const Signup = <T extends RouteComponentProps>({ history }: T) => {
 	const [showPwd, setShowPwd] = useState<boolean>(true);
-
 	const { values, errors, handleChange, handleChangeCheckBox, handleBlur } =
-		useFields({
-			username: {
-				value: '',
-				validations: [inputEmpty]
-			},
-			email: {
-				value: '',
-				validations: [inputEmpty, emailValid]
-			},
-			pwd: {
-				value: '',
-				validations: [inputEmpty, inputPasswordValidation]
-			},
-			polity: {
-				value: 'true',
-				validations: [inputCheckboxPolityValidation]
-			}
-		});
+		useFields(defaultFieldValues);
 
 	const handleSubmit = (e: FormEvent<HTMLElement>): void => {
 		e.preventDefault();
-
-		if (validationAllInputs(errors)) {
-			//TODO: Any: se debe presentar una ventena emergente de error
-			return;
-		}
-
-		//history.push("/login");
+		// TODO Dalvin: Enviar a GQL
 	};
 
 	return (
@@ -163,7 +158,9 @@ const Signup = <T extends RouteComponentProps>({ history }: T) => {
 					<span>{errors.polity}</span>
 				</InputHelper>
 
-				<Submit type="submit">Regístrate</Submit>
+				<Submit type="submit" disabled={someFieldInvalid(errors)}>
+					Regístrate
+				</Submit>
 			</form>
 
 			<ContentLink>
@@ -173,4 +170,4 @@ const Signup = <T extends RouteComponentProps>({ history }: T) => {
 	);
 };
 
-export default withRouter(Signup);
+export default Signup;

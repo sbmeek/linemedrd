@@ -15,7 +15,7 @@ export type TypeAuthProvider = {
 
 export type TypeAuth = {
 	user: TypeInitUserState;
-	setUser?: React.Dispatch<React.SetStateAction<TypeInitUserState>>;
+	setUser: React.Dispatch<React.SetStateAction<TypeInitUserState>>;
 	loading: false;
 	error?: any;
 	login: TypeFunctionLogin;

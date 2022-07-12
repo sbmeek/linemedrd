@@ -1,6 +1,13 @@
 import asyncComponent from './modules/AsyncComponent';
 
-const routes = {
+export type RouteType = {
+	path: string;
+	component: any;
+	requiresAuth: boolean;
+	isPublic?: boolean;
+};
+
+const routes: { [key: string]: RouteType } = {
 	home: {
 		path: '/',
 		component: asyncComponent(() => import('pages/home/Home')),
@@ -19,14 +26,14 @@ const routes = {
 	searchDr: {
 		path: '/SearchDoctor',
 		component: asyncComponent(() => import('pages/searchDr/searchDr')),
-		requiresAuth: false,
-		requireAnonimoUser: true
+		requiresAuth: true,
+		isPublic: true
 	},
 	homeUser: {
 		path: '/Home',
 		component: asyncComponent(() => import('pages/home/Home')),
 		requiresAuth: true,
-		requireAnonimoUser: true
+		isPublic: true
 	}
 };
 

@@ -3,67 +3,47 @@ import Title from 'shared/title/Title';
 import { appName } from 'constants/index';
 import i18n from 'i18n';
 import { Container } from 'shared/container/Container';
-import { FormEvent, Fragment, useEffect, useState } from 'react';
+import { FormEvent, Fragment, useState } from 'react';
 import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
 import useAuth from 'context/auth/authContext';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { ContentInput, Wrapper, Input, InputHelper } from 'shared/input/Input';
 import { InputWithIcon, Icon } from 'shared/inputIcon/InputIcon';
 import Submit from 'shared/submit/Submit';
 import { useFields } from 'hooks/useFields';
 import { ContainerLink } from './Login.styles';
 import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
-import {
-	emailValid,
-	inputEmpty,
-	inputPasswordValidation,
-	validationAllInputs
-} from 'Helpers/validators';
+import { emailValid, inputEmpty, someFieldInvalid } from 'Helpers/validators';
 
-const defaultUseField = {
+const defaultFieldValues = {
 	email: {
 		value: '',
 		validations: [inputEmpty, emailValid]
 	},
 	pwd: {
 		value: '',
-		//TODO: la cuenta de martin debe cambiar la clave para que se mayor de 6 characteres
-		validations: [inputEmpty /*,inputPasswordValidation*/]
+		validations: [inputEmpty]
 	}
 };
 
 const Login = <T extends RouteComponentProps>({ history }: T) => {
 	const [showPwd, setShowPwd] = useState(true);
-
-	//Provisional
-	const [error, setError] = useState<string>('');
-
-	// TODO: revisar porque cuando se pasa el prop error de useAuth llega tarde en el submit;
-	const { login: loggingUser, setUser } = useAuth();
-
+	const [backendError, setBackendError] = useState<string>('');
+	const { login, setUser } = useAuth();
 	const { values, errors, reset, handleChange, handleBlur } =
-		useFields(defaultUseField);
+		useFields(defaultFieldValues);
 
 	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
-		//TODO Angel: Mostrar respuesta del servidor
-		if (validationAllInputs(errors)) {
-			//TODO: deshabilitar el input submit o agregar una ventana emergente de error:]
+		const response = await login(values);
+		if (!response?.ok) {
+			setBackendError(response.msg);
 			return;
 		}
-
-		const response = await loggingUser(values);
-
-		if (!response.ok) {
-			setError(response.msg);
-			return;
-		}
-
-		setError('');
+		setBackendError('');
 		reset();
-		if (setUser) setUser(response);
+		setUser(response);
 	};
 
 	return (
@@ -90,9 +70,9 @@ const Login = <T extends RouteComponentProps>({ history }: T) => {
 							<span>{errors?.email}</span>
 						</InputHelper>
 
-						<InputHelper hide={!error}>
+						<InputHelper hide={!backendError}>
 							<ExclamationIcon />
-							<span>{error}</span>
+							<span>{backendError}</span>
 						</InputHelper>
 					</ContentInput>
 
@@ -123,7 +103,12 @@ const Login = <T extends RouteComponentProps>({ history }: T) => {
 					<ContainerLink>
 						<Link to="#?">{i18n.t('login.forgetPassword')}</Link>
 					</ContainerLink>
-					<Submit type="submit" aria-label={i18n.t('login.signIn')}>
+					{/*TODO Juan David: Estilos de boton deshabilitado y traducir textos en Login/Signup*/}
+					<Submit
+						type="submit"
+						aria-label={i18n.t('login.signIn')}
+						disabled={someFieldInvalid(errors)}
+					>
 						{i18n.t('login.signIn')}
 					</Submit>
 				</form>
@@ -138,4 +123,4 @@ const Login = <T extends RouteComponentProps>({ history }: T) => {
 	);
 };
 
-export default withRouter(Login);
+export default Login;
