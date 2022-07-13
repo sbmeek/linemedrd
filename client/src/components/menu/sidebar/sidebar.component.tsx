@@ -1,8 +1,8 @@
-import { ContentNav } from './Sidebar.styles';
+import { ContentNav } from './sidebar.styles';
 import SideBarMenu from '../sideBarMenu/SidebarMenu.component';
 import SideTopDr from '../sideTopDr/SideTopDr';
 import SideTopUser from '../sideTopUser/SideTopUser';
-import useAuth from 'context/auth/authContext';
+import useAuth from 'context/auth/auth-context';
 
 interface IPropsProperty {
 	show: boolean;

@@ -8,9 +8,9 @@ import {
 } from 'react-router-dom';
 import Header from './components/header/Header';
 import routes, { RouteType } from './constants/routes';
-import GlobalStyle from './styles/GlobalStyle';
-import Principal from './shared/container/Container';
-import useAuth from './context/auth/authContext';
+import GlobalStyle from './styles/global-style';
+import Principal from './shared/shared-container/shared-container';
+import useAuth from './context/auth/auth-context';
 
 function App() {
 	const { user } = useAuth();

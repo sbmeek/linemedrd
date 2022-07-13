@@ -1,10 +1,10 @@
 import { FormEvent, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
-import { ContentInputSignup } from './Signup.styles';
+import { ContentInputSignup } from './signup.styles';
 
 import { ContentLink, Link } from 'shared/link/Link';
-import Title from 'shared/title/Title';
-import { Container } from 'shared/container/Container';
+import Title from 'shared/title/title';
+import { SharedContainer } from 'shared/shared-container/shared-container';
 import Submit from 'shared/submit/Submit';
 import { Wrapper, Input, InputHelper } from 'shared/input/Input';
 import { Icon, InputWithIcon } from 'shared/inputIcon/InputIcon';
@@ -19,7 +19,7 @@ import {
 	inputEmpty,
 	inputPasswordValidation,
 	someFieldInvalid
-} from 'Helpers/validators';
+} from 'helpers/validators';
 
 import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
@@ -55,7 +55,7 @@ const Signup = <T extends RouteComponentProps>({ history }: T) => {
 	};
 
 	return (
-		<Container>
+		<SharedContainer>
 			<Title>{i18n.t('Register.title')}</Title>
 
 			<form onSubmit={handleSubmit}>
@@ -166,7 +166,7 @@ const Signup = <T extends RouteComponentProps>({ history }: T) => {
 			<ContentLink>
 				¿Ya tienes una cuenta? <Link to="/Login">Iniciar Sesión</Link>
 			</ContentLink>
-		</Container>
+		</SharedContainer>
 	);
 };
 

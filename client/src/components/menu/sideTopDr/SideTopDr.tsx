@@ -10,7 +10,7 @@ import CalendarIcon from 'assets/icon/calendar_icon/CalendarIcon';
 import UserIcon from 'assets/icon/user_icon/UserIcon';
 import SettingIcon from 'assets/icon/setting_icon/SettingIcon';
 import LogoutIcon from 'assets/icon/logout_icon/LogoutIcon';
-import useAuth from 'context/auth/authContext';
+import useAuth from 'context/auth/auth-context';
 
 type IProps = {
 	hideMenu: () => void;

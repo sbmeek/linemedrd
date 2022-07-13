@@ -5,7 +5,7 @@ import {
 	TypeAuth,
 	TypeFunctionLogin
 } from './auth.type';
-import * as authService from 'services/authService';
+import * as authService from 'services/auth-service';
 
 const initUserState: TypeInitUserState = {
 	ok: false,

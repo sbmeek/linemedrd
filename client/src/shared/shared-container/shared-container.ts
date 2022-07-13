@@ -6,14 +6,14 @@ export default styled.main`
 	background-color: ${({ theme }) => theme.background.content};
 `;
 
-export const Container = styled.div`
+export const SharedContainer = styled.div`
 	width: 80%;
 	margin: auto;
 	padding-top: 3.5rem;
 	padding-bottom: 1rem;
 `;
 
-export const ContainerSection = styled.div`
+export const SharedContainerSection = styled.div`
 	width: 80%;
 	margin: auto;
 `;

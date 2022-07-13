@@ -4,9 +4,9 @@ import { ApolloProvider } from '@apollo/client';
 import { client } from './client';
 import Main from './styles/index';
 import { data } from './styles/theme';
-import App from './App';
+import App from './app';
 import ThemeState from './context/theme/themeState';
-import { AuthProvider } from './context/auth/authContext';
+import { AuthProvider } from './context/auth/auth-context';
 
 import './i18n';
 

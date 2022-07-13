@@ -1,20 +1,20 @@
 import { ContentLink, Link } from 'shared/link/Link';
-import Title from 'shared/title/Title';
+import Title from 'shared/title/title';
 import { appName } from 'constants/index';
 import i18n from 'i18n';
-import { Container } from 'shared/container/Container';
+import { SharedContainer } from 'shared/shared-container/shared-container';
 import { FormEvent, Fragment, useState } from 'react';
 import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
-import useAuth from 'context/auth/authContext';
+import useAuth from 'context/auth/auth-context';
 import { RouteComponentProps } from 'react-router-dom';
 import { ContentInput, Wrapper, Input, InputHelper } from 'shared/input/Input';
 import { InputWithIcon, Icon } from 'shared/inputIcon/InputIcon';
 import Submit from 'shared/submit/Submit';
 import { useFields } from 'hooks/useFields';
-import { ContainerLink } from './Login.styles';
+import { ContainerLink } from './login.styles';
 import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
-import { emailValid, inputEmpty, someFieldInvalid } from 'Helpers/validators';
+import { emailValid, inputEmpty, someFieldInvalid } from 'helpers/validators';
 
 const defaultFieldValues = {
 	email: {
@@ -48,7 +48,7 @@ const Login = <T extends RouteComponentProps>({ history }: T) => {
 
 	return (
 		<Fragment>
-			<Container>
+			<SharedContainer>
 				<Title>{i18n.t('login.title')}</Title>
 				<form onSubmit={handleFormSubmit}>
 					<ContentInput>
@@ -118,7 +118,7 @@ const Login = <T extends RouteComponentProps>({ history }: T) => {
 					</span>{' '}
 					<Link to="/Signup">{i18n.t('login.createAccount')}</Link>.
 				</ContentLink>
-			</Container>
+			</SharedContainer>
 		</Fragment>
 	);
 };

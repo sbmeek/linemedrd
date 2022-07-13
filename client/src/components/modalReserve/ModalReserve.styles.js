@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Title from 'shared/title/Title';
+import Title from 'shared/title/title';
 import Link, { ContentLink } from 'shared/link/Link';
 
 export const ButtonIcon = styled.div`

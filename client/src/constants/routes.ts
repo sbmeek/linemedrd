@@ -15,17 +15,19 @@ const routes: { [key: string]: RouteType } = {
 	},
 	login: {
 		path: '/Login',
-		component: asyncComponent(() => import('pages/login/Login')),
+		component: asyncComponent(() => import('pages/login/login')),
 		requiresAuth: false
 	},
 	signup: {
 		path: '/Signup',
-		component: asyncComponent(() => import('pages/signup/Signup')),
+		component: asyncComponent(() => import('pages/signup/signup')),
 		requiresAuth: false
 	},
 	searchDr: {
 		path: '/SearchDoctor',
-		component: asyncComponent(() => import('pages/searchDr/searchDr')),
+		component: asyncComponent(
+			() => import('pages/search-doctor/search-doctor')
+		),
 		requiresAuth: true,
 		isPublic: true
 	},

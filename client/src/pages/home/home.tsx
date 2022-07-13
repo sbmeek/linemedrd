@@ -7,10 +7,13 @@ import {
 	ContentCard,
 	Card,
 	LinkButton
-} from './Home.styles';
-import Title from 'shared/title/Title';
+} from './home.styles';
+import Title from 'shared/title/title';
 
-import { Container, ContainerSection } from 'shared/container/Container';
+import {
+	SharedContainer,
+	SharedContainerSection
+} from 'shared/shared-container/shared-container';
 
 import routes from 'constants/routes';
 
@@ -19,7 +22,7 @@ const Home = () => {
 		<Fragment>
 			{/* This a Test to the first modal */}
 			<ContainerHome index={4} heigth={'30vh'}>
-				<Container>
+				<SharedContainer>
 					<Title>Realiza tu cita desde la comodidad de tu casa.</Title>
 					<Parrafo>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -28,10 +31,10 @@ const Home = () => {
 					<LinkButton to={routes.searchDr.path}>
 						Quiero empezar mi busqueda
 					</LinkButton>
-				</Container>
+				</SharedContainer>
 			</ContainerHome>
 			<ContainerHome index={3} heigth={'60vh'} className="hideTop">
-				<ContainerSection>
+				<SharedContainerSection>
 					<HomeTitle>Especialidades</HomeTitle>
 					<ContentCard>
 						{/* Esto va hacer un componente llamado card donde se va a iterar */}
@@ -48,7 +51,7 @@ const Home = () => {
 						<Card>Bionalista</Card>
 					</ContentCard>
 					<Button>Ver todas las especialidades</Button>
-				</ContainerSection>
+				</SharedContainerSection>
 			</ContainerHome>
 			<ContainerHome
 				index={2}

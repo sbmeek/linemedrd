@@ -1,8 +1,8 @@
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import SideBarTop from 'components/menu/sideBarTop/SidebarTop.component';
 import { Fragment, useState } from 'react';
-import Sidebar from 'components/menu/sideBar/Sidebar.component';
-import { ContainerTop, ContentHeader } from './Header.styles';
+import Sidebar from 'components/menu/sidebar/sidebar.component';
+import { ContainerTop, ContentHeader } from './header.styles';
 
 const Header = <T extends RouteComponentProps>({
 	location: { pathname }

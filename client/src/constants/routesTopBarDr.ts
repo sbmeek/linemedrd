@@ -8,12 +8,12 @@ const routesTopBarDr = {
 	},
 	login: {
 		path: '/Login',
-		component: asyncComponent(() => import('pages/login/Login')),
+		component: asyncComponent(() => import('pages/login/login')),
 		requiresAuth: false
 	},
 	signup: {
 		path: '/Signup',
-		component: asyncComponent(() => import('../pages/signup/Signup')),
+		component: asyncComponent(() => import('../pages/signup/signup')),
 		requiresAuth: false
 	},
 	homeUser: {
@@ -23,7 +23,7 @@ const routesTopBarDr = {
 	},
 	signupAuth: {
 		path: '/signupTest',
-		component: asyncComponent(() => import('../pages/signup/Signup')),
+		component: asyncComponent(() => import('../pages/signup/signup')),
 		requiresAuth: true
 	}
 };
