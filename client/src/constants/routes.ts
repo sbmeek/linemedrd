@@ -1,25 +1,41 @@
-import asyncComponent from './modules/AsyncComponent';
+import asyncComponent from './modules/async-component';
 
-const routes = {
+export type RouteType = {
+	path: string;
+	component: any;
+	requiresAuth: boolean;
+	isPublic?: boolean;
+};
+
+const routes: { [key: string]: RouteType } = {
 	home: {
 		path: '/',
-		component: asyncComponent(() => import('pages/home/Home')),
+		component: asyncComponent(() => import('pages/home')),
 		requiresAuth: false
 	},
 	login: {
 		path: '/Login',
-		component: asyncComponent(() => import('pages/login/Login')),
+		component: asyncComponent(() => import('pages/login')),
 		requiresAuth: false
 	},
 	signup: {
 		path: '/Signup',
-		component: asyncComponent(() => import('pages/signup/Signup')),
+		component: asyncComponent(() => import('pages/signup')),
 		requiresAuth: false
 	},
-	homeWithoutHeader: {
-		path: '/HomeWithoutHeader',
-		component: asyncComponent(() => import('pages/home/Home')),
-		requiresAuth: true
+	searchDr: {
+		path: '/SearchDoctor',
+		component: asyncComponent(
+			() => import('pages/search-doctor')
+		),
+		requiresAuth: true,
+		isPublic: true
+	},
+	homeUser: {
+		path: '/Home',
+		component: asyncComponent(() => import('pages/home')),
+		requiresAuth: true,
+		isPublic: true
 	}
 };
 

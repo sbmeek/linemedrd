@@ -1,5 +1,5 @@
 import { ChangeEvent, FocusEvent, useEffect, useState } from 'react';
-import { EventElements, FieldsType } from './useFields.types';
+import { EventElements, FieldsType } from './useFields-types';
 
 export const useFields = <T extends FieldsType>(fields: T) => {
 	type FieldsKeys = keyof typeof fields;
@@ -15,7 +15,6 @@ export const useFields = <T extends FieldsType>(fields: T) => {
 			},
 			{} as KeyWithString
 		);
-
 		setValues(fieldsValues);
 	}, []);
 
@@ -24,8 +23,27 @@ export const useFields = <T extends FieldsType>(fields: T) => {
 		setValues({ ...values, [name]: value });
 	};
 
+	const handleChangeCheckBox = (
+		evt: ChangeEvent<EventElements & { checked: boolean }>
+	) => {
+		const { name, checked } = evt.target;
+		setValues({ ...values, [name]: checked });
+
+		let value = values[name];
+
+		for (let validate of fields[name].validations || []) {
+			const errorMsg = validate({ name, value });
+
+			setErrors(prevErrors => ({
+				...prevErrors,
+				[name as FieldsKeys]: errorMsg
+			}));
+		}
+	};
+
 	const handleBlur = (evt: FocusEvent<EventElements>) => {
 		const { name, value } = evt.target;
+
 		for (let validate of fields[name].validations || []) {
 			const errorMsg = validate({ name, value });
 			setErrors(prevErrors => ({
@@ -38,5 +56,16 @@ export const useFields = <T extends FieldsType>(fields: T) => {
 		}
 	};
 
-	return { values, errors, handleChange, handleBlur };
+	const reset = () => {
+		setValues({} as KeyWithString);
+	};
+
+	return {
+		values,
+		errors,
+		reset,
+		handleChange,
+		handleChangeCheckBox,
+		handleBlur
+	};
 };

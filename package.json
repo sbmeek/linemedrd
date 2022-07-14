@@ -18,6 +18,7 @@
 		"start-server-and-test": "^1.12.6"
 	},
 	"dependencies": {
+		"@mui/material": "^5.4.2",
 		"ipkgs": "^0.0.1"
 	}
 }

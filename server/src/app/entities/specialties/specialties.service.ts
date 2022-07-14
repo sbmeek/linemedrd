@@ -20,7 +20,7 @@ export class SpecialtiesService {
 	}
 
 	list(des?: string) {
-		return this.specialtyModel.find({ description: des }).exec();
+		return this.specialtyModel.find(des ? { description: des } : {}).exec();
 	}
 
 	create(payload: CreateSpecialtiesInput) {
