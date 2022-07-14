@@ -1,5 +1,5 @@
 import i18n from 'i18n';
-import { ValueNameType } from './validators.types';
+import { ValueNameType } from './validators-types';
 
 export const emailValid = ({ value }: ValueNameType) => {
 	const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;

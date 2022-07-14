@@ -1,21 +1,14 @@
 /// <reference types="vite/client" />
-import { type } from 'os';
-import { data } from './styles/theme';
+import { ThemeType } from './styles/theme-types'
 
 declare module '*.ttf';
 declare module '*.otf';
 
 declare module '@emotion/react' {
-	type ThemeDataType = typeof data;
-	type ThemeType = ThemeDataType['dark'] & ThemeDataType['light'];
 	declare interface Theme extends ThemeType {}
 
-	declare type Props = {
+	declare type Props = {} & {
 		theme: Theme;
 		as?: React.ElementType<any> | undefined;
-	} & React.DetailedHTMLProps<
-		React.HTMLAttributes<HTMLElement>,
-		HTMLElement,
-		HTMLButtonElement
-	> & {};
+	} & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>,HTMLElement>;
 }

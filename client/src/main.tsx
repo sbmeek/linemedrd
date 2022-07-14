@@ -5,8 +5,8 @@ import { client } from './client';
 import Main from './styles/index';
 import { data } from './styles/theme';
 import App from './app';
-import ThemeState from './context/theme/themeState';
-import { AuthProvider } from './context/auth/auth-context';
+import ThemeState from './context/theme/state';
+import { AuthProvider } from './context/auth';
 
 import './i18n';
 

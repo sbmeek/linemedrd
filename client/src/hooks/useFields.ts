@@ -1,5 +1,5 @@
 import { ChangeEvent, FocusEvent, useEffect, useState } from 'react';
-import { EventElements, FieldsType } from './useFields.types';
+import { EventElements, FieldsType } from './useFields-types';
 
 export const useFields = <T extends FieldsType>(fields: T) => {
 	type FieldsKeys = keyof typeof fields;
