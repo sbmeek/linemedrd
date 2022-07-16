@@ -1,6 +1,8 @@
 import createCache from '@emotion/cache';
 import { CacheProvider, ThemeProvider } from '@emotion/react';
-import { PropsWithChildren, useContext, useEffect, useState } from 'react';
+import {
+	PropsWithChildren, useContext, useEffect, useState
+} from 'react';
 import ThemeContext from '../context/theme';
 import { ThemeDataType } from './theme-types';
 
@@ -9,11 +11,11 @@ const cache = createCache({
 	...(process.env.NODE_ENV === 'development' && { stylisPlugins: [] })
 });
 
-type PropsType = PropsWithChildren<{ 
+type PropsType = PropsWithChildren<{
 	theme: { light: ThemeDataType['dark'], dark: ThemeDataType['dark'] }
 }>;
 
-const Main = ({ children, theme: { light, dark } }: PropsType) => {
+function Main({ children, theme: { light, dark } }: PropsType) {
 	const themeContext = useContext(ThemeContext);
 	const { theme } = themeContext;
 
@@ -28,6 +30,6 @@ const Main = ({ children, theme: { light, dark } }: PropsType) => {
 			<ThemeProvider theme={colorsTheme}>{children}</ThemeProvider>
 		</CacheProvider>
 	);
-};
+}
 
 export default Main;

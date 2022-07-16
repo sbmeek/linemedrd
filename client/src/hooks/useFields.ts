@@ -1,4 +1,6 @@
-import { ChangeEvent, FocusEvent, useEffect, useState } from 'react';
+import {
+	ChangeEvent, FocusEvent, useEffect, useState
+} from 'react';
 import { EventElements, FieldsType } from './useFields-types';
 
 export const useFields = <T extends FieldsType>(fields: T) => {
@@ -29,31 +31,29 @@ export const useFields = <T extends FieldsType>(fields: T) => {
 		const { name, checked } = evt.target;
 		setValues({ ...values, [name]: checked });
 
-		let value = values[name];
+		const value = values[name];
 
-		for (let validate of fields[name].validations || []) {
+		(fields[name].validations || []).forEach(validate => {
 			const errorMsg = validate({ name, value });
 
 			setErrors(prevErrors => ({
 				...prevErrors,
 				[name as FieldsKeys]: errorMsg
 			}));
-		}
+		});
 	};
 
 	const handleBlur = (evt: FocusEvent<EventElements>) => {
 		const { name, value } = evt.target;
 
-		for (let validate of fields[name].validations || []) {
+		(fields[name].validations || []).some(validate => {
 			const errorMsg = validate({ name, value });
 			setErrors(prevErrors => ({
 				...prevErrors,
 				[name as FieldsKeys]: errorMsg
 			}));
-			if (errorMsg) {
-				return;
-			}
-		}
+			return !!errorMsg;
+		});
 	};
 
 	const reset = () => {
