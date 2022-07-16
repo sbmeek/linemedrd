@@ -1,4 +1,4 @@
-import asyncComponent from './modules/AsyncComponent';
+import asyncComponent from './modules/async-component';
 
 export type RouteType = {
 	path: string;
@@ -10,28 +10,30 @@ export type RouteType = {
 const routes: { [key: string]: RouteType } = {
 	home: {
 		path: '/',
-		component: asyncComponent(() => import('pages/home/Home')),
+		component: asyncComponent(() => import('pages/home')),
 		requiresAuth: false
 	},
 	login: {
 		path: '/Login',
-		component: asyncComponent(() => import('pages/login/Login')),
+		component: asyncComponent(() => import('pages/login')),
 		requiresAuth: false
 	},
 	signup: {
 		path: '/Signup',
-		component: asyncComponent(() => import('pages/signup/Signup')),
+		component: asyncComponent(() => import('pages/signup')),
 		requiresAuth: false
 	},
 	searchDr: {
 		path: '/SearchDoctor',
-		component: asyncComponent(() => import('pages/searchDr/searchDr')),
+		component: asyncComponent(
+			() => import('pages/search-doctor')
+		),
 		requiresAuth: true,
 		isPublic: true
 	},
 	homeUser: {
 		path: '/Home',
-		component: asyncComponent(() => import('pages/home/Home')),
+		component: asyncComponent(() => import('pages/home')),
 		requiresAuth: true,
 		isPublic: true
 	}
