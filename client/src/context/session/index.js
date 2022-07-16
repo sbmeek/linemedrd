@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+
 const initUserState = {
 	ok: false,
 	isEmailConfirmed: false,
@@ -12,5 +13,6 @@ export const SessionContext = createContext({
 	user: initUserState,
 	loading: false,
 	error: {},
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	login: (email, pwd) => {}
 });

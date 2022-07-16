@@ -1,7 +1,7 @@
-import { useReducer } from 'react';
+import { useMemo, useReducer } from 'react';
+import * as authService from '@/services/authService';
 import { SessionContext } from './sessionContext';
 import { sessionReducer } from './sessionReducer';
-import * as authService from '@/services/authService';
 
 export const initialState = {
 	user: {},
@@ -23,12 +23,13 @@ const SessionState = ({ children }) => {
 
 			if (!response.ok) {
 				// @ts-ignore
-				return dispatch({
+				dispatch({
 					type: 'LOGIN_FAILED',
 					payload: {
 						message: 'Unathorized'
 					}
 				});
+				return;
 			}
 
 			// @ts-ignore
@@ -37,18 +38,19 @@ const SessionState = ({ children }) => {
 				payload: response
 			});
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 		}
 	};
+
+	const memoizedContextValue = useMemo({
+		user: state.user,
+		error: state.error,
+		loading: state.loading,
+		login
+	});
+
 	return (
-		<SessionContext.Provider
-			value={{
-				user: state.user,
-				error: state.error,
-				loading: state.loading,
-				login
-			}}
-		>
+		<SessionContext.Provider value={memoizedContextValue}>
 			{children}
 		</SessionContext.Provider>
 	);

@@ -62,9 +62,7 @@ const threeMinus = css`
 	}
 `;
 
-const changeMenu = ({ props }) => {
-	return props.showMenu ? threeMinus : minus;
-};
+const changeMenu = ({ props }) => (props.showMenu ? threeMinus : minus);
 
 const changeColor = props => {
 	const {

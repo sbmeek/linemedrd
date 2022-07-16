@@ -1,4 +1,6 @@
-import { createContext, useContext, useState } from 'react';
+import {
+	createContext, useContext, useMemo, useState
+} from 'react';
 
 const ModalContext = createContext({});
 
@@ -6,16 +8,18 @@ const InitialState = {
 	open: false
 };
 
-export const ModalProvider = props => {
+export const ModalProvider = ({ children }) => {
 	const [openModal, setOpenModal] = useState(InitialState);
 
 	const actionModal = () => {
 		setOpenModal({ ...InitialState, open: InitialState.open });
 	};
 
+	const value = useMemo({ openModal, actionModal });
+
 	return (
-		<ModalContext.Provider value={{ openModal, actionModal }}>
-			{props.children}
+		<ModalContext.Provider value={value}>
+			{children}
 		</ModalContext.Provider>
 	);
 };

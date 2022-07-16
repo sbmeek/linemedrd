@@ -1,7 +1,7 @@
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import SideBarTop from 'components/menu/side-bar-top';
-import { Fragment, useState } from 'react';
 import Sidebar from 'components/menu/side-bar';
+import SideBarTop from 'components/menu/side-bar-top';
+import { useState } from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { ContainerTop, ContentHeader } from './styles';
 
 const Header = <T extends RouteComponentProps>({
@@ -10,7 +10,7 @@ const Header = <T extends RouteComponentProps>({
 	const [showSideBar, setShowSideBar] = useState<boolean>(false);
 
 	return (
-		<Fragment>
+		<>
 			<ContentHeader>
 				<ContainerTop location={pathname}>
 					<SideBarTop
@@ -21,7 +21,7 @@ const Header = <T extends RouteComponentProps>({
 				</ContainerTop>
 			</ContentHeader>
 			<Sidebar show={showSideBar} setShow={setShowSideBar} />
-		</Fragment>
+		</>
 	);
 };
 
