@@ -34,6 +34,19 @@ export const data = {
 			segoeuiBold: 'segoeBold',
 			segoeuiItalic: 'segoeBoldItalic',
 			segoeuiBoldItalic: 'segoeItalic'
+		},
+		inputSelectMultiple: {
+			border: {
+				withFocus: 'var(--green-num4)',
+				withoutFocus: 'var(--green-num6)'
+			},
+			word: {
+				title: 'var(--gray-num2)',
+				data: 'var(--green-num5)'
+			},
+			content: {
+				background: 'var(--white)'
+			}
 		}
 	},
 	dark: {

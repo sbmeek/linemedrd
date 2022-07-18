@@ -1,13 +1,12 @@
-import { ContentArrow } from '../arrowRight_icon/ArrowRightIcon.styles';
+import { ContentArrow } from './ArrowRightIcon.styles';
 
-const ArrowRightIcon = (props) => {
+const ArrowRightIcon = () => {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width="1em"
 			height="1em"
 			viewBox="0 0 62.512 143.177"
-			{...props}
 		>
 			<ContentArrow data-name="Component 14 \u2013 1" >
 				<path

@@ -1,7 +1,11 @@
 import { Props } from '@emotion/react';
 import styled from '@emotion/styled';
 
-type InputProps = { value: string; placeholder?: string; error?: string };
+export type InputProps = {
+	value: string;
+	placeholder?: string;
+	error?: string;
+};
 
 const textContent = (props: InputProps & Props) => {
 	const { value, placeholder } = props;

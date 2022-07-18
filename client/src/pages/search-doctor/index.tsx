@@ -4,6 +4,7 @@ import i18n from 'i18n';
 import Title from 'shared/title';
 import { useQuery } from '@apollo/client';
 import { GET_SPECIALTIES } from 'graphql/queries/specialties/get-specialties';
+import { DropdownSelect } from 'element/dropdown-select';
 
 const SearchDoctor = (props: PropsWithChildren<any>) => {
 	const { data } = useQuery(GET_SPECIALTIES);
@@ -11,6 +12,7 @@ const SearchDoctor = (props: PropsWithChildren<any>) => {
 	return (
 		<Container>
 			<Title>{i18n.t('searchDr.title')}</Title>
+			<DropdownSelect />
 		</Container>
 	);
 };
