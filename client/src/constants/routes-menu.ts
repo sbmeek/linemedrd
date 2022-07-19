@@ -19,7 +19,7 @@ const routesMenu = {
 			path: ''
 		}
 	},
-	['Especialidades']: {
+	Especialidades: {
 		espec1: {
 			title: 'Dermatología',
 			path: ''

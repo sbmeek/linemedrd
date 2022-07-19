@@ -1,6 +1,4 @@
 import { FormEvent, useState } from 'react';
-import { RouteComponentProps } from 'react-router';
-import { ContentInputSignup } from './styles';
 
 import { CheckboxContainer } from 'shared/checkbox';
 import { Input, InputHelper, Wrapper } from 'shared/input';
@@ -24,6 +22,7 @@ import i18n from 'i18n';
 import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
 import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
+import { ContentInputSignup } from './styles';
 
 const defaultFieldValues = {
 	username: {
@@ -44,7 +43,7 @@ const defaultFieldValues = {
 	}
 };
 
-const Signup = <T extends RouteComponentProps>({ history }: T) => {
+const Signup = () => {
 	const [showPwd, setShowPwd] = useState<boolean>(true);
 	const { values, errors, handleChange, handleChangeCheckBox, handleBlur } =
 		useFields(defaultFieldValues);
@@ -147,9 +146,10 @@ const Signup = <T extends RouteComponentProps>({ history }: T) => {
 					/>
 
 					<span>
-						Declaro que soy mayor de edad y acepto el{' '}
-						<Link to="?#">Aviso de privacidad</Link> y los{' '}
-						<Link to="?#">Términos y condiciones</Link> de uso de {appName}.
+						Declaro que soy mayor de edad y acepto el
+						<Link to="?#">Aviso de privacidad</Link>y los
+						<Link to="?#">Términos y condiciones</Link>
+						{`de uso de ${appName}.`}
 					</span>
 				</CheckboxContainer>
 
@@ -164,7 +164,8 @@ const Signup = <T extends RouteComponentProps>({ history }: T) => {
 			</form>
 
 			<ContentLink>
-				¿Ya tienes una cuenta? <Link to="/Login">Iniciar Sesión</Link>
+				¿Ya tienes una cuenta?
+				<Link to="/Login">Iniciar Sesión</Link>
 			</ContentLink>
 		</SharedContainer>
 	);

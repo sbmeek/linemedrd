@@ -25,9 +25,7 @@ const routes: { [key: string]: RouteType } = {
 	},
 	searchDr: {
 		path: '/SearchDoctor',
-		component: asyncComponent(
-			() => import('pages/search-doctor')
-		),
+		component: asyncComponent(() => import('pages/search-doctor')),
 		requiresAuth: true,
 		isPublic: true
 	},

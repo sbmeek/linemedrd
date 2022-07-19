@@ -9,11 +9,11 @@ const cache = createCache({
 	...(process.env.NODE_ENV === 'development' && { stylisPlugins: [] })
 });
 
-type PropsType = PropsWithChildren<{ 
-	theme: { light: ThemeDataType['dark'], dark: ThemeDataType['dark'] }
+type PropsType = PropsWithChildren<{
+	theme: { light: ThemeDataType['dark']; dark: ThemeDataType['dark'] };
 }>;
 
-const Main = ({ children, theme: { light, dark } }: PropsType) => {
+function Main({ children, theme: { light, dark } }: PropsType) {
 	const themeContext = useContext(ThemeContext);
 	const { theme } = themeContext;
 
@@ -28,6 +28,6 @@ const Main = ({ children, theme: { light, dark } }: PropsType) => {
 			<ThemeProvider theme={colorsTheme}>{children}</ThemeProvider>
 		</CacheProvider>
 	);
-};
+}
 
 export default Main;

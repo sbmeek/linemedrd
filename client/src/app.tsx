@@ -21,7 +21,7 @@ function App() {
 		requiresAuth,
 		isPublic
 	}: RouteType) => {
-		const renderComponent = (props: RouteComponentProps<any>) =>
+		const renderComponent = (props: RouteComponentProps) =>
 			user.isAuthenticated !== requiresAuth && !isPublic ? (
 				<Redirect
 					to={{

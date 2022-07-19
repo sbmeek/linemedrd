@@ -11,15 +11,14 @@ export const fetchJson = async (url: string) => {
 	return json;
 };
 
-export async function login<T extends { email: string; pwd: string }>({
+export function login<T extends { email: string; pwd: string }>({
 	email,
 	pwd
 }: T) {
 	const params = new URLSearchParams({ email, pwd });
-	return await fetchJson(`${apiUrl}/auth/login?${params}`);
+	return fetchJson(`${apiUrl}/auth/login?${params}`);
 }
 
-export const isAuthenticated = async () =>
-	await fetchJson(`${apiUrl}/auth/check-auth`);
+export const isAuthenticated = () => fetchJson(`${apiUrl}/auth/check-auth`);
 
-export const logout = async () => await fetchJson(`${apiUrl}/auth/logout`);
+export const logout = () => fetchJson(`${apiUrl}/auth/logout`);

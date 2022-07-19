@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 /// <reference types="vite/client" />
-import { ThemeType } from './styles/theme-types'
+import { ThemeType } from './styles/theme-types';
 
 declare module '*.ttf';
 declare module '*.otf';
@@ -10,5 +11,5 @@ declare module '@emotion/react' {
 	declare type Props = {} & {
 		theme: Theme;
 		as?: React.ElementType<any> | undefined;
-	} & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>,HTMLElement>;
+	} & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
 }
