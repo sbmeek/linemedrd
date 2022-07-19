@@ -31,10 +31,10 @@ export const DropdownSelect = ({}) => {
 						onChange={e => setSearched(e.target.value)}
 						name="specialty"
 					/>
-					<EndIcon>
-						<ArrowRightIcon />
-					</EndIcon>
 				</WrapperDrowndown>
+				<EndIcon>
+					<ArrowRightIcon />
+				</EndIcon>
 			</ContainerInput>
 		</Fragment>
 	);
