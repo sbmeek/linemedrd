@@ -44,16 +44,7 @@
 		"linebreak-style": ["error", "unix"],
 		"no-param-reassign": ["error", { "props": false }],
 		"arrow-parens": ["error", "as-needed"],
-		"object-curly-newline": [
-			"error",
-			{
-				"ImportDeclaration": {
-					"minProperties": 3,
-					"consistent": false,
-					"multiline": true
-				}
-			}
-		],
+		"object-curly-newline": "off",
 		"object-property-newline": "error"
 	},
 	"globals": {

@@ -1,5 +1,4 @@
 import { PropsWithChildren, useEffect } from 'react';
-import { Container } from './styles';
 import i18n from 'i18n';
 import Title from 'shared/title';
 import { useQuery } from '@apollo/client';
@@ -7,8 +6,9 @@ import { GET_SPECIALTIES } from 'graphql/queries/specialties/get-specialties';
 import { DropdownSelect } from 'element/dropdown-select';
 import { Dropdown } from 'components/dropdown';
 import { DropdownItem } from 'components/dropdown/dropdown-types';
+import { Container } from './styles';
 
-const SearchDoctor = (props: PropsWithChildren<any>) => {
+const SearchDoctor = () => {
 	// const { data } = useQuery(GET_SPECIALTIES);
 
 	const testData: DropdownItem<string>[] = [
@@ -25,13 +25,17 @@ const SearchDoctor = (props: PropsWithChildren<any>) => {
 				{ label: 'child 2.1', value: '1' },
 				{ label: 'child 2.2', value: '2' }
 			]
+		},
+		{
+			label: 'parent 3',
+			value: []
 		}
 	];
 
 	return (
 		<Container>
 			<Title>{i18n.t('searchDr.title')}</Title>
-			<DropdownSelect />
+			{/* <DropdownSelect /> */}
 			<Dropdown
 				dropdownItems={testData}
 				placeholderI18n="searchDr.inputSpecility"

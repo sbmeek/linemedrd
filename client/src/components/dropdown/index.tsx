@@ -1,14 +1,49 @@
-import SearchIcon from 'assets/icon/search_icon/SearchIcon';
+import ArrowRightIcon from 'assets/icon/arrowRight_icon/ArrowRightIcon';
+import Search from 'assets/icon/search_icon/SearchIcon';
 import i18n from 'i18n';
 import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
-import { ContentInput, Wrapper } from 'shared/input';
-import { Icon, InputWithIcon } from 'shared/input-icon';
 import { DropdownItem, DropdownItemValueType } from './dropdown-types';
-import { DropdownOption, Overlay } from './styles';
+import {
+	ContainerInput,
+	DropdownOption,
+	EndIcon,
+	GroupData,
+	GroupTitle,
+	InputSearch,
+	Overlay,
+	StartIcon,
+	WrapperDrowndown
+} from './styles';
 
 type DropdownPropsType<T> = {
 	dropdownItems: DropdownItem<T>[];
 	placeholderI18n: string;
+};
+
+type DropdownItemOrGroupPropsType<T> = {
+	dropdownItem: DropdownItem<T>;
+};
+
+const DropdownItemOrGroup = <T extends DropdownItemValueType>({
+	dropdownItem: item
+}: DropdownItemOrGroupPropsType<T>) => {
+	if (Array.isArray(item.value)) {
+		return (
+			<div>
+				<GroupTitle>{item.label}</GroupTitle>
+				<DropdownOption style={{ marginLeft: '10px' }}>
+					{item.value.map((childItem: DropdownItem<T>) => (
+						<DropdownItemOrGroup<T>
+							key={childItem.label}
+							dropdownItem={childItem}
+						/>
+					))}
+				</DropdownOption>
+			</div>
+		);
+	}
+
+	return <GroupData>{item.label}</GroupData>;
 };
 
 export const Dropdown = <T extends DropdownItemValueType>({
@@ -35,60 +70,34 @@ export const Dropdown = <T extends DropdownItemValueType>({
 	};
 
 	return (
-		<>
-			<ContentInput>
-				<Wrapper
+		<ContainerInput>
+			<WrapperDrowndown
+				value={searchValue}
+				placeholder={i18n.t(placeholderI18n)}
+				onMouseDown={() => setOverlayVisibility(!overlayVisibility)}
+			>
+				<StartIcon>
+					<Search />
+				</StartIcon>
+				<InputSearch
+					ref={searchInputRef}
+					aria-label={i18n.t(placeholderI18n)}
 					value={searchValue}
-					placeholder={i18n.t(placeholderI18n)}
-					onMouseDown={() => setOverlayVisibility(!overlayVisibility)}
-				>
-					<Icon>
-						<SearchIcon />
-					</Icon>
-					<InputWithIcon
-						ref={searchInputRef}
-						aria-label={i18n.t(placeholderI18n)}
-						value={searchValue}
-						disabled={!overlayVisibility}
-						onChange={handleSearchValueChange}
-						onBlur={() => setOverlayVisibility(false)}
-						type="text"
-						autoComplete="false"
-					/>
-					{/* <Icon><ArrowRightIcon/></Icon> */}
-				</Wrapper>
-				<Overlay
-					visible={overlayVisibility}
-					onMouseDown={handleOverlayMouseDown}
-				>
-					{dropdownItems.map((item: DropdownItem<T>, idx: number) => (
-						<DropdownItemOrGroup<T> key={idx} dropdownItem={item} />
-					))}
-				</Overlay>
-			</ContentInput>
-		</>
+					disabled={!overlayVisibility}
+					onChange={handleSearchValueChange}
+					onBlur={() => setOverlayVisibility(false)}
+					type="text"
+					autoComplete="false"
+				/>
+				<EndIcon visible={overlayVisibility}>
+					<ArrowRightIcon />
+				</EndIcon>
+			</WrapperDrowndown>
+			<Overlay visible={overlayVisibility} onMouseDown={handleOverlayMouseDown}>
+				{dropdownItems.map((item: DropdownItem<T>) => (
+					<DropdownItemOrGroup<T> key={item.label} dropdownItem={item} />
+				))}
+			</Overlay>
+		</ContainerInput>
 	);
-};
-
-type DropdownItemOrGroupPropsType<T> = {
-	dropdownItem: DropdownItem<T>;
-};
-
-const DropdownItemOrGroup = <T extends DropdownItemValueType>({
-	dropdownItem: item
-}: DropdownItemOrGroupPropsType<T>) => {
-	if (Array.isArray(item.value)) {
-		return (
-			<div>
-				<div>{item.label}</div>
-				<DropdownOption style={{ marginLeft: '10px' }}>
-					{item.value.map((childItem: DropdownItem<T>, idx: number) => (
-						<DropdownItemOrGroup<T> key={idx} dropdownItem={childItem} />
-					))}
-				</DropdownOption>
-			</div>
-		);
-	}
-
-	return <div>{item.label}</div>;
 };
