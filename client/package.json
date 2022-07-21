@@ -17,7 +17,6 @@
 		"@hookform/resolvers": "^2.8.0",
 		"@vitejs/plugin-react": "^1.0.0",
 		"cross-env": "^7.0.3",
-		"cypress": "^7.7.0",
 		"graphql": "^15.5.1",
 		"i18next": "^20.3.5",
 		"i18next-browser-languagedetector": "^6.1.2",
