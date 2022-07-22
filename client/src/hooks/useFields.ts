@@ -1,6 +1,4 @@
-import {
-	ChangeEvent, FocusEvent, useEffect, useState
-} from 'react';
+import { ChangeEvent, FocusEvent, useEffect, useState } from 'react';
 import { EventElements, FieldsType } from './useFields-types';
 
 export const useFields = <T extends FieldsType>(fields: T) => {

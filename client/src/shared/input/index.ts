@@ -1,7 +1,11 @@
 import { Props } from '@emotion/react';
 import styled from '@emotion/styled';
 
-type InputProps = { value: string; placeholder?: string; error?: string };
+export type InputProps = {
+	value: string;
+	placeholder?: string;
+	error?: string;
+};
 
 const textContent = (props: InputProps & Props) => {
 	const { value, placeholder } = props;
@@ -57,7 +61,7 @@ export const Wrapper = styled.div<InputProps>`
 	transition: border 120ms cubic-bezier(0.1, -0.6, 0.2, 0), color 400ms;
 	background-color: ${({ theme }) => theme.colors.green1};
 	z-index: 2;
-	
+
 	::after {
 		content: '${textContent}';
 		color: ${({ theme }) => theme.iconPlaceholder.grayTraps1};

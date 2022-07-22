@@ -30,7 +30,8 @@ const Login = () => {
 	const [showPwd, setShowPwd] = useState(true);
 	const [backendError, setBackendError] = useState<string>('');
 	const { login, setUser } = useAuth();
-	const { values, errors, reset, handleChange, handleBlur } =		useFields(defaultFieldValues);
+	const { values, errors, reset, handleChange, handleBlur } =
+		useFields(defaultFieldValues);
 
 	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -111,13 +112,9 @@ const Login = () => {
 			</form>
 			<ContentLink>
 				<span>
-					{i18n.t('login.newIn')}
-					{' '}
-					{appName}
-				</span>
-				{' '}
-				<Link to="/Signup">{i18n.t('login.createAccount')}</Link>
-.
+					{i18n.t('login.newIn')} {appName}
+				</span>{' '}
+				<Link to="/Signup">{i18n.t('login.createAccount')}</Link>.
 			</ContentLink>
 		</SharedContainer>
 	);

@@ -1,6 +1,4 @@
-import {
-	createContext, useContext, useMemo, useState
-} from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 
 const ModalContext = createContext({});
 
@@ -18,9 +16,7 @@ export const ModalProvider = ({ children }) => {
 	const value = useMemo({ openModal, actionModal });
 
 	return (
-		<ModalContext.Provider value={value}>
-			{children}
-		</ModalContext.Provider>
+		<ModalContext.Provider value={value}>{children}</ModalContext.Provider>
 	);
 };
 

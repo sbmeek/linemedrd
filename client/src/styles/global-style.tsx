@@ -10,35 +10,35 @@ function GlobalStyle() {
 	return (
 		<Global
 			styles={css`
-					@font-face {
-						font-family: 'neufreit';
-						src: url(${NeufreitExtraBold});
-					}
+				@font-face {
+					font-family: 'neufreit';
+					src: url(${NeufreitExtraBold});
+				}
 
-					@font-face {
-						font-family: 'segoeNormal';
-						src: url(${SegoeUI});
-					}
+				@font-face {
+					font-family: 'segoeNormal';
+					src: url(${SegoeUI});
+				}
 
-					@font-face {
-						font-family: 'segoeBold';
-						src: url(${SegoeUIBold});
-					}
+				@font-face {
+					font-family: 'segoeBold';
+					src: url(${SegoeUIBold});
+				}
 
-					@font-face {
-						font-family: 'segoeBoldItalic';
-						src: url(${SegoeUIBoldItalic});
-					}
+				@font-face {
+					font-family: 'segoeBoldItalic';
+					src: url(${SegoeUIBoldItalic});
+				}
 
-					@font-face {
-						font-family: 'segoeItalic';
-						src: url(${SegoeUIItalic});
-					}
+				@font-face {
+					font-family: 'segoeItalic';
+					src: url(${SegoeUIItalic});
+				}
 
-					body {
-						font-family: segoeNormal;
-					}
-				`}
+				body {
+					font-family: segoeNormal;
+				}
+			`}
 		/>
 	);
 }

@@ -1,59 +1,58 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
-    },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
-    "rules": {
-        "semi": ["error", "always"],
-        "indent": ["error", "tab"],
-        "react/jsx-indent": "off",
-        "import/extensions": "off",
-        "import/no-unresolved": "off",
-        "react/react-in-jsx-scope": "off",
-        "no-tabs": "off",
-        "react/jsx-filename-extension": [2, { "extensions": [".jsx", ".tsx"] }],
-        "react/jsx-indent-props": [2, "tab"],
-        "react/prop-types": "off",
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": ["error"],
-        "comma-dangle": ["error", "never"],
-        "no-unused-expressions": "off",
-        "import/prefer-default-export": "off",
-        "react/function-component-definition": [2, {
-            "namedComponents": ["function-declaration", "function-expression", "arrow-function"]
-        }],
-        "react/jsx-props-no-spreading": "off",
-        "linebreak-style": ["error", "unix"],
-        "no-param-reassign": ["error", { "props": false }],
-        "arrow-parens": ["error", "as-needed"],
-        "object-curly-newline": ["error", {
-            "ImportDeclaration": { "minProperties": 3, "consistent": false, "multiline": true }
-        }],
-        "object-property-newline": "error"
-    },
-    "globals": {
-        "React": true,
-        "context": true,
-        "expect": true,
-        "jsdom": true,
-        "JSX": true,
-        "RequestInit": true
-    }
+	"env": {
+		"browser": true,
+		"es2021": true,
+		"node": true
+	},
+	"extends": ["plugin:react/recommended", "airbnb"],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"plugins": ["react", "@typescript-eslint"],
+	"rules": {
+		"semi": ["error", "always"],
+		"indent": ["error", "tab"],
+		"react/jsx-indent": "off",
+		"import/extensions": "off",
+		"import/no-unresolved": "off",
+		"react/react-in-jsx-scope": "off",
+		"no-tabs": "off",
+		"react/jsx-filename-extension": [2, { "extensions": [".jsx", ".tsx"] }],
+		"react/jsx-indent-props": [2, "tab"],
+		"react/prop-types": "off",
+		"no-unused-vars": "off",
+		"@typescript-eslint/no-unused-vars": ["error"],
+		"comma-dangle": ["error", "never"],
+		"no-unused-expressions": "off",
+		"import/prefer-default-export": "off",
+		"react/function-component-definition": [
+			2,
+			{
+				"namedComponents": [
+					"function-declaration",
+					"function-expression",
+					"arrow-function"
+				]
+			}
+		],
+		"react/jsx-props-no-spreading": "off",
+		"linebreak-style": ["error", "unix"],
+		"no-param-reassign": ["error", { "props": false }],
+		"arrow-parens": ["error", "as-needed"],
+		"object-curly-newline": "off",
+		"object-property-newline": "error"
+	},
+	"globals": {
+		"React": true,
+		"context": true,
+		"expect": true,
+		"jsdom": true,
+		"JSX": true,
+		"RequestInit": true
+	}
 }

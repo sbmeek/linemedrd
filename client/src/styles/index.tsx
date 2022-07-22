@@ -1,8 +1,6 @@
 import createCache from '@emotion/cache';
 import { CacheProvider, ThemeProvider } from '@emotion/react';
-import {
-	PropsWithChildren, useContext, useEffect, useState
-} from 'react';
+import { PropsWithChildren, useContext, useEffect, useState } from 'react';
 import ThemeContext from '../context/theme';
 import { ThemeDataType } from './theme-types';
 
@@ -12,7 +10,7 @@ const cache = createCache({
 });
 
 type PropsType = PropsWithChildren<{
-	theme: { light: ThemeDataType['dark'], dark: ThemeDataType['dark'] }
+	theme: { light: ThemeDataType['dark']; dark: ThemeDataType['dark'] };
 }>;
 
 function Main({ children, theme: { light, dark } }: PropsType) {

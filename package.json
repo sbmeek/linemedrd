@@ -10,7 +10,9 @@
 	},
 	"devDependencies": {
 		"@snowpack/plugin-typescript": "^1.2.1",
+		"@types/graphql": "^14.5.0",
 		"@types/snowpack-env": "^2.3.4",
+		"apollo": "^2.34.0",
 		"concurrently": "^5.3.0",
 		"husky": "^7.0.0",
 		"prettier": "^2.3.2",

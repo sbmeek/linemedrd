@@ -45,8 +45,8 @@ const defaultFieldValues = {
 
 const Signup = () => {
 	const [showPwd, setShowPwd] = useState<boolean>(true);
-	const { values, errors, handleChange, handleChangeCheckBox,
-		handleBlur } = useFields(defaultFieldValues);
+	const { values, errors, handleChange, handleChangeCheckBox, handleBlur } =
+		useFields(defaultFieldValues);
 
 	const handleSubmit = (e: FormEvent<HTMLElement>): void => {
 		e.preventDefault();
@@ -147,8 +147,7 @@ const Signup = () => {
 
 					<span>
 						Declaro que soy mayor de edad y acepto el
-						<Link to="?#">Aviso de privacidad</Link>
-						y los
+						<Link to="?#">Aviso de privacidad</Link>y los
 						<Link to="?#">Términos y condiciones</Link>
 						{`de uso de ${appName}.`}
 					</span>

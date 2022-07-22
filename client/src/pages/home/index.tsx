@@ -23,11 +23,11 @@ const Home = () => (
 			<SharedContainer>
 				<Title>Realiza tu cita desde la comodidad de tu casa.</Title>
 				<Parrafo>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-						eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+					eiusmod tempor incididunt ut labore et dolore magna aliqua.
 				</Parrafo>
 				<LinkButton to={routes.searchDr.path}>
-						Quiero empezar mi busqueda
+					Quiero empezar mi busqueda
 				</LinkButton>
 			</SharedContainer>
 		</ContainerHome>
@@ -51,16 +51,8 @@ const Home = () => (
 				<Button>Ver todas las especialidades</Button>
 			</SharedContainerSection>
 		</ContainerHome>
-		<ContainerHome
-			index={2}
-			heigth="40vh"
-			className="hideTop"
-		/>
-		<ContainerHome
-			index={1}
-			heigth="30vh"
-			className="hideTop"
-		/>
+		<ContainerHome index={2} heigth="40vh" className="hideTop" />
+		<ContainerHome index={1} heigth="30vh" className="hideTop" />
 	</>
 );
 
