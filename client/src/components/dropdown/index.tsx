@@ -94,9 +94,20 @@ export const Dropdown = <T extends DropdownItemValueType>({
 				</EndIcon>
 			</WrapperDrowndown>
 			<Overlay visible={overlayVisibility} onMouseDown={handleOverlayMouseDown}>
-				{dropdownItems.map((item: DropdownItem<T>) => (
-					<DropdownItemOrGroup<T> key={item.label} dropdownItem={item} />
-				))}
+				{dropdownItems
+					.filter((item: DropdownItem<T>) => {
+						if (item.label.toLowerCase().includes(searchValue.toLowerCase())) {
+							return true;
+						} else if (Array.isArray(item.value)) {
+							return item.value.some((valueSubGroup: DropdownItem<T>) =>
+								valueSubGroup.label.includes(searchValue)
+							);
+						}
+						return false;
+					})
+					.map((item: DropdownItem<T>) => (
+						<DropdownItemOrGroup<T> key={item.label} dropdownItem={item} />
+					))}
 			</Overlay>
 		</ContainerInput>
 	);

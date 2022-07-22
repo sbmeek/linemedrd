@@ -2,8 +2,8 @@ import { PropsWithChildren, useEffect } from 'react';
 import i18n from 'i18n';
 import Title from 'shared/title';
 import { useQuery } from '@apollo/client';
-import { GET_SPECIALTIES } from 'graphql/queries/specialties/get-specialties';
-import { DropdownSelect } from 'element/dropdown-select';
+// import { GET_SPECIALTIES } from 'graphql/queries/specialties/get-specialties';
+// import { DropdownSelect } from 'element/dropdown-select';
 import { Dropdown } from 'components/dropdown';
 import { DropdownItem } from 'components/dropdown/dropdown-types';
 import { ContentLink, Link } from 'shared/link';
@@ -29,7 +29,7 @@ const SearchDoctor = () => {
 		},
 		{
 			label: 'parent 3',
-			value: []
+			value: 'Hola'
 		}
 	];
 
