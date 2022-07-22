@@ -6,6 +6,7 @@ import { GET_SPECIALTIES } from 'graphql/queries/specialties/get-specialties';
 import { DropdownSelect } from 'element/dropdown-select';
 import { Dropdown } from 'components/dropdown';
 import { DropdownItem } from 'components/dropdown/dropdown-types';
+import { ContentLink, Link } from 'shared/link';
 import { Container } from './styles';
 
 const SearchDoctor = () => {
@@ -40,6 +41,14 @@ const SearchDoctor = () => {
 				dropdownItems={testData}
 				placeholderI18n="searchDr.inputSpecility"
 			/>
+
+			<ContentLink>
+				<p>¿Nesecitas ayudas?</p>
+				<div>
+					<p>Te ayudemos a encontrar al doctor que estás buscando.</p>
+				</div>
+				<Link to="/">Comenzar</Link>
+			</ContentLink>
 		</Container>
 	);
 };
