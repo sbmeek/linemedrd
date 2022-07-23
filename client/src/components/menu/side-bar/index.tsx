@@ -1,8 +1,8 @@
+import useAuth from 'context/auth';
 import { ContentNav } from './styles';
 import SideBarMenu from '../side-bar-menu';
 import SideTopDoctor from '../side-top-doctor';
 import SideTopUser from '../side-top-user';
-import useAuth from 'context/auth';
 
 interface IPropsProperty {
 	show: boolean;
