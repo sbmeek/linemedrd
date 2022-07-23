@@ -1,6 +1,7 @@
 import routes from 'constants/routes';
 import { Fragment } from 'react';
-import { Content, Link, SideUserTop } from './styles';
+import { Link } from 'shared/button-link';
+import { Content, SideUserTop } from './styles';
 
 type TProps = {
 	hideMenu: () => void;

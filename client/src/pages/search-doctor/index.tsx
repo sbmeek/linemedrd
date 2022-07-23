@@ -6,8 +6,8 @@ import { useQuery } from '@apollo/client';
 // import { DropdownSelect } from 'element/dropdown-select';
 import { Dropdown } from 'components/dropdown';
 import { DropdownItem } from 'components/dropdown/dropdown-types';
-import { ContentLink, Link } from 'shared/link';
 import { Container } from './styles';
+import { BoxNotify } from 'components/box-notify';
 
 const SearchDoctor = () => {
 	// const { data } = useQuery(GET_SPECIALTIES);
@@ -42,13 +42,11 @@ const SearchDoctor = () => {
 				placeholderI18n="searchDr.inputSpecility"
 			/>
 
-			<ContentLink>
-				<p>¿Nesecitas ayudas?</p>
-				<div>
-					<p>Te ayudemos a encontrar al doctor que estás buscando.</p>
-				</div>
-				<Link to="/">Comenzar</Link>
-			</ContentLink>
+			<BoxNotify
+				title={i18n.t('searchDr.titleHelp')}
+				subTitle={i18n.t('searchDr.infoHelp')}
+				link="/"
+			/>
 		</Container>
 	);
 };

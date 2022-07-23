@@ -101,7 +101,6 @@ const Login = () => {
 				<ContainerLink>
 					<Link to="#?">{i18n.t('login.forgetPassword')}</Link>
 				</ContainerLink>
-				{/* TODO Juan David: Estilos de boton deshabilitado y traducir textos en Login/Signup */}
 				<Submit
 					type="submit"
 					aria-label={i18n.t('login.signIn')}
