@@ -27,7 +27,8 @@
 		"inputEmail": "Introduzca su nombre de usuario o email",
 		"inputPassword": "Introduzca su contraseña",
 		"forgetPassword": "¿Olvidaste tu contraseña?",
-		"signIn": "Iniciar"
+		"signIn": "Iniciar",
+		"recPwdEmailSentText": "Chequea tu correo electronico, te hemos enviado un mensaje con el link de acceso, por favor revisa tu bandeja de entrada e ingresa en el link para poder continuar con el proceso de recuperar contraseña."
 	},
 	"searchDr": {
 		"title": "Busca y encuentra a tu médico ideal",

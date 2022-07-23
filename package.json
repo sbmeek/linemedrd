@@ -6,7 +6,8 @@
 		"ipkgs": "npm i && concurrently -n \"root-pkgs,server-pkgs,client-pkgs\" -c 'red,green,blue' \"npm i\" \"cd server && npm i\" \"cd client && npm i\"",
 		"start": "cd server && npm start:prod",
 		"prepare": "husky install",
-		"e2e-test": "start-server-and-test 'cd server && npm run build && npm run start:test' http://localhost:3000 'cd client && npm run test'"
+		"e2e-test": "start-server-and-test 'cd server && npm run build && npm run start:test' http://localhost:3000 'cd client && npm run test'",
+		"test": "concurrently -n \"server,client\" -c 'blue,green' \"cd server && npm run start:test\" \"cd client && npm start\""
 	},
 	"devDependencies": {
 		"@snowpack/plugin-typescript": "^1.2.1",

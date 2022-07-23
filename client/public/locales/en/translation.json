@@ -27,7 +27,8 @@
 		"inputEmail": "Enter email or username",
 		"inputPassword": "Enter your password",
 		"forgetPassword": "Forgot your password?",
-		"signIn": "Sign In"
+		"signIn": "Sign In",
+		"recPwdEmailSentText": "Check your email, we have sent you a message with the access link, please check your inbox and enter the link to continue with the password recovery process."
 	},
 	"searchDr": {
 		"title": "Busca y encuentra a tu médico ideal",
