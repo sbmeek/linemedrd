@@ -6,3 +6,7 @@ export const Container = styled(SharedContainer)`
 		text-align: center;
 	}
 `;
+
+export const FilterButton = styled.button`
+	display: flex;
+`;
