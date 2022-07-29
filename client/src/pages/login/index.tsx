@@ -29,7 +29,7 @@ const defaultFieldValues = {
 };
 
 const FieldValuesEmail = {
-	emailRecovery: {
+	email: {
 		value: '',
 		validations: [inputEmpty, emailValid]
 	}
@@ -149,24 +149,24 @@ const Login = () => {
 			>
 				<form onSubmit={handleFormSubmitEmail}>
 					<ContentInputSignup>
-						<label htmlFor="emailRecovery">Correo electrónico</label>
+						<label htmlFor="email">Correo electrónico</label>
 						<Wrapper
-							value={valuesRecovery.emailRecovery}
-							error={erroresRecovery.emailRecovery}
+							value={valuesRecovery.email}
+							error={erroresRecovery.email}
 							placeholder={'Ingrese su correo'}
 						>
 							<Input
 								aria-label={i18n.t('Ingrese su correo')}
-								value={valuesRecovery.emailRecovery || ''}
+								value={valuesRecovery.email || ''}
 								aria-required="true"
-								name="emailRecovery"
+								name="email"
 								onChange={handleChangeRecovery}
 								onBlur={handleBlurRecovery}
 							/>
 						</Wrapper>
-						<InputHelper hide={!erroresRecovery.emailRecovery}>
+						<InputHelper hide={!erroresRecovery.email}>
 							<ExclamationIcon />
-							<span>{erroresRecovery.emailRecovery}</span>
+							<span>{erroresRecovery.email}</span>
 						</InputHelper>
 					</ContentInputSignup>
 					<Submit type="submit" disabled={someFieldInvalid(erroresRecovery)}>
