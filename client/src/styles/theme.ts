@@ -13,6 +13,13 @@ export const data = {
 		background: {
 			content: 'var(--background)'
 		},
+		modal: {
+			background: 'var(--white)',
+			logoAndTitle: 'var(--green-num5)',
+			title: 'var(--green-num3)',
+			text: 'var(--green-num5)',
+			buttonIcon: 'var(--gray-num2)'
+		},
 		letter: {
 			gray1: 'var(--gray-num1)',
 			gray2: 'var(--gray-num2)',

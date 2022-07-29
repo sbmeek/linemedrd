@@ -1,11 +1,13 @@
 import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
 import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
+import ModalContainer from 'components/modal-container';
 import { appName } from 'constants/index';
 import useAuth from 'context/auth';
 import { emailValid, inputEmpty, someFieldInvalid } from 'helpers/validators';
 import { useFields } from 'hooks/useFields';
 import i18n from 'i18n';
+import { ContentInputSignup } from 'pages/signup/styles';
 import { FormEvent, useState } from 'react';
 import { ContentInput, Input, InputHelper, Wrapper } from 'shared/input';
 import { Icon, InputWithIcon } from 'shared/input-icon';
@@ -26,12 +28,29 @@ const defaultFieldValues = {
 	}
 };
 
+const FieldValuesEmail = {
+	emailRecovery: {
+		value: '',
+		validations: [inputEmpty, emailValid]
+	}
+};
+
 const Login = () => {
 	const [showPwd, setShowPwd] = useState(true);
 	const [backendError, setBackendError] = useState<string>('');
+	const [showModal, setShowModal] = useState(false);
+
 	const { login, setUser } = useAuth();
+
 	const { values, errors, reset, handleChange, handleBlur } =
 		useFields(defaultFieldValues);
+
+	const {
+		values: valuesRecovery,
+		errors: erroresRecovery,
+		handleChange: handleChangeRecovery,
+		handleBlur: handleBlurRecovery
+	} = useFields(FieldValuesEmail);
 
 	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -43,6 +62,11 @@ const Login = () => {
 		setBackendError('');
 		reset();
 		setUser(response);
+	};
+
+	const handleFormSubmitEmail = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		console.log('handleFormSubmitEmail');
 	};
 
 	return (
@@ -99,7 +123,9 @@ const Login = () => {
 				</ContentInput>
 
 				<ContainerLink>
-					<Link to="#?">{i18n.t('login.forgetPassword')}</Link>
+					<Link to="#?" onClick={() => setShowModal(true)}>
+						{i18n.t('login.forgetPassword')}
+					</Link>
 				</ContainerLink>
 				<Submit
 					type="submit"
@@ -115,6 +141,39 @@ const Login = () => {
 				</span>{' '}
 				<Link to="/Signup">{i18n.t('login.createAccount')}</Link>.
 			</ContentLink>
+			<ModalContainer
+				onClose={() => setShowModal(false)}
+				show={showModal}
+				text="Ingresar un correo con el que registro la cuenta para enviarte un correo con las instrucciones para recuperar contraseña"
+				title="Recuperación de Cuenta"
+			>
+				<form onSubmit={handleFormSubmitEmail}>
+					<ContentInputSignup>
+						<label htmlFor="emailRecovery">Correo electrónico</label>
+						<Wrapper
+							value={valuesRecovery.emailRecovery}
+							error={erroresRecovery.emailRecovery}
+							placeholder={'Ingrese su correo'}
+						>
+							<Input
+								aria-label={i18n.t('Ingrese su correo')}
+								value={valuesRecovery.emailRecovery || ''}
+								aria-required="true"
+								name="emailRecovery"
+								onChange={handleChangeRecovery}
+								onBlur={handleBlurRecovery}
+							/>
+						</Wrapper>
+						<InputHelper hide={!erroresRecovery.emailRecovery}>
+							<ExclamationIcon />
+							<span>{erroresRecovery.emailRecovery}</span>
+						</InputHelper>
+					</ContentInputSignup>
+					<Submit type="submit" disabled={someFieldInvalid(erroresRecovery)}>
+						Enviar Correo Electrónico
+					</Submit>
+				</form>
+			</ModalContainer>
 		</SharedContainer>
 	);
 };
