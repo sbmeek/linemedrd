@@ -7,6 +7,7 @@ import useAuth from 'context/auth';
 import { emailValid, inputEmpty, someFieldInvalid } from 'helpers/validators';
 import { useFields } from 'hooks/useFields';
 import i18n from 'i18n';
+import { ContentInputSignup } from 'pages/signup/styles';
 import { FormEvent, useState } from 'react';
 import { ContentInput, Input, InputHelper, Wrapper } from 'shared/input';
 import { Icon, InputWithIcon } from 'shared/input-icon';
@@ -27,6 +28,13 @@ const defaultFieldValues = {
 	}
 };
 
+const FieldValuesEmail = {
+	emailRecovery: {
+		value: '',
+		validations: [inputEmpty, emailValid]
+	}
+};
+
 const Login = () => {
 	const [showPwd, setShowPwd] = useState(true);
 	const [backendError, setBackendError] = useState<string>('');
@@ -36,6 +44,13 @@ const Login = () => {
 
 	const { values, errors, reset, handleChange, handleBlur } =
 		useFields(defaultFieldValues);
+
+	const {
+		values: valuesRecovery,
+		errors: erroresRecovery,
+		handleChange: handleChangeRecovery,
+		handleBlur: handleBlurRecovery
+	} = useFields(FieldValuesEmail);
 
 	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -47,6 +62,11 @@ const Login = () => {
 		setBackendError('');
 		reset();
 		setUser(response);
+	};
+
+	const handleFormSubmitEmail = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		console.log('handleFormSubmitEmail');
 	};
 
 	return (
@@ -127,7 +147,32 @@ const Login = () => {
 				text="Ingresar un correo con el que registro la cuenta para enviarte un correo con las instrucciones para recuperar contraseña"
 				title="Recuperación de Cuenta"
 			>
-				<div>Recuperar Clave</div>
+				<form onSubmit={handleFormSubmitEmail}>
+					<ContentInputSignup>
+						<label htmlFor="emailRecovery">Correo electrónico</label>
+						<Wrapper
+							value={valuesRecovery.emailRecovery}
+							error={erroresRecovery.emailRecovery}
+							placeholder={'Ingrese su correo'}
+						>
+							<Input
+								aria-label={i18n.t('Ingrese su correo')}
+								value={valuesRecovery.emailRecovery || ''}
+								aria-required="true"
+								name="emailRecovery"
+								onChange={handleChangeRecovery}
+								onBlur={handleBlurRecovery}
+							/>
+						</Wrapper>
+						<InputHelper hide={!erroresRecovery.emailRecovery}>
+							<ExclamationIcon />
+							<span>{erroresRecovery.emailRecovery}</span>
+						</InputHelper>
+					</ContentInputSignup>
+					<Submit type="submit" disabled={someFieldInvalid(erroresRecovery)}>
+						Enviar Correo Electrónico
+					</Submit>
+				</form>
 			</ModalContainer>
 		</SharedContainer>
 	);
