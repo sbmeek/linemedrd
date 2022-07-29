@@ -1,6 +1,7 @@
 import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
 import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
+import ModalContainer from 'components/modal-container';
 import { appName } from 'constants/index';
 import useAuth from 'context/auth';
 import { emailValid, inputEmpty, someFieldInvalid } from 'helpers/validators';
@@ -29,7 +30,10 @@ const defaultFieldValues = {
 const Login = () => {
 	const [showPwd, setShowPwd] = useState(true);
 	const [backendError, setBackendError] = useState<string>('');
+	const [showModal, setShowModal] = useState(false);
+
 	const { login, setUser } = useAuth();
+
 	const { values, errors, reset, handleChange, handleBlur } =
 		useFields(defaultFieldValues);
 
@@ -99,7 +103,9 @@ const Login = () => {
 				</ContentInput>
 
 				<ContainerLink>
-					<Link to="#?">{i18n.t('login.forgetPassword')}</Link>
+					<Link to="#?" onClick={() => setShowModal(true)}>
+						{i18n.t('login.forgetPassword')}
+					</Link>
 				</ContainerLink>
 				<Submit
 					type="submit"
@@ -115,6 +121,14 @@ const Login = () => {
 				</span>{' '}
 				<Link to="/Signup">{i18n.t('login.createAccount')}</Link>.
 			</ContentLink>
+			<ModalContainer
+				onClose={() => setShowModal(false)}
+				show={showModal}
+				text="Ingresar un correo con el que registro la cuenta para enviarte un correo con las instrucciones para recuperar contraseña"
+				title="Recuperación de Cuenta"
+			>
+				<div>Recuperar Clave</div>
+			</ModalContainer>
 		</SharedContainer>
 	);
 };
