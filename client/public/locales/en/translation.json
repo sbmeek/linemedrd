@@ -52,6 +52,26 @@
 			"description": "Esta es la pagina de inicio"
 		}
 	},
+	"recoveryAccount": {
+		"title": "Recuperación de Cuenta",
+		"titleChangePassword": "Cambiar Contraseña",
+		"description": "Ingresar un correo con el que registro la cuenta para enviarte un correo con las instrucciones para recuperar contraseña",
+		"descriptionSendEmail": "Revisa tu e-mail, te hemos enviado un correo a ",
+		"descriptionChangePassword": "Ingresa una nueva contraseña para poder continuar con el proceso de recuperación de contraseña",
+		"questionSendEmail": "¿No te ha llegado el correo?",
+		"buttonSend": "Enviar Correo electrónico",
+		"buttonChangeEmail": "Cambiar Correo electrónico",
+		"buttonResendEmail": "Enviar de nuevo",
+		"label": {
+			"inputEmail": "Correo electrónico",
+			"inputPassword": "Contraseña nueva"
+		},
+		"inputsPlaceholder": {
+			"inputEmail": "Escribe tu correo electrónico",
+			"inputPassword": "Escribe una contraseña nueva",
+			"inputNewPassword": "Escribe de nuevo la contraseña"
+		}
+	},
 	"formRegister": {
 		"label": {
 			"inputName": "Username",

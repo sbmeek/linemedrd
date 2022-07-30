@@ -20,12 +20,13 @@ interface IPropsModalContainer {
 	title: string;
 	text: string;
 	show: boolean;
+	textIcon?: string;
 	onClose: () => void;
 }
 
 const ModalContainer: <T extends PropsWithChildren<IPropsModalContainer>>(
 	props: T
-) => JSX.Element = ({ show, title, text, children, onClose }) => {
+) => JSX.Element = ({ show, title, text, textIcon, children, onClose }) => {
 	return (
 		<Fragment>
 			<ContainerModal show={show}>
@@ -40,7 +41,7 @@ const ModalContainer: <T extends PropsWithChildren<IPropsModalContainer>>(
 								/>
 							</IconCloseModal>
 							<div>
-								<TextCloseModal>Cancelar</TextCloseModal>
+								<TextCloseModal>{textIcon || 'Cancelar'}</TextCloseModal>
 							</div>
 						</ModalHeaderIcon>
 					</ModalHeader>
