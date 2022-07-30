@@ -29,16 +29,18 @@ const defaultFieldValues = {
 };
 
 const FieldValuesEmail = {
-	emailRecovery: {
+	email: {
 		value: '',
 		validations: [inputEmpty, emailValid]
 	}
 };
 
 const Login = () => {
-	const [showPwd, setShowPwd] = useState(true);
 	const [backendError, setBackendError] = useState<string>('');
-	const [showModal, setShowModal] = useState(false);
+	const [showPwd, setShowPwd] = useState(true);
+
+	const [showModal, setShowModal] = useState<boolean>(false);
+	const [email, setEmail] = useState<string>('');
 
 	const { login, setUser } = useAuth();
 
@@ -66,7 +68,8 @@ const Login = () => {
 
 	const handleFormSubmitEmail = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log('handleFormSubmitEmail');
+		const { email } = valuesRecovery;
+		setEmail(email);
 	};
 
 	return (
@@ -144,35 +147,49 @@ const Login = () => {
 			<ModalContainer
 				onClose={() => setShowModal(false)}
 				show={showModal}
-				text="Ingresar un correo con el que registro la cuenta para enviarte un correo con las instrucciones para recuperar contraseña"
-				title="Recuperación de Cuenta"
+				text={
+					email
+						? i18n.t('recoveryAccount.descriptionSendEmail')
+						: i18n.t('recoveryAccount.description')
+				}
+				title={i18n.t('recoveryAccount.title')}
 			>
-				<form onSubmit={handleFormSubmitEmail}>
-					<ContentInputSignup>
-						<label htmlFor="emailRecovery">Correo electrónico</label>
-						<Wrapper
-							value={valuesRecovery.emailRecovery}
-							error={erroresRecovery.emailRecovery}
-							placeholder={'Ingrese su correo'}
-						>
-							<Input
-								aria-label={i18n.t('Ingrese su correo')}
-								value={valuesRecovery.emailRecovery || ''}
-								aria-required="true"
-								name="emailRecovery"
-								onChange={handleChangeRecovery}
-								onBlur={handleBlurRecovery}
-							/>
-						</Wrapper>
-						<InputHelper hide={!erroresRecovery.emailRecovery}>
-							<ExclamationIcon />
-							<span>{erroresRecovery.emailRecovery}</span>
-						</InputHelper>
-					</ContentInputSignup>
-					<Submit type="submit" disabled={someFieldInvalid(erroresRecovery)}>
-						Enviar Correo Electrónico
-					</Submit>
-				</form>
+				{email ? (
+					<></>
+				) : (
+					<form onSubmit={handleFormSubmitEmail}>
+						<ContentInputSignup>
+							<label htmlFor="email">
+								{i18n.t('recoveryAccount.label.inputEmail')}
+							</label>
+							<Wrapper
+								value={valuesRecovery.email}
+								error={erroresRecovery.email}
+								placeholder={i18n.t(
+									'recoveryAccount.inputsPlaceholder.inputEmail'
+								)}
+							>
+								<Input
+									aria-label={i18n.t(
+										'recoveryAccount.inputsPlaceholder.inputEmail'
+									)}
+									value={valuesRecovery.email || ''}
+									aria-required="true"
+									name="email"
+									onChange={handleChangeRecovery}
+									onBlur={handleBlurRecovery}
+								/>
+							</Wrapper>
+							<InputHelper hide={!erroresRecovery.email}>
+								<ExclamationIcon />
+								<span>{erroresRecovery.email}</span>
+							</InputHelper>
+						</ContentInputSignup>
+						<Submit type="submit" disabled={someFieldInvalid(erroresRecovery)}>
+							{i18n.t('recoveryAccount.buttonSend')}
+						</Submit>
+					</form>
+				)}
 			</ModalContainer>
 		</SharedContainer>
 	);
