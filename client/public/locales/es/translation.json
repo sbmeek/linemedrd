@@ -7,10 +7,12 @@
 		"incorrectEmail": "Correo electrónico incorrecto",
 		"incorrectNumber": "Número incorrecto",
 		"incorrectDate": "Fecha incorrecta",
+		"incorrectpwdConfirmation": "La contraseña no coincide",
 		"required": {
 			"username": "El nombre de usuarop es requerido",
 			"name": "El nombre es requerido",
 			"pwd": "La contraseña es requerida",
+			"pwdConfirmation": "La confirmación de contraseña es requerida",
 			"email": "El correo electrónico es requerido",
 			"polity": "Debes aceptar las politicas",
 			"age": "La edad es requerida",

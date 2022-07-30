@@ -110,4 +110,5 @@ export const ModalContentChildren = styled.div`
 	flex-direction: column;
 	justify-content: start;
 	margin-top: 2rem;
+	text-align: center;
 `;

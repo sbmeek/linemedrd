@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link as ComponentLink } from 'react-router-dom';
 
-const ButtonLink = styled.button`
+export const ButtonLink = styled.button`
 	text-decoration: unset;
 	font-size: 1rem;
 	font-family: ${({ theme }) => theme.fonts.segoeui};

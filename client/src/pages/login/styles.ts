@@ -19,9 +19,25 @@ export const Input = styled.input`
 	}
 `;
 
-export const Link = styled.div`
-	text-align: left;
-	color: ${({ theme }) => theme.colors.green5};
+export const LinkClick = styled.div<{ align?: string }>`
+	text-align: ${({ align }) => align || 'center'};
+	text-decoration: none;
+	font-size: 1rem;
+	transition: color 200ms ease-out;
+	margin: 0%;
+
+	${({ theme }) => ({
+		fontFamily: theme.fonts.segoeui,
+		color: theme.calendarNotify.blue1
+	})};
+
+	&:hover {
+		color: ${({ theme }) => theme.calendarNotify.blue2};
+	}
+
+	&:active {
+		color: ${({ theme }) => theme.calendarNotify.blue2};
+	}
 `;
 
 export const ContainerLink = styled(ContentLink)`
