@@ -9,13 +9,15 @@ import { useFields } from 'hooks/useFields';
 import i18n from 'i18n';
 import { ContentInputSignup } from 'pages/signup/styles';
 import { FormEvent, useState } from 'react';
+import { ButtonLink } from 'shared/button-link';
 import { ContentInput, Input, InputHelper, Wrapper } from 'shared/input';
 import { Icon, InputWithIcon } from 'shared/input-icon';
 import { ContentLink, Link } from 'shared/link';
+import { ParagraphSubtitle } from 'shared/paragraph';
 import { SharedContainer } from 'shared/shared-container';
 import Submit from 'shared/submit';
 import Title from 'shared/title';
-import { ContainerLink } from './styles';
+import { ContainerLink, LinkClick } from './styles';
 
 const defaultFieldValues = {
 	email: {
@@ -126,9 +128,9 @@ const Login = () => {
 				</ContentInput>
 
 				<ContainerLink>
-					<Link to="#?" onClick={() => setShowModal(true)}>
+					<LinkClick align="left" onClick={() => setShowModal(true)}>
 						{i18n.t('login.forgetPassword')}
-					</Link>
+					</LinkClick>
 				</ContainerLink>
 				<Submit
 					type="submit"
@@ -149,13 +151,30 @@ const Login = () => {
 				show={showModal}
 				text={
 					email
-						? i18n.t('recoveryAccount.descriptionSendEmail')
+						? `${i18n.t('recoveryAccount.descriptionSendEmail')} ${email}`
 						: i18n.t('recoveryAccount.description')
 				}
 				title={i18n.t('recoveryAccount.title')}
 			>
 				{email ? (
-					<></>
+					<>
+						<div>
+							<ParagraphSubtitle>
+								{i18n.t('recoveryAccount.questionSendEmail')}
+							</ParagraphSubtitle>
+							<ContainerLink>
+								<LinkClick onClick={() => setShowModal(true)}>
+									{i18n.t('recoveryAccount.buttonResendEmail')}
+								</LinkClick>
+							</ContainerLink>
+						</div>
+						<ButtonLink
+							style={{ marginTop: '2rem' }}
+							onClick={() => setEmail('')}
+						>
+							{i18n.t('recoveryAccount.buttonChangeEmail')}
+						</ButtonLink>
+					</>
 				) : (
 					<form onSubmit={handleFormSubmitEmail}>
 						<ContentInputSignup>

@@ -18,6 +18,11 @@ const routes: { [key: string]: RouteType } = {
 		component: asyncComponent(() => import('pages/login')),
 		requiresAuth: false
 	},
+	changePassword: {
+		path: '/ChangePassword/:token',
+		component: asyncComponent(() => import('pages/change-password')),
+		requiresAuth: false
+	},
 	signup: {
 		path: '/Signup',
 		component: asyncComponent(() => import('pages/signup')),
