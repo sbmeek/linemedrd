@@ -27,19 +27,27 @@ import { ContentInputSignup } from './styles';
 const defaultFieldValues = {
 	username: {
 		value: '',
-		validations: [inputEmpty]
+		validations: {
+			validation: [inputEmpty]
+		}
 	},
 	email: {
 		value: '',
-		validations: [inputEmpty, emailValid]
+		validations: {
+			validation: [inputEmpty, emailValid]
+		}
 	},
 	pwd: {
 		value: '',
-		validations: [inputEmpty, inputPasswordValidation]
+		validations: {
+			validation: [inputEmpty, inputPasswordValidation]
+		}
 	},
 	polity: {
 		value: 'true',
-		validations: [inputCheckboxPolityValidation]
+		validations: {
+			validation: [inputCheckboxPolityValidation]
+		}
 	}
 };
 
@@ -164,8 +172,7 @@ const Signup = () => {
 			</form>
 
 			<ContentLink>
-				¿Ya tienes una cuenta?
-				<Link to="/Login">Iniciar Sesión</Link>
+				¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
 			</ContentLink>
 		</SharedContainer>
 	);

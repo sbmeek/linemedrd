@@ -22,18 +22,24 @@ import { ContainerLink, LinkClick } from './styles';
 const defaultFieldValues = {
 	email: {
 		value: '',
-		validations: [inputEmpty, emailValid]
+		validations: {
+			validation: [inputEmpty, emailValid]
+		}
 	},
 	pwd: {
 		value: '',
-		validations: [inputEmpty]
+		validations: {
+			validation: [inputEmpty]
+		}
 	}
 };
 
 const FieldValuesEmail = {
 	email: {
 		value: '',
-		validations: [inputEmpty, emailValid]
+		validations: {
+			validation: [inputEmpty, emailValid]
+		}
 	}
 };
 
@@ -112,6 +118,7 @@ const Login = () => {
 						<InputWithIcon
 							aria-label={i18n.t('login.inputPassword')}
 							type={showPwd ? 'password' : 'text'}
+							autoComplete="current-password"
 							value={values.pwd || ''}
 							name="pwd"
 							onChange={handleChange}

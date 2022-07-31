@@ -1,9 +1,14 @@
 import i18n from 'i18n';
-import { ValueNameType } from './validators-types';
+import { ValueNameType, ValueNameTypeCustom } from './validators-types';
 
 export const emailValid = ({ value }: ValueNameType) => {
 	const reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 	return !reg.test(value) && i18n.t('errors.incorrectEmail');
+};
+
+export const passwordConfirmValid = (inputs: ValueNameTypeCustom) => {
+	const { pwd, pwdConfirmation } = inputs;
+	return pwd !== pwdConfirmation && i18n.t('errors.passwordNotMatch');
 };
 
 export const inputEmpty = ({ value, name }: ValueNameType) =>
