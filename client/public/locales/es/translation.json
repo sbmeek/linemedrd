@@ -7,7 +7,7 @@
 		"incorrectEmail": "Correo electrónico incorrecto",
 		"incorrectNumber": "Número incorrecto",
 		"incorrectDate": "Fecha incorrecta",
-		"incorrectpwdConfirmation": "La contraseña no coincide",
+		"passwordNotMatch": "La contraseña no coincide",
 		"required": {
 			"username": "El nombre de usuarop es requerido",
 			"name": "El nombre es requerido",
@@ -57,9 +57,11 @@
 	"recoveryAccount": {
 		"title": "Recuperación de Cuenta",
 		"titleChangePassword": "Cambiar Contraseña",
+		"titleSuccessChangePassword": "Enhorabuena",
 		"description": "Ingresar un correo con el que registro la cuenta para enviarte un correo con las instrucciones para recuperar contraseña",
 		"descriptionSendEmail": "Revisa tu e-mail, te hemos enviado un correo a ",
 		"descriptionChangePassword": "Ingresa una nueva contraseña para poder continuar con el proceso de recuperación de contraseña",
+		"descriptionSuccessChangePassword": "Tu contraseña fue cambiada correctamente.",
 		"questionSendEmail": "¿No te ha llegado el correo?",
 		"buttonSend": "Enviar Correo electrónico",
 		"buttonChangeEmail": "Cambiar Correo electrónico",

@@ -1,5 +1,6 @@
+import { ValueNameType } from 'helpers/validators-types';
 import { ChangeEvent, FocusEvent, useEffect, useState } from 'react';
-import { EventElements, FieldsType } from './useFields-types';
+import { EventElements, FieldsType, validater } from './useFields-types';
 
 export const useFields = <T extends FieldsType>(fields: T) => {
 	type FieldsKeys = keyof typeof fields;
@@ -30,27 +31,38 @@ export const useFields = <T extends FieldsType>(fields: T) => {
 		setValues({ ...values, [name]: checked });
 
 		const value = values[name];
-
-		(fields[name].validations || []).forEach(validate => {
-			const errorMsg = validate({ name, value });
-
-			setErrors(prevErrors => ({
-				...prevErrors,
-				[name as FieldsKeys]: errorMsg
-			}));
-		});
+		handleValidate(fields[name].validations, { value, name });
 	};
 
 	const handleBlur = (evt: FocusEvent<EventElements>) => {
 		const { name, value } = evt.target;
+		handleValidate(fields[name].validations, { value, name });
+	};
 
-		(fields[name].validations || []).some(validate => {
+	const handleValidate = (
+		validations: validater = {},
+		{ name, value }: ValueNameType
+	) => {
+		const validate = (validations?.validation || []).some(validate => {
 			const errorMsg = validate({ name, value });
 			setErrors(prevErrors => ({
 				...prevErrors,
 				[name as FieldsKeys]: errorMsg
 			}));
 			return !!errorMsg;
+		});
+
+		if (validate) return;
+
+		return (validations?.customValidation || []).some(validate => {
+			const errorMsgCustom = validate(values);
+
+			setErrors(prevErrors => ({
+				...prevErrors,
+				[name as FieldsKeys]: errorMsgCustom
+			}));
+
+			return !!errorMsgCustom;
 		});
 	};
 
