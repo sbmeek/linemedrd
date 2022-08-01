@@ -1,9 +1,7 @@
-import { PropsWithChildren, useEffect } from 'react';
 import i18n from 'i18n';
 import Title from 'shared/title';
 import { useQuery } from '@apollo/client';
 // import { GET_SPECIALTIES } from 'graphql/queries/specialties/get-specialties';
-// import { DropdownSelect } from 'element/dropdown-select';
 import { Dropdown } from 'components/dropdown';
 import { DropdownItem } from 'components/dropdown/dropdown-types';
 import { Container } from './styles';
@@ -38,7 +36,6 @@ const SearchDoctor = () => {
 	return (
 		<Container>
 			<Title>{i18n.t('searchDr.title')}</Title>
-			{/* <DropdownSelect /> */}
 			<Dropdown
 				dropdownItems={testData}
 				placeholderI18n="searchDr.inputSpecility"
