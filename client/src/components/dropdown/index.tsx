@@ -1,6 +1,7 @@
 import i18n from 'i18n';
 import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
 import { DropdownItem, DropdownItemValueType } from './dropdown-types';
+import { CloseIcon } from 'assets/icon/close-icon/close-icon';
 import {
 	ContainerInput,
 	DropdownOption,
@@ -12,6 +13,7 @@ import {
 	StartIcon,
 	WrapperDrowndown
 } from './styles';
+import Search from 'assets/icon/search_icon/SearchIcon';
 
 type DropdownPropsType<T> = {
 	dropdownItems: DropdownItem<T>[];
@@ -67,6 +69,11 @@ export const Dropdown = <T extends DropdownItemValueType>({
 		setSearchValue(target.value);
 	};
 
+	const handleCloseIconClick = () => {
+		setOverlayVisibility(false);
+		setSearchValue('');
+	};
+
 	const handleOverlayMouseDown = (evt: MouseEvent<HTMLInputElement>) => {
 		evt.preventDefault();
 		const target = evt.target as HTMLDivElement;
@@ -92,7 +99,12 @@ export const Dropdown = <T extends DropdownItemValueType>({
 					type="text"
 					autoComplete="false"
 				/>
-				{endIcon && <EndIcon visible={overlayVisibility}>{endIcon}</EndIcon>}
+				{/*TODO: Agregar el icono de clone y quitar el de search */}
+				{endIcon && (
+					<EndIcon onClick={handleCloseIconClick} visible={overlayVisibility}>
+						{!searchValue ? endIcon : <Search />}
+					</EndIcon>
+				)}
 			</WrapperDrowndown>
 			<Overlay visible={overlayVisibility} onMouseDown={handleOverlayMouseDown}>
 				{dropdownItems
