@@ -1,5 +1,3 @@
-import ArrowRightIcon from 'assets/icon/arrowRight_icon/ArrowRightIcon';
-import Search from 'assets/icon/search_icon/SearchIcon';
 import i18n from 'i18n';
 import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
 import { DropdownItem, DropdownItemValueType } from './dropdown-types';
@@ -18,6 +16,8 @@ import {
 type DropdownPropsType<T> = {
 	dropdownItems: DropdownItem<T>[];
 	placeholderI18n: string;
+	startIcon?: JSX.Element;
+	endIcon?: JSX.Element;
 };
 
 type DropdownItemOrGroupPropsType<T> = {
@@ -48,7 +48,9 @@ const DropdownItemOrGroup = <T extends DropdownItemValueType>({
 
 export const Dropdown = <T extends DropdownItemValueType>({
 	dropdownItems,
-	placeholderI18n
+	placeholderI18n,
+	startIcon,
+	endIcon
 }: DropdownPropsType<T>) => {
 	const [searchValue, setSearchValue] = useState('');
 	const [overlayVisibility, setOverlayVisibility] = useState(false);
@@ -76,9 +78,7 @@ export const Dropdown = <T extends DropdownItemValueType>({
 				placeholder={i18n.t(placeholderI18n)}
 				onMouseDown={() => setOverlayVisibility(!overlayVisibility)}
 			>
-				<StartIcon>
-					<Search />
-				</StartIcon>
+				{startIcon && <StartIcon>{startIcon}</StartIcon>}
 				<InputSearch
 					ref={searchInputRef}
 					aria-label={i18n.t(placeholderI18n)}
@@ -89,9 +89,7 @@ export const Dropdown = <T extends DropdownItemValueType>({
 					type="text"
 					autoComplete="false"
 				/>
-				<EndIcon visible={overlayVisibility}>
-					<ArrowRightIcon />
-				</EndIcon>
+				{endIcon && <EndIcon visible={overlayVisibility}>{endIcon}</EndIcon>}
 			</WrapperDrowndown>
 			<Overlay visible={overlayVisibility} onMouseDown={handleOverlayMouseDown}>
 				{dropdownItems

@@ -8,6 +8,8 @@ import { Dropdown } from 'components/dropdown';
 import { DropdownItem } from 'components/dropdown/dropdown-types';
 import { Container } from './styles';
 import { BoxNotify } from 'components/box-notify';
+import Search from 'assets/icon/search_icon/SearchIcon';
+import ArrowRightIcon from 'assets/icon/arrowRight_icon/ArrowRightIcon';
 
 const SearchDoctor = () => {
 	// const { data } = useQuery(GET_SPECIALTIES);
@@ -40,6 +42,8 @@ const SearchDoctor = () => {
 			<Dropdown
 				dropdownItems={testData}
 				placeholderI18n="searchDr.inputSpecility"
+				startIcon={<Search />}
+				endIcon={<ArrowRightIcon />}
 			/>
 
 			<BoxNotify
