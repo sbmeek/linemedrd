@@ -69,6 +69,9 @@ export const Dropdown = <T extends DropdownItemValueType>({
 
 	const handleOverlayMouseDown = (evt: MouseEvent<HTMLInputElement>) => {
 		evt.preventDefault();
+		const target = evt.target as HTMLDivElement;
+		setSearchValue(target.innerHTML);
+		setOverlayVisibility(!overlayVisibility);
 	};
 
 	return (
