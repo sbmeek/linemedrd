@@ -1,7 +1,7 @@
 import { SVGProps } from "react"
 
 export const CloseIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg {...props} viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+  <svg {...props} width={props.width || '1.3rem'} height={props.height || '1.3rem'} viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
     <g
       stroke={props.color ? props.color : "#000"}
       strokeLinecap="round"
