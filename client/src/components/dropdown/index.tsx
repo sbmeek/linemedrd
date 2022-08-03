@@ -24,10 +24,12 @@ type DropdownPropsType<T> = {
 
 type DropdownItemOrGroupPropsType<T> = {
 	dropdownItem: DropdownItem<T>;
+	setSelected: React.Dispatch<React.SetStateAction<DropdownItem<T> | null>>;
 };
 
 const DropdownItemOrGroup = <T extends DropdownItemValueType>({
-	dropdownItem: item
+	dropdownItem: item,
+	setSelected: setSelected
 }: DropdownItemOrGroupPropsType<T>) => {
 	if (Array.isArray(item.value)) {
 		return (
@@ -38,14 +40,16 @@ const DropdownItemOrGroup = <T extends DropdownItemValueType>({
 						<DropdownItemOrGroup<T>
 							key={childItem.label}
 							dropdownItem={childItem}
+							setSelected={setSelected}
 						/>
 					))}
 				</DropdownOption>
 			</div>
 		);
 	}
-
-	return <GroupData>{item.label}</GroupData>;
+	return (
+		<GroupData onMouseDown={() => setSelected(item)}>{item.label}</GroupData>
+	);
 };
 
 export const Dropdown = <T extends DropdownItemValueType>({
@@ -57,6 +61,9 @@ export const Dropdown = <T extends DropdownItemValueType>({
 	const [searchValue, setSearchValue] = useState('');
 	const [overlayVisibility, setOverlayVisibility] = useState(false);
 	const searchInputRef = useRef<HTMLInputElement>(null);
+	const [selectedItem, setSelectedItem] = useState<DropdownItem<T> | null>(
+		null
+	);
 
 	useEffect(() => {
 		if (overlayVisibility) {
@@ -102,7 +109,7 @@ export const Dropdown = <T extends DropdownItemValueType>({
 				{/*TODO: Agregar el icono de clone y quitar el de search */}
 				{endIcon && (
 					<EndIcon onClick={handleCloseIconClick} visible={overlayVisibility}>
-						{!searchValue ? endIcon : <Search />}
+						{!searchValue ? endIcon : <CloseIcon />}
 					</EndIcon>
 				)}
 			</WrapperDrowndown>
@@ -119,7 +126,11 @@ export const Dropdown = <T extends DropdownItemValueType>({
 						return false;
 					})
 					.map((item: DropdownItem<T>) => (
-						<DropdownItemOrGroup<T> key={item.label} dropdownItem={item} />
+						<DropdownItemOrGroup<T>
+							key={item.label}
+							dropdownItem={item}
+							setSelected={setSelectedItem}
+						/>
 					))}
 			</Overlay>
 		</ContainerInput>
