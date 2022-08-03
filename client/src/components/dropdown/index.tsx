@@ -104,7 +104,9 @@ export const Dropdown = <T extends DropdownItemValueType>({
 			<WrapperDrowndown
 				value={searchValue}
 				placeholder={i18n.t(placeholderI18n)}
-				onMouseDown={() => setOverlayVisibility(!overlayVisibility)}
+				onMouseDown={() =>
+					setOverlayVisibility(!overlayVisibility && Boolean(!selectedItem))
+				}
 			>
 				{startIcon && <StartIcon>{startIcon}</StartIcon>}
 				<InputSearch
