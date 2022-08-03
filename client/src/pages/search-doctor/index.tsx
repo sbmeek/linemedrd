@@ -41,6 +41,7 @@ const SearchDoctor = () => {
 				placeholderI18n="searchDr.inputSpecility"
 				startIcon={<Search />}
 				endIcon={<ArrowRightIcon />}
+				onChange={value => console.log(value)}
 			/>
 
 			<BoxNotify
