@@ -20,11 +20,12 @@ type DropdownPropsType<T> = {
 	placeholderI18n: string;
 	startIcon?: JSX.Element;
 	endIcon?: JSX.Element;
+	onChange?: (value: DropdownItem<T>) => void;
 };
 
 type DropdownItemOrGroupPropsType<T> = {
 	dropdownItem: DropdownItem<T>;
-	setSelected: React.Dispatch<React.SetStateAction<DropdownItem<T> | null>>;
+	setSelected: React.Dispatch<React.SetStateAction<DropdownItem<T>>>;
 };
 
 const DropdownItemOrGroup = <T extends DropdownItemValueType>({
@@ -56,13 +57,14 @@ export const Dropdown = <T extends DropdownItemValueType>({
 	dropdownItems,
 	placeholderI18n,
 	startIcon,
-	endIcon
+	endIcon,
+	onChange
 }: DropdownPropsType<T>) => {
 	const [searchValue, setSearchValue] = useState('');
 	const [overlayVisibility, setOverlayVisibility] = useState(false);
 	const searchInputRef = useRef<HTMLInputElement>(null);
-	const [selectedItem, setSelectedItem] = useState<DropdownItem<T> | null>(
-		null
+	const [selectedItem, setSelectedItem] = useState<DropdownItem<T>>(
+		null as any
 	);
 
 	useEffect(() => {
@@ -71,14 +73,23 @@ export const Dropdown = <T extends DropdownItemValueType>({
 		}
 	}, [overlayVisibility]);
 
+	useEffect(() => {
+		if (selectedItem) {
+			onChange && onChange(selectedItem);
+		}
+	}, [selectedItem]);
+
 	const handleSearchValueChange = (evt: ChangeEvent<HTMLInputElement>) => {
 		const target = evt.target as HTMLInputElement;
 		setSearchValue(target.value);
 	};
 
 	const handleCloseIconClick = () => {
-		setOverlayVisibility(false);
-		setSearchValue('');
+		if (searchValue) {
+			setOverlayVisibility(false);
+			setSelectedItem(null as any);
+			setSearchValue('');
+		}
 	};
 
 	const handleOverlayMouseDown = (evt: MouseEvent<HTMLInputElement>) => {
@@ -93,14 +104,16 @@ export const Dropdown = <T extends DropdownItemValueType>({
 			<WrapperDrowndown
 				value={searchValue}
 				placeholder={i18n.t(placeholderI18n)}
-				onMouseDown={() => setOverlayVisibility(!overlayVisibility)}
+				onMouseDown={() =>
+					setOverlayVisibility(!overlayVisibility && Boolean(!selectedItem))
+				}
 			>
 				{startIcon && <StartIcon>{startIcon}</StartIcon>}
 				<InputSearch
 					ref={searchInputRef}
 					aria-label={i18n.t(placeholderI18n)}
 					value={searchValue}
-					disabled={!overlayVisibility}
+					disabled={!overlayVisibility || Boolean(selectedItem)}
 					onChange={handleSearchValueChange}
 					onBlur={() => setOverlayVisibility(false)}
 					type="text"
