@@ -42,7 +42,7 @@ const routes: { [key: string]: RouteType } = {
 	},
 	homeDr: {
 		path: '/SearchDoctor/Home',
-		component: asyncComponent(() => import('pages/home-doctors')),
+		component: asyncComponent(() => import('components/search-doctor')),
 		requiresAuth: true,
 		isPublic: true
 	},
