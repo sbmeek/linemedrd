@@ -25,7 +25,7 @@
 	"login": {
 		"title": "Sign In",
 		"createAccount": "Create new account",
-		"newIn": "New in",
+		"newIn": "New in {appname}?",
 		"inputEmail": "Enter email or username",
 		"inputPassword": "Enter your password",
 		"forgetPassword": "Forgot your password?",

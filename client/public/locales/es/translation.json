@@ -25,7 +25,7 @@
 	"login": {
 		"title": "Iniciar Sesión",
 		"createAccount": "Crear nueva cuenta",
-		"newIn": "Nuevo en",
+		"newIn": "¿Nuevo en {appname}?",
 		"inputEmail": "Introduzca su nombre de usuario o email",
 		"inputPassword": "Introduzca su contraseña",
 		"forgetPassword": "¿Olvidaste tu contraseña?",
