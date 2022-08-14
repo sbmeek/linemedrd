@@ -6,7 +6,7 @@ module.exports = [
 		isActive: true,
 		role: 'Administrador',
 		isEmailConfirmed: true,
-		email: 'Johan829@hotmail.com',
+		email: 'Johan809@hotmail.com',
 		gender: 'M',
 		lastname: 'Alonzo',
 		name: 'Johan',
