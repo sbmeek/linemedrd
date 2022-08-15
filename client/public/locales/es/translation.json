@@ -3,6 +3,9 @@
 		"english": "Ingles",
 		"spanish": "Español"
 	},
+	"general": {
+		"Date": "Fecha"
+	},
 	"errors": {
 		"incorrectEmail": "Correo electrónico incorrecto",
 		"incorrectNumber": "Número incorrecto",

@@ -27,13 +27,13 @@ const SidebarTop = <T extends IPropsProperty>({
 	};
 
 	return (
-		<Fragment>
+		<>
 			<ContainerLogo
 				onClick={() => {
 					if (show) showMenu();
 				}}
 			>
-				<Diamond pathname={pathname}></Diamond>
+				<Diamond pathname={pathname} />
 				<LinkLogo pathname={pathname} to={routes.home.path}>
 					<h1>{appName}</h1>
 				</LinkLogo>
@@ -41,7 +41,7 @@ const SidebarTop = <T extends IPropsProperty>({
 			<ContentIconMenu pathname={pathname} onClick={showMenu}>
 				<MenuIcon pathname={pathname} showMenu={show} />
 			</ContentIconMenu>
-		</Fragment>
+		</>
 	);
 };
 

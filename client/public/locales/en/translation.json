@@ -3,6 +3,9 @@
 		"english": "English",
 		"spanish": "Spanish"
 	},
+	"general": {
+		"date": "Date"
+	},
 	"errors": {
 		"incorrectEmail": "Incorrect email",
 		"incorrectNumber": "Incorrect number",
