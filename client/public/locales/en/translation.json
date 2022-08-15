@@ -8,6 +8,8 @@
 		"incorrectNumber": "Incorrect number",
 		"incorrectDate": "Incorrect date",
 		"passwordNotMatch": "La contraseña no coincide",
+		"loginNotAuthenticated": "Please, Verify that your credentials are correct",
+		"loginEmailNotConfirmed": "You must confirm your email before login into the app",
 		"required": {
 			"username": "Username is required",
 			"name": "Name is required",

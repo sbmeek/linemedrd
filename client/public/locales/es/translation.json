@@ -8,8 +8,10 @@
 		"incorrectNumber": "Número incorrecto",
 		"incorrectDate": "Fecha incorrecta",
 		"passwordNotMatch": "La contraseña no coincide",
+		"loginNotAuthenticated": "Verificar que las credenciales son correctas.",
+		"loginEmailNotConfirmed": "Debe confirmar su registro en la aplicacion, revise su correo electronico",
 		"required": {
-			"username": "El nombre de usuarop es requerido",
+			"username": "El nombre de usuario es requerido",
 			"name": "El nombre es requerido",
 			"pwd": "La contraseña es requerida",
 			"pwdConfirmation": "La confirmación de contraseña es requerida",

@@ -20,6 +20,7 @@ export type TypeAuth = {
 	error?: any;
 	login: TypeFunctionLogin;
 	logout: () => any;
+	recoverPwdRequest: (email: string) => Promise<{ ok: boolean; msg: string }>;
 };
 
 export type TypeParameterAuth = {
