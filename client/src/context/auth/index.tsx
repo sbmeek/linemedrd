@@ -6,6 +6,7 @@ import {
 	TypeFunctionLogin
 } from './types';
 import * as authService from 'services/auth-service';
+import i18n from 'i18n';
 
 const initUserState: TypeInitUserState = {
 	ok: false,
@@ -40,9 +41,13 @@ export const AuthProvider = <T extends TypeAuthProvider>({ children }: T) => {
 				paramsAuthentic
 			)) as TypeInitUserState;
 
-			return !response.isAuthenticated
-				? { ...response, msg: 'Verificar que las credenciales son correctas.' }
-				: response;
+			let res = { ...response, msg: null };
+			if (response.isAuthenticated) {
+				if (!response.isEmailConfirmed)
+					res.msg = i18n.t('errors.loginEmailNotConfirmed');
+			} else res.msg = i18n.t('errors.loginNotAuthenticated');
+
+			return res;
 		} catch (error) {
 			console.log(error);
 		} finally {
@@ -56,6 +61,23 @@ export const AuthProvider = <T extends TypeAuthProvider>({ children }: T) => {
 		});
 	};
 
+	const recoverPwdRequest = async (email: string) => {
+		try {
+			let response = await authService.recoverPwdRequest(email);
+			let isOk = response.ok as boolean;
+			return {
+				ok: isOk,
+				msg: isOk ? 'None' : 'El email proporcionado no fue encontrado'
+			};
+		} catch (err) {
+			console.log(err);
+			return {
+				ok: false,
+				msg: 'Error en la aplicación'
+			};
+		}
+	};
+
 	const memoedValue = useMemo(
 		() =>
 			({
@@ -63,7 +85,8 @@ export const AuthProvider = <T extends TypeAuthProvider>({ children }: T) => {
 				loading,
 				setUser,
 				login,
-				logout
+				logout,
+				recoverPwdRequest
 			} as TypeAuth),
 		[user, loading]
 	);

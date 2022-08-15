@@ -11,14 +11,28 @@ export const fetchJson = async (url: string) => {
 	return json;
 };
 
-export function login<T extends { email: string; pwd: string }>({
+export async function login<T extends { email: string; pwd: string }>({
 	email,
 	pwd
 }: T) {
-	const params = new URLSearchParams({ email, pwd });
-	return fetchJson(`${apiUrl}/auth/login?${params}`);
+	const url = `${apiUrl}/auth/login`;
+	const data = new FormData();
+	data.append('email', email);
+	data.append('pwd', pwd);
+	const response = await fetch(url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({ email, pwd })
+	});
+	const json = await response.json();
+	return json;
 }
 
 export const isAuthenticated = () => fetchJson(`${apiUrl}/auth/check-auth`);
 
 export const logout = () => fetchJson(`${apiUrl}/auth/logout`);
+
+export const recoverPwdRequest = (email: string) =>
+	fetchJson(`${apiUrl}/auth/recover-pwd/request`);

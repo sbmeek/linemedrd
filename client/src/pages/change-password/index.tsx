@@ -36,7 +36,8 @@ const ChangePassword = () => {
 	let history = useHistory();
 	const [showPwd, setShowPwd] = useState<boolean>(false);
 
-	//TODO: Implementar funcionalidad de confirmación de cambio de contraseña, esto esta para probar diseño
+	//TODO: Implementar funcionalidad de confirmación de cambio de contraseña,
+	//esto esta para probar diseño
 	const [success, setSuccess] = useState<boolean>(true);
 
 	const { values, errors, reset, handleChange, handleBlur } =
