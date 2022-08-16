@@ -73,7 +73,7 @@ const Login = () => {
 		setUser(response);
 	};
 
-	const handleFormSubmitEmail = async (e: FormEvent<HTMLFormElement>) => {
+	const handleFormSubmitRecoverPwd = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const { email } = valuesRecovery;
 		setEmail(email);
@@ -187,7 +187,7 @@ const Login = () => {
 						</ButtonLink>
 					</>
 				) : (
-					<form onSubmit={handleFormSubmitEmail}>
+					<form onSubmit={handleFormSubmitRecoverPwd}>
 						<ContentInputSignup>
 							<label htmlFor="email">
 								{i18n.t('recoveryAccount.label.inputEmail')}

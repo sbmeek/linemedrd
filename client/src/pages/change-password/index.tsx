@@ -2,6 +2,7 @@ import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
 import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
 import ModalContainer from 'components/modal-container';
+import useAuth from 'context/auth';
 import {
 	inputEmpty,
 	passwordConfirmValid,
@@ -10,8 +11,8 @@ import {
 import { useFields } from 'hooks/useFields';
 import i18n from 'i18n';
 import { ContentInputSignup } from 'pages/signup/styles';
-import { Fragment, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Fragment, ReactPropTypes, useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import { ContentInput, Input, InputHelper, Wrapper } from 'shared/input';
 import { Icon } from 'shared/input-icon';
 import Submit from 'shared/submit';
@@ -33,19 +34,26 @@ const FieldValues = {
 };
 
 const ChangePassword = () => {
-	let history = useHistory();
 	const [showPwd, setShowPwd] = useState<boolean>(false);
-
-	//TODO: Implementar funcionalidad de confirmación de cambio de contraseña,
-	//esto esta para probar diseño
 	const [success, setSuccess] = useState<boolean>(true);
+
+	const history = useHistory();
+	const { recoverPwdSetNew } = useAuth();
+	const { token } = useParams<{ token: string }>();
 
 	const { values, errors, reset, handleChange, handleBlur } =
 		useFields(FieldValues);
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		//to-do: implementar el recoverPwdSetNew;
 		e.preventDefault();
-		setSuccess(false);
+		const response = await recoverPwdSetNew(token, values.pwd);
+
+		if (response.ok) {
+			setSuccess(false);
+		} else {
+			//set error
+		}
 	};
 
 	return (

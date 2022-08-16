@@ -4,6 +4,7 @@
 		"spanish": "Spanish"
 	},
 	"errors": {
+		"generalError": "Error in the aplication",
 		"incorrectEmail": "Incorrect email",
 		"incorrectNumber": "Incorrect number",
 		"incorrectDate": "Incorrect date",
@@ -22,7 +23,9 @@
 			"phoneNumber": "Phone number is required",
 			"identification": "Identification is required",
 			"date": "Date is required"
-		}
+		},
+		"recoverPwdEmailNotFound": "The provided email was not found.",
+		"recoverPwdPwdNotUpdated": "Password could not be updated, please try again later."
 	},
 	"login": {
 		"title": "Sign In",
