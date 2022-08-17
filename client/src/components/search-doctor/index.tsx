@@ -3,6 +3,7 @@ import CalendarIcon from 'assets/icon/calendar_icon/CalendarIcon';
 import PointMapIcon from 'assets/icon/pointMap_icon/PointMapIcon';
 import Search from 'assets/icon/search_icon/SearchIcon';
 import { useQueryLocation } from 'hooks/useQueryLocation';
+import React, { PropsWithChildren } from 'react';
 
 import { SharedContainerScreen } from 'shared/shared-container';
 
@@ -17,18 +18,27 @@ import {
 	WrapperSchedule
 } from './styles';
 
-const HomeDr = () => {
-	let query = useQueryLocation();
+interface ISearchDoctor {
+	setIsSearch: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-	let date = new Date();
+const SearchDoctor = <T extends PropsWithChildren<ISearchDoctor>>({
+	setIsSearch
+}: T) => {
+	// let query = useQueryLocation();
 
-	console.log(query);
+	// let date = new Date();
+
+	// console.log(query);
 
 	return (
 		<SharedContainerScreen>
 			<NavTop>
 				<div style={{ display: 'flex', gap: '0.5rem' }}>
-					<ButtonSearchDoctor className="light">
+					<ButtonSearchDoctor
+						onClick={() => setIsSearch(prev => !prev)}
+						className="light"
+					>
 						<Search /> Buscar
 					</ButtonSearchDoctor>
 					<ButtonSearchDoctor>
@@ -133,4 +143,4 @@ const HomeDr = () => {
 	);
 };
 
-export default HomeDr;
+export default SearchDoctor;
