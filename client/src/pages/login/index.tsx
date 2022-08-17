@@ -51,6 +51,7 @@ const Login = () => {
 	const [email, setEmail] = useState<string>('');
 
 	const { login, setUser, recoverPwdRequest } = useAuth();
+
 	const { values, errors, reset, handleChange, handleBlur } =
 		useFields(defaultFieldValues);
 
@@ -102,6 +103,7 @@ const Login = () => {
 							name="email"
 							onChange={handleChange}
 							onBlur={handleBlur}
+							autoComplete="username"
 						/>
 					</Wrapper>
 					<InputHelper hide={!errors?.email}>
