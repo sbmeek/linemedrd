@@ -8,8 +8,16 @@ import { Container } from './styles';
 import { BoxNotify } from 'components/box-notify';
 import Search from 'assets/icon/search_icon/SearchIcon';
 import ArrowRightIcon from 'assets/icon/arrowRight_icon/ArrowRightIcon';
+import { PropsWithChildren } from 'react';
+import { ButtonNormal } from 'shared/button-normal';
 
-const SearchDoctor = () => {
+interface ISearchDoctorForm {
+	setIsSearch: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SearchDoctorForm = <T extends PropsWithChildren<ISearchDoctorForm>>({
+	setIsSearch
+}: T) => {
 	// const { data } = useQuery(GET_SPECIALTIES);
 
 	const testData: DropdownItem<string>[] = [
@@ -44,6 +52,10 @@ const SearchDoctor = () => {
 				onChange={value => console.log(value)}
 			/>
 
+			<ButtonNormal onClick={() => setIsSearch(prev => !prev)}>
+				Buscar
+			</ButtonNormal>
+
 			<BoxNotify
 				title={i18n.t('searchDr.titleHelp')}
 				subTitle={i18n.t('searchDr.infoHelp')}
@@ -53,4 +65,4 @@ const SearchDoctor = () => {
 	);
 };
 
-export default SearchDoctor;
+export default SearchDoctorForm;
