@@ -1,19 +1,21 @@
 import ArrowRightIcon from 'assets/icon/arrowRight_icon/ArrowRightIcon';
 import CalendarIcon from 'assets/icon/calendar_icon/CalendarIcon';
+import PointMapIcon from 'assets/icon/pointMap_icon/PointMapIcon';
+import Search from 'assets/icon/search_icon/SearchIcon';
 import { useQueryLocation } from 'hooks/useQueryLocation';
-import { ButtonNormal } from 'shared/button-normal';
 
 import { SharedContainerScreen } from 'shared/shared-container';
 
 import NavTop from '../nav-top';
 import {
+	ButtonSearchDoctor,
+	ContentDoctorsItem,
 	ContentSchedule,
 	ContentScheduleDate,
 	WrapperDoctors,
-	WrapperDoctorsList,
-	WrapperDoctorsListItem,
+	WrapperDoctorsItem,
 	WrapperSchedule
-} from './style';
+} from './styles';
 
 const HomeDr = () => {
 	let query = useQueryLocation();
@@ -24,14 +26,16 @@ const HomeDr = () => {
 
 	return (
 		<SharedContainerScreen>
-			<div style={{ minHeight: '20vh' }}>
-				<NavTop>
-					<div>
-						Debe a ver una mejor manera de integrar el buscador hablar con yefri
-					</div>
-					<ButtonNormal>Mapa</ButtonNormal>
-				</NavTop>
-			</div>
+			<NavTop>
+				<div style={{ display: 'flex', gap: '0.5rem' }}>
+					<ButtonSearchDoctor className="light">
+						<Search /> Buscar
+					</ButtonSearchDoctor>
+					<ButtonSearchDoctor>
+						<PointMapIcon /> Mapa
+					</ButtonSearchDoctor>
+				</div>
+			</NavTop>
 			<div style={{ minHeight: '80vh' }}>
 				<WrapperSchedule>
 					<ContentSchedule>
@@ -54,21 +58,75 @@ const HomeDr = () => {
 					</ContentSchedule>
 				</WrapperSchedule>
 				<WrapperDoctors>
-					<WrapperDoctorsList>
-						<WrapperDoctorsListItem>
-							<img className="imgCard" src="pic_trulli.jpg" alt="Trulli" />
-							<div className="detailsCard">
-								<div>Dra. Dulce Mcarthur Mustafa</div>
-								<div>Oftalmóloga</div>
-								<div>75401 Jazmyne Circles Suite 841 - Casper, MI / 74622</div>
-								<div>El siguiente día disponible es el sábado, Jun 19</div>
-							</div>
+					<WrapperDoctorsItem>
+						<ContentDoctorsItem>
+							<figure>
+								<img
+									src="https://qodebrisbane.com/wp-content/uploads/2019/07/This-is-not-a-person-2-1.jpeg"
+									alt="img-del-dr-trujillo"
+								/>
+								<figcaption>
+									<h3>Dra. Dulce Mcarthur Mustafa</h3>
+									<h4>Oftalmóloga</h4>
+									<p>
+										<PointMapIcon /> 75401 Jazmyne Circles Suite 841 - Casper,
+										MI / 74622
+									</p>
+									<p>El siguiente día disponible es el sábado, Jun 19</p>
+								</figcaption>
+							</figure>
 							<div className="lineCard" />
-							<div className="buttonCard">
+							<ButtonSearchDoctor>
 								Agendar una cita para el sábado, Jun 19
-							</div>
-						</WrapperDoctorsListItem>
-					</WrapperDoctorsList>
+							</ButtonSearchDoctor>
+						</ContentDoctorsItem>
+					</WrapperDoctorsItem>
+					<WrapperDoctorsItem>
+						<ContentDoctorsItem>
+							<figure>
+								<img
+									src="https://qodebrisbane.com/wp-content/uploads/2019/07/This-is-not-a-person-2-1.jpeg"
+									alt="img-del-dr-trujillo"
+								/>
+								<figcaption>
+									<h3>Dra. Dulce Mcarthur Mustafa</h3>
+									<h4>Oftalmóloga</h4>
+									<p>
+										<PointMapIcon /> 75401 Jazmyne Circles Suite 841 - Casper,
+										MI / 74622
+									</p>
+									<p>El siguiente día disponible es el sábado, Jun 19</p>
+								</figcaption>
+							</figure>
+							<div className="lineCard" />
+							<ButtonSearchDoctor>
+								Agendar una cita para el sábado, Jun 19
+							</ButtonSearchDoctor>
+						</ContentDoctorsItem>
+					</WrapperDoctorsItem>
+					<WrapperDoctorsItem>
+						<ContentDoctorsItem>
+							<figure>
+								<img
+									src="https://qodebrisbane.com/wp-content/uploads/2019/07/This-is-not-a-person-2-1.jpeg"
+									alt="img-del-dr-trujillo"
+								/>
+								<figcaption>
+									<h3>Dra. Dulce Mcarthur Mustafa</h3>
+									<h4>Oftalmóloga</h4>
+									<p>
+										<PointMapIcon /> 75401 Jazmyne Circles Suite 841 - Casper,
+										MI / 74622
+									</p>
+									<p>El siguiente día disponible es el sábado, Jun 19</p>
+								</figcaption>
+							</figure>
+							<div className="lineCard" />
+							<ButtonSearchDoctor>
+								Agendar una cita para el sábado, Jun 19
+							</ButtonSearchDoctor>
+						</ContentDoctorsItem>
+					</WrapperDoctorsItem>
 				</WrapperDoctors>
 			</div>
 		</SharedContainerScreen>
