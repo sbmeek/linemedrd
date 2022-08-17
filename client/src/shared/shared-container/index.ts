@@ -7,14 +7,10 @@ export const MainContainer = styled.main`
 `;
 
 export const SharedContainerScreen = styled.div`
-	position: fixed;
 	display: flex;
 	flex-direction: column;
-	top: 0;
-	left: 0;
 	width: 100%;
-	height: auto;
-	max-height: 100%;
+	min-height: 100vh;
 	z-index: 200;
 `;
 

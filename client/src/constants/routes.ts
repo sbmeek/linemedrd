@@ -41,7 +41,7 @@ const routes: { [key: string]: RouteType } = {
 		isPublic: true
 	},
 	homeDr: {
-		path: '/SearchDoctor/Home',
+		path: '/SearchDoctor/Drs',
 		component: asyncComponent(() => import('components/search-doctor')),
 		requiresAuth: true,
 		isPublic: true
