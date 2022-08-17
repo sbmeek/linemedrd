@@ -4,6 +4,7 @@
 		"spanish": "Español"
 	},
 	"errors": {
+		"generalError": "Error en la aplicación",
 		"incorrectEmail": "Correo electrónico incorrecto",
 		"incorrectNumber": "Número incorrecto",
 		"incorrectDate": "Fecha incorrecta",
@@ -22,7 +23,9 @@
 			"phoneNumber": "El número telefonico es requerido",
 			"identification": "La identificación es requerida",
 			"date": "La fecha es requerida"
-		}
+		},
+		"recoverPwdEmailNotFound": "El email proporcionado no fue encontrado.",
+		"recoverPwdPwdNotUpdated": "La Contraseña no pudo ser actualizada, intenta de nuevo mas tarde."
 	},
 	"login": {
 		"title": "Iniciar Sesión",

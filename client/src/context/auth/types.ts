@@ -21,6 +21,10 @@ export type TypeAuth = {
 	login: TypeFunctionLogin;
 	logout: () => any;
 	recoverPwdRequest: (email: string) => Promise<{ ok: boolean; msg: string }>;
+	recoverPwdSetNew: (
+		encToken: string,
+		newPwd: string
+	) => Promise<{ ok: boolean; pwdUpdated: boolean; msg: string }>;
 };
 
 export type TypeParameterAuth = {

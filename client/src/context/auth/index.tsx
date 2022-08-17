@@ -67,13 +67,30 @@ export const AuthProvider = <T extends TypeAuthProvider>({ children }: T) => {
 			let isOk = response.ok as boolean;
 			return {
 				ok: isOk,
-				msg: isOk ? 'None' : 'El email proporcionado no fue encontrado'
+				msg: isOk ? null : i18n.t('errors.recoverPwdEmailNotFound')
 			};
 		} catch (err) {
-			console.log(err);
 			return {
 				ok: false,
-				msg: 'Error en la aplicación'
+				msg: i18n.t('errors.generalError')
+			};
+		}
+	};
+
+	const recoverPwdSetNew = async (encToken: string, newPwd: string) => {
+		try {
+			const res = await authService.recoverPwdSetNew(encToken, newPwd);
+			let isOk = res.ok as boolean;
+			return {
+				ok: isOk,
+				msg: isOk ? null : i18n.t('errors.recoverPwdPwdNotUpdated'),
+				pwdUpdated: res.pwdUpdated
+			};
+		} catch (err) {
+			return {
+				ok: false,
+				pwdUpdated: false,
+				msg: i18n.t('errors.generalError')
 			};
 		}
 	};
@@ -86,7 +103,8 @@ export const AuthProvider = <T extends TypeAuthProvider>({ children }: T) => {
 				setUser,
 				login,
 				logout,
-				recoverPwdRequest
+				recoverPwdRequest,
+				recoverPwdSetNew
 			} as TypeAuth),
 		[user, loading]
 	);
