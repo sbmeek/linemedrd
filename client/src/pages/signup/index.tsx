@@ -26,8 +26,7 @@ import { ContentInputSignup } from './styles';
 import { useMutation } from '@apollo/client';
 
 import { CREATE_USER } from 'graphql/user/mutation';
-import { MutationCreateUserArgs, UserData } from 'graphql/user/type';
-import { useLocation } from 'react-router-dom';
+import { MutationCreateUserArgs, UserData } from 'graphql/types';
 
 const defaultFieldValues = {
 	username: {
