@@ -2,6 +2,7 @@ import ArrowRightIcon from 'assets/icon/arrowRight_icon/ArrowRightIcon';
 import CalendarIcon from 'assets/icon/calendar_icon/CalendarIcon';
 import PointMapIcon from 'assets/icon/pointMap_icon/PointMapIcon';
 import Search from 'assets/icon/search_icon/SearchIcon';
+import { Doctor } from 'graphql/types';
 import { useQueryLocation } from 'hooks/useQueryLocation';
 import React, { PropsWithChildren } from 'react';
 
@@ -20,10 +21,12 @@ import {
 
 interface ISearchDoctor {
 	setIsSearch: React.Dispatch<React.SetStateAction<boolean>>;
+	doctors?: Doctor[];
 }
 
 const SearchDoctor = <T extends PropsWithChildren<ISearchDoctor>>({
-	setIsSearch
+	setIsSearch,
+	doctors
 }: T) => {
 	// let query = useQueryLocation();
 
@@ -68,75 +71,39 @@ const SearchDoctor = <T extends PropsWithChildren<ISearchDoctor>>({
 					</ContentSchedule>
 				</WrapperSchedule>
 				<WrapperDoctors>
-					<WrapperDoctorsItem>
-						<ContentDoctorsItem>
-							<figure>
-								<img
-									src="https://qodebrisbane.com/wp-content/uploads/2019/07/This-is-not-a-person-2-1.jpeg"
-									alt="img-del-dr-trujillo"
-								/>
-								<figcaption>
-									<h3>Dra. Dulce Mcarthur Mustafa</h3>
-									<h4>Oftalmóloga</h4>
-									<p>
-										<PointMapIcon /> 75401 Jazmyne Circles Suite 841 - Casper,
-										MI / 74622
-									</p>
-									<p>El siguiente día disponible es el sábado, Jun 19</p>
-								</figcaption>
-							</figure>
-							<div className="lineCard" />
-							<ButtonSearchDoctor>
-								Agendar una cita para el sábado, Jun 19
-							</ButtonSearchDoctor>
-						</ContentDoctorsItem>
-					</WrapperDoctorsItem>
-					<WrapperDoctorsItem>
-						<ContentDoctorsItem>
-							<figure>
-								<img
-									src="https://qodebrisbane.com/wp-content/uploads/2019/07/This-is-not-a-person-2-1.jpeg"
-									alt="img-del-dr-trujillo"
-								/>
-								<figcaption>
-									<h3>Dra. Dulce Mcarthur Mustafa</h3>
-									<h4>Oftalmóloga</h4>
-									<p>
-										<PointMapIcon /> 75401 Jazmyne Circles Suite 841 - Casper,
-										MI / 74622
-									</p>
-									<p>El siguiente día disponible es el sábado, Jun 19</p>
-								</figcaption>
-							</figure>
-							<div className="lineCard" />
-							<ButtonSearchDoctor>
-								Agendar una cita para el sábado, Jun 19
-							</ButtonSearchDoctor>
-						</ContentDoctorsItem>
-					</WrapperDoctorsItem>
-					<WrapperDoctorsItem>
-						<ContentDoctorsItem>
-							<figure>
-								<img
-									src="https://qodebrisbane.com/wp-content/uploads/2019/07/This-is-not-a-person-2-1.jpeg"
-									alt="img-del-dr-trujillo"
-								/>
-								<figcaption>
-									<h3>Dra. Dulce Mcarthur Mustafa</h3>
-									<h4>Oftalmóloga</h4>
-									<p>
-										<PointMapIcon /> 75401 Jazmyne Circles Suite 841 - Casper,
-										MI / 74622
-									</p>
-									<p>El siguiente día disponible es el sábado, Jun 19</p>
-								</figcaption>
-							</figure>
-							<div className="lineCard" />
-							<ButtonSearchDoctor>
-								Agendar una cita para el sábado, Jun 19
-							</ButtonSearchDoctor>
-						</ContentDoctorsItem>
-					</WrapperDoctorsItem>
+					{doctors?.map(doctor => (
+						<WrapperDoctorsItem key={doctor._id}>
+							<ContentDoctorsItem>
+								<figure>
+									<img
+										src={
+											Array.isArray(doctor.imageUrl)
+												? doctor.imageUrl[0]
+												: doctor.imageUrl
+										}
+										alt="img-del-dr-trujillo"
+									/>
+									<figcaption>
+										<h3>
+											{doctor.user.name} {doctor.user.lastname}
+										</h3>
+										<h4>{doctor.specialties[0].description}</h4>
+										<p>
+											<PointMapIcon /> {doctor.workday[0].adress.street}{' '}
+											{doctor.workday[0].adress.sector}{' '}
+											{doctor.workday[0].adress.city}{' '}
+											{doctor.workday[0].adress.province}
+										</p>
+										<p>El siguiente día disponible es el sábado, Jun 19</p>
+									</figcaption>
+								</figure>
+								<div className="lineCard" />
+								<ButtonSearchDoctor>
+									Agendar una cita para el sábado, Jun 19
+								</ButtonSearchDoctor>
+							</ContentDoctorsItem>
+						</WrapperDoctorsItem>
+					))}
 				</WrapperDoctors>
 			</div>
 		</SharedContainerScreen>

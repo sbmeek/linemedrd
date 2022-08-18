@@ -4,6 +4,7 @@ export const GET_LIST_DOCTORS = gql`
 	query ListItemDoctors {
 		doctors {
 			_id
+			imageUrl
 			user(populate: true) {
 				name
 				lastname

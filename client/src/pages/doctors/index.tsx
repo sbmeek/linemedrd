@@ -8,7 +8,8 @@ import { Doctor } from 'graphql/types';
 const Doctors = () => {
 	const [isSearch, setIsSearch] = useState<boolean>(false);
 
-	const { data, error, loading } = useQuery<Doctor>(GET_LIST_DOCTORS);
+	const { data, error, loading } =
+		useQuery<{ doctors: Doctor[] }>(GET_LIST_DOCTORS);
 
 	useEffect(() => {
 		console.log(data, error, loading);
@@ -18,8 +19,10 @@ const Doctors = () => {
 		<div>
 			{isSearch ? (
 				<SearchDoctorForm setIsSearch={setIsSearch} />
+			) : loading ? (
+				<h2>Loading...</h2>
 			) : (
-				<SearchDoctor setIsSearch={setIsSearch} />
+				<SearchDoctor setIsSearch={setIsSearch} doctors={data?.doctors} />
 			)}
 		</div>
 	);
