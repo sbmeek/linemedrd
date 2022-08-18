@@ -91,7 +91,7 @@ export const Dropdown = <T extends DropdownItemValueType>({
 	};
 
 	const handleCloseIconClick = () => {
-		setSelectedItem(null as any);
+		setSelectedItem(null);
 		setSearchValue('');
 
 		if (searchValue) {
