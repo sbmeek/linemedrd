@@ -3,12 +3,7 @@ import { appName } from 'constants/index';
 import routes from 'constants/routes';
 import MenuIcon from 'assets/icon/menu_icon/MenuIcon';
 
-import {
-	ContainerLogo,
-	ContentIconMenu,
-	Diamond,
-	LinkLogo
-} from './styles';
+import { ContainerLogo, ContentIconMenu, Diamond, LinkLogo } from './styles';
 
 interface IPropsProperty {
 	pathname: string;
@@ -27,13 +22,13 @@ const SidebarTop = <T extends IPropsProperty>({
 	};
 
 	return (
-		<Fragment>
+		<>
 			<ContainerLogo
 				onClick={() => {
 					if (show) showMenu();
 				}}
 			>
-				<Diamond pathname={pathname}></Diamond>
+				<Diamond pathname={pathname} />
 				<LinkLogo pathname={pathname} to={routes.home.path}>
 					<h1>{appName}</h1>
 				</LinkLogo>
@@ -41,7 +36,7 @@ const SidebarTop = <T extends IPropsProperty>({
 			<ContentIconMenu pathname={pathname} onClick={showMenu}>
 				<MenuIcon pathname={pathname} showMenu={show} />
 			</ContentIconMenu>
-		</Fragment>
+		</>
 	);
 };
 

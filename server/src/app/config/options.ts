@@ -45,7 +45,7 @@ export const corsOptions = {
 };
 
 export const gqlOptions: GqlModuleOptions = {
-	playground: process.env.NODE_ENV === 'development',
+	playground: process.env.NODE_ENV !== 'production',
 	autoSchemaFile: path.join(__dirname, 'src/schema.gql'),
 	sortSchema: true,
 	fieldResolverEnhancers: ['interceptors'],

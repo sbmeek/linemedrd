@@ -1,14 +1,15 @@
+import i18n from 'i18n';
+import { FormEvent, useState } from 'react';
+
+import useAuth from 'context/auth';
+import { appName } from 'constants/index';
 import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
 import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
 import ModalContainer from 'components/modal-container';
-import { appName } from 'constants/index';
-import useAuth from 'context/auth';
 import { emailValid, inputEmpty, someFieldInvalid } from 'helpers/validators';
 import { useFields } from 'hooks/useFields';
-import i18n from 'i18n';
 import { ContentInputSignup } from 'pages/signup/styles';
-import { FormEvent, useState } from 'react';
 import { ButtonLink } from 'shared/button-link';
 import { ContentInput, Input, InputHelper, Wrapper } from 'shared/input';
 import { Icon, InputWithIcon } from 'shared/input-icon';
@@ -46,11 +47,10 @@ const FieldValuesEmail = {
 const Login = () => {
 	const [backendError, setBackendError] = useState<string>('');
 	const [showPwd, setShowPwd] = useState(true);
-
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [email, setEmail] = useState<string>('');
 
-	const { login, setUser } = useAuth();
+	const { login, setUser, recoverPwdRequest } = useAuth();
 
 	const { values, errors, reset, handleChange, handleBlur } =
 		useFields(defaultFieldValues);
@@ -74,10 +74,17 @@ const Login = () => {
 		setUser(response);
 	};
 
-	const handleFormSubmitEmail = async (e: FormEvent<HTMLFormElement>) => {
+	const handleFormSubmitRecoverPwd = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const { email } = valuesRecovery;
 		setEmail(email);
+
+		const response = await recoverPwdRequest(email);
+		if (response.ok) {
+			setBackendError('');
+		} else {
+			setBackendError(response.msg);
+		}
 	};
 
 	return (
@@ -96,6 +103,7 @@ const Login = () => {
 							name="email"
 							onChange={handleChange}
 							onBlur={handleBlur}
+							autoComplete="username"
 						/>
 					</Wrapper>
 					<InputHelper hide={!errors?.email}>
@@ -148,9 +156,7 @@ const Login = () => {
 				</Submit>
 			</form>
 			<ContentLink>
-				<span>
-					{i18n.t('login.newIn')} {appName}
-				</span>{' '}
+				<span>{i18n.t('login.newIn').replace('{appname}', appName)}</span>{' '}
 				<Link to="/Signup">{i18n.t('login.createAccount')}</Link>.
 			</ContentLink>
 			<ModalContainer
@@ -183,7 +189,7 @@ const Login = () => {
 						</ButtonLink>
 					</>
 				) : (
-					<form onSubmit={handleFormSubmitEmail}>
+					<form onSubmit={handleFormSubmitRecoverPwd}>
 						<ContentInputSignup>
 							<label htmlFor="email">
 								{i18n.t('recoveryAccount.label.inputEmail')}

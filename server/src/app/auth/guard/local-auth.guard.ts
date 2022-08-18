@@ -9,9 +9,9 @@ export class LocalAuthGuard extends AuthGuard('localStrat') {
 
 		if (!user.isEmailConfirmed) {
 			return {
-				isAuthenticated: false,
 				ok: false,
-				emailNotConfirmed: true
+				isAuthenticated: true,
+				isEmailConfirmed: false
 			};
 		}
 		return user;

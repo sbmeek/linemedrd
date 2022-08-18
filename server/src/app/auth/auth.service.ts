@@ -93,10 +93,10 @@ export class AuthService {
 	async recoverPwdSetNew(encToken: string, newPwd: string) {
 		const tokenObj = this.decryptToken(encToken);
 		const user = await this.userService.getByEmail(tokenObj.em);
-		if (!user) return { ok: false };
+		if (!user) return { ok: false, pwdUpdated: false };
 
 		const isTokenOk = user.codRecPwd === tokenObj.ky;
-		if (!newPwd) return { ok: isTokenOk };
+		if (!newPwd) return { ok: isTokenOk, pwdUpdated: false };
 		if (newPwd && isTokenOk) {
 			const pwd = await user.hashPwd(newPwd);
 			await user.updateOne({ $set: { password: pwd, codRecPwd: '-' } });

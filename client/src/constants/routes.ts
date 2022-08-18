@@ -30,24 +30,12 @@ const routes: { [key: string]: RouteType } = {
 	},
 	searchDr: {
 		path: '/SearchDoctor',
-		component: asyncComponent(() => import('pages/search-doctor')),
+		component: asyncComponent(() => import('pages/doctors')),
 		requiresAuth: true,
 		isPublic: true
 	},
 	homeUser: {
 		path: '/Home',
-		component: asyncComponent(() => import('pages/home')),
-		requiresAuth: true,
-		isPublic: true
-	},
-	homeDr: {
-		path: '/SearchDoctor/Home',
-		component: asyncComponent(() => import('pages/home-doctors')),
-		requiresAuth: true,
-		isPublic: true
-	},
-	detailsDr: {
-		path: '/SearchDoctor/:id',
 		component: asyncComponent(() => import('pages/home')),
 		requiresAuth: true,
 		isPublic: true

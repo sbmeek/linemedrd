@@ -3,13 +3,19 @@
 		"english": "Ingles",
 		"spanish": "Español"
 	},
+	"general": {
+		"Date": "Fecha"
+	},
 	"errors": {
+		"generalError": "Error en la aplicación",
 		"incorrectEmail": "Correo electrónico incorrecto",
 		"incorrectNumber": "Número incorrecto",
 		"incorrectDate": "Fecha incorrecta",
 		"passwordNotMatch": "La contraseña no coincide",
+		"loginNotAuthenticated": "Verificar que las credenciales son correctas.",
+		"loginEmailNotConfirmed": "Debe confirmar su registro en la aplicacion, revise su correo electronico",
 		"required": {
-			"username": "El nombre de usuarop es requerido",
+			"username": "El nombre de usuario es requerido",
 			"name": "El nombre es requerido",
 			"pwd": "La contraseña es requerida",
 			"pwdConfirmation": "La confirmación de contraseña es requerida",
@@ -20,13 +26,15 @@
 			"phoneNumber": "El número telefonico es requerido",
 			"identification": "La identificación es requerida",
 			"date": "La fecha es requerida"
-		}
+		},
+		"recoverPwdEmailNotFound": "El email proporcionado no fue encontrado.",
+		"recoverPwdPwdNotUpdated": "La Contraseña no pudo ser actualizada, intenta de nuevo mas tarde."
 	},
 	"login": {
 		"title": "Iniciar Sesión",
 		"createAccount": "Crear nueva cuenta",
-		"newIn": "Nuevo en",
-		"inputEmail": "Introduzca su nombre de usuario o email",
+		"newIn": "¿Nuevo en {appname}?",
+		"inputEmail": "Introduzca su correo electrónico",
 		"inputPassword": "Introduzca su contraseña",
 		"forgetPassword": "¿Olvidaste tu contraseña?",
 		"signIn": "Iniciar",

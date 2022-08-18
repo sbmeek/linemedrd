@@ -25,6 +25,7 @@ export const LinkClick = styled.div<{ align?: string }>`
 	font-size: 1rem;
 	transition: color 200ms ease-out;
 	margin: 0%;
+	cursor: pointer;
 
 	${({ theme }) => ({
 		fontFamily: theme.fonts.segoeui,

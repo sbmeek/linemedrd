@@ -18,11 +18,11 @@ export class User {
 	username?: string;
 
 	@Field(() => String)
-	@Prop({ required: true })
+	@Prop()
 	name?: string;
 
 	@Field(() => String)
-	@Prop({ required: true })
+	@Prop()
 	lastname?: string;
 
 	@Field(() => String)
@@ -49,7 +49,7 @@ export class User {
 	age?: number;
 
 	@Field(() => String)
-	@Prop({ required: true })
+	@Prop()
 	gender?: string;
 
 	@Field(() => UserAdress)

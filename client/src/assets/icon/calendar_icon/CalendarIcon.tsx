@@ -1,8 +1,18 @@
-function CalendarIcon(props) {
+import { PropsWithChildren } from "react";
+
+interface ICalendar {
+	height?: string;
+	width?: string;
+};
+
+
+const CalendarIcon = <T extends PropsWithChildren<ICalendar>>(props: T) => {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 51.019 46.434"
+			height={"1.2rem"}
+			width={"1.2rem"}
 			{...props}
 		>
 			<g data-name="Group 21" transform="translate(-217 -556)">

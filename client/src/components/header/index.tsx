@@ -1,17 +1,21 @@
 import Sidebar from 'components/menu/side-bar';
 import SideBarTop from 'components/menu/side-bar-top';
 import { useListener } from 'context/event-bus';
-import { useState } from 'react';
+import { ComponentType, useState } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { ContainerTop, ContentHeader } from './styles';
+import { ContainerTop, ContentHeader, ModalHeader } from './styles';
 
 const Header = <T extends RouteComponentProps>({
 	location: { pathname }
 }: T): JSX.Element => {
 	const [showSideBar, setShowSideBar] = useState<boolean>(false);
+	const [showModalHeader, setShowModalHeader] = useState(false);
 
-	useListener('showHeaderNavControl', () => {
-		console.log('show-header-nav-control');
+	let ModalTitleElement: ComponentType = () => <></>;
+
+	useListener('showHeaderNavControl', modalTitleElement => {
+		ModalTitleElement = modalTitleElement;
+		setShowModalHeader(val => !val);
 	});
 
 	return (
@@ -24,6 +28,9 @@ const Header = <T extends RouteComponentProps>({
 						setShow={setShowSideBar}
 					/>
 				</ContainerTop>
+				<ModalHeader show={showModalHeader}>
+					<ModalTitleElement />
+				</ModalHeader>
 			</ContentHeader>
 			<Sidebar show={showSideBar} setShow={setShowSideBar} />
 		</>

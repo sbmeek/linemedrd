@@ -4,7 +4,7 @@
 		"build": "nest build",
 		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
 		"start": "cross-env NODE_ENV=development nest start",
-		"start:test": "cross-env NODE_ENV=test nest start",
+		"start:test": "cross-env NODE_ENV=test nest start -w --tsc",
 		"start:dev": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true nest start -w --tsc",
 		"start:debug": "cross-env NODE_ENV=development nest start --debug",
 		"start:prod": "cross-env NODE_ENV=production node dist/main",

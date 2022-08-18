@@ -6,6 +6,14 @@ export const MainContainer = styled.main`
 	background-color: ${({ theme }) => theme.background.content};
 `;
 
+export const SharedContainerScreen = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 100vh;
+	z-index: 200;
+`;
+
 export const SharedContainer = styled.div`
 	width: 80%;
 	margin: auto;

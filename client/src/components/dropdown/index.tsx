@@ -28,7 +28,7 @@ type DropdownPropsType<T> = {
 
 type DropdownItemOrGroupPropsType<T> = {
 	dropdownItem: DropdownItem<T>;
-	setSelected: React.Dispatch<React.SetStateAction<DropdownItem<T>>>;
+	setSelected: React.Dispatch<React.SetStateAction<DropdownItem<T> | null>>;
 };
 
 const DropdownItemOrGroup = <T extends DropdownItemValueType>({
@@ -68,8 +68,8 @@ export const Dropdown = <T extends DropdownItemValueType>({
 	const [searchValue, setSearchValue] = useState('');
 	const [overlayVisibility, setOverlayVisibility] = useState(false);
 	const searchInputRef = useRef<HTMLInputElement>(null);
-	const [selectedItem, setSelectedItem] = useState<DropdownItem<T>>(
-		null as any
+	const [selectedItem, setSelectedItem] = useState<DropdownItem<T> | null>(
+		null
 	);
 
 	useEffect(() => {

@@ -6,11 +6,11 @@ export class CreateUserInput {
 	@Field(() => String)
 	username: string;
 
-	@Field(() => String)
-	name: string;
+	@Field(() => String, { nullable: true })
+	name?: string;
 
-	@Field(() => String)
-	lastname: string;
+	@Field(() => String, { nullable: true })
+	lastname?: string;
 
 	@Field(() => String)
 	email: string;
@@ -30,8 +30,8 @@ export class CreateUserInput {
 	@Field(() => Number, { nullable: true })
 	age?: number;
 
-	@Field(() => String)
-	gender: string;
+	@Field(() => String, { nullable: true })
+	gender?: string;
 
 	@Field(() => String, { nullable: true })
 	userAdress?: MSchema.Types.ObjectId;

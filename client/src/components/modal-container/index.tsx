@@ -14,7 +14,7 @@ import {
 	ModalTitle,
 	ModalTitleCompany,
 	TextCloseModal
-} from './style';
+} from './styles';
 
 interface IPropsModalContainer {
 	title: string;

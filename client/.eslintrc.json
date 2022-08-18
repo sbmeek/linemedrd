@@ -56,7 +56,8 @@
 		],
 		"arrow-parens": ["error", "as-needed"],
 		"object-curly-newline": "off",
-		"object-property-newline": "error"
+		"object-property-newline": "error",
+		"import/order": "off"
 	},
 	"globals": {
 		"React": true,

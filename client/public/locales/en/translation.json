@@ -3,11 +3,17 @@
 		"english": "English",
 		"spanish": "Spanish"
 	},
+	"general": {
+		"date": "Date"
+	},
 	"errors": {
+		"generalError": "Error in the aplication",
 		"incorrectEmail": "Incorrect email",
 		"incorrectNumber": "Incorrect number",
 		"incorrectDate": "Incorrect date",
 		"passwordNotMatch": "La contraseña no coincide",
+		"loginNotAuthenticated": "Please, Verify that your credentials are correct",
+		"loginEmailNotConfirmed": "You must confirm your email before login into the app",
 		"required": {
 			"username": "Username is required",
 			"name": "Name is required",
@@ -20,12 +26,14 @@
 			"phoneNumber": "Phone number is required",
 			"identification": "Identification is required",
 			"date": "Date is required"
-		}
+		},
+		"recoverPwdEmailNotFound": "The provided email was not found.",
+		"recoverPwdPwdNotUpdated": "Password could not be updated, please try again later."
 	},
 	"login": {
 		"title": "Sign In",
 		"createAccount": "Create new account",
-		"newIn": "New in",
+		"newIn": "New in {appname}?",
 		"inputEmail": "Enter email or username",
 		"inputPassword": "Enter your password",
 		"forgetPassword": "Forgot your password?",

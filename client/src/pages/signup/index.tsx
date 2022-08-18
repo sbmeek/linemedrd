@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
 import { CheckboxContainer } from 'shared/checkbox';
 import { Input, InputHelper, Wrapper } from 'shared/input';
@@ -23,6 +23,10 @@ import ExclamationIcon from 'assets/icon/exclamation_icon/ExclamationIcon';
 import EyeCloseIcon from 'assets/icon/eyeClose_icon/EyeCloseIcon';
 import EyeIcon from 'assets/icon/eye_icon/EyeIcon';
 import { ContentInputSignup } from './styles';
+import { useMutation } from '@apollo/client';
+
+import { CREATE_USER } from 'graphql/user/mutation';
+import { MutationCreateUserArgs, UserData } from 'graphql/types';
 
 const defaultFieldValues = {
 	username: {
@@ -53,18 +57,59 @@ const defaultFieldValues = {
 
 const Signup = () => {
 	const [showPwd, setShowPwd] = useState<boolean>(true);
-	const { values, errors, handleChange, handleChangeCheckBox, handleBlur } =
-		useFields(defaultFieldValues);
 
-	const handleSubmit = (e: FormEvent<HTMLElement>): void => {
+	const {
+		values,
+		errors,
+		handleChange,
+		handleChangeCheckBox,
+		handleBlur,
+		reset
+	} = useFields(defaultFieldValues);
+
+	const [createUser, { data, loading }] = useMutation<
+		UserData,
+		MutationCreateUserArgs
+	>(CREATE_USER, {
+		onError: errors => {
+			console.error(errors);
+		}
+	});
+
+	const handleSubmit = async (e: FormEvent<HTMLElement>): Promise<void> => {
 		e.preventDefault();
-		// TODO Dalvin: Enviar a GQL
+
+		const anyInputEmpty = Object.values(values).some(
+			(input: string) => input === ''
+		);
+
+		if (anyInputEmpty) {
+			return;
+		}
+
+		await createUser({
+			variables: {
+				origin: window.location.origin,
+				payload: {
+					username: values.username,
+					password: values.username,
+					email: values.email
+				}
+			}
+		});
 	};
+
+	useEffect(() => {
+		if (data) {
+			console.log(data);
+			reset();
+		}
+	}, [data]);
 
 	return (
 		<SharedContainer>
 			<Title>{i18n.t('Register.title')}</Title>
-
+			{loading && <h4>loading...</h4>}
 			<form onSubmit={handleSubmit}>
 				<ContentInputSignup>
 					<label htmlFor="username">
@@ -132,6 +177,7 @@ const Signup = () => {
 							name="pwd"
 							onChange={handleChange}
 							onBlur={handleBlur}
+							autoComplete="current-password"
 						/>
 						<Icon onClick={() => setShowPwd(prev => !prev)}>
 							{showPwd ? <EyeIcon /> : <EyeCloseIcon />}
