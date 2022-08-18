@@ -18,6 +18,12 @@ export type Scalars = {
 	DateTime: any;
 };
 
+export interface UserData {
+	_id: String;
+	email: String;
+	username: String;
+}
+
 export type Agenda = {
 	__typename?: 'Agenda';
 	_id: Scalars['String'];
@@ -159,12 +165,12 @@ export type CreateUserInput = {
 	codConfEmail?: InputMaybe<Scalars['String']>;
 	codRecPwd?: InputMaybe<Scalars['String']>;
 	email: Scalars['String'];
-	gender: Scalars['String'];
+	gender?: Scalars['String'];
 	homeNumber?: InputMaybe<Scalars['String']>;
 	isActive?: InputMaybe<Scalars['Boolean']>;
 	isEmailConfirmed?: InputMaybe<Scalars['Boolean']>;
-	lastname: Scalars['String'];
-	name: Scalars['String'];
+	lastname?: Scalars['String'];
+	name?: Scalars['String'];
 	password: Scalars['String'];
 	phoneNumber?: InputMaybe<Scalars['String']>;
 	role?: InputMaybe<Scalars['Float']>;
@@ -172,6 +178,26 @@ export type CreateUserInput = {
 	userPreferences?: InputMaybe<Scalars['String']>;
 	username: Scalars['String'];
 };
+
+// export type CreateUserInput = {
+// 	age?: InputMaybe<Scalars['Float']>;
+// 	birthday?: InputMaybe<Scalars['DateTime']>;
+// 	codConfEmail?: InputMaybe<Scalars['String']>;
+// 	codRecPwd?: InputMaybe<Scalars['String']>;
+// 	email: Scalars['String'];
+// 	gender: Scalars['String'];
+// 	homeNumber?: InputMaybe<Scalars['String']>;
+// 	isActive?: InputMaybe<Scalars['Boolean']>;
+// 	isEmailConfirmed?: InputMaybe<Scalars['Boolean']>;
+// 	lastname: Scalars['String'];
+// 	name: Scalars['String'];
+// 	password: Scalars['String'];
+// 	phoneNumber?: InputMaybe<Scalars['String']>;
+// 	role?: InputMaybe<Scalars['Float']>;
+// 	userAdress?: InputMaybe<Scalars['String']>;
+// 	userPreferences?: InputMaybe<Scalars['String']>;
+// 	username: Scalars['String'];
+// };
 
 export type CreateWorkdayInput = {
 	adress: Scalars['String'];
