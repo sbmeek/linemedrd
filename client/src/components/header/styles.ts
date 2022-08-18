@@ -1,4 +1,4 @@
-import { Props } from '@emotion/react';
+import { css, Props } from '@emotion/react';
 import styled from '@emotion/styled';
 
 type ContainerTopProp = { location: string };
@@ -50,4 +50,46 @@ export const ContainerTop = styled.div<ContainerTopProp>`
 	& h1 {
 		font-size: 1rem;
 	}
+`;
+
+const showModalHeader = css`
+	animation: showModalHeader 400ms ease-in-out both;
+
+	@keyframes showModalHeader {
+		from {
+			transform: translateY(-200rem);
+		}
+		to {
+			transform: translateY(0);
+		}
+	}
+`;
+
+const hideModalHeader = css`
+	animation: hideModalHeader 600ms linear both;
+
+	@keyframes hideModalHeader {
+		0% {
+			transform: translateY(0);
+		}
+		100% {
+			transform: translateY(-200rem);
+		}
+	}
+`;
+
+export const ModalHeader = styled.div<{ show: boolean }>`
+	display: flex;
+	width: 100%;
+	max-width: 100%;
+	padding: 1rem;
+	border: none;
+	justify-content: space-between;
+	z-index: 300;
+
+	& h1 {
+		font-size: 1rem;
+	}
+
+	${props => props.show ? showModalHeader : hideModalHeader}
 `;

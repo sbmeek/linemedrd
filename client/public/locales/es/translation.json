@@ -3,6 +3,9 @@
 		"english": "Ingles",
 		"spanish": "Español"
 	},
+	"general": {
+		"Date": "Fecha"
+	},
 	"errors": {
 		"generalError": "Error en la aplicación",
 		"incorrectEmail": "Correo electrónico incorrecto",
