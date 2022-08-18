@@ -40,8 +40,9 @@ const SearchDoctor = () => {
 				dropdownItems={testData}
 				placeholderI18n="searchDr.inputSpecility"
 				startIcon={<Search />}
-				endIcon={<ArrowRightIcon />}
-				onChange={value => console.log(value)}
+				onSelected={value => console.log(value)}
+				onChange={e => console.log(e.target.value)}
+				isSearchable={true}
 			/>
 
 			<BoxNotify

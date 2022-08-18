@@ -14,13 +14,16 @@ import {
 	WrapperDrowndown
 } from './styles';
 import Search from 'assets/icon/search_icon/SearchIcon';
+import ArrowRightIcon from 'assets/icon/arrowRight_icon/ArrowRightIcon';
 
 type DropdownPropsType<T> = {
 	dropdownItems: DropdownItem<T>[];
 	placeholderI18n: string;
 	startIcon?: JSX.Element;
 	endIcon?: JSX.Element;
-	onChange?: (value: DropdownItem<T>) => void;
+	onChange?: (value: ChangeEvent<HTMLInputElement>) => void;
+	onSelected?: (value: DropdownItem<T>) => void;
+	isSearchable?: boolean;
 };
 
 type DropdownItemOrGroupPropsType<T> = {
@@ -58,7 +61,9 @@ export const Dropdown = <T extends DropdownItemValueType>({
 	placeholderI18n,
 	startIcon,
 	endIcon,
-	onChange
+	onSelected,
+	onChange,
+	isSearchable = false
 }: DropdownPropsType<T>) => {
 	const [searchValue, setSearchValue] = useState('');
 	const [overlayVisibility, setOverlayVisibility] = useState(false);
@@ -75,20 +80,22 @@ export const Dropdown = <T extends DropdownItemValueType>({
 
 	useEffect(() => {
 		if (selectedItem) {
-			onChange && onChange(selectedItem);
+			onSelected && onSelected(selectedItem);
 		}
 	}, [selectedItem]);
 
 	const handleSearchValueChange = (evt: ChangeEvent<HTMLInputElement>) => {
+		onChange && onChange(evt);
 		const target = evt.target as HTMLInputElement;
 		setSearchValue(target.value);
 	};
 
 	const handleCloseIconClick = () => {
+		setSelectedItem(null as any);
+		setSearchValue('');
+
 		if (searchValue) {
 			setOverlayVisibility(false);
-			setSelectedItem(null as any);
-			setSearchValue('');
 		}
 	};
 
@@ -113,18 +120,21 @@ export const Dropdown = <T extends DropdownItemValueType>({
 					ref={searchInputRef}
 					aria-label={i18n.t(placeholderI18n)}
 					value={searchValue}
-					disabled={!overlayVisibility || Boolean(selectedItem)}
+					disabled={
+						!isSearchable || !overlayVisibility || Boolean(selectedItem)
+					}
 					onChange={handleSearchValueChange}
 					onBlur={() => setOverlayVisibility(false)}
 					type="text"
 					autoComplete="false"
 				/>
-				{/*TODO: Agregar el icono de clone y quitar el de search */}
-				{endIcon && (
-					<EndIcon onClick={handleCloseIconClick} visible={overlayVisibility}>
-						{!searchValue ? endIcon : <CloseIcon />}
-					</EndIcon>
-				)}
+				<EndIcon onClick={handleCloseIconClick} visible={overlayVisibility}>
+					{!searchValue ? (
+						<ArrowRightIcon />
+					) : (
+						endIcon || <CloseIcon color="#005e4b" />
+					)}
+				</EndIcon>
 			</WrapperDrowndown>
 			<Overlay visible={overlayVisibility} onMouseDown={handleOverlayMouseDown}>
 				{dropdownItems

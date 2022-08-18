@@ -154,4 +154,5 @@ export const EndIcon = styled(Icon)<{ visible: boolean }>`
 	right: 0.75rem;
 	fill: ${({ theme }) => theme.colors.green4};
 	transition: transform 300ms cubic-bezier(0.47, 0.63, 0.65, 0.61);
+	cursor: pointer;
 `;
