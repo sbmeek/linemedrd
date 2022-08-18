@@ -8,12 +8,7 @@ import { Doctor } from 'graphql/types';
 const Doctors = () => {
 	const [isSearch, setIsSearch] = useState<boolean>(false);
 
-	const { data, error, loading } =
-		useQuery<{ doctors: Doctor[] }>(GET_LIST_DOCTORS);
-
-	useEffect(() => {
-		console.log(data, error, loading);
-	}, [data]);
+	const { data, loading } = useQuery<{ doctors: Doctor[] }>(GET_LIST_DOCTORS);
 
 	return (
 		<div>
